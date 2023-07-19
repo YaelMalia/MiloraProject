@@ -1,35 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="/Mil/Estilos/main.css">
-  <title>Main</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../Estilos/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Main</title>
 </head>
-
 <body>
-  <div class="container">
-    <h1 class="titulo">Milora</h1>
-    <div>
-      <img class="imagenLogo" src="/Mil/Images/Daft Punk.jpg" alt="Imagen">
-    </div>
-  </div>
 
-  <div class="panel">
-    <h2>Panel de Control</h2>
-    <ul class="menu">
-      <li><a href="#">Ordenes de compra</a></li>
-      <li><a href="#">Facturacion</a></li>
-      <li><a href="#">Ingenieria</a></li>
-      <li><a href="#">Calidad externa</a></li>
-      <li><a href="#">Calidad interna</a></li>
-      <li><a href="#">Existencias</a></li>
-      <li><a href="#">Producción</a></li>
-    </ul>
-    <div class="content">
-      <!-- Contenido del panel de control -->
+      <!-- <div class="panel">
+        <h2>Panel de Control</h2>
+        <ul class="menu">
+          <li><a href="#"></a></li>
+          <li><a href="#">Facturacion</a></li>
+          <li><a href="#">Ingenieria</a></li>
+          <li><a href="#">Calidad externa</a></li>
+          <li><a href="#">Calidad interna</a></li>
+          <li><a href="#">Existencias</a></li>
+          <li><a href="#"></a></li>
+        </ul>
+        <div class="content">
+          
+        </div>
+      </div> -->
+
+
+      <header class="headerSuperior">
+        <div id="main">
+          <button class="openbtn" onclick="openNav()">☰ Áreas</button>  
+        </div>
+        <div id="right-side" class="right-side">Panel de control</div>
+      </header>
+
+     <!--Main Navigation-->
+     <div id="mySidebar" class="sidebar">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+      <!--  -->
+      <button class="dropdown-btn">Producción
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-container">
+        <a href="#">Cierre de turno</a>
+        <a href="#">Link 2</a>
+        <a href="#">Link 3</a>
+      </div>
+      <!--  -->
+      <button class="dropdown-btn">Ordenes de compra
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-container">
+        <a href="#">Cierre de turno</a>
+        <a href="#">Link 2</a>
+        <a href="#">Link 3</a>
+      </div>
+      <!--  -->
     </div>
-  </div>
-</body>
+    
+    
+    
+    <script>
+    function openNav() {
+      var Window_with;
+      document.getElementById("mySidebar").style.width = "250px";
+      document.getElementById("main").style.marginLeft = "250px";
+      Window_with = window.innerWidth;
+        if(Window_with<=768){
+            document.getElementById("right-side").style.display="none";
+        }
+     }
+    function closeNav() {
+      document.getElementById("mySidebar").style.width = "0";
+      document.getElementById("main").style.marginLeft= "0";
+      Window_with = window.innerWidth;
+        if(Window_with<=768){
+            document.getElementById("right-side").style.display="block";
+        }
+    }
+
+    //* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+var dropdown = document.getElementsByClassName("dropdown-btn");
+var i;
+
+for (i = 0; i < dropdown.length; i++) {
+  dropdown[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var dropdownContent = this.nextElementSibling;
+    if (dropdownContent.style.display === "block") {
+      dropdownContent.style.display = "none";
+    } else {
+      dropdownContent.style.display = "block";
+    }
+  });
+}
+
+    </script>
+
+  </body>
 </html>
