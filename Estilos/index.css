@@ -1,0 +1,19 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+
+  .container {
+    text-align: center;
+  }
+
+  input[type="password"] {
+    font-family: monospace;
+  }
+
+  .show-password {
+    margin-top: 10px;
+  }
