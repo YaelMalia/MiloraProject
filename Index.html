@@ -3,23 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/Mil/Estilos/login.css">
-    <script src="/Mil/Script/login.js"></script>
+    <link rel="stylesheet" type="text/css" href="../Estilos/login.css">
+    <script src="../Script/login.js"></script>
     <title>Login</title>
 </head>
 <body>
   <div class="container">
-    <h2>Iniciar Sesión</h2>
-    <form onsubmit="submitForm(event)" method="post">
-      <label for="username">Usuario:</label><br>
-      <input type="text" id="username" name="username" required><br><br>
-      <img src="Images/Daft Punk.jpg" width="250" height="250" alt="" srcset="" style="position:fixed; left: 60%;">
-      <label for="password">Contraseña:</label><br>
-      <input type="password" id="password" name="password" required><br><br>
-      <label class="show-password">
-      </label><br><br>
-      <input type="submit" value="Iniciar Sesión">
-    </form>
+    <!-- IZQ -->
+    <div class="izquierda" id="izquierda">
+        <h2 class="iSesion">Iniciar Sesión</h2>
+      <form onsubmit="submitForm(event)" method="post" style="max-height: max-content;">
+        <label for="username">Usuario:</label><br>
+        <input class="inputs" type="text" id="username" name="username" required><br><br>
+      
+        <label for="password">Contraseña:</label><br>
+        <input class="inputs" type="password" id="password" name="password" required><br><br>
+          <label class="show-password">
+          </label><br><br>
+          <input type="submit" value="Iniciar Sesión">
+      </form>
+    </div>
+    <!-- Separación -->
+    <!-- DER -->
+    <div class="imagenDerecha" id="imagenDerecha">
+      <img class="Logo" id="Logo" src="Images/LogoMilora.png" width="250" height="250" alt="" srcset="" style="margin: 0 auto;">
+      <h3 class="textoDer" style="margin-top:25px; color: rgb(51, 51, 51);">Control de gestión general  |  2023 ©</h3>
+    </div>
+    
   </div>
   </body>
 </html>

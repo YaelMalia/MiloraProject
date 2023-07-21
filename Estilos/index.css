@@ -8,6 +8,24 @@ body {
 
   .container {
     text-align: center;
+    display: grid;
+    grid-template-areas: 
+    "izquierda"
+    "imagenDerecha";
+
+    grid-template:
+    "izquierda imagenDerecha" 100%/
+        30%         70%;
+  }
+
+  .izquierda{
+    grid-area: izquierda;
+    background-color: aquamarine;
+  }
+
+  .imagenDerecha{
+    grid-area: imagenDerecha;
+    background-color: blue;
   }
 
   input[type="password"] {
@@ -17,3 +35,4 @@ body {
   .show-password {
     margin-top: 10px;
   }
+

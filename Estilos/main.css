@@ -4,6 +4,14 @@
 
 body {
   font-family: "Lato", sans-serif;
+  height: 100%;
+  /* background-color:	#D9D9F3; */
+
+  background: rgb(174,206,238);
+background: -moz-radial-gradient(circle, rgba(174,206,238,0.6615021008403361) 0%, rgba(30,109,203,0.5662640056022409) 100%);
+background: -webkit-radial-gradient(circle, rgba(174,206,238,0.6615021008403361) 0%, rgba(30,109,203,0.5662640056022409) 100%);
+background: radial-gradient(circle, rgba(174,206,238,0.6615021008403361) 0%, rgba(30,109,203,0.5662640056022409) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#aeceee",endColorstr="#1e6dcb",GradientType=1);
 }
 
 .sidebar {
@@ -49,6 +57,10 @@ body {
   padding: 10px 15px;
   border: none;
   height: 100%;
+}
+
+.dropdown-container{
+  margin-left: -20px;
 }
 
 .openbtn:hover {
@@ -148,11 +160,100 @@ para el dropdown-------------------
 
 /* Fin dropdown */
 
+.ControlCentral{
+  margin: 0 auto;
+  /* background-color: wheat; */
+  min-width: 90%;
+  max-width: 90%;
+  /*  */
+  min-height: max-content;
+  height: 80%;
+  /* max-height: 90%; */
+  margin-top:20px;
+}
 
+.Principal{
+
+  box-shadow: 0px 0px 24px 0px rgba(0,0,0,0.18);
+  background-color: rgb(255, 255, 255);
+  border-radius: 2%;
+  padding: 2%;
+  width:60%;
+  margin: 0 auto;
+  height: 100%;
+  margin-top:7%;
+
+  display: grid;
+
+  grid-template-areas:
+  "left-img"
+  "right-img"
+  "bottom-info";
+
+  grid-template:
+  "left-img      right-img" 80% 
+  "bottom-info bottom-info" 20%/
+      50%         50%;
+}
+
+.left-img{
+  grid-area: left-img ;
+  /* background-color: #444; */
+  text-align: right;
+  padding: 5%;
+}
+
+.right-img{
+  grid-area: right-img;
+  border-left-style: solid;
+  border-left-width: 1px;
+  border-left-color: #807b7b60;
+  /* background-color: blue; */
+  text-align: left;
+  padding: 5%;
+}
+
+.bottom-info{
+  grid-area: bottom-info;
+  /* background-color: blueviolet; */
+  text-align: center;
+  padding: 2%;
+}
 
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
   .sidebar {padding-top: 15px;}
   .sidebar a {font-size: 18px;}
+}
+
+
+@media(max-width:1023px){
+  .Principal{
+    width: 80%;
+  }
+}
+
+@media(max-width:799px){
+
+  .Principal{
+    width: 95%;
+  }
+
+  #milLogo{
+    width: 150px;
+    height: 150px;
+  }
+
+  #itesaLogo{
+    width: 160px;
+    height: 100px;
+  }
+
+  h3{
+    font-size: 14px;
+  }
+  h4{
+    font-size: 12px;
+  }
 }
