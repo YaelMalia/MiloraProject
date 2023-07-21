@@ -16,7 +16,7 @@ function togglePasswordVisibility() {
     var password = document.getElementById("password").value;
   
     if ((username === "Malia" && password === "12345") || (username === "kubo" && password === "kuboks")) {
-      window.location.href = "/Mil/Paginas/Main.html";
+      window.location.href = "../Paginas/Main.html";
     } else {
       alert("Credenciales incorrectas. Por favor, inténtalo de nuevo.");
       document.getElementById("username").value = "";
