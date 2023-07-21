@@ -6,19 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <title>Document</title>
+    <title>Orden</title>
 </head>
 
-<body>
+<body style="padding-left: 25px; padding-top: 25px; padding-bottom: 25px; padding-right: 25px;">
     <h1 style="text-align: center;">Nueva orden de compra</h1>
     <section class="d-flex justify-content-center"
         style="padding-left: 20px; padding-top: 20px; padding-bottom: 20px; padding-right: 20px; background-color: #d2dae6;">
         <form class="row g-4">
-            <div class="col-12">
+            <div class="col-md-6">
+                <label for="Fecha_inicio" class="form-label">Fecha de realización</label>
+                <input type="date" class="form-control" id="Fecha_inicio" required>
+            </div>
+            <div class="col-md-6">
+                <label for="Fecha_final" class="form-label">Fecha de finalización</label>
+                <input type="date" class="form-control" id="Fecha_final" required>
+            </div>
+            <!-- -------------------------------------------------------------------------------- -->
+            
+            <div class="col-md-6">
                 <label for="Orden_de_compra" class="form-label">Orden de compra</label>
                 <input type="text" class="form-control" id="Orden_de_compra" placeholder="Ingrese la orden de compra" required>
             </div>
-            <div class="col-12">
+            <div class="col-md-6">
                 <label for="Nombre_cliente" class="form-label">Cliente</label>
                 <select id="inputState" class="form-select" required>
                     <option selected></option>
@@ -28,16 +38,24 @@
                     <option>Lohr</option>
                 </select>
             </div>
+            <!-- --------------------------------------------------------------------------------------- -->
             <div class="col-md-6">
                 <label for="No_diseño" class="form-label">Numero de diseño/pieza</label>
                 <input type="text" class="form-control" id="No_diseño" placeholder="Que pieza va a querer joven?" required>
             </div>
-            <div class="col-md-4">
-                <label for="Numero_de_piezas" class="form-label">Numero de piezas</label>
+            <div class="col-md-6">
+                <label for="Numero_de_piezas" class="form-label">Cantidad de piezas</label>
                 <input type="number" class="form-control" id="Numero_de_piezas" placeholder="Cuantas piezas joven?" required>
             </div>
-            <div class="col-12">
-                <button type="submit" class="btn btn-primary">Enviar</button>
+            <!-- ------------------------------------------------------------------------------------------ -->
+            <div class="col-4">
+            </div>
+            <div class="col-4">
+                <label class="col-2"></label>
+                <button type="submit" class="btn btn-primary col-8" style="height: 50px; min-height: auto; font-size: 20px;">Enviar</button>
+                <label class="col-2"></label>
+            </div>
+            <div class="col-4">
             </div>
         </form>
     </section>
