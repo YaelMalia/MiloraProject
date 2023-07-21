@@ -32,12 +32,16 @@ class Usuarios
     }
 
 /*Consultas*/
-public function insertOrden($correo, $pass)
+public function insertOrden($FechaI, $FechaF, $OrdenCompra, $Cliente, $NoPieza, $CantidadPieza)
     {
         try {
-            $query = $this->dbh->prepare("SELECT * FROM usuarios WHERE correo LIKE ? AND pass LIKE ?");
-            $query->bindParam(1, $correo);
-            $query->bindParam(2, $pass);
+            $query = $this->dbh->prepare("INSERT INTO usuarios (Fecha_realizacion, Fecha_finalizacion, Orden_compra, No_diseno, Piezas_solicitadas, Cliente, ) VALUES (?, ?, ?, ?, ?, ?)");
+            $query->bindParam(1, $FechaI);
+            $query->bindParam(2, $FechaF);
+            $query->bindParam(3, $OrdenCompra);
+            $query->bindParam(4, $NoPieza);
+            $query->bindParam(5, $CantidadPieza);
+            $query->bindParam(6, $Cliente);
             $query->execute();
             return $query->fetchAll();
             $this->dbh = null;
