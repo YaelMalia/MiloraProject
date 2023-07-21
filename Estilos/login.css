@@ -9,21 +9,19 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
+    max-height: 100vh;
     margin: 0;
     background-color: #f1f1f1;
+
+    background: rgb(16,68,166);
+background: -moz-linear-gradient(90deg, rgba(16,68,166,1) 6%, rgba(67,60,180,0.3337710084033614) 66%, rgba(146,146,149,0.8239670868347339) 100%);
+background: -webkit-linear-gradient(90deg, rgba(16,68,166,1) 6%, rgba(67,60,180,0.3337710084033614) 66%, rgba(146,146,149,0.8239670868347339) 100%);
+background: linear-gradient(90deg, rgba(16,68,166,1) 6%, rgba(67,60,180,0.3337710084033614) 66%, rgba(146,146,149,0.8239670868347339) 100%);
+/* filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#1044a6",endColorstr="#929295",GradientType=1); */
   }
   
-  .container {
-    /* text-align: center; */
-    width: 70%;
-    min-height: 400px;
-    background-color: #fff;
-    border-radius: 5px;
-    padding: 30px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-  }
-  
+ 
   h2 {
     /* text-align: center; */
     margin-bottom: 20px;
@@ -40,26 +38,139 @@ body {
   
   input[type="text"],
   input[type="password"] {
-    width: 30%;
-    /* margin: 0 auto; */
+    text-align: center;
+    width: 65%;
+    margin: 0 auto;
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
+    transition: 0.7s;
+  }
+
+  .inputs:hover{
+      border: 1px solid #3549a1;
   }
   
   input[type="submit"] {
-    background-color: #4caf50;
+    background-color: #4c5eaf;
     color: white;
     border: none;
     border-radius: 5px;
     padding: 10px;
     cursor: pointer;
-    width: 30%;
-    /* margin: 0 auto; */
+    width: 65%;
+    margin: 0 auto;
+    transition: 0.5s;
+    min-width: max-content;
   }
   
   input[type="submit"]:hover {
-    background-color: #45a049;
+    background-color: #3549a1;
   }
-  
+
+
+  /*Malia CSS */
+
+  .container {
+
+     /* text-align: center; */
+    width: 70%;
+    min-height: 70%;
+    max-height: 70%;
+    background-color: #fff;
+    border-radius: 5px;
+    /* padding: 20px; */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+
+    text-align: center;
+    display: grid;
+    grid-template-areas: 
+    "izquierda"
+    "imagenDerecha";
+
+    grid-template:
+    "izquierda imagenDerecha" 100%/
+        40%         60%;
+  }
+
+  .izquierda{
+    padding: 12%;
+    grid-area: izquierda;
+    background-color: rgba(169, 193, 255, 0.219);
+  }
+
+  .imagenDerecha{
+    padding: 20%;
+    grid-area: imagenDerecha;
+    /* background-color: blue; */
+  }
+
+  .iSesion{
+    color: rgb(51, 51, 51);
+  }
+
+
+  /* Fin Malia CSS */
+
+
+
+  /* --------- Media Querys ---------------- */
+
+  @media(max-width:1023px){
+    .Logo{
+      width: 200px;
+      height: 200px;
+    }
+  }
+
+
+  @media(max-width:799px){
+    
+    .Logo{
+      width: 150px;
+      height: 150px;
+    }
+
+    .textoDer{
+      font-size: 16px;
+    }
+
+    .iSesion{
+      font-size: 20px;
+    }
+  }
+
+
+  @media(max-width:599px){
+    .container{
+      width: 90%;
+      margin: 10%;
+      max-height: 95%;
+      grid-template:
+    "imagenDerecha" 30%
+    "izquierda" 70%/
+      100%;
+    }
+
+    .izquierda{
+      padding: 8%;
+      background-color: white;
+    }
+
+    .textoDer{
+      font-size: 12px;
+    }
+
+    .imagenDerecha{
+    background-color: rgba(169, 193, 255, 0.219);
+      padding:10%;
+      padding-bottom: 80px;
+    }
+
+    .Logo{
+      width: 120px;
+      height: 120px;
+    }
+
+  }
