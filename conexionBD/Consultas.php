@@ -9,7 +9,7 @@ class Usuarios
     {
         try {
             $servidor = "localhost";
-            $base = "gestionedificios";
+            $base = "milorabd";
             $usuario = "root";
             $contrasenia = "";
             $this->dbh = new PDO('mysql:host=' . $servidor . ';dbname=' . $base, $usuario, $contrasenia);
@@ -31,7 +31,8 @@ class Usuarios
         return self::$instancia;
     }
 
-    public function get_user($correo, $pass)
+/*Consultas*/
+public function insertOrden($correo, $pass)
     {
         try {
             $query = $this->dbh->prepare("SELECT * FROM usuarios WHERE correo LIKE ? AND pass LIKE ?");
@@ -44,11 +45,27 @@ class Usuarios
             $e->getMessage();
         }
     }
+/*-----------------------------------------------------------------------------------------------------*/
+
+
+/*    public function get_user($correo, $pass)
+    {
+        try {
+            $query = $this->dbh->prepare("SELECT * FROM usuarios WHERE correo LIKE ? AND pass LIKE ?");
+            $query->bindParam(1, $correo);
+            $query->bindParam(2, $pass);
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
+        } catch (PDOException $e) {
+            $e->getMessage();
+        }
+    }
+*/
 
 
 
-
-    public function get_ventas()
+/*    public function get_ventas()
     {
         try {
             $query = $this->dbh->prepare("SELECT * FROM ventas WHERE 1");
@@ -59,8 +76,9 @@ class Usuarios
             $e->getMessage();
         }
     }
+*/
 
-    public function insertar($name, $correo, $pass)
+/*    public function insertar($name, $correo, $pass)
     {
         try {
             $query = $this->dbh->prepare("INSERT INTO usuarios (nombreCompleto, correo, contra) VALUES (?, ?, ?)");
@@ -74,8 +92,9 @@ class Usuarios
             $e->getMessage();
         }
     }
+*/
 
-    public function insertarVenta($name, $domicilio, $garrafon)
+/*    public function insertarVenta($name, $domicilio, $garrafon)
     {
         try {
             $query = $this->dbh->prepare("INSERT INTO ventas (nameCliente, domicilio, totGarrafones) VALUES (?, ?, ?)");
@@ -89,9 +108,9 @@ class Usuarios
             $e->getMessage();
         }
     }
+*/
 
-
-    public function BorrarVenta($p1)
+/*    public function BorrarVenta($p1)
     {
         try {
             $query = $this->dbh->prepare("DELETE FROM ventas WHERE id_venta LIKE ?");
@@ -103,8 +122,9 @@ class Usuarios
             $e->getMessage();
         }
     }
+*/
 
-    public function Actualizar($p1, $p2)
+/*    public function Actualizar($p1, $p2)
     {
         try {
             $query = $this->dbh->prepare("UPDATE tabla SET campo1=? WHERE campo2 LIKE ?");
@@ -116,8 +136,9 @@ class Usuarios
             $e->getMessage();
         }
     }
+*/
 
-    public function Actualizarv($p1, $p2, $p3, $p4)
+/*    public function Actualizarv($p1, $p2, $p3, $p4)
     {
         try {
             $query = $this->dbh->prepare("UPDATE ventas SET nameCliente=?, domicilio=?, totGarrafones=? WHERE id_venta LIKE ?");
@@ -131,15 +152,16 @@ class Usuarios
             $e->getMessage();
         }
     }
+*/
 
-
-
-    public function __clone()
+/*    public function __clone()
     {
         trigger_error('La clonación no es permitida!.', E_USER_ERROR);
     }
+*/
+
     // Reseñas
-    public function insertarResena($name, $resena)
+/*    public function insertarResena($name, $resena)
     {
         try {
             $query = $this->dbh->prepare("INSERT INTO resenas (remitente, comentario) VALUES (?, ?)");
@@ -152,8 +174,9 @@ class Usuarios
             $e->getMessage();
         }
     }
+*/
 
-    public function getResenas()
+/*    public function getResenas()
     {
         try {
             $query = $this->dbh->prepare("SELECT * FROM resenas WHERE 1");
@@ -164,4 +187,5 @@ class Usuarios
             $e->getMessage();
         }
     }
+*/
 }
