@@ -10,13 +10,14 @@
 </head>
 
 <body style="padding-left: 20px; padding-top: 20px; padding-bottom: 20px; padding-right: 20px;">
-    <h1 style="text-align: center;">Nuevo diseño</h1>
+   
     <section class="d-flex justify-content-center"
-        style="padding-left: 20px; padding-top: 20px; padding-bottom: 20px; padding-right: 20px; background-color: #d2dae6;">
+        style="padding-left: 20px; padding-top: 20px; padding-bottom: 20px; padding-right: 20px; background-color: #d2dae6;  border-radius:10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);" >
         <form class="row g-4">
+            <h2 style="text-align: center;">Agregar nuevo diseño de pieza</h2>
             <div class="col-md-4">
                 <label for="No_diseñoFD" class="form-label">Numero de diseño</label>
-                <input type="text" class="form-control"  id="No_diseñoFD" placeholder="Numero de diseño" required>
+                <input type="text" class="form-control"  id="No_disenoFD" placeholder="Numero de diseño" required>
             </div>
             <div class="col-md-4">
                 <label for="Descripcion_MP" class="form-label">Descripcion MP</label>
@@ -31,56 +32,55 @@
                 <label for="Corte" class="form-label">Corte</label>
                 <select id="Corte" disabled class="form-select" required>
                     <option selected>Si</option>
-                    <option>Si</option>
                     <option>No</option>
                 </select>
             </div>
             <div class="col-md-4">
                 <label for="Dobles" class="form-label">Dobles</label>
                 <select id="Dobles" class="form-select" required>
-                    <option selected></option>
+
                     <option>Si</option>
-                    <option>No</option>
+                    <option selected>No</option>
                 </select>
             </div>
             <div class="col-md-4">
                 <label for="Rolado" class="form-label">Rolado</label>
                 <select id="Rolado" class="form-select" required>
-                    <option selected></option>
+
                     <option>Si</option>
-                    <option>No</option>
+                    <option selected>No</option>
                 </select>
             </div>
             <!-- --------------------------------------------------------------------------------------- -->
             <div class="col-md-4">
                 <label for="Bisel" class="form-label">Bisel</label>
                 <select id="Bisel" class="form-select" required>
-                    <option selected></option>
+
                     <option>Si</option>
-                    <option>No</option>
+                    <option selected>No</option>
                 </select>
             </div>
             <div class="col-md-4">
                 <label for="Taladro" class="form-label">Taladro</label>
                 <select id="Taladro" class="form-select" required>
-                    <option selected></option>
+
                     <option>Si</option>
-                    <option>No</option>
+                    <option selected>No</option>
                 </select>
             </div>
             <div class="col-md-4">
                 <label for="Prensa" class="form-label">Prensa</label>
                 <select id="Prensa" class="form-select" required>
-                    <option selected></option>
+
                     <option>Si</option>
-                    <option>No</option>
+                    <option selected>No</option>
                 </select>
             </div>
             <!-- ------------------------------------------------------------------------------------------ -->
             <div class="col-4" >
             </div>
             <div class="col-4" >
-                <button type="submit" class="btn btn-primary col-12" style="height: 50px; min-height: auto; font-size: 20px;">Enviar</button>
+                <input  onclick="return nueva_Pieza();"  type="button" class="btn btn-primary col-12" style="height: 50px; min-height: auto; font-size: auto;" value="Agregar diseño">
             </div>
             <div class="col-4" >
             </div>
