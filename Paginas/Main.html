@@ -60,7 +60,7 @@
         <a id="Nuevo-diseno" class="enlace">Nuevo diseño de pieza</a>
         <a id="Editar-diseno" class="enlace">Editar diseño de pieza</a>
         <!-- <a href="#">Eliminar diseño de pieza</a> -->
-        <a href="#">Consultar diseños</a>
+        <a id="Consultar-diseno" class="enlace">Consultar diseños</a>
       </div>
       <!--  -->
       <button class="dropdown-btn">Ordenes de compra
@@ -162,6 +162,22 @@ $("#Editar-diseno").click(function(){
   closeNav();
   const enlaces = document.getElementsByClassName("enlace");
   enlaces.setAttribute('color', 'rgb(129, 129, 129)');
+});
+
+$("#Consultar-diseno").click(function(){
+  
+  document.getElementById("ControlCentral").innerHTML="";
+  $("#ControlCentral").load("Formulario_Diseños_Consulta.html");
+  closeNav();
+  const enlaces = document.getElementsByClassName("enlace");
+  enlaces.setAttribute('color', 'rgb(129, 129, 129)');
+  
+  var Window_with;
+  Window_with = window.innerWidth;
+  if(Window_with<=768){
+    alert("Mobile detected");
+    document.getElementById("ControlCentral").style.width = "1023px";
+  }
 });
     </script>
 

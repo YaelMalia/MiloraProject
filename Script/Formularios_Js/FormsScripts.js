@@ -115,6 +115,10 @@ function buscar_Pieza(){
     }
 }
 
+function busqueda_Filtrada(){
+    
+}
+
 function actualizar_Pieza(){
     let flag = false; 
 
