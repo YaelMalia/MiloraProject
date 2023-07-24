@@ -41,7 +41,7 @@ function nueva_Pieza(){
                     // Enviar por Ajax
                     $.ajax({
                         type: 'POST',
-                        url: 'Insert_Pieza.php',
+                        url: '../Php_forms/Insert_Pieza.php',
                         data: parametros,
                         success: function(returning){
                             if(returning == "si"){
