@@ -35,7 +35,7 @@ class Usuarios
 public function insertOrden($FechaI, $FechaF, $OrdenCompra, $Cliente, $NoPieza, $CantidadPieza)
     {
         try {
-            $query = $this->dbh->prepare("INSERT INTO usuarios (Fecha_realizacion, Fecha_finalizacion, Orden_compra, No_diseno, Piezas_solicitadas, Cliente, ) VALUES (?, ?, ?, ?, ?, ?)");
+            $query = $this->dbh->prepare("INSERT INTO  (Fecha_realizacion, Fecha_finalizacion, Orden_compra, No_diseno, Piezas_solicitadas, Cliente, ) VALUES (?, ?, ?, ?, ?, ?)");
             $query->bindParam(1, $FechaI);
             $query->bindParam(2, $FechaF);
             $query->bindParam(3, $OrdenCompra);
