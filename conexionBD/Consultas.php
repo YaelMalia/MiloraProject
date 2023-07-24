@@ -73,6 +73,20 @@ public function insertOrden($FechaI, $FechaF, $OrdenCompra, $Cliente, $NoPieza, 
             echo $e;
         }
     }
+
+    public function selectPieza($noDis)
+    {
+        try {
+            $query = $this->dbh->prepare("SELECT * FROM piezas WHERE No_diseno LIKE ?");
+            $query->bindParam(1, $noDis);
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
+        } catch (PDOException $e) {
+            $e->getMessage();
+            echo $e;
+        }
+    }
 /*-----------------------------------------------------------------------------------------------------*/
 
 
