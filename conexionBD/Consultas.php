@@ -70,6 +70,7 @@ public function insertOrden($FechaI, $FechaF, $OrdenCompra, $Cliente, $NoPieza, 
             $this->dbh = null;
         } catch (PDOException $e) {
             $e->getMessage();
+            echo $e;
         }
     }
 /*-----------------------------------------------------------------------------------------------------*/

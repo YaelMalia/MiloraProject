@@ -11,14 +11,15 @@
         $taladrophp = $_POST["taladro"];
         $prensaphp = $_POST["prensa"];
         
-        require_once("../conexionBD/Consultas.php");
-        $miloraObj = MiloraClass::singleton();
-        $data = $miloraObj->insertPieza($noDisenophp, $descripcion_mpphp, $codigo_mpphp, $cortephp, $doblesphp,
-        $roladophp, $biselphp, $taladrophp, $prensaphp);
+        try {
+            require_once("../conexionBD/Consultas.php");
+            $miloraObj = MiloraClass::singleton();
+            $data = $miloraObj->insertPieza($noDisenophp, $descripcion_mpphp, $codigo_mpphp, $cortephp, $doblesphp,
+            $roladophp, $biselphp, $taladrophp, $prensaphp);
 
-        echo "si";
-    }else{
-        echo "no";
-        header("Location:../Paginas/Formulario_Diseños.html");
+            echo "si";
+        } catch (\Throwable $th) {
+            echo "no";
+        }
     }
 ?>
