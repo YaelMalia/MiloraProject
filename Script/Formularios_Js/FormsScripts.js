@@ -24,13 +24,33 @@ function nueva_Pieza(){
                 alertify.alert("Aviso", "No se ha ingresado el código de materia prima"); 
             }else{
                 // Nada vacío -----
+
                 flag = true;
                 if(flag == true){
                     let parametros = {
                         "noDiseno": noDiseno,
                         "descripcion_mp": descripcion_mp,
-                        "codigo_mp": codigo_mp
+                        "codigo_mp": codigo_mp,
+                        "corte": corte,
+                        "dobles": dobles,
+                        "rolado": rolado,
+                        "bisel": bisel,
+                        "taladro": taladro,
+                        "prensa": prensa
                     };
+                    // Enviar por Ajax
+                    $.ajax({
+                        type: 'POST',
+                        url: 'Insert_Pieza.php',
+                        data: parametros,
+                        success: function(returning){
+                            if(returning == "si"){
+                                alertify.alert("¡Exito!", "El modelo o pieza se ha agregado con éxito");
+                            }else{
+                                alertify.alert("Error", "Se ha producido un error al ingresar el número de diseño o pieza, revise que no esté repetida");
+                            }
+                        }
+                    });
                 }
             }
         }

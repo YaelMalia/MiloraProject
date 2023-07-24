@@ -1,6 +1,6 @@
 ﻿<?php
 //singleton
-class Usuarios
+class MiloraClass
 {
     private static $instancia;
     private $dbh;
@@ -42,6 +42,29 @@ public function insertOrden($FechaI, $FechaF, $OrdenCompra, $Cliente, $NoPieza, 
             $query->bindParam(4, $NoPieza);
             $query->bindParam(5, $CantidadPieza);
             $query->bindParam(6, $Cliente);
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
+        } catch (PDOException $e) {
+            $e->getMessage();
+        }
+    }
+
+
+
+    public function insertPieza($noDis, $descripcion, $codigomp, $corte, $dobles, $rolado, $bisel, $taladro, $prensa)
+    {
+        try {
+            $query = $this->dbh->prepare("INSERT INTO piezas (No_diseno, Descripcion_MP, Codigo_MP, Corte, Dobles, Rolado, Bisel, Taladro, Prensa) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $query->bindParam(1, $noDis);
+            $query->bindParam(2, $descripcion);
+            $query->bindParam(3, $codigomp);
+            $query->bindParam(4, $corte);
+            $query->bindParam(5, $dobles);
+            $query->bindParam(6, $rolado);
+            $query->bindParam(7, $bisel);
+            $query->bindParam(8, $taladro);
+            $query->bindParam(9, $prensa);
             $query->execute();
             return $query->fetchAll();
             $this->dbh = null;
