@@ -46,6 +46,8 @@ function nueva_Pieza(){
                         success: function(returning){
                             if(returning == "si"){
                                 alertify.alert("¡Exito!", "El modelo o pieza se ha agregado con éxito");
+
+                                document.getElementById("form_nuevoD").reset();
                             }else{
                                 alertify.alert("Error", "Se ha producido un error al ingresar el número de diseño o pieza, revise que no esté repetida");
                             }
