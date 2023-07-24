@@ -1,5 +1,4 @@
 
-
 function nueva_Pieza(){
    
    let flag = false; 
@@ -69,4 +68,49 @@ function nueva_Pieza(){
 
 function buscar_Pieza(){
     let noDiseno = $("#No_disenoFD")[0].value;
+    if(noDiseno == null || noDiseno.includes(' ') || noDiseno == ""){
+        alertify.alert("Error", "No se ha ingresado un número de diseño o está mal escrito");
+    }else{
+        let parametros = {
+            "noDiseno": noDiseno
+        };
+        // Envío por Ajax
+        $.ajax({
+            type: 'POST',
+            url: '../Php_forms/Select_Pieza.php',
+            data: parametros,
+            success: function(returning){
+                if(returning!="no"){
+                    var ArrayDatos = returning.split(',');
+                    document.getElementById("No_disenoFD").disabled = true;
+                    document.getElementById("btn_Buscar").disabled = true;
+
+                    document.getElementById("Descripcion_MP").disabled = false;
+                    $("#Descripcion_MP")[0].value = ArrayDatos[0];
+                    
+                    document.getElementById("Codigo_MP").disabled = false;
+                    $("#Codigo_MP")[0].value = ArrayDatos[1];
+
+                    document.getElementById("Dobles").disabled = false;
+                    $("#Dobles")[0].value = ArrayDatos[3];
+
+                    document.getElementById("Rolado").disabled = false;
+                    $("#Rolado")[0].value = ArrayDatos[4];
+
+                    document.getElementById("Bisel").disabled = false;
+                    $("#Bisel")[0].value = ArrayDatos[5];
+
+                    document.getElementById("Taladro").disabled = false;
+                    $("#Taladro")[0].value = ArrayDatos[6];
+
+                    document.getElementById("Prensa").disabled = false;
+                    $("#Prensa")[0].value = ArrayDatos[7];
+
+                    document.getElementById("btn-update").disabled = false;
+                }else{
+                    alertify.alert("Error", "Número de diseño proporcionado no existe o está equivocado");
+                }
+            }
+        });
+    }
 }
