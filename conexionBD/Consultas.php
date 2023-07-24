@@ -87,6 +87,28 @@ public function insertOrden($FechaI, $FechaF, $OrdenCompra, $Cliente, $NoPieza, 
             echo $e;
         }
     }
+
+    public function updatePieza($noDis, $descripcion, $codigomp, $corte, $dobles, $rolado, $bisel, $taladro, $prensa)
+    {
+        try {
+            $query = $this->dbh->prepare("UPDATE piezas SET Descripcion_MP=?, Codigo_MP=?, Corte=?, Dobles=?, Rolado=?, Bisel=?, Taladro=?, Prensa=? WHERE No_diseno LIKE ?");
+            $query->bindParam(1, $descripcion);
+            $query->bindParam(2, $codigomp);
+            $query->bindParam(3, $corte);
+            $query->bindParam(4, $dobles);
+            $query->bindParam(5, $rolado);
+            $query->bindParam(6, $bisel);
+            $query->bindParam(7, $taladro);
+            $query->bindParam(8, $prensa);
+            $query->bindParam(9, $noDis);
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
+        } catch (PDOException $e) {
+            $e->getMessage();
+            echo $e;
+        }
+    }
 /*-----------------------------------------------------------------------------------------------------*/
 
 
