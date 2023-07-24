@@ -14,11 +14,18 @@
     <section class="d-flex justify-content-center"
         style="padding-left: 20px; padding-top: 20px; padding-bottom: 20px; padding-right: 20px; background-color: #d2dae6;  border-radius:10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);" >
         <form class="row g-4">
+            
+            <h2 class="col-md-12" style="text-align: center;">Editar un diseño de pieza</h2>
             <div class="col-md-4">
                 <label for="No_diseñoFD" class="form-label">Numero de diseño</label>
                 <input type="text" class="form-control"  id="No_disenoFD" placeholder="Numero de diseño" required>
             </div>
-            <h2 class="col-md-8" style="text-align: center;">Agregar nuevo diseño de pieza</h2>
+            <div class="col-4">
+                <br>
+                <input  onclick="return buscar_Pieza();"  type="button" class="btn btn-primary col-12" style="height: 40px; width: 150px; min-height: auto; font-size: auto; text-align: center;" value="Buscar diseño">
+            </div>
+            <div class="col-4" >
+            </div>
             <div class="col-md-4">
                 <label for="Descripcion_MP" class="form-label">Descripcion MP</label>
                 <input type="text" class="form-control" id="Descripcion_MP" placeholder="Descripcion del MP" disabled>
@@ -82,7 +89,7 @@
             <div class="col-4" >
             </div>
             <div class="col-4" >
-                <input  onclick="return nueva_Pieza();"  type="button" class="btn btn-primary col-12" style="height: 50px; min-height: auto; font-size: auto;" value="Agregar diseño">
+                <input  onclick="return nueva_Pieza();"  type="button" class="btn btn-primary col-12" style="height: 50px; min-height: auto; font-size: auto;" value="Editar diseño" disabled>
             </div>
             <div class="col-4" >
             </div>
