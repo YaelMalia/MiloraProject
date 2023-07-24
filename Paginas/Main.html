@@ -58,7 +58,7 @@
       </button>
       <div class="dropdown-container">
         <a id="Nuevo-diseno" class="enlace">Nuevo diseño de pieza</a>
-        <a href="#">Editar diseño de pieza</a>
+        <a id="Editar-diseno" class="enlace">Editar diseño de pieza</a>
         <a href="#">Eliminar diseño de pieza</a>
         <a href="#">Consultar diseños</a>
       </div>
@@ -151,6 +151,14 @@ $("#Nueva-orden").click(function(){
 $("#Nuevo-diseno").click(function(){
   document.getElementById("ControlCentral").innerHTML="";
   $("#ControlCentral").load("Formulario_Diseños.html");
+  closeNav();
+  const enlaces = document.getElementsByClassName("enlace");
+  enlaces.setAttribute('color', 'rgb(129, 129, 129)');
+});
+
+$("#Editar-diseno").click(function(){
+  document.getElementById("ControlCentral").innerHTML="";
+  $("#ControlCentral").load("Formulario_Diseños_Editar.html");
   closeNav();
   const enlaces = document.getElementsByClassName("enlace");
   enlaces.setAttribute('color', 'rgb(129, 129, 129)');

@@ -46,8 +46,15 @@ function nueva_Pieza(){
                         success: function(returning){
                             if(returning == "si"){
                                 alertify.alert("¡Exito!", "El modelo o pieza se ha agregado con éxito");
-
-                                document.getElementById("form_nuevoD").reset();
+                                let formulario = $("#form_nuevoD");
+                                $("#No_disenoFD")[0].value = "";
+                                $("#Descripcion_MP")[0].value = "";
+                                $("#Codigo_MP")[0].value = "";
+                                $("#Dobles")[0].value = "No";
+                                $("#Rolado")[0].value = "No";
+                                $("#Bisel")[0].value = "No";
+                                $("#Taladro")[0].value = "No";
+                                $("#Prensa")[0].value = "No";
                             }else{
                                 alertify.alert("Error", "Se ha producido un error al ingresar el número de diseño o pieza, revise que no esté repetida");
                             }
@@ -57,4 +64,9 @@ function nueva_Pieza(){
             }
         }
    }
+
+}
+
+function buscar_Pieza(){
+    let noDiseno = $("#No_disenoFD")[0].value;
 }
