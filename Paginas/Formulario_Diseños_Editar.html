@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <title>Diseños</title>
+</head>
+
+<body style="padding-left: 20px; padding-top: 20px; padding-bottom: 20px; padding-right: 20px;">
+   
+    <section class="d-flex justify-content-center"
+        style="padding-left: 20px; padding-top: 20px; padding-bottom: 20px; padding-right: 20px; background-color: #d2dae6;  border-radius:10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);" >
+        <form class="row g-4">
+            <div class="col-md-4">
+                <label for="No_diseñoFD" class="form-label">Numero de diseño</label>
+                <input type="text" class="form-control"  id="No_disenoFD" placeholder="Numero de diseño" required>
+            </div>
+            <h2 class="col-md-8" style="text-align: center;">Agregar nuevo diseño de pieza</h2>
+            <div class="col-md-4">
+                <label for="Descripcion_MP" class="form-label">Descripcion MP</label>
+                <input type="text" class="form-control" id="Descripcion_MP" placeholder="Descripcion del MP" disabled>
+            </div>
+            <div class="col-md-4">
+                <label for="Codigo_MP" class="form-label">Codigo MP</label>
+                <input type="text" class="form-control" id="Codigo_MP" placeholder="Codigo de MP" disabled>
+            </div>
+            <!-- ---------------------------------------------------------------------------------------- -->
+            <div class="col-md-4">
+                <label for="Corte" class="form-label">Corte</label>
+                <select id="Corte" disabled class="form-select" disabled>
+                    <option selected>Si</option>
+                    <option>No</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="Dobles" class="form-label">Dobles</label>
+                <select id="Dobles" class="form-select" disabled>
+
+                    <option>Si</option>
+                    <option selected>No</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="Rolado" class="form-label">Rolado</label>
+                <select id="Rolado" class="form-select" disabled>
+
+                    <option>Si</option>
+                    <option selected>No</option>
+                </select>
+            </div>
+            <!-- --------------------------------------------------------------------------------------- -->
+            <div class="col-md-4">
+                <label for="Bisel" class="form-label">Bisel</label>
+                <select id="Bisel" class="form-select" disabled>
+
+                    <option>Si</option>
+                    <option selected>No</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="Taladro" class="form-label">Taladro</label>
+                <select id="Taladro" class="form-select" disabled>
+
+                    <option>Si</option>
+                    <option selected>No</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="Prensa" class="form-label">Prensa</label>
+                <select id="Prensa" class="form-select" disabled>
+
+                    <option>Si</option>
+                    <option selected>No</option>
+                </select>
+            </div>
+            <!-- ------------------------------------------------------------------------------------------ -->
+            <div class="col-4" >
+            </div>
+            <div class="col-4" >
+            </div>
+            <div class="col-4" >
+                <input  onclick="return nueva_Pieza();"  type="button" class="btn btn-primary col-12" style="height: 50px; min-height: auto; font-size: auto;" value="Agregar diseño">
+            </div>
+            <div class="col-4" >
+            </div>
+        </form>
+    </section>
+</body>
+
+</html>
