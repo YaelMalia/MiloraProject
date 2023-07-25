@@ -6,7 +6,6 @@
             $miloraObj = MiloraClass::singleton();
             $data = $miloraObj->selectPieza($noDiseno);
             if(count($data)>0){
-                echo "si";
                 foreach($data as $fila){
                  echo $fila["Descripcion_MP"].",".$fila["Codigo_MP"].","
                  .$fila["Corte"].",".$fila["Dobles"].",".$fila["Rolado"].",".$fila["Bisel"].",".$fila["Taladro"].",".$fila["Prensa"];

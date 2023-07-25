@@ -88,6 +88,20 @@ public function insertOrden($FechaI, $FechaF, $OrdenCompra, $Cliente, $NoPieza, 
         }
     }
 
+    public function selectByCode($codeMp)
+    {
+        try {
+            $query = $this->dbh->prepare("SELECT * FROM piezas WHERE Codigo_MP LIKE ?");
+            $query->bindParam(1, $codeMp);
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
+        } catch (PDOException $e) {
+            $e->getMessage();
+            echo $e;
+        }
+    }
+
     public function updatePieza($noDis, $descripcion, $codigomp, $corte, $dobles, $rolado, $bisel, $taladro, $prensa)
     {
         try {
@@ -107,6 +121,18 @@ public function insertOrden($FechaI, $FechaF, $OrdenCompra, $Cliente, $NoPieza, 
         } catch (PDOException $e) {
             $e->getMessage();
             echo $e;
+        }
+    }
+
+    public function GetAllPiezas()
+    {
+        try {
+            $query = $this->dbh->prepare("SELECT * FROM piezas WHERE 1");
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
+        } catch (PDOException $e) {
+            $e->getMessage();
         }
     }
 /*-----------------------------------------------------------------------------------------------------*/

@@ -115,8 +115,33 @@ function buscar_Pieza(){
     }
 }
 
-function busqueda_Filtrada(){
+function busqueda_Filtrada_Piezas(Seleccion){
     
+    let identificador = "";
+    if(Seleccion == "noDiseno"){
+        identificador = $("#No_disenoFD")[0].value;
+    }else{
+        identificador = $("#Codigo_MP")[0].value;
+    }
+    
+    let parametros = {
+        "dato-Rbt": Seleccion,
+        "ID": identificador
+    };
+
+    $.ajax({
+        type: 'POST',
+        url: '../Php_forms/Get_Piezas.php',
+        data: parametros,
+            success: function(returning){
+                if(returning!="No"){
+                    $("#cuerpoTabla")[0].value = "";
+                    document.getElementById("cuerpoTabla").innerHTML = returning;
+                }else{
+                    alertify.alert("Error", "Pieza no se ha encontrado, revise sus datos");
+                }
+            }
+    });
 }
 
 function actualizar_Pieza(){
@@ -165,26 +190,28 @@ function actualizar_Pieza(){
                             if(returning == "si"){
                                 alertify.alert("¡Exito!", "El modelo o pieza se ha modificado con éxito");
                                 
-                                $("#No_disenoFD")[0].value = "";
+                                
                                 document.getElementById("No_disenoFD").disabled = false;
-                                document.getElemen2tById("btn_Buscar").disabled = false;
+                                document.getElementById("btn_Buscar").disabled = false;
+                                
+                                document.getElementById("Descripcion_MP").disabled = true;
+                                document.getElementById("Codigo_MP").disabled = true;
+                                document.getElementById("Dobles").disabled = true;
+                                document.getElementById("Rolado").disabled = true;
+                                document.getElementById("Bisel").disabled = true;
+                                document.getElementById("Taladro").disabled = true;
+                                document.getElementById("Prensa").disabled = true;
+                                document.getElementById("btn-update").disabled = true;
+
+                                $("#No_disenoFD")[0].value = "";
 
                                 $("#Descripcion_MP")[0].value = "";
-                                document.getElementById("Descripcion_MP").disabled = true;
                                 $("#Codigo_MP")[0].value = "";
-                                document.getElementById("Codigo_MP").disabled = true;
                                 $("#Dobles")[0].value = "No";
-                                document.getElementById("Dobles").disabled = true;
                                 $("#Rolado")[0].value = "No";
-                                document.getElementById("Rolado").disabled = true;
                                 $("#Bisel")[0].value = "No";
-                                document.getElementById("Bisel").disabled = true;
                                 $("#Taladro")[0].value = "No";
-                                document.getElementById("Taladro").disabled = true;
                                 $("#Prensa")[0].value = "No";
-                                document.getElementById("Prensa").disabled = true;
-
-                                document.getElementById("btn-update").disabled = true;
 
 
                             }else{
