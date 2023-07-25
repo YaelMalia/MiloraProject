@@ -14,7 +14,7 @@
     <section class="d-flex justify-content-center"
         style="padding-left: 20px; padding-top: 20px; padding-bottom: 20px; padding-right: 20px; background-color: #d2dae6; border-radius:10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);">
         <form class="row g-4">
-            <h2 style="text-align: center;">Agregar nueva orden de compra</h2>
+            <h2 style="text-align: center;">Registrar nueva orden de compra</h2>
             <div class="col-md-6">
                 <label for="Fecha_inicio" class="form-label">Fecha de realización</label>
                 <input type="date" class="form-control" id="Fecha_inicio" required>
@@ -27,11 +27,11 @@
             
             <div class="col-md-6">
                 <label for="Orden_de_compra" class="form-label">Orden de compra</label>
-                <input type="text" class="form-control" id="Orden_de_compra" placeholder="Ingrese la orden de compra" required>
+                <input type="text" class="form-control" id="Orden_de_compra" placeholder="Identificador de orden de compra" required>
             </div>
             <div class="col-md-6">
                 <label for="Nombre_cliente" class="form-label">Cliente</label>
-                <select id="inputState" class="form-select" required>
+                <select id="lst_Clientes" class="form-select" required>
                     <option selected></option>
                     <option>Greenbrier</option>
                     <option>Tlaxcala</option>
@@ -42,18 +42,18 @@
             <!-- --------------------------------------------------------------------------------------- -->
             <div class="col-md-6">
                 <label for="No_diseño" class="form-label">Numero de diseño/pieza</label>
-                <input type="text" class="form-control" id="No_diseño" placeholder="Que pieza va a querer joven?" required>
+                <input type="text" class="form-control" id="No_diseno" placeholder="Número de diseño o pieza" required>
             </div>
             <div class="col-md-6">
                 <label for="Numero_de_piezas" class="form-label">Cantidad de piezas</label>
-                <input type="number" class="form-control" id="Numero_de_piezas" placeholder="Cuantas piezas joven?" required>
+                <input type="number" class="form-control" id="Numero_de_piezas" placeholder="Cantida de piezas para la orden" required>
             </div>
             <!-- ------------------------------------------------------------------------------------------ -->
             <div class="col-4">
             </div>
             <div class="col-4">
                 <label class="col-2"></label>
-                <button type="submit" class="btn btn-primary col-8" style="width:auto; min-height: auto; font-size: auto;">Agregar orden</button>
+                <button type="submit" onclick="AgregarOrden();" class="btn btn-primary col-8" style="width:auto; min-height: auto; font-size: auto;">Agregar orden</button>
                 <label class="col-2"></label>
             </div>
             <div class="col-4">
