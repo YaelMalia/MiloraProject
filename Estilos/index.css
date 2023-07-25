@@ -35,4 +35,14 @@ body {
   .show-password {
     margin-top: 10px;
   }
+  
+  input[type="text"],
+  input[type="password"] {
+    width: 30%;
+    /* margin: 0 auto; */
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
 
