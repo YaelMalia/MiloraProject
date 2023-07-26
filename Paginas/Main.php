@@ -1,5 +1,4 @@
-
-
+<?php require_once("../Script/Formularios_Js/Sessions_Php/CheckSession.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -87,7 +86,7 @@
         <a href="#">Consultar entradas</a>
       </div>
       <!--  -->
-      <button class="dropdown-btn" id="almacen">Bodega
+      <button class="dropdown-btn" id="bodega">Bodega
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-container">
@@ -122,9 +121,18 @@
         <a href="#">Cosas de facturación</a>
       </div>
       <!--  -->
+      <a class="EndSession" id="EndSession" style="margin-top:95%;">Cerrar Sesión</a>
     </div>
     
+    <!-- Bienvenida -->
+    <div class="bienvenido" id="bienvenido" style="widt:100%; text-align:center; margin-top:15px;">
+    <img src="../Images/user.png" alt="Usuario Gota de Angel" width = "40" height = "40" style=" margin-left:-100px;">
+    <span style="position:absolute; margin-left:8px; margin-top:15px;"><?php echo $_SESSION["Nombres"].' '.$_SESSION["APaterno"] ?></span>
+    </div>
+    <!-- Fin bienvenida -->
+
     <main class="ControlCentral" id="ControlCentral">
+      
       <div class="Principal" id="Principal">
         <!--  -->
         <div class="left-img" id="left-img">
@@ -148,6 +156,50 @@
 
       window.onload = function(){
         alertify.alert("¡Correcto!", "Datos validados, bienvenido al panel de control");
+        <?php
+          if($_SESSION["TipoUser"] != "Admin"){
+            ?>
+            var ArrP = document.getElementsByClassName("Prod-Nav");
+            Array.from(ArrP).forEach((elmnt) =>{
+                elmnt.style.display = "None";
+            });
+            document.getElementById("almacen").style.display = "None";
+            document.getElementById("bodega").style.display = "None";
+            document.getElementById("ingenieria").style.display = "None";
+            document.getElementById("cInterna").style.display = "None";
+            document.getElementById("cExterna").style.display = "None";
+            document.getElementById("facturacion").style.display = "None";
+            <?php
+            if($_SESSION["TipoUser"] == "Producción"){
+              ?>
+            Array.from(ArrP).forEach((elmnt) =>{
+                elmnt.style.display = "Block";
+            });
+              <?php
+            }else if($_SESSION["TipoUser"] == "Almacén"){
+            ?>
+            document.getElementById("almacen").style.display = "Block";
+            <?php
+            }else if($_SESSION["TipoUser"] == "Bodega"){
+              ?>
+            document.getElementById("bodega").style.display = "Block";
+              <?php
+            }else if($_SESSION["TipoUser"] == "Ingeniería"){
+              ?>
+            document.getElementById("ingenieria").style.display = "Block";
+              <?php
+            }else if($_SESSION["TipoUser"] == "Calidad"){
+              ?>
+            document.getElementById("cInterna").style.display = "Block";
+            document.getElementById("cExterna").style.display = "Block";
+              <?php
+            }else if($_SESSION["TipoUser"] == "Facturación"){
+              ?>
+              document.getElementById("facturacion").style.display = "Block";
+              <?php
+            }
+          }
+        ?>
       }
     function openNav() {
       var Window_with;
@@ -214,27 +266,14 @@ $("#Consultar-diseno").click(function(){
   closeNav();
   const enlaces = document.getElementsByClassName("enlace");
   enlaces.setAttribute('color', 'rgb(129, 129, 129)');
-  
-  // var Window_with;
-  // Window_with = window.innerWidth;
-  // if(Window_with<=768){
-  //   alert("Mobile detected");
-  //   document.getElementById("ControlCentral").style.width = "1023px";
-    
-  // }
+ 
 });
 
-// window.onload = function(){
-//   usuario = "Otro";
-//   if(usuario == "Otro"){
-//     var ArrP = document.getElementsByClassName("Prod-Nav");
-    
-//     Array.from(ArrP).forEach((elmnt) =>{
-//       elmnt.style.display = "None";
-//     });
+$("#EndSession").click(function(){
+    $.post("../Script/Formularios_Js/Sessions_Php/EndSession.php");
+    window.location.href = "../index.html";
+});
 
-//   }
-// }
     </script>
   </body>
 </html>

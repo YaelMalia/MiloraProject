@@ -18,7 +18,7 @@
             echo "check";
         }else{
             echo "non-checked";
-            header("Location:index.html");
+            header("Location:../index.html");
         }
     }
 ?>
