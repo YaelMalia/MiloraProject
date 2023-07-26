@@ -23,8 +23,15 @@
         </div>
         <div>
             <div>
+                <div>
                 <label><b>Orden de compra</b></label>
                 <input type="text" name="Orden_c" value="<?php if(isset($_GET['Orden_c'])){ echo $_GET['Orden_c']; } ?>">
+                </div>
+                <div>
+                <label><b>Orden de compra</b></label>
+                <input type="text" name="Orden_c" value="<?php if(isset($_GET['Orden_c'])){ echo $_GET['Orden_c']; } ?>">
+                </div>
+                <div></div>
             </div>
         </div>
         <div>
