@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="Estilos/login.css">
     <script src="Script/login.js"></script>
+    <!-- Alertify -->
+    <script src="alertify/alertify.js"></script>
+    <link rel="stylesheet" href="alertify/alertify.css">
+
+    <!-- JQuery Libs -->
+    <script src="Script/jquery.js"></script>
+    <script src="Script/jquery-3.5.1.min.js"></script>
+
     <title>Login</title>
 </head>
 <body>
@@ -12,7 +20,7 @@
     <!-- IZQ -->
     <div class="izquierda" id="izquierda">
         <h2 class="iSesion">Iniciar Sesión</h2>
-      <form onsubmit="submitForm(event)" method="post" style="max-height: max-content;">
+      <form action="Paginas/Main.php" method="post" style="max-height: max-content;">
         <label for="username">Usuario:</label><br>
         <input class="inputs" type="text" id="username" name="username" required><br><br>
       
@@ -20,7 +28,7 @@
         <input class="inputs" type="password" id="password" name="password" required><br><br>
           <label class="show-password">
           </label><br><br>  
-          <input type="submit" value="Iniciar Sesión">
+          <button class="btnS" type="submit" onclick="return ValidarDatosLogin();">Iniciar Sesión</button>
       </form>
     </div>
     <!-- Separación -->
@@ -32,4 +40,46 @@
     
   </div>
   </body>
+  <script>
+    function ValidarDatosLogin(){
+    let usuario = $("#username")[0].value;
+    let password = $("#password")[0].value;
+    if(usuario == "" || usuario == null){
+      alertify.alert("El usuario ingresado tiene un formato erróneo o está vacío, intente de nuevo");
+    }else{
+      if(password == "" || password == null){
+      alertify.alert("La contraseña está vacía, intente de nuevo");
+      return false;
+      }else{
+        // Valida datos
+        let datosLogin = {
+          "user": usuario,
+          "pass": password
+        };
+        let ACK1 = "";
+        $.ajax({
+          type: 'POST',
+          url: 'Script/Formularios_Js/Sessions_Php/ValidarDatos.php',
+          data: datosLogin,
+          async: false,
+          success: function(returning){
+            // alert(returning);
+            if(returning == "check"){
+              ACK1 = "checked";
+            }else{
+              ACK1 = "non-checked";
+            }
+          }
+        });
+        if(ACK1 == "checked"){
+          // setTimeout( function() { return false; }, 500 );
+          return true;
+        }else{
+          alertify.alert("¡Oops!", "No se han podido validar sus datos, intente de nuevo");
+          return false;
+        }
+      }
+    }
+  }
+  </script>
 </html>

@@ -52,7 +52,7 @@ background: linear-gradient(90deg, rgba(16,68,166,1) 6%, rgba(67,60,180,0.333771
       border: 1px solid #3549a1;
   }
   
-  input[type="submit"] {
+  .btnS{
     background-color: #4c5eaf;
     color: white;
     border: none;
@@ -65,7 +65,7 @@ background: linear-gradient(90deg, rgba(16,68,166,1) 6%, rgba(67,60,180,0.333771
     min-width: max-content;
   }
   
-  input[type="submit"]:hover {
+  .btnS:hover {
     background-color: #3549a1;
   }
 

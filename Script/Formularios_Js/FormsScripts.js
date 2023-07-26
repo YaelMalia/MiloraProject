@@ -137,6 +137,7 @@ function busqueda_Filtrada_Piezas(Seleccion){
                 if(returning!="No"){
                     $("#cuerpoTabla")[0].value = "";
                     document.getElementById("cuerpoTabla").innerHTML = returning;
+                    // alert(returning);
                 }else{
                     alertify.alert("Error", "Pieza no se ha encontrado, revise sus datos");
                 }
