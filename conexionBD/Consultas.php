@@ -171,6 +171,18 @@ public function insertOrden($FechaI, $FechaF, $OrdenCompra, $Cliente, $NoPieza, 
         }
     }
 
+    public function GetAllOrdenes()
+    {
+        try {
+            $query = $this->dbh->prepare("SELECT * FROM ordenes_compras WHERE 1");
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
+        } catch (PDOException $e) {
+            $e->getMessage();
+        }
+    }
+
 /*-----------------------------------------------------------------------------------------------------*/
 
 

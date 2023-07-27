@@ -236,6 +236,9 @@ for (i = 0; i < dropdown.length; i++) {
 }
 
 
+
+
+
 // ------------------------------------------------------------- DROPDOWN CONTAINTERS---------------
 $("#Nueva-orden").click(function(){
   document.getElementById("ControlCentral").innerHTML="";
@@ -261,16 +264,28 @@ $("#Editar-diseno").click(function(){
   enlaces.setAttribute('color', 'rgb(129, 129, 129)');
 });
 
-$("#Consultar-diseno").click(function(){
-  
+$("#Consultar-diseno").click(function(){  
   document.getElementById("ControlCentral").innerHTML="";
   $("#ControlCentral").load("Formulario_Diseños_Consulta.php");
   closeNav();
   const enlaces = document.getElementsByClassName("enlace");
   enlaces.setAttribute('color', 'rgb(129, 129, 129)');
- 
+});
+
+$("#Consultar-orden").click(function(){
+  document.getElementById("ControlCentral").innerHTML="";
+  $("#ControlCentral").load("Formulario_Orden_Consulta.php");
+  closeNav();
+  const enlaces = document.getElementsByClassName("enlace");
+  enlaces.setAttribute('color', 'rgb(129, 129, 129)');
 });
 // ------------------------------------------------------------- END DROPDOWN CONTAINTERS---------------
+
+
+
+
+
+
 
 
 
