@@ -82,7 +82,7 @@ require 'cn.php';
     $ClienteC = $_POST['ClienteC'];
 
 
-$query= "SELECT Fecha_realizacion, Fecha_finalizacion, Orden_compra, No_diseno, Piezas_solicitadas, Piezas_realizadas, Piezas_restantes, Cliente FROM ordenes_compras WHERE (Fecha_realizacion BETWEEN '$De_fecha' AND '$A_fecha')";
+$query= "SELECT Fecha_realizacion, Fecha_limite, Orden_compra, No_diseno, Piezas_solicitadas, Piezas_realizadas, Piezas_restantes, Cliente FROM ordenes_compras WHERE (Fecha_realizacion BETWEEN '$De_fecha' AND '$A_fecha')";
 if($Orden !=''){
 
     $query .= "AND (Orden_compra LIKE '$Orden')";
@@ -101,7 +101,7 @@ foreach($resultado as $fila){
     ?>
     <tr>
         <td><?php echo $fila['Fecha_realizacion']?></td>
-        <td><?php echo $fila['Fecha_finalizacion']?></td>
+        <td><?php echo $fila['Fecha_limite']?></td>
         <td><?php echo $fila['Orden_compra']?></td>
         <td><?php echo $fila['No_diseno']?></td>
         <td><?php echo $fila['Piezas_solicitadas']?></td>

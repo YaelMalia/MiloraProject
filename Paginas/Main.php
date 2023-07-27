@@ -73,7 +73,7 @@
         <a id="Nueva-orden" class="enlace">Nueva orden</a>
         <a href="#">Editar orden</a>
         <a href="#">Eliminar orden</a>
-        <a href="#">Consultar ordenes</a>
+        <a id="Consultar-orden" class="enlace">Consultar ordenes</a>
       </div>
       <!--  -->
       <button class="dropdown-btn" id="almacen">Almacén
@@ -235,6 +235,8 @@ for (i = 0; i < dropdown.length; i++) {
   });
 }
 
+
+// ------------------------------------------------------------- DROPDOWN CONTAINTERS---------------
 $("#Nueva-orden").click(function(){
   document.getElementById("ControlCentral").innerHTML="";
   $("#ControlCentral").load("Formulario_Orden.html");
@@ -268,6 +270,9 @@ $("#Consultar-diseno").click(function(){
   enlaces.setAttribute('color', 'rgb(129, 129, 129)');
  
 });
+// ------------------------------------------------------------- END DROPDOWN CONTAINTERS---------------
+
+
 
 $("#EndSession").click(function(){
     $.post("../Script/Formularios_Js/Sessions_Php/EndSession.php");
