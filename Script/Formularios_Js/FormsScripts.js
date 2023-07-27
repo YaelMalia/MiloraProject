@@ -318,3 +318,29 @@ function AgregarOrden(){
     }
 
 }
+
+function OrdenesResFull(Seleccion){
+
+    let vista = Seleccion;
+
+    let fechaInf = $("#De_fecha")[0].value;
+    let fechaSup = $("#Hasta_fecha")[0].value;
+    let ordenC = $("#Orden_c")[0].value;
+    let noDiseno = $("#Nodiseno")[0].value;
+    let cliente = $("#Cliente")[0].value;
+
+    if(fechaInf == "" && fechaSup == "" && ordenC == "" && noDiseno == "" && cliente == ""){
+        let parametros = {
+            "tipoVista": vista,
+            "where": 1
+        };
+        $.ajax({
+            type: 'POST',
+            url: '../Php_forms/Get_Ordenes.php',
+            data: parametros,
+            success: function(returning){
+                
+            }
+        });
+    }
+}
