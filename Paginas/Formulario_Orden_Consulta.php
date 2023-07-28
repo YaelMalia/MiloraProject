@@ -58,15 +58,15 @@
            <div id="CuadrosCentro" style="">
            <div class="col-md-4 recuadro" style="">
                 <label>Orden de compra</label>
-                <input type="text" name="Orden_c" id="Orden_c">
+                <input type="text" class="form-control" name="Orden_c" id="Orden_c">
             </div>
             <div class="col-md-4 recuadro" style="">
                 <label>No diseño</label>
-                <input type="text" name="Nodiseno" id="Nodiseno">
+                <input type="text" class="form-control" name="Nodiseno" id="Nodiseno">
             </div>
             <div class="col-md-4 recuadro" style="">
                 <label>Cliente</label>
-                <input type="ClienteC" name="ClienteC" id="Cliente">    
+                <input type="text" class="form-control" name="ClienteC" id="Cliente">    
         </div>
             </div>
             <div class="col-md-12">
@@ -98,7 +98,7 @@
 
             <section class="d-flex justify-content-center;" style="padding-left: 20px; padding-top: 20px; padding-bottom: 20px; padding-right: 20px;
         background-color: #d2dae6;">
-        <table id="table_id" class="table table-success table-striped" style="box-shadow: 0px 0px 24px 0px rgba(0,0,0,0.18);">
+        <table id="table_id" class="table table-success table-striped" style="box-shadow: 0px 0px 24px 0px rgba(0,0,0,0.18); margin:0 auto;">
             <thead id="Head_resumida">
                 <tr>
                     <th scope="col">Fecha realizacion</th>
