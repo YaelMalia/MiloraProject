@@ -140,7 +140,7 @@ public function insertOrden($FechaI, $FechaF, $OrdenCompra, $Cliente, $NoPieza, 
     public function GetAllPiezas()
     {
         try {
-            $query = $this->dbh->prepare("SELECT * FROM piezas WHERE 1");
+            $query = $this->dbh->prepare("SELECT piezas.No_diseno, Descripcion_MP, Codigo_MP, ordenes_compras.Orden_compra, ordenes_compras.Cliente, Corte, Dobles, Rolado, Bisel, Taladro, Prensa FROM piezas INNER JOIN ordenes_compras ON piezas.No_diseno = ordenes_compras.No_diseno;");
             $query->execute();
             return $query->fetchAll();
             $this->dbh = null;
