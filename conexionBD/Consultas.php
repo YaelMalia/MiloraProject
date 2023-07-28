@@ -185,13 +185,104 @@ public function insertOrden($FechaI, $FechaF, $OrdenCompra, $Cliente, $NoPieza, 
 
     public function GetOrdenesFilter($fI, $fS, $orden, $dis, $cliente){
         try{
-            $consulta = "SELECT * FROM ordenes_compras WHERE ";
-            if(($fI !="" && $fS !="") && (strlen($consulta)<=35)){
-                $consulta.=" Fecha_realizacion BETWEEN ".$fI." AND ".$fS;
+            if(($fI !="" && $fS !="")){
+                if(($orden == "" && $dis == "" && $cliente == "")){
+                    $query = $this->dbh->prepare("SELECT * FROM ordenes_compras WHERE Fecha_realizacion BETWEEN ? AND ?;");
+                    $query->bindParam(1, $fI);
+                    $query->bindParam(2, $fS); 
+                }
+                //Orden con algo
+                if(($orden!="") && ($dis == "" && $cliente == "")){
+                    $query = $this->dbh->prepare("SELECT * FROM ordenes_compras WHERE (Fecha_realizacion BETWEEN ? AND ?) AND Orden_compra LIKE ?;");
+                    $query->bindParam(1, $fI);
+                    $query->bindParam(2, $fS); 
+                    $query->bindParam(3, $orden);
+                }
+                if(($orden!="") && ($dis!="" && $cliente == "")){
+                    $query = $this->dbh->prepare("SELECT * FROM ordenes_compras WHERE (Fecha_realizacion BETWEEN ? AND ?) AND (Orden_compra LIKE ?) AND (No_diseno LIKE ?);");
+                    $query->bindParam(1, $fI);
+                    $query->bindParam(2, $fS); 
+                    $query->bindParam(3, $orden);
+                    $query->bindParam(4, $dis);
+                }
+                if(($orden!="") && ($dis!="" && $cliente!="")){ // TODO ESTÁ LLENO
+                    $query = $this->dbh->prepare("SELECT * FROM ordenes_compras WHERE (Fecha_realizacion BETWEEN ? AND ?) AND (Orden_compra LIKE ?) AND (No_diseno LIKE ?) AND (Cliente LIKE ?);");
+                    $query->bindParam(1, $fI);
+                    $query->bindParam(2, $fS); 
+                    $query->bindParam(3, $orden);
+                    $query->bindParam(4, $dis);
+                    $query->bindParam(5, $cliente);
+                }
+                //Orden vacía, iniciamos con el diseño
+                if(($dis!="") && ($orden == "" && $cliente == "")){
+                    $query = $this->dbh->prepare("SELECT * FROM ordenes_compras WHERE (Fecha_realizacion BETWEEN ? AND ?) AND No_diseno LIKE ?;");
+                    $query->bindParam(1, $fI);
+                    $query->bindParam(2, $fS); 
+                    $query->bindParam(3, $dis);
+                }
+                if(($dis!="") && ($orden  == "" && $cliente!="")){
+                    $query = $this->dbh->prepare("SELECT * FROM ordenes_compras WHERE (Fecha_realizacion BETWEEN ? AND ?) AND (No_diseno LIKE ?) AND (Cliente LIKE ?);");
+                    $query->bindParam(1, $fI);
+                    $query->bindParam(2, $fS); 
+                    $query->bindParam(3, $dis);
+                    $query->bindParam(4, $cliente);
+                }
+                //Cliente lleno y resto vacío
+                if(($cliente!="") && ($dis == "" && $orden == "")){
+                    $query = $this->dbh->prepare("SELECT * FROM ordenes_compras WHERE (Fecha_realizacion BETWEEN ? AND ?) AND Cliente LIKE ?;");
+                    $query->bindParam(1, $fI);
+                    $query->bindParam(2, $fS); 
+                    $query->bindParam(3, $cliente);
+                }
+                if(($cliente!="") && ($orden!="" && $dis == "")){
+                    $query = $this->dbh->prepare("SELECT * FROM ordenes_compras WHERE (Fecha_realizacion BETWEEN ? AND ?) AND (Cliente LIKE ?) AND (Orden_compra LIKE ?);");
+                    $query->bindParam(1, $fI);
+                    $query->bindParam(2, $fS); 
+                    $query->bindParam(3, $cliente);
+                    $query->bindParam(4, $orden);
+                }
+                // Cuando las fechas están vacías
             }else{
-                $consulta."AND Fecha_realizacion BETWEEN ".$fI." AND ".$fS;
+                //Orden con algo
+                if(($orden!="") && ($dis == "" && $cliente == "")){
+                    $query = $this->dbh->prepare("SELECT * FROM ordenes_compras WHERE Orden_compra LIKE ?;");
+                    $query->bindParam(1, $orden);
+                }
+                if(($orden!="") && ($dis!="" && $cliente == "")){
+                    $query = $this->dbh->prepare("SELECT * FROM ordenes_compras WHERE (Orden_compra LIKE ?) AND (No_diseno LIKE ?);");
+                    $query->bindParam(1, $orden);
+                    $query->bindParam(2, $dis);
+                }
+                if(($orden!="") && ($dis!="" && $cliente!="")){ // TODO ESTÁ LLENO
+                    $query = $this->dbh->prepare("SELECT * FROM ordenes_compras WHERE (Orden_compra LIKE ?) AND (No_diseno LIKE ?) AND (Cliente LIKE ?);"); 
+                    $query->bindParam(1, $orden);
+                    $query->bindParam(2, $dis);
+                    $query->bindParam(3, $cliente);
+                }
+                //Orden vacía, iniciamos con el diseño
+                if(($dis!="") && ($orden == "" && $cliente == "")){
+                    $query = $this->dbh->prepare("SELECT * FROM ordenes_compras WHERE No_diseno LIKE ?;");
+                    $query->bindParam(1, $dis);
+                }
+                if(($dis!="") && ($orden  == "" && $cliente!="")){
+                    $query = $this->dbh->prepare("SELECT * FROM ordenes_compras WHERE (No_diseno LIKE ?) AND (Cliente LIKE ?);");
+                    $query->bindParam(1, $dis);
+                    $query->bindParam(2, $cliente);
+                }
+                //Cliente lleno y resto vacío
+                if(($cliente!="") && ($dis == "" && $orden == "")){
+                    $query = $this->dbh->prepare("SELECT * FROM ordenes_compras WHERE Cliente LIKE ?;");
+                    $query->bindParam(1, $cliente);
+                }
+                if(($cliente!="") && ($orden!="" && $dis == "")){
+                    $query = $this->dbh->prepare("SELECT * FROM ordenes_compras WHERE (Cliente LIKE ?) AND (Orden_compra LIKE ?);"); 
+                    $query->bindParam(1, $cliente);
+                    $query->bindParam(2, $orden);
+                }
             }
-            echo $consulta;
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
         }catch(PDOException $e){
             $e->getMessage();
         }

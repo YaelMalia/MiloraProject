@@ -356,49 +356,87 @@ function OrdenesResFull(Seleccion){
         var banderaF = false;
         if(fechaInf!=""){
             if(fechaSup == ""){
-                // alertify.alert("Error", "Se necesita una fecha límite (Hasta el día) para filtrar la búsqueda")
-                alert("Error");
+                alertify.alert("Error", "Se necesita una fecha límite (Hasta el día) para filtrar la búsqueda")
+                // alert("Error");
             }else{
                 if(Date.parse(fechaInf) > Date.parse(fechaSup)){
-                    // alertify.alert("Error", "La fecha superior no puede ser menor a la fecha de inicio, intenta de nuevo");
-                    alert("error__");
+                    alertify.alert("Error", "La fecha superior no puede ser menor a la fecha de inicio, intenta de nuevo");
+                    // alert("error__");
                     banderaF = false;
                 }else{
                     banderaF = true;
+
+                    if(banderaF == true){
+            
+                        let parametros = {
+                            "tipoVista": Seleccion,
+                            "fechaInf": fechaInf,
+                            "fechaSup": fechaSup,
+                            "ordenC": ordenC,
+                            "noDiseno": noDiseno,
+                            "cliente": cliente
+                        };
+            
+                        $.ajax({
+                            type: 'POST',
+                            url: '../Php_forms/Get_Ordenes_Filtrado.php',
+                            data: parametros,
+                            success: function(returning){
+                                alert(returning);
+                                if(Seleccion == "Resumida"){
+                                    $("#Head_completa").hide();
+                                    $("#Head_resumida").show();
+                                }else{
+                                    $("#Head_completa").show();
+                                    $("#Head_resumida").hide();
+                                }
+                                if(returning!="Nada"){
+                                    document.getElementById("Cuerpo_tabla").innerHTML=returning;
+                                }else{
+                                    alertify.alert("¡Oops!", "No se han encontrado ordenes de compra con los datos proporcionados");
+                                }
+                            }
+                        });
+                    }
                 }
                 
             }
-        }
-        if(banderaF == true){
-            
-            let parametros = {
-                "tipoVista": Seleccion,
-                "fechaInf": fechaInf,
-                "fechaSup": fechaSup,
-                "ordenC": ordenC,
-                "noDiseno": noDiseno,
-                "cliente": cliente
-            };
+        }else{
+            if(fechaSup == ""){
+                let parametros = {
+                    "tipoVista": Seleccion,
+                    "fechaInf": fechaInf,
+                    "fechaSup": fechaSup,
+                    "ordenC": ordenC,
+                    "noDiseno": noDiseno,
+                    "cliente": cliente
+                };
+    
+                $.ajax({
+                    type: 'POST',
+                    url: '../Php_forms/Get_Ordenes_Filtrado.php',
+                    data: parametros,
+                    success: function(returning){
+                        // alert(returning);
+                        if(Seleccion == "Resumida"){
+                            $("#Head_completa").hide();
+                            $("#Head_resumida").show();
+                        }else{
+                            $("#Head_completa").show();
+                            $("#Head_resumida").hide();
+                        }
+                        if(returning!="Nada"){
+                            document.getElementById("Cuerpo_tabla").innerHTML=returning;
+                        }else{
+                            alertify.alert("¡Oops!", "No se han podido recopilar los datos, intente nuevamente");
+                        }
+                    }
+                });
+            }else{
+                alertify.alert("Error", "Falta una fecha por asignar");
 
-            $.ajax({
-                type: 'POST',
-                url: '../Php_forms/Get_Ordenes_Filtrado.php',
-                data: parametros,
-                success: function(returning){
-                    if(Seleccion == "Resumida"){
-                        $("#Head_completa").hide();
-                        $("#Head_resumida").show();
-                    }else{
-                        $("#Head_completa").show();
-                        $("#Head_resumida").hide();
-                    }
-                    if(returning!="Nada"){
-                        document.getElementById("Cuerpo_tabla").innerHTML=returning;
-                    }else{
-                        alertify.alert("¡Oops!", "No se han podido recopilar los datos, intente más tarde");
-                    }
-                }
-            });
+            }
         }
+        
     }
 }
