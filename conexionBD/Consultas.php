@@ -183,6 +183,21 @@ public function insertOrden($FechaI, $FechaF, $OrdenCompra, $Cliente, $NoPieza, 
         }
     }
 
+    public function GetOrdenesFilter($fI, $fS, $orden, $dis, $cliente){
+        try{
+            $consulta = "SELECT * FROM ordenes_compras WHERE ";
+            if(($fI !="" && $fS !="") && (strlen($consulta)<=35)){
+                $consulta.=" Fecha_realizacion BETWEEN ".$fI." AND ".$fS;
+            }else{
+                $consulta."AND Fecha_realizacion BETWEEN ".$fI." AND ".$fS;
+            }
+            echo $consulta;
+        }catch(PDOException $e){
+            $e->getMessage();
+        }
+
+    }
+
 /*-----------------------------------------------------------------------------------------------------*/
 
 

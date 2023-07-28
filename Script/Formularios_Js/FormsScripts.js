@@ -321,7 +321,7 @@ function AgregarOrden(){
 
 function OrdenesResFull(Seleccion){
 
-    let vista = Seleccion;
+    document.getElementById("Cuerpo_tabla").innerText="";
 
     let fechaInf = $("#De_fecha")[0].value;
     let fechaSup = $("#Hasta_fecha")[0].value;
@@ -331,16 +331,74 @@ function OrdenesResFull(Seleccion){
 
     if(fechaInf == "" && fechaSup == "" && ordenC == "" && noDiseno == "" && cliente == ""){
         let parametros = {
-            "tipoVista": vista,
-            "where": 1
+            "tipoVista": Seleccion
         };
         $.ajax({
             type: 'POST',
             url: '../Php_forms/Get_Ordenes.php',
             data: parametros,
             success: function(returning){
-                
+                if(Seleccion == "Resumida"){
+                    $("#Head_completa").hide();
+                    $("#Head_resumida").show();
+                }else{
+                    $("#Head_completa").show();
+                    $("#Head_resumida").hide();
+                }
+                if(returning!="Nada"){
+                    document.getElementById("Cuerpo_tabla").innerHTML=returning;
+                }else{
+                    alertify.alert("¡Oops!", "No se han podido recopilar los datos, intente más tarde");
+                }
             }
         });
+    }else{
+        var banderaF = false;
+        if(fechaInf!=""){
+            if(fechaSup == ""){
+                // alertify.alert("Error", "Se necesita una fecha límite (Hasta el día) para filtrar la búsqueda")
+                alert("Error");
+            }else{
+                if(Date.parse(fechaInf) > Date.parse(fechaSup)){
+                    // alertify.alert("Error", "La fecha superior no puede ser menor a la fecha de inicio, intenta de nuevo");
+                    alert("error__");
+                    banderaF = false;
+                }else{
+                    banderaF = true;
+                }
+                
+            }
+        }
+        if(banderaF == true){
+            
+            let parametros = {
+                "tipoVista": Seleccion,
+                "fechaInf": fechaInf,
+                "fechaSup": fechaSup,
+                "ordenC": ordenC,
+                "noDiseno": noDiseno,
+                "cliente": cliente
+            };
+
+            $.ajax({
+                type: 'POST',
+                url: '../Php_forms/Get_Ordenes_Filtrado.php',
+                data: parametros,
+                success: function(returning){
+                    if(Seleccion == "Resumida"){
+                        $("#Head_completa").hide();
+                        $("#Head_resumida").show();
+                    }else{
+                        $("#Head_completa").show();
+                        $("#Head_resumida").hide();
+                    }
+                    if(returning!="Nada"){
+                        document.getElementById("Cuerpo_tabla").innerHTML=returning;
+                    }else{
+                        alertify.alert("¡Oops!", "No se han podido recopilar los datos, intente más tarde");
+                    }
+                }
+            });
+        }
     }
 }
