@@ -71,8 +71,8 @@
       </button>
       <div class="dropdown-container">
         <a id="Nueva-orden" class="enlace">Nueva orden</a>
-        <a href="#">Editar orden</a>
-        <a href="#">Eliminar orden</a>
+        <a id="Editar-orden" class="enlace">Editar orden</a>
+        <a href="#">Archivar orden</a>
         <a id="Consultar-orden" class="enlace">Consultar ordenes</a>
       </div>
       <!--  -->
@@ -263,6 +263,15 @@ $("#Editar-diseno").click(function(){
   const enlaces = document.getElementsByClassName("enlace");
   enlaces.setAttribute('color', 'rgb(129, 129, 129)');
 });
+
+$("#Editar-orden").click(function(){
+  document.getElementById("ControlCentral").innerHTML="";
+  $("#ControlCentral").load("Formulario_Orden_Editar.html");
+  closeNav();
+  const enlaces = document.getElementsByClassName("enlace");
+  enlaces.setAttribute('color', 'rgb(129, 129, 129)');
+});
+
 
 $("#Consultar-diseno").click(function(){  
   document.getElementById("ControlCentral").innerHTML="";

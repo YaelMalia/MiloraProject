@@ -44,6 +44,7 @@ function nueva_Pieza(){
                          data: parametros,
                          success: function(returning){
                              if(returning == "si"){
+                                // alertify.success('Pieza agregada');
                                  alertify.alert("¡Exito!", "El modelo o pieza se ha agregado con éxito");
                                  let formulario = $("#form_nuevoD");
                                  $("#No_disenoFD")[0].value = "";
@@ -438,5 +439,72 @@ function OrdenesResFull(Seleccion){
             }
         }
         
+    }
+}
+
+function Editar_Orden(){
+    let flag = false;
+    let RazonCambio;
+    alertify.prompt('Ingrese un motivo del cambio en la orden de compra:\nAmpliación/Reducción/Datos', ''
+               , function(evt, value) { RazonCambio = value;
+                if(RazonCambio == "Ampliación" || RazonCambio == "Reducción" || RazonCambio == "Datos"){
+                    flag = true;
+                    alertify.success('Motivo de cambio agregado');
+                }else{
+                    alertify.error('Ingrese un motivo válido');
+                }
+            });
+    
+
+}
+
+
+function Buscar_Orden_Filtro(){
+    let ordenB = $("#B_orden")[0].value;
+    let disenoB = $("#B_Diseno")[0].value;
+
+    if(ordenB == ""){
+        alertify.alert("¡Oops!", "Parece que no se ha llenado el campo de 'Orden' para la búsqueda");
+    }else{
+        if(disenoB == ""){
+         alertify.alert("¡Oops!", "Parece que no se ha llenado el campo de 'diseño' para la búsqueda");
+        }else{
+            // Correcto
+            let parametros = {
+                "ordenBuscar": ordenB,
+                "disenoBuscar": disenoB
+            };
+
+            $.ajax({
+                type: 'POST',
+                url: '../Php_forms/Search_Orden_Editar.php',
+                data: parametros,
+                success: function(returning){
+
+                    if(returning!="no"){
+                        // alert(returning);
+                        var ArrayDatos = returning.split(',');
+                        document.getElementById("B_orden").disabled = true;
+                        document.getElementById("B_Diseno").disabled = true;
+                        document.getElementById("btn_Buscar").disabled = true;
+
+                        document.getElementById("Fecha_final").disabled = false;
+                        $("#Fecha_final")[0].value = ArrayDatos[0];
+                        document.getElementById("Orden_de_compra").disabled = false;
+                        $("#Orden_de_compra")[0].value = ArrayDatos[1];
+                        document.getElementById("No_diseno").disabled = false;
+                        $("#No_diseno")[0].value = ArrayDatos[2];
+                        document.getElementById("Numero_de_piezas").disabled = false;
+                        $("#Numero_de_piezas")[0].value = ArrayDatos[3];
+                        document.getElementById("Cliente").disabled = false;
+                        $("#Cliente")[0].value = ArrayDatos[4];
+
+                        document.getElementById("Actualizar_Orden").disabled = false;
+                    }else{
+                        alertify.alert("¡Oops!", "Parece que no se ha encontrado ninguna orden de compra con los datos proporcionados, verifique sus datos");
+                    }
+                }});
+
+        }
     }
 }

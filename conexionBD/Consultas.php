@@ -289,6 +289,20 @@ public function insertOrden($FechaI, $FechaF, $OrdenCompra, $Cliente, $NoPieza, 
 
     }
 
+    public function Search_Orden_Editar($orden, $diseno){
+        try {
+            $query = $this->dbh->prepare("SELECT * FROM ordenes_compras WHERE Orden_compra LIKE ? AND No_diseno LIKE ?");
+            $query->bindParam(1, $orden);
+            $query->bindParam(2, $diseno);
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
+        } catch (PDOException $e) {
+            $e->getMessage();
+            echo $e;
+        }
+    }
+
 /*-----------------------------------------------------------------------------------------------------*/
 
 
