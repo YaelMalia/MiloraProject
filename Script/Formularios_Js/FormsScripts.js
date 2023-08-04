@@ -442,22 +442,6 @@ function OrdenesResFull(Seleccion){
     }
 }
 
-function Editar_Orden(){
-    let flag = false;
-    let RazonCambio;
-    alertify.prompt('Ingrese un motivo del cambio en la orden de compra:\nAmpliación/Reducción/Datos', ''
-               , function(evt, value) { RazonCambio = value;
-                if(RazonCambio == "Ampliación" || RazonCambio == "Reducción" || RazonCambio == "Datos"){
-                    flag = true;
-                    alertify.success('Motivo de cambio agregado');
-                }else{
-                    alertify.error('Ingrese un motivo válido');
-                }
-            });
-    
-
-}
-
 
 function Buscar_Orden_Filtro(){
     let ordenB = $("#B_orden")[0].value;
@@ -507,4 +491,94 @@ function Buscar_Orden_Filtro(){
 
         }
     }
+}
+
+function Editar_Orden(){
+    let flag = false;
+    let RazonCambio;
+    alertify.prompt('Ingrese un motivo del cambio en la orden de compra:\nAmpliación/Reducción/Datos', ''
+               , function(evt, value) { RazonCambio = value;
+                if(RazonCambio == "Ampliación" || RazonCambio == "Reducción" || RazonCambio == "Datos"){
+                    flag = true;
+                    alertify.success('Motivo de cambio agregado');
+
+                    if(flag == true){
+
+                        //Mandamos a llamar el editar
+
+                        let ordenB = $("#B_orden")[0].value;
+                        let disenoB = $("#B_Diseno")[0].value;
+
+
+                        let fechaF = $("#Fecha_final")[0].value;
+                        let ordenC = $("#Orden_de_compra")[0].value;
+                        let noDiseno = $("#No_diseno")[0].value;
+                        let cantidadP = $("#Numero_de_piezas")[0].value;
+                        let cliente = $("#Cliente")[0].value;
+                
+                        if(fechaF == "" || ordenC == "" || noDiseno == "" || cantidadP == "" || cliente == ""){
+                            alertify.alert("Error", "Vaya, parece que uno o más campos están vacíos, revise sus datos");
+                        }else{
+                            if(RazonCambio == "Datos"){
+                                RazonCambio = "Activa";
+                            }
+                            let parametros = {
+
+                                "filterOrden": ordenB,
+                                "filterDiseno": disenoB,
+
+                                "RazonCambio": RazonCambio,
+                                "FechaLimite": fechaF,
+                                "ordenC": ordenC,
+                                "noDiseno": noDiseno,
+                                "cantidadP": cantidadP,
+                                "cliente": cliente 
+                            }
+                
+                            $.ajax({
+                                type: 'POST',
+                                url: '../Php_forms/Update_Ordenes.php',
+                                data: parametros,
+                                success: function(returning){
+                                    if(returning!="no"){
+                                        alertify.alert("¡Exito!", "Orden de compra modificada con éxito");
+
+                                        document.getElementById("B_orden").disabled = false;
+                                        $("#B_orden")[0].value = "";
+                                        document.getElementById("B_Diseno").disabled = false;
+                                        $("#B_Diseno")[0].value = "";
+                                        document.getElementById("btn_Buscar").disabled = false;
+
+                                        document.getElementById("Fecha_final").disabled = true;
+                                        $("#Fecha_final")[0].value = "";
+                                        document.getElementById("Orden_de_compra").disabled = true;
+                                        $("#Orden_de_compra")[0].value = "";
+                                        document.getElementById("No_diseno").disabled = true;
+                                        $("#No_diseno")[0].value = "";
+                                        document.getElementById("Numero_de_piezas").disabled = true;
+                                        $("#Numero_de_piezas")[0].value = "";
+                                        document.getElementById("Cliente").disabled = true;
+                                        $("#Cliente")[0].value = "";
+
+                                        document.getElementById("Actualizar_Orden").disabled = true;
+                                    }else{
+                                        alertify.alert("Error", "No se ha podido actualizar la orden de compra, revise sus datos e intente nuevamente");
+                                    }
+                                }
+                            });
+                        }
+                
+                    }else{
+                        alertify.alert("Aviso", "No se puede continuar con el proceso hasta que se agregue un motivo de cambio válido");
+                    }
+
+                }else{
+                    alertify.alert("Aviso", "No se puede continuar con el proceso hasta que se agregue un motivo de cambio válido");
+                    alertify.error('Ingrese un motivo válido');
+                }
+            });
+    
+    
+    
+
 }

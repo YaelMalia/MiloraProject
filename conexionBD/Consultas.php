@@ -303,6 +303,27 @@ public function insertOrden($FechaI, $FechaF, $OrdenCompra, $Cliente, $NoPieza, 
         }
     }
 
+
+    public function Update_Orden($fechaL, $OrdenC, $Nodis, $CantP, $Estatus, $Cliente, $fOrden, $fDiseno){
+        try {
+            $query = $this->dbh->prepare("UPDATE ordenes_compras SET Fecha_limite=?, Orden_compra=?, No_diseno=?, Piezas_solicitadas=?, Estatus_orden=?, Cliente=? WHERE Orden_compra LIKE ? AND No_diseno LIKE ?");
+            $query->bindParam(1, $fechaL);
+            $query->bindParam(2, $OrdenC);
+            $query->bindParam(3, $Nodis);
+            $query->bindParam(4, $CantP);
+            $query->bindParam(5, $Estatus);
+            $query->bindParam(6, $Cliente);
+            $query->bindParam(7, $fOrden);
+            $query->bindParam(8, $fDiseno);
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
+        } catch (PDOException $e) {
+            $e->getMessage();
+            echo $e;
+        }
+    }
+
 /*-----------------------------------------------------------------------------------------------------*/
 
 
