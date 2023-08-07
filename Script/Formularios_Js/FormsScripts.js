@@ -288,7 +288,7 @@ function AgregarOrden(){
                                         url: '../Php_forms/Insert_Ordenes.php',
                                         data: parametros,
                                         success: function(returning){
-                                            if(returning == "si"){
+                                            if(returning!="no"){
                                                 alertify.alert("¡Exito!", "Se ha registrado la nueva orden de compra correctamente");
                                                 $("#Fecha_inicio")[0].value = "";
                                                 $("#Fecha_final")[0].value = "";

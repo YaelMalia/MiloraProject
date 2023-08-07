@@ -146,7 +146,7 @@
         <div class="bottom-info" id="bottom-info">
           <h3 style="color: rgb(77, 75, 75);">Control de gestión general | 2023 ©</h3>
           <br>
-          <h4 style="color: rgb(76, 78, 236);"> ISC <font style="color: rgb(77, 75, 75); margin-left: 8px; margin-right: 8px;">l</font> IGE</h4>
+          <h4 style="color: rgb(76, 78, 236);"> ISC <font style="color: rgb(77, 75, 75); margin-left: 8px; margin-right: 8px;">l</font> ITESA</h4>
         </div>
         <br>
       </div>
