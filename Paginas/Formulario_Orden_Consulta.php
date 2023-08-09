@@ -97,7 +97,7 @@
             <!-- Fin vista -->
 
             <section class="d-flex justify-content-center;" style="padding-left: 20px; padding-top: 20px; padding-bottom: 20px; padding-right: 20px;
-        background-color: #d2dae6;">
+            background-color: #d2dae6;">
         <table id="table_id" class="table table-success table-striped" style="box-shadow: 0px 0px 24px 0px rgba(0,0,0,0.18); margin:0 auto;">
             <thead id="Head_resumida">
                 <tr>
@@ -163,8 +163,6 @@
         </tbody>
     </table>
 </section>
-
-
         </form>
     </section>
    
