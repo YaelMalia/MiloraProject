@@ -155,13 +155,14 @@ public function insertOrden($FechaI, $FechaF, $OrdenCompra, $Cliente, $NoPieza, 
     // ------------------- ORDENES DE COMPRA --------------------------------------------------------
     public function insert_orden($fechaInicio, $fechaLimite, $Orden, $Cliente, $No_Dis, $CantidadP){
         try {
-            $query = $this->dbh->prepare("INSERT INTO ordenes_compras (Fecha_realizacion, Fecha_limite, Orden_compra, No_diseno, Piezas_solicitadas, Cliente) VALUES (?, ?, ?, ?, ?, ?)");
+            $query = $this->dbh->prepare("INSERT INTO ordenes_compras (Fecha_realizacion, Fecha_limite, Orden_compra, No_diseno, Piezas_solicitadas, Piezas_restantes, Cliente) VALUES (?, ?, ?, ?, ?, ?, ?)");
             $query->bindParam(1, $fechaInicio);
             $query->bindParam(2, $fechaLimite);
             $query->bindParam(3, $Orden);
             $query->bindParam(4, $No_Dis);
             $query->bindParam(5, $CantidadP);
-            $query->bindParam(6, $Cliente);
+            $query->bindParam(6, $CantidadP);
+            $query->bindParam(7, $Cliente);
             $query->execute();
             return $query->fetchAll();
             $this->dbh = null;
