@@ -7,13 +7,18 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <title>Registro de almacen</title>
+
+    <script src="../Script/Formularios_Js/FormsScripts.js"></script>
+    <script src="../Script/jquery.js"></script>
+    <script src="../Script/jquery-3.5.1.min.js"></script>
+
 </head>
 <body style="padding-left: 20px; padding-top: 20px; padding-bottom: 20px; padding-right: 20px;">
     <section class="d-flex justify-content-center"
         style="padding-left: 20px; padding-top: 20px; padding-bottom: 20px; padding-right: 20px;
         background-color: #d2dae6;  border-radius:10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);" >
         <form id ="form_nuevoD" class="row g-4">
-            <h2 style="text-align: center;">Entradas a almacen</h2>
+            <h2 style="text-align: center;">Entradas al almacén</h2>
             <div class="col-md-3">
                 <label for="Fecha_de_ingreso" class="form-label">Fecha de ingreso</label>
                 <input type="date" class="form-control"  id="Fecha_de_ingreso" required>
@@ -23,8 +28,8 @@
                 <input type="text" class="form-control" id="Orden_de_compra" placeholder="Orden de compra" required>
             </div>
             <div class="col-md-3">
-                <label for="Numero_de_pieza" class="form-label">Numero de pieza</label>
-                <input type="text" class="form-control" id="Numero_de_pieza" placeholder="Numero de pieza" required>
+                <label for="Numero_de_pieza" class="form-label">Número de diseño</label>
+                <input type="text" class="form-control" id="Numero_de_pieza" placeholder="Número de diseño" required>
             </div>
             <div class="col-md-3">
                 <label for="Cantidad_de_piezas" class="form-label">Cantidad de piezas</label>
@@ -32,7 +37,7 @@
             </div>
             <!-- ---------------------------------------------------------------------------------------- -->
             <div class="col-12" >
-                <input  onclick=""  type="button" class="btn btn-primary col-12" style="height: 50px;
+                <input  onclick="return RegistrarEntrada();"  type="button" class="btn btn-primary col-12" style="height: 50px;
                 min-height: auto; font-size: auto;" value="Registrar entrada">
             </div>
         </form>

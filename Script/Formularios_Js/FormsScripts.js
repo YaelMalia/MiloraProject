@@ -231,6 +231,15 @@ function actualizar_Pieza(){
 // ------------------------- FIN PIEZAS ------------------------
 
 
+
+
+
+
+
+
+
+
+
 // -------------------- INICIAN ORDENES DE COMPRA ---------------------------
 
 function AgregarOrden(){
@@ -540,6 +549,7 @@ function Editar_Orden(){
                                 type: 'POST',
                                 url: '../Php_forms/Update_Ordenes.php',
                                 data: parametros,
+                                async: false,
                                 success: function(returning){
                                     if(returning!="no"){
                                         alertify.alert("¡Exito!", "Orden de compra modificada con éxito");
@@ -578,8 +588,152 @@ function Editar_Orden(){
                     alertify.error('Ingrese un motivo válido');
                 }
             });
-    
-    
-    
-
 }
+
+
+// ---------------- FIN ORDENES DE COMPRA-------------------- //
+
+
+
+
+
+
+
+
+
+// ------------------------------- INICIAN REGISTRO DE ENTRADAS --------------------------------//
+function RegistrarEntrada(){
+    let fecha_Entrada = $("#Fecha_de_ingreso")[0].value;
+    let ordenCompra = $("#Orden_de_compra")[0].value;
+    let noDiseno = $("#Numero_de_pieza")[0].value;
+    let cantidadPiezas = $("#Cantidad_de_piezas")[0].value;
+
+    if(fecha_Entrada == "" || ordenCompra == "" || noDiseno == "" || cantidadPiezas == ""){
+        alertify.alert("Aviso", "Faltan por llenar uno o más campos, revise sus datos");
+        // alert("Faltan datos");
+    }else{
+        // Primero obtenemos el número de orden de compra con una consulta SQL
+        // Valores para la consulta: número de diseño y la orden de compra
+        let parametrosConsulta = {
+            "disenoConsulta": noDiseno,
+            "ordenConsulta": ordenCompra
+        };
+        
+        $.ajax({
+            type: 'POST',
+            url: '../Php_forms/Get_noOrden_Entradas.php',
+            data: parametrosConsulta,
+            async: false,
+            success: function(returning){
+               if(returning == "notFound"){
+                alertify.alert("Error", "Parece que no hay ninguna orden de compra con dicha pieza, revise sus datos");
+                // alert("No orden existente");
+               }else if(returning.includes("Fatal Error")){
+                alertify.alert("Error", "Se ha producido un error, revise su conexión a internet");
+                // alert("Error de conexión");
+               }else{
+                let parametros = {
+                    "numero_orden": returning,
+                    "fechaEntrada": fecha_Entrada,
+                    "ordenEntrada": ordenCompra,
+                    "disenoEntrada": noDiseno,
+                    "cantidadEntrada": cantidadPiezas
+                };
+                $.ajax({
+                    type: 'POST',
+                    url: '../Php_forms/Registrar_Entrada.php',
+                    data: parametros,
+                    async: false,
+                    success: function(returningEntrada){
+                        if(returningEntrada.includes("OK")){
+                            alertify.alert("¡Exito!", "Se ha registrado una entrada en el almacén");
+                            // alert(returningEntrada);
+                            $("#Fecha_de_ingreso")[0].value = "";
+                            $("#Orden_de_compra")[0].value = "";
+                            $("#Numero_de_pieza")[0].value = "";
+                            $("#Cantidad_de_piezas")[0].value = "";
+                        }else{
+                            alertify.alert("Error", "Se ha producido un error al registrar la entrada, revise su conexión");
+                            // alert(returningEntrada);
+                        }
+                    }
+                });
+               }
+            }
+        });
+    }
+}
+
+// -------------------------------- FIN REGISTRO DE ENTRADAS ---------------------------------//
+
+
+// ------------------------------- INICIAN REGISTRO DE SALIDAS --------------------------------//
+function RegistrarSalida(){
+    let fecha_Salida = $("#Fecha_de_salida")[0].value;
+    let ordenCompra = $("#Orden_de_compra")[0].value;
+    let noDiseno = $("#Numero_de_pieza")[0].value;
+    let cantidadPiezas = $("#Cantidad_de_piezas")[0].value;
+
+    if(fecha_Salida == "" || ordenCompra == "" || noDiseno == "" || cantidadPiezas == ""){
+        // alertify.alert("Aviso", "Faltan por llenar uno o más campos, revise sus datos");
+        alert("Faltan datos");
+    }else{
+        // Primero obtenemos el número de orden de compra con una consulta SQL
+        // Valores para la consulta: número de diseño y la orden de compra
+        let parametrosConsulta = {
+            "disenoConsulta": noDiseno,
+            "ordenConsulta": ordenCompra
+        };
+        
+        $.ajax({
+            type: 'POST',
+            url: '../Php_forms/Get_noStock_Salidas.php',
+            data: parametrosConsulta,
+            async: false,
+            success: function(returning){
+               if(returning == "notFound"){
+                // alertify.alert("Error", "Parece que no hay stock en almacén de dicha pieza, revise sus datos");
+                alert("No orden existente");
+               }else if(returning.includes("Fatal Error")){
+                // alertify.alert("Error", "Se ha producido un error, revise su conexión a internet");
+                alert("Error de conexión");
+               }else{
+                
+                let parametros = {
+                    "cve_stock": returning,
+                    "fechaSalida": fecha_Salida,
+                    "ordenSalida": ordenCompra,
+                    "disenoSalida": noDiseno,
+                    "cantidadSalida": cantidadPiezas
+                };
+                $.ajax({
+                    type: 'POST',
+                    url: '../Php_forms/Registrar_Salida.php',
+                    data: parametros,
+                    async: false,
+                    success: function(returningSalida){
+                        // alert(returningSalida);
+                        if(returningSalida.includes("SQLSTATE[45000]")){
+                            alertify.alert("Error", "La cantidad de stock para esta orden de compra supera a la cantidad de salida");
+                            // alert("cantidad de salida supera al stock");
+                        }
+                        else{
+                            if(returningSalida.includes("OK")){
+                                alertify.alert("¡Exito!", "Se ha registrado una salida del almacén");
+                                $("#Fecha_de_salida")[0].value = "";
+                                $("#Orden_de_compra")[0].value = "";
+                                $("#Numero_de_pieza")[0].value = "";
+                                $("#Cantidad_de_piezas")[0].value = "";
+                            }else{
+                                alertify.alert("Error", "Se ha producido un error al registrar la salida, revise su conexión");
+                            }
+                        }
+                    }
+                });
+               }
+            }
+        });
+    }
+}
+
+// -------------------------------- FIN REGISTRO DE SALIDAS ---------------------------------//

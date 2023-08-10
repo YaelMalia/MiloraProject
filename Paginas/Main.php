@@ -80,10 +80,11 @@
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-container">
-        <a href="#">Nueva entrada</a>
-        <a href="#">Modificar entrada</a>
-        <a href="#">Eliminar entrada</a>
+        <a id="Nueva-entrada" class="enlace">Registrar entrada</a>
         <a href="#">Consultar entradas</a>
+        <a id="Nueva-salida" class="enlace">Registrar salida</a>
+        <a href="#">Consultar salidas</a>
+        <a href="#">Consultar existencias</a>
       </div>
       <!--  -->
       <button class="dropdown-btn" id="bodega">Bodega
@@ -240,6 +241,8 @@ for (i = 0; i < dropdown.length; i++) {
 
 
 // ------------------------------------------------------------- DROPDOWN CONTAINTERS---------------
+
+// ------------------- NUEVOS
 $("#Nueva-orden").click(function(){
   document.getElementById("ControlCentral").innerHTML="";
   $("#ControlCentral").load("Formulario_Orden.html");
@@ -256,6 +259,23 @@ $("#Nuevo-diseno").click(function(){
   enlaces.setAttribute('color', 'rgb(129, 129, 129)');
 });
 
+$("#Nueva-entrada").click(function(){
+  document.getElementById("ControlCentral").innerHTML="";
+  $("#ControlCentral").load("Formulario_Entrada_Almacen.html");
+  closeNav();
+  const enlaces = document.getElementsByClassName("enlace");
+  enlaces.setAttribute('color', 'rgb(129, 129, 129)');
+});
+
+$("#Nueva-salida").click(function(){
+  document.getElementById("ControlCentral").innerHTML="";
+  $("#ControlCentral").load("Formulario_Salidas_Almacen.html");
+  closeNav();
+  const enlaces = document.getElementsByClassName("enlace");
+  enlaces.setAttribute('color', 'rgb(129, 129, 129)');
+});
+
+// --------------------- EDITAR
 $("#Editar-diseno").click(function(){
   document.getElementById("ControlCentral").innerHTML="";
   $("#ControlCentral").load("Formulario_Diseños_Editar.html");
@@ -272,7 +292,7 @@ $("#Editar-orden").click(function(){
   enlaces.setAttribute('color', 'rgb(129, 129, 129)');
 });
 
-
+// ------------------- CONSULTAS
 $("#Consultar-diseno").click(function(){  
   document.getElementById("ControlCentral").innerHTML="";
   $("#ControlCentral").load("Formulario_Diseños_Consulta.php");

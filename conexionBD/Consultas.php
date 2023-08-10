@@ -325,6 +325,81 @@ public function insertOrden($FechaI, $FechaF, $OrdenCompra, $Cliente, $NoPieza, 
         }
     }
 
+
+
+
+
+
+    // --------------------------------  Entradas  ----------------------------------------//
+    public function Get_noOrden_Entradas($disenoR, $ordenR){
+        try {
+            $query = $this->dbh->prepare("SELECT Numero_orden FROM ordenes_compras WHERE No_diseno LIKE ? AND Orden_compra LIKE ?");
+            $query->bindParam(1, $disenoR);
+            $query->bindParam(2, $ordenR);
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
+        } catch (PDOException $e) {
+            $e->getMessage();
+            echo $e;
+        }
+    }
+
+    public function Insertar_Entrada($disenoI, $NordenI, $ordenCI, $fechaEI, $cantidadEI){
+        try {
+            $query = $this->dbh->prepare("INSERT INTO entradas_almacen (No_diseno, Numero_orden, Orden_compra, Fecha_entrada, Cantidad_entrada) VALUES (?, ?, ?, ?, ?)");
+            $query->bindParam(1, $disenoI);
+            $query->bindParam(2, $NordenI);
+            $query->bindParam(3, $ordenCI);
+            $query->bindParam(4, $fechaEI);
+            $query->bindParam(5, $cantidadEI);
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
+        } catch (PDOException $e) {
+            $e->getMessage();
+            echo $e;
+        }
+    }
+
+
+
+
+
+
+
+
+// ------------------------- SALIDAS --------------------------------- //
+public function Get_noStock_Salidas($disenoR, $ordenR){
+    try {
+        $query = $this->dbh->prepare("SELECT cve_ai FROM stock_almacen WHERE No_diseno LIKE ? AND Orden_compra LIKE ?");
+        $query->bindParam(1, $disenoR);
+        $query->bindParam(2, $ordenR);
+        $query->execute();
+        return $query->fetchAll();
+        $this->dbh = null;
+    } catch (PDOException $e) {
+        $e->getMessage();
+        echo $e;
+    }
+}
+
+public function Insertar_Salida($disenoI, $NoStock, $ordenCI, $fechaSI, $cantidadSI){
+    try {
+        $query = $this->dbh->prepare("INSERT INTO salidas_almacen (cve_stock, No_diseno, Orden_compra, Fecha_Salida, Cantidad_salida) VALUES (?, ?, ?, ?, ?)");
+        $query->bindParam(1, $NoStock);
+        $query->bindParam(2, $disenoI);
+        $query->bindParam(3, $ordenCI);
+        $query->bindParam(4, $fechaSI);
+        $query->bindParam(5, $cantidadSI);
+        $query->execute();
+        return $query->fetchAll();
+        $this->dbh = null;
+    } catch (PDOException $e) {
+        $e->getMessage();
+        echo $e;
+    }
+}
 /*-----------------------------------------------------------------------------------------------------*/
 
 
