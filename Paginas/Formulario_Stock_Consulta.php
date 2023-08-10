@@ -29,6 +29,8 @@
             <div class="col-4" >
             </div>
             <div class="col-4" >
+            </div>
+            <div class="col-4" >
                 <input  onclick="return busqueda_Filtrada_Piezas(btnSelected);"  type="button" class="btn btn-primary col-12" style="height: 50px; min-height: auto; font-size: auto;" value="Buscar">
             </div>
             <div class="col-4" >
