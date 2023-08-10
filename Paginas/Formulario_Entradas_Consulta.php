@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <title>Stock</title>
+    <title>Salidas</title>
 </head>
 
 <body style="padding-left: 20px; padding-top: 20px; padding-bottom: 20px; padding-right: 20px;">
@@ -14,15 +14,19 @@
     <section class="d-flex justify-content-center"
         style="padding-left: 20px; max-height: 600px; padding-top: 20px; padding-bottom: 20px; padding-right: 20px; background-color: #d2dae6;  border-radius:10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);" >
         <form id ="form_nuevoD" class="row g-4" style="overflow: scroll;">
-            <h2 style="text-align: center;">Consultar stock en almacen</h2>
+            <h2 style="text-align: center;">Consultar Entradas de almacen</h2>
             <h5 style="text-align: center;">Buscar por:</h5>
             <div class="col-md-4">
-                <label for="No_diseñoSt" class="form-label">Numero de diseño</label>
-                <input type="text" class="form-control"  id="No_diseñoSt" placeholder="Numero de diseño" required>
+                <label for="FechaEn" class="form-label">Fecha</label>
+                <input type="date" class="form-control"  id="FechaEn" required>
             </div>
             <div class="col-md-4">
-                <label for="EstatusSt" class="form-label">Estatus de pieza</label>
-                <input type="text" class="form-control" id="EstatusSt" placeholder="Estatus de pieza" required>
+                <label for="No_diseñoEn" class="form-label">Numero de diseño</label>
+                <input type="text" class="form-control"  id="No_diseñoEn" placeholder="Numero de diseño" required>
+            </div>
+            <div class="col-md-4">
+                <label for="Orden_compraEn" class="form-label">Orden de compra</label>
+                <input type="text" class="form-control" id="Orden_compraEn" placeholder="Orden de compra" required>
             </div>
             
             <!-- ------------------------------------------------------------------------------------------ -->
@@ -39,9 +43,10 @@
                 <table class="table" style="text-align: center; box-shadow: 0px 0px 24px 0px rgba(0,0,0,0.18); background-color: #d2dae6; ">
                     <thead style="background-color: #adbdd3; ">
                       <tr>
+                        <th scope="col">Fecha de salida</th>
                         <th scope="col">No. diseño</th>
+                        <th scope="col">Orden de compra</th>
                         <th scope="col">Cantidad de piezas</th>
-                        <th scope="col">Estatus</th>
                       </tr>
                     </thead>
                     <tbody id="cuerpoTabla">
@@ -55,9 +60,9 @@
                             ?>
                             <tr style="max-height: 10px;">
                                 <th scope="row">  <?php echo $fila['No_diseno']; ?>  </th>
-                                <td style="max-width: 15px;">  <?php echo $fila['Descripcion_MP']; ?> </td>
-                                <td>  <?php echo $fila['Codigo_MP']; ?>  </td>
+                                <td style="max-width: 15px;">  <?php echo $fila['No_diseno']; ?> </td>
                                 <td>  <?php echo $fila['Orden_compra']; ?>  </td>
+                                <td>  <?php echo $fila['Cantidad_pieza']; ?>  </td>
                             </tr>
                             <?php
                           }
