@@ -40,16 +40,8 @@
                     <thead style="background-color: #adbdd3; ">
                       <tr>
                         <th scope="col">No. diseño</th>
-                        <th scope="col">Descripción de M.P.</th>
-                        <th scope="col">Código de M.P.</th>
-                        <th scope="col">Orden de compra</th>
-                        <th scope="col">Cliente</th>
-                        <th scope="col">Corte</th>
-                        <th scope="col">Dobles</th>
-                        <th scope="col">Rolado</th>
-                        <th scope="col">Bisel</th>
-                        <th scope="col">Taladro</th>
-                        <th scope="col">Prensa</th>
+                        <th scope="col">Cantidad de piezas</th>
+                        <th scope="col">Estatus</th>
                       </tr>
                     </thead>
                     <tbody id="cuerpoTabla">
@@ -66,13 +58,6 @@
                                 <td style="max-width: 15px;">  <?php echo $fila['Descripcion_MP']; ?> </td>
                                 <td>  <?php echo $fila['Codigo_MP']; ?>  </td>
                                 <td>  <?php echo $fila['Orden_compra']; ?>  </td>
-                                <td>  <?php echo $fila['Cliente']; ?>  </td>
-                                <td>  <?php echo $fila['Corte']; ?>  </td>
-                                <td>  <?php echo $fila['Dobles']; ?>  </td>
-                                <td>  <?php echo $fila['Rolado']; ?>  </td>
-                                <td>  <?php echo $fila['Bisel']; ?>  </td>
-                                <td>  <?php echo $fila['Taladro']; ?>  </td>
-                                <td>  <?php echo $fila['Prensa']; ?>  </td>
                             </tr>
                             <?php
                           }
