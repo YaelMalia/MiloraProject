@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <title>Salidas</title>
+    <title>Entradas</title>
 </head>
 
 <body style="padding-left: 20px; padding-top: 20px; padding-bottom: 20px; padding-right: 20px;">
@@ -14,7 +14,7 @@
     <section class="d-flex justify-content-center"
         style="padding-left: 20px; max-height: 600px; padding-top: 20px; padding-bottom: 20px; padding-right: 20px; background-color: #d2dae6;  border-radius:10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);" >
         <form id ="form_nuevoD" class="row g-4" style="overflow: scroll;">
-            <h2 style="text-align: center;">Consultar Entradas de almacen</h2>
+            <h2 style="text-align: center;">Consultar entradas de almacen</h2>
             <h5 style="text-align: center;">Buscar por:</h5>
             <div class="col-md-4">
                 <label for="FechaEn" class="form-label">Fecha</label>
