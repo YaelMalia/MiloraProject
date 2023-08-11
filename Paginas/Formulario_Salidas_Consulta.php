@@ -83,26 +83,4 @@
         </form>
     </section>
 </body>
-    <!-- <script>
-        
-        var btnSelected = "noDiseno";
-        function checkRbt(btn){
-            btnSelected = btn.name;
-            // alert(btnSelected);
-            if(btnSelected == "noDiseno"){
-                document.getElementById("rbt-codigomp").checked = false;
-                document.getElementById("Codigo_MP").disabled = true;
-                document.getElementById("No_disenoFD").disabled = false;
-                
-            }else if(btnSelected == "Codemp"){
-                document.getElementById("rbt-diseno").checked = false;
-                document.getElementById("No_disenoFD").disabled = true;
-                document.getElementById("Codigo_MP").disabled = false;
-            }
-            
-        }
-
-       
-    </script> -->
-
 </html>
