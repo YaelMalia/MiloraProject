@@ -16,25 +16,22 @@
         <form id ="form_nuevoD" class="row g-4" style="overflow: scroll;">
             <h2 style="text-align: center;">Consultar stock en almacen</h2>
             <h5 style="text-align: center;">Buscar por:</h5>
-            <div class="col-md-4">
+
+            <div class="col-md-6">
                 <label for="No_diseñoSt" class="form-label">Numero de diseño</label>
                 <input type="text" class="form-control"  id="No_diseñoSt" placeholder="Numero de diseño" required>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <label for="EstatusSt" class="form-label">Estatus de pieza</label>
                 <input type="text" class="form-control" id="EstatusSt" placeholder="Estatus de pieza" required>
             </div>
             
             <!-- ------------------------------------------------------------------------------------------ -->
-            <div class="col-4" >
-            </div>
-            <div class="col-4" >
-            </div>
-            <div class="col-4" >
+            <div class="col-4"></div>
+            <div class="col-4">
                 <input  onclick="return busqueda_Filtrada_Piezas(btnSelected);"  type="button" class="btn btn-primary col-12" style="height: 50px; min-height: auto; font-size: auto;" value="Buscar">
             </div>
-            <div class="col-4" >
-            </div>
+            <div class="col-4"></div>
 
             <!--  tabla resultante -->
             <div class="col-12" id="tableResult">
@@ -47,7 +44,7 @@
                       </tr>
                     </thead>
                     <tbody id="cuerpoTabla">
-                      <!-- <?php
+                      < <?php
 
                         require_once("../conexionBD/Consultas.php");
                         $miloraObj = MiloraClass::singleton();
@@ -72,7 +69,7 @@
                         <?php
                         }
 
-                      ?> -->
+                      ?>
 
                     </tbody>
                   </table>
