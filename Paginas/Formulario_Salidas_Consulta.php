@@ -20,16 +20,16 @@
             <h2 style="text-align: center;">Consultar salidas del almacén</h2>
             <h5 style="text-align: center;">Buscar por:</h5>
             <div class="col-md-4">
-                <label for="FechaEn" class="form-label">Fecha</label>
-                <input type="date" class="form-control"  id="FechaEn" required>
+                <label for="FechaSa" class="form-label">Fecha</label>
+                <input type="date" class="form-control"  id="FechaSa" required>
             </div>
             <div class="col-md-4">
-                <label for="No_diseñoEn" class="form-label">Numero de diseño</label>
-                <input type="text" class="form-control"  id="No_diseñoEn" placeholder="Numero de diseño" required>
+                <label for="No_diseñoSa" class="form-label">Numero de diseño</label>
+                <input type="text" class="form-control"  id="No_diseñoSa" placeholder="Numero de diseño" required>
             </div>
             <div class="col-md-4">
-                <label for="Orden_compraEn" class="form-label">Orden de compra</label>
-                <input type="text" class="form-control" id="Orden_compraEn" placeholder="Orden de compra" required>
+                <label for="Orden_compraSa" class="form-label">Orden de compra</label>
+                <input type="text" class="form-control" id="Orden_compraSa" placeholder="Orden de compra" required>
             </div>
             
             <!-- ------------------------------------------------------------------------------------------ -->
@@ -62,10 +62,10 @@
                           foreach($data as $fila){
                             ?>
                             <tr style="max-height: 10px;">
-                                <th scope="row">  <?php echo $fila['Fecha_entrada']; ?>  </th>
+                                <th scope="row">  <?php echo $fila['Fecha_salida']; ?>  </th>
                                 <td style="max-width: 15px;">  <?php echo $fila['No_diseno']; ?> </td>
                                 <td>  <?php echo $fila['Orden_compra']; ?>  </td>
-                                <td>  <?php echo $fila['Cantidad_entrada']; ?>  </td>
+                                <td>  <?php echo $fila['Cantidad_salida']; ?>  </td>
                             </tr>
                             <?php
                           }
