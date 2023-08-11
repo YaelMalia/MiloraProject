@@ -1,5 +1,5 @@
 <?php
-    if(isset($_POST["tipoVista"])){
+    if( (isset($_POST["FechaEn"])) || (isset($_POST["OrdenEn"])) || (isset($_POST["NoDisenoEn"]))){
         $fechaEn = $_POST["FechaEn"];
         $ordenEn = $_POST["OrdenEn"];
         $noDisenoEn = $_POST["NoDisenoEn"];

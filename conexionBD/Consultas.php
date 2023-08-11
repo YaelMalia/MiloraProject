@@ -355,24 +355,24 @@ public function CheckLogin($usuario, $pass){
         try{
             if(($fechaEn !="")){
                 if(($ordenEn == "" && $disEn == "")){
-                    $query = $this->dbh->prepare("SELECT * FROM entradas_almacen WHERE Fecha_entrada BETWEEN ?;");
+                    $query = $this->dbh->prepare("SELECT * FROM entradas_almacen WHERE Fecha_entrada LIKE ?;");
                     $query->bindParam(1, $fechaEn);
                 }
                 //Orden llena
                 if(($ordenEn!="") && ($disEn == "")){
-                    $query = $this->dbh->prepare("SELECT * FROM entradas_almacen WHERE (Fecha_entrada BETWEEN ?) AND Orden_compra LIKE ?;");
+                    $query = $this->dbh->prepare("SELECT * FROM entradas_almacen WHERE (Fecha_entrada LIKE ?) AND Orden_compra LIKE ?;");
                     $query->bindParam(1, $fechaEn);
                     $query->bindParam(2, $ordenEn); 
                 }
                 if(($ordenEn!="") && ($disEn!="")){
-                    $query = $this->dbh->prepare("SELECT * FROM entradas_almacen WHERE (Fecha_entrada BETWEEN ?) AND (Orden_compra LIKE ?) AND (No_diseno LIKE ?);");
+                    $query = $this->dbh->prepare("SELECT * FROM entradas_almacen WHERE (Fecha_entrada LIKE ?) AND (Orden_compra LIKE ?) AND (No_diseno LIKE ?);");
                     $query->bindParam(1, $fechaEn);
                     $query->bindParam(2, $ordenEn); 
                     $query->bindParam(3, $disEn);
                 }
                 //Orden vacía
                 if(($disEn!="") && ($ordenEn == "")){
-                    $query = $this->dbh->prepare("SELECT * FROM entradas_almacen WHERE (Fecha_entrada BETWEEN ?) AND No_diseno LIKE ?;");
+                    $query = $this->dbh->prepare("SELECT * FROM entradas_almacen WHERE (Fecha_entrada LIKE ?) AND No_diseno LIKE ?;");
                     $query->bindParam(1, $fechaEn);
                     $query->bindParam(2, $disEn); 
                 }

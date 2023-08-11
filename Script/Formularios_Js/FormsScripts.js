@@ -641,10 +641,13 @@ function RegistrarEntrada(){
 }
 
 function BuscarEntradas(){
+    alert("llame al metodo");
     let fechaEn = $("#FechaEn")[0].value;
     let ordenEn = $("#Orden_compraEn")[0].value;
     let noDisenoEn = $("#No_diseñoEn")[0].value;
     if (fechaEn=="" && ordenEn=="" && noDisenoEn==""){
+        alert("datos vacios");
+    }else{
         let parametros = {
             "FechaEn": fechaEn,
             "OrdenEn": ordenEn,
@@ -652,10 +655,15 @@ function BuscarEntradas(){
         };
         $.ajax({
             type: 'POST',
-            url: '../Php_forms/Search_Entradas.php',
+            url: '../Php_forms/Search_Entrada.php',
             data: parametros,
+            async: false,
             success: function(returning){
-
+                if(returning == "Nada"){
+                    alert("No se encontraron datos");
+                }else{
+                    document.getElementById("cuerpoTabla").innerHTML=returning;
+                }
             }
         });
     }

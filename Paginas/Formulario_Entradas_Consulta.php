@@ -7,6 +7,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <title>Entradas</title>
+    <script src="../Script/Formularios_Js/FormsScripts.js"></script>
+    <script src="../Script/jquery.js"></script>
+    <script src="../Script/jquery-3.5.1.min.js"></script>
 </head>
 
 <body style="padding-left: 20px; padding-top: 20px; padding-bottom: 20px; padding-right: 20px;">
@@ -14,7 +17,7 @@
     <section class="d-flex justify-content-center"
         style="padding-left: 20px; max-height: 600px; padding-top: 20px; padding-bottom: 20px; padding-right: 20px; background-color: #d2dae6;  border-radius:10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);" >
         <form id ="form_nuevoD" class="row g-4" style="overflow: scroll;">
-            <h2 style="text-align: center;">Consultar entradas de almacen</h2>
+            <h2 style="text-align: center;">Consultar entradas al almacén</h2>
             <h5 style="text-align: center;">Buscar por:</h5>
             <div class="col-md-4">
                 <label for="FechaEn" class="form-label">Fecha</label>
@@ -43,18 +46,18 @@
                 <table class="table" style="text-align: center; box-shadow: 0px 0px 24px 0px rgba(0,0,0,0.18); background-color: #d2dae6; ">
                     <thead style="background-color: #adbdd3; ">
                       <tr>
-                        <th scope="col">Fecha deentrada</th>
+                        <th scope="col">Fecha de entrada</th>
                         <th scope="col">No. diseño</th>
                         <th scope="col">Orden de compra</th>
                         <th scope="col">Cantidad entrada</th>
                       </tr>
                     </thead>
                     <tbody id="cuerpoTabla">
-                      <!-- <?php
+                       <?php
 
                         require_once("../conexionBD/Consultas.php");
                         $miloraObj = MiloraClass::singleton();
-                        $data = $miloraObj->GetAllPiezas();
+                        $data = $miloraObj->GetAllEntradas();
                         if(count($data)>0){
                           foreach($data as $fila){
                             ?>
@@ -70,12 +73,12 @@
                         else{
                           ?>
                           <script>
-                            alertify.alert("¡Oops!", "Parece que no hay piezas en existencia");
+                            alertify.alert("¡Oops!", "Parece que no hay registro de entradas");
                           </script>
                         <?php
                         }
 
-                      ?> -->
+                      ?>
 
                     </tbody>
                   </table>
