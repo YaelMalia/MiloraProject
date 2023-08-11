@@ -640,7 +640,7 @@ function RegistrarEntrada(){
     }
 }
 
-function BuscarEntradas(Seleccion){
+function BuscarEntradas(){
     let fechaEn = $("#FechaEn")[0].value;
     let ordenEn = $("#Orden_compraEn")[0].value;
     let noDisenoEn = $("#No_diseñoEn")[0].value;
@@ -655,6 +655,7 @@ function BuscarEntradas(Seleccion){
             url: '../Php_forms/Search_Entradas.php',
             data: parametros,
             success: function(returning){
+
             }
         });
     }
