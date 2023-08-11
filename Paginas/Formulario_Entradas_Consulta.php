@@ -43,10 +43,10 @@
                 <table class="table" style="text-align: center; box-shadow: 0px 0px 24px 0px rgba(0,0,0,0.18); background-color: #d2dae6; ">
                     <thead style="background-color: #adbdd3; ">
                       <tr>
-                        <th scope="col">Fecha de salida</th>
+                        <th scope="col">Fecha deentrada</th>
                         <th scope="col">No. diseño</th>
                         <th scope="col">Orden de compra</th>
-                        <th scope="col">Cantidad de piezas</th>
+                        <th scope="col">Cantidad entrada</th>
                       </tr>
                     </thead>
                     <tbody id="cuerpoTabla">
@@ -62,6 +62,7 @@
                                 <th scope="row">  <?php echo $fila['Fecha_entrada']; ?>  </th>
                                 <td style="max-width: 15px;">  <?php echo $fila['No_diseno']; ?> </td>
                                 <td>  <?php echo $fila['Orden_compra']; ?>  </td>
+                                <td>  <?php echo $fila['Cantidad_entrada']; ?>  </td>
                             </tr>
                             <?php
                           }
