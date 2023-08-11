@@ -739,16 +739,16 @@ function RegistrarSalida(){
 }
 
 function BuscarSalidas(){
-    let fechaEn = $("#FechaEn")[0].value;
-    let ordenEn = $("#Orden_compraEn")[0].value;
-    let noDisenoEn = $("#No_diseñoEn")[0].value;
-    if (fechaEn=="" && ordenEn=="" && noDisenoEn==""){
+    let fechaSa = $("#FechaSa")[0].value;
+    let ordenSa = $("#Orden_compraSa")[0].value;
+    let noDisenoSa = $("#No_diseñoSa")[0].value;
+    if (fechaSa=="" && ordenSa=="" && noDisenoSa==""){
         alert("datos vacios");
     }else{
         let parametros = {
-            "FechaEn": fechaEn,
-            "OrdenEn": ordenEn,
-            "NoDisenoEn": noDisenoEn
+            "FechaSa": fechaSa,
+            "OrdenSa": ordenSa,
+            "NoDisenoSa": noDisenoSa
         };
         $.ajax({
             type: 'POST',
