@@ -45,8 +45,7 @@ public function CheckLogin($usuario, $pass){
     }
 }
 
-public function insertOrden($FechaI, $FechaF, $OrdenCompra, $Cliente, $NoPieza, $CantidadPieza)
-    {
+public function insertOrden($FechaI, $FechaF, $OrdenCompra, $Cliente, $NoPieza, $CantidadPieza){
         try {
             $query = $this->dbh->prepare("INSERT INTO  (Fecha_realizacion, Fecha_finalizacion, Orden_compra, No_diseno, Piezas_solicitadas, Cliente, ) VALUES (?, ?, ?, ?, ?, ?)");
             $query->bindParam(1, $FechaI);
@@ -61,7 +60,7 @@ public function insertOrden($FechaI, $FechaF, $OrdenCompra, $Cliente, $NoPieza, 
         } catch (PDOException $e) {
             $e->getMessage();
         }
-    }
+}
 
 
 
