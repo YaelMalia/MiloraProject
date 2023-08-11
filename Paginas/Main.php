@@ -81,10 +81,10 @@
       </button>
       <div class="dropdown-container">
         <a id="Nueva-entrada" class="enlace">Registrar entrada</a>
-        <a href="#">Consultar entradas</a>
+        <a id="Consulta-entrada" class="enlace">Consultar entradas</a>
         <a id="Nueva-salida" class="enlace">Registrar salida</a>
-        <a href="#">Consultar salidas</a>
-        <a href="#">Consultar existencias</a>
+        <a id="Consulta-salida" class="enlace">Consultar salidas</a>
+        <a id="Consulta-existencias" class="enlace">Consultar existencias</a>
       </div>
       <!--  -->
       <button class="dropdown-btn" id="bodega">Bodega
@@ -308,6 +308,34 @@ $("#Consultar-orden").click(function(){
   const enlaces = document.getElementsByClassName("enlace");
   enlaces.setAttribute('color', 'rgb(129, 129, 129)');
 });
+
+
+$("#Consulta-entrada").click(function(){
+  document.getElementById("ControlCentral").innerHTML="";
+  $("#ControlCentral").load("Formulario_Entradas_Consulta.php");
+  closeNav();
+  const enlaces = document.getElementsByClassName("enlace");
+  enlaces.setAttribute('color', 'rgb(129, 129, 129)');
+});
+
+
+$("#Consulta-salida").click(function(){
+  document.getElementById("ControlCentral").innerHTML="";
+  $("#ControlCentral").load("Formulario_Salidas_Consulta.php");
+  closeNav();
+  const enlaces = document.getElementsByClassName("enlace");
+  enlaces.setAttribute('color', 'rgb(129, 129, 129)');
+});
+
+
+$("#Consulta-existencias").click(function(){
+  document.getElementById("ControlCentral").innerHTML="";
+  $("#ControlCentral").load("Formulario_Stock_Consulta.php");
+  closeNav();
+  const enlaces = document.getElementsByClassName("enlace");
+  enlaces.setAttribute('color', 'rgb(129, 129, 129)');
+});
+
 // ------------------------------------------------------------- END DROPDOWN CONTAINTERS---------------
 
 

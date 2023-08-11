@@ -492,6 +492,56 @@ public function Insertar_Salida($disenoI, $NoStock, $ordenCI, $fechaSI, $cantida
         echo $e;
     }
 }
+
+
+
+// --------------------------- CONSULTAS DE ALMACEN ------------------------ //
+
+public function GetAllStock(){
+    try {
+        $query = $this->dbh->prepare("SELECT * FROM stock_almacen WHERE 1");
+        $query->execute();
+        return $query->fetchAll();
+        $this->dbh = null;
+    } catch (PDOException $e) {
+        $e->getMessage();
+    }
+}
+
+public function Stock_Filter($stockDiseno, $stockEstatus){
+    try {
+        if($stockDiseno != "" && $stockEstatus != ""){
+        $query = $this->dbh->prepare("SELECT * FROM stock_almacen WHERE No_diseno LIKE ? AND Estatus LIKE ?");
+        $query->bindParam(1, $stockDiseno);
+        $query->bindParam(2, $stockEstatus);
+        }else{
+            if($stockDiseno!="" && $stockEstatus == ""){
+                $query = $this->dbh->prepare("SELECT * FROM stock_almacen WHERE No_diseno LIKE ?");
+                $query->bindParam(1, $stockDiseno);
+            }
+            if($stockDiseno == "" && $stockEstatus !=""){
+                $query = $this->dbh->prepare("SELECT * FROM stock_almacen WHERE Estatus LIKE ?");
+                $query->bindParam(1, $stockEstatus);
+            }
+        }
+        $query->execute();
+        return $query->fetchAll();
+        $this->dbh = null;
+    } catch (PDOException $e) {
+        $e->getMessage();
+    }
+}
+
+public function Ordenar_Stock(){
+    try {
+        $query = $this->dbh->prepare("SELECT No_diseno, (SELECT SUM(Cantidad_actual)) AS totalAlmacen, Estatus FROM stock_almacen GROUP BY No_diseno;");
+        $query->execute();
+        return $query->fetchAll();
+        $this->dbh = null;
+    } catch (PDOException $e) {
+        $e->getMessage();
+    }
+}
 /*-----------------------------------------------------------------------------------------------------*/
 
 

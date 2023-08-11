@@ -1,25 +1,26 @@
 <?php
-    if( (isset($_POST["FechaSa"])) || (isset($_POST["OrdenSa"])) || (isset($_POST["NoDisenoSa"]))){
-        $fechaSa = $_POST["FechaSa"];
-        $ordenSa = $_POST["OrdenSa"];
-        $noDisenoSa = $_POST["NoDisenoSa"];
+    if(isset($_POST["disenoBusqueda"]) || isset($_POST["estatusBusqueda"])){
+        $disenoB = $_POST["disenoBusqueda"];
+        $estatusB = $_POST["estatusBusqueda"];
 
         require_once("../conexionBD/Consultas.php");
         $miloraObj = MiloraClass::singleton();
-        $data = $miloraObj->GetSalidaFilter($fechaSa, $ordenSa, $noDisenoSa);
+        $data = $miloraObj->Stock_Filter($disenoB, $estatusB);
+
         if(count($data)>0){
             foreach($data as $fila){
                 ?>
                 <tr>
-                <td><?php echo $fila["Fecha_salida"]; ?></td>
                 <td><?php echo $fila["No_diseno"]; ?></td>
                 <td><?php echo $fila["Orden_compra"]; ?></td>
-                <td><?php echo $fila["Cantidad_salida"]; ?></td>
+                <td><?php echo $fila["Cantidad_actual"]; ?></td>
+                <td><?php echo $fila["Estatus"]; ?></td>
                 </tr>
             <?php
             }
         }else{
             echo "Nada";
         }
+
     }
 ?>

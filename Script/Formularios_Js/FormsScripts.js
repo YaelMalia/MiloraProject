@@ -757,7 +757,7 @@ function BuscarSalidas(){
             async: false,
             success: function(returning){
                 if(returning == "Nada"){
-                    alert("No se encontraron datos");
+                    alertify.alert("Error", "No se encontraron datos");
                 }else{
                     document.getElementById("cuerpoTabla").innerHTML=returning;
                 }
@@ -766,3 +766,54 @@ function BuscarSalidas(){
     }
 }
 // -------------------------------- FIN REGISTRO DE SALIDAS ---------------------------------//
+
+
+
+// ---------------------------------------- BUSQUEDAS STOCK ------------------------//
+
+function buscarStock(){
+   let disenoF = $("#No_disenoSt")[0].value;
+   let EstatusF = $("#EstatusSt")[0].value;
+   
+   if(disenoF == "" && EstatusF == ""){
+    //Busca sin filtro
+    alertify.alert("Aviso", "Esta consulta genera la cantidad general del stock en almacén, es decir, no se respetan las ordenes de compra");
+    document.getElementById("headTable").innerHTML = '<tr> <th scope="col" data-type="string">No. diseño</th> <th scope="col">Cantidad de piezas</th> <th scope="col">Estatus</th></tr>';
+    let parametrosO = {
+        "where": 1
+    }
+    $.ajax({
+            type: 'POST',
+            url: '../Php_forms/Count_Stock.php',
+            data: parametrosO,
+            async: false,
+            success: function(returning){
+                if(returning == "Nada"){
+                    alertify.alert("Error", "No se encontraron datos");
+                }else{
+                    document.getElementById("cuerpoTabla").innerHTML=returning;
+                }
+            }
+        });
+   }else{
+    document.getElementById("headTable").innerHTML = '<tr> <th scope="col" data-type="string">No. diseño</th> <th scope="col">Orden de compra</th> <th scope="col">Cantidad de piezas</th> <th scope="col">Estatus</th> </tr>'
+    let parametros = {
+        "disenoBusqueda" : disenoF,
+        "estatusBusqueda": EstatusF
+    };
+    $.ajax({
+            type: 'POST',
+            url: '../Php_forms/Search_filtro_stock.php',
+            data: parametros,
+            async: false,
+            success: function(returning){
+                if(returning == "Nada"){
+                    alertify.alert("Error", "No se encontraron datos");
+                }else{
+                    document.getElementById("cuerpoTabla").innerHTML=returning;
+                }
+            }
+        });
+
+   }
+}
