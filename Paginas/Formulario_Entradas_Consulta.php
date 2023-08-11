@@ -33,7 +33,7 @@
             <div class="col-4" >
             </div>
             <div class="col-4" >
-                <input  onclick="return busqueda_Filtrada_Piezas(btnSelected);"  type="button" class="btn btn-primary col-12" style="height: 50px; min-height: auto; font-size: auto;" value="Buscar">
+                <input  onclick="return BuscarEntradas(btnSelected);"  type="button" class="btn btn-primary col-12" style="height: 50px; min-height: auto; font-size: auto;" value="Buscar">
             </div>
             <div class="col-4" >
             </div>
@@ -59,10 +59,9 @@
                           foreach($data as $fila){
                             ?>
                             <tr style="max-height: 10px;">
-                                <th scope="row">  <?php echo $fila['No_diseno']; ?>  </th>
+                                <th scope="row">  <?php echo $fila['Fecha_entrada']; ?>  </th>
                                 <td style="max-width: 15px;">  <?php echo $fila['No_diseno']; ?> </td>
                                 <td>  <?php echo $fila['Orden_compra']; ?>  </td>
-                                <td>  <?php echo $fila['Cantidad_pieza']; ?>  </td>
                             </tr>
                             <?php
                           }
@@ -83,26 +82,5 @@
         </form>
     </section>
 </body>
-    <!-- <script>
-        
-        var btnSelected = "noDiseno";
-        function checkRbt(btn){
-            btnSelected = btn.name;
-            // alert(btnSelected);
-            if(btnSelected == "noDiseno"){
-                document.getElementById("rbt-codigomp").checked = false;
-                document.getElementById("Codigo_MP").disabled = true;
-                document.getElementById("No_disenoFD").disabled = false;
-                
-            }else if(btnSelected == "Codemp"){
-                document.getElementById("rbt-diseno").checked = false;
-                document.getElementById("No_disenoFD").disabled = true;
-                document.getElementById("Codigo_MP").disabled = false;
-            }
-            
-        }
-
-       
-    </script> -->
 
 </html>

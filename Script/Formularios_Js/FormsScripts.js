@@ -1,4 +1,3 @@
-
 function nueva_Pieza(){
    
     let flag = false; 
@@ -226,22 +225,9 @@ function actualizar_Pieza(){
         }
    }
 }
+// -------------------------------- FIN PIEZAS --------------------------------
 
-
-// ------------------------- FIN PIEZAS ------------------------
-
-
-
-
-
-
-
-
-
-
-
-// -------------------- INICIAN ORDENES DE COMPRA ---------------------------
-
+// -------------------------------- INICIAN ORDENES DE COMPRA --------------------------------
 function AgregarOrden(){
     
     let fecha_inicio = $("#Fecha_inicio")[0].value;
@@ -452,7 +438,7 @@ function OrdenesResFull(Seleccion){
     }
 }
 
-
+// -------------------------------- Busqueda para editar --------------------------------
 function Buscar_Orden_Filtro(){
     let ordenB = $("#B_orden")[0].value;
     let disenoB = $("#B_Diseno")[0].value;
@@ -589,17 +575,7 @@ function Editar_Orden(){
                 }
             });
 }
-
-
-// ---------------- FIN ORDENES DE COMPRA-------------------- //
-
-
-
-
-
-
-
-
+// -------------------------------- FIN ORDENES DE COMPRA -------------------------------- //
 
 // ------------------------------- INICIAN REGISTRO DE ENTRADAS --------------------------------//
 function RegistrarEntrada(){
@@ -664,8 +640,26 @@ function RegistrarEntrada(){
     }
 }
 
+function BuscarEntradas(Seleccion){
+    let fechaEn = $("#FechaEn")[0].value;
+    let ordenEn = $("#Orden_compraEn")[0].value;
+    let noDisenoEn = $("#No_diseñoEn")[0].value;
+    if (fechaEn=="" && ordenEn=="" && noDisenoEn==""){
+        let parametros = {
+            "FechaEn": fechaEn,
+            "OrdenEn": ordenEn,
+            "NoDisenoEn": noDisenoEn
+        };
+        $.ajax({
+            type: 'POST',
+            url: '../Php_forms/Search_Entradas.php',
+            data: parametros,
+            success: function(returning){
+            }
+        });
+    }
+}
 // -------------------------------- FIN REGISTRO DE ENTRADAS ---------------------------------//
-
 
 // ------------------------------- INICIAN REGISTRO DE SALIDAS --------------------------------//
 function RegistrarSalida(){
@@ -736,4 +730,7 @@ function RegistrarSalida(){
     }
 }
 
+function BuscarSalidas(){
+
+}
 // -------------------------------- FIN REGISTRO DE SALIDAS ---------------------------------//

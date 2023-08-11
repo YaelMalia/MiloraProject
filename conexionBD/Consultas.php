@@ -5,8 +5,7 @@ class MiloraClass
     private static $instancia;
     private $dbh;
 
-    private function __construct()
-    {
+    private function __construct(){
         try {
             $servidor = "localhost";
             $base = "milorabd";
@@ -22,8 +21,7 @@ class MiloraClass
         }
     }
 
-    public static function singleton()
-    {
+    public static function singleton(){
         if (!isset(self::$instancia)) {
             $miclase = __CLASS__;
             self::$instancia = new $miclase;
@@ -45,8 +43,7 @@ public function CheckLogin($usuario, $pass){
     }
 }
 
-public function insertOrden($FechaI, $FechaF, $OrdenCompra, $Cliente, $NoPieza, $CantidadPieza)
-    {
+    public function insertOrden($FechaI, $FechaF, $OrdenCompra, $Cliente, $NoPieza, $CantidadPieza){
         try {
             $query = $this->dbh->prepare("INSERT INTO  (Fecha_realizacion, Fecha_finalizacion, Orden_compra, No_diseno, Piezas_solicitadas, Cliente, ) VALUES (?, ?, ?, ?, ?, ?)");
             $query->bindParam(1, $FechaI);
@@ -58,15 +55,12 @@ public function insertOrden($FechaI, $FechaF, $OrdenCompra, $Cliente, $NoPieza, 
             $query->execute();
             return $query->fetchAll();
             $this->dbh = null;
-        } catch (PDOException $e) {
+        }catch (PDOException $e) {
             $e->getMessage();
         }
     }
 
-
-
-    public function insertPieza($noDis, $descripcion, $codigomp, $corte, $dobles, $rolado, $bisel, $taladro, $prensa)
-    {
+    public function insertPieza($noDis, $descripcion, $codigomp, $corte, $dobles, $rolado, $bisel, $taladro, $prensa){
         try {
             $query = $this->dbh->prepare("INSERT INTO piezas (No_diseno, Descripcion_MP, Codigo_MP, Corte, Dobles, Rolado, Bisel, Taladro, Prensa) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
             $query->bindParam(1, $noDis);
@@ -87,8 +81,7 @@ public function insertOrden($FechaI, $FechaF, $OrdenCompra, $Cliente, $NoPieza, 
         }
     }
 
-    public function selectPieza($noDis)
-    {
+    public function selectPieza($noDis){
         try {
             $query = $this->dbh->prepare("SELECT * FROM piezas WHERE No_diseno LIKE ?");
             $query->bindParam(1, $noDis);
@@ -101,8 +94,7 @@ public function insertOrden($FechaI, $FechaF, $OrdenCompra, $Cliente, $NoPieza, 
         }
     }
 
-    public function selectByCode($codeMp)
-    {
+    public function selectByCode($codeMp){
         try {
             $query = $this->dbh->prepare("SELECT * FROM piezas WHERE Codigo_MP LIKE ?");
             $query->bindParam(1, $codeMp);
@@ -115,8 +107,7 @@ public function insertOrden($FechaI, $FechaF, $OrdenCompra, $Cliente, $NoPieza, 
         }
     }
 
-    public function updatePieza($noDis, $descripcion, $codigomp, $corte, $dobles, $rolado, $bisel, $taladro, $prensa)
-    {
+    public function updatePieza($noDis, $descripcion, $codigomp, $corte, $dobles, $rolado, $bisel, $taladro, $prensa){
         try {
             $query = $this->dbh->prepare("UPDATE piezas SET Descripcion_MP=?, Codigo_MP=?, Corte=?, Dobles=?, Rolado=?, Bisel=?, Taladro=?, Prensa=? WHERE No_diseno LIKE ?");
             $query->bindParam(1, $descripcion);
@@ -137,8 +128,7 @@ public function insertOrden($FechaI, $FechaF, $OrdenCompra, $Cliente, $NoPieza, 
         }
     }
 
-    public function GetAllPiezas()
-    {
+    public function GetAllPiezas(){
         try {
             $query = $this->dbh->prepare("SELECT piezas.No_diseno, Descripcion_MP, Codigo_MP, ordenes_compras.Orden_compra, ordenes_compras.Cliente, Corte, Dobles, Rolado, Bisel, Taladro, Prensa FROM piezas INNER JOIN ordenes_compras ON piezas.No_diseno = ordenes_compras.No_diseno;");
             $query->execute();
@@ -148,10 +138,6 @@ public function insertOrden($FechaI, $FechaF, $OrdenCompra, $Cliente, $NoPieza, 
             $e->getMessage();
         }
     }
-
-
-
-
     // ------------------- ORDENES DE COMPRA --------------------------------------------------------
     public function insert_orden($fechaInicio, $fechaLimite, $Orden, $Cliente, $No_Dis, $CantidadP){
         try {
@@ -172,8 +158,7 @@ public function insertOrden($FechaI, $FechaF, $OrdenCompra, $Cliente, $NoPieza, 
         }
     }
 
-    public function GetAllOrdenes()
-    {
+    public function GetAllOrdenes(){
         try {
             $query = $this->dbh->prepare("SELECT * FROM ordenes_compras WHERE 1");
             $query->execute();
@@ -304,7 +289,6 @@ public function insertOrden($FechaI, $FechaF, $OrdenCompra, $Cliente, $NoPieza, 
         }
     }
 
-
     public function Update_Orden($fechaL, $OrdenC, $Nodis, $CantP, $Estatus, $Cliente, $fOrden, $fDiseno){
         try {
             $query = $this->dbh->prepare("UPDATE ordenes_compras SET Fecha_limite=?, Orden_compra=?, No_diseno=?, Piezas_solicitadas=?, Estatus_orden=?, Cliente=? WHERE Orden_compra LIKE ? AND No_diseno LIKE ?");
@@ -324,12 +308,6 @@ public function insertOrden($FechaI, $FechaF, $OrdenCompra, $Cliente, $NoPieza, 
             echo $e;
         }
     }
-
-
-
-
-
-
     // --------------------------------  Entradas  ----------------------------------------//
     public function Get_noOrden_Entradas($disenoR, $ordenR){
         try {
@@ -362,13 +340,66 @@ public function insertOrden($FechaI, $FechaF, $OrdenCompra, $Cliente, $NoPieza, 
         }
     }
 
+    public function GetAllEntradas(){
+        try {
+            $query = $this->dbh->prepare("SELECT * FROM entradas_almacen WHERE 1");
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
+        } catch (PDOException $e) {
+            $e->getMessage();
+        }
+    }
 
-
-
-
-
-
-
+    public function GetEntradaFilter($fechaEn, $ordenEn, $disEn){
+        try{
+            if(($fechaEn !="")){
+                if(($ordenEn == "" && $disEn == "")){
+                    $query = $this->dbh->prepare("SELECT * FROM entradas_almacen WHERE Fecha_entrada BETWEEN ?;");
+                    $query->bindParam(1, $fechaEn);
+                }
+                //Orden llena
+                if(($ordenEn!="") && ($disEn == "")){
+                    $query = $this->dbh->prepare("SELECT * FROM entradas_almacen WHERE (Fecha_entrada BETWEEN ?) AND Orden_compra LIKE ?;");
+                    $query->bindParam(1, $fechaEn);
+                    $query->bindParam(2, $ordenEn); 
+                }
+                if(($ordenEn!="") && ($disEn!="")){
+                    $query = $this->dbh->prepare("SELECT * FROM entradas_almacen WHERE (Fecha_entrada BETWEEN ?) AND (Orden_compra LIKE ?) AND (No_diseno LIKE ?);");
+                    $query->bindParam(1, $fechaEn);
+                    $query->bindParam(2, $ordenEn); 
+                    $query->bindParam(3, $disEn);
+                }
+                //Orden vacía
+                if(($disEn!="") && ($ordenEn == "")){
+                    $query = $this->dbh->prepare("SELECT * FROM entradas_almacen WHERE (Fecha_entrada BETWEEN ?) AND No_diseno LIKE ?;");
+                    $query->bindParam(1, $fechaEn);
+                    $query->bindParam(2, $disEn); 
+                }
+                // Cuando las fechas están vacías
+            }else{
+                if(($ordenEn!="") && ($disEn == "")){
+                    $query = $this->dbh->prepare("SELECT * FROM entradas_almacen WHERE Orden_compra LIKE ?;");
+                    $query->bindParam(1, $ordenEn);
+                }
+                if(($ordenEn!="") && ($disEn!="")){
+                    $query = $this->dbh->prepare("SELECT * FROM entradas_almacen WHERE (Orden_compra LIKE ?) AND (No_diseno LIKE ?);");
+                    $query->bindParam(1, $ordenEn); 
+                    $query->bindParam(2, $disEn);
+                }
+                //Orden vacía
+                if(($disEn!="") && ($ordenEn == "")){
+                    $query = $this->dbh->prepare("SELECT * FROM entradas_almacen WHERE No_diseno LIKE ?;");
+                    $query->bindParam(1, $disEn); 
+                }
+            }
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
+        }catch(PDOException $e){
+            $e->getMessage();
+        }
+    }
 // ------------------------- SALIDAS --------------------------------- //
 public function Get_noStock_Salidas($disenoR, $ordenR){
     try {
