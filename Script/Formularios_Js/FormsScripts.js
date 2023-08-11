@@ -641,17 +641,16 @@ function RegistrarEntrada(){
 }
 
 function BuscarEntradas(){
-    alert("llame al metodo");
-    let fechaEn = $("#FechaEn")[0].value;
-    let ordenEn = $("#Orden_compraEn")[0].value;
-    let noDisenoEn = $("#No_diseñoEn")[0].value;
-    if (fechaEn=="" && ordenEn=="" && noDisenoEn==""){
+    let fechaSa = $("#FechaEn")[0].value;
+    let ordenSa = $("#Orden_compraEn")[0].value;
+    let noDisenoSa = $("#No_diseñoEn")[0].value;
+    if (fechaSa=="" && ordenSa=="" && noDisenoSa==""){
         alert("datos vacios");
     }else{
         let parametros = {
-            "FechaEn": fechaEn,
-            "OrdenEn": ordenEn,
-            "NoDisenoEn": noDisenoEn
+            "FechaEn": fechaSa,
+            "OrdenEn": ordenSa,
+            "NoDisenoEn": noDisenoSa
         };
         $.ajax({
             type: 'POST',
@@ -740,6 +739,30 @@ function RegistrarSalida(){
 }
 
 function BuscarSalidas(){
-
+    let fechaEn = $("#FechaEn")[0].value;
+    let ordenEn = $("#Orden_compraEn")[0].value;
+    let noDisenoEn = $("#No_diseñoEn")[0].value;
+    if (fechaEn=="" && ordenEn=="" && noDisenoEn==""){
+        alert("datos vacios");
+    }else{
+        let parametros = {
+            "FechaEn": fechaEn,
+            "OrdenEn": ordenEn,
+            "NoDisenoEn": noDisenoEn
+        };
+        $.ajax({
+            type: 'POST',
+            url: '../Php_forms/Search_Salida.php',
+            data: parametros,
+            async: false,
+            success: function(returning){
+                if(returning == "Nada"){
+                    alert("No se encontraron datos");
+                }else{
+                    document.getElementById("cuerpoTabla").innerHTML=returning;
+                }
+            }
+        });
+    }
 }
 // -------------------------------- FIN REGISTRO DE SALIDAS ---------------------------------//

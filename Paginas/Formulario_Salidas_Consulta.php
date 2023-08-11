@@ -7,6 +7,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <title>Salidas</title>
+    <script src="../Script/Formularios_Js/FormsScripts.js"></script>
+    <script src="../Script/jquery.js"></script>
+    <script src="../Script/jquery-3.5.1.min.js"></script>
 </head>
 
 <body style="padding-left: 20px; padding-top: 20px; padding-bottom: 20px; padding-right: 20px;">
@@ -14,26 +17,26 @@
     <section class="d-flex justify-content-center"
         style="padding-left: 20px; max-height: 600px; padding-top: 20px; padding-bottom: 20px; padding-right: 20px; background-color: #d2dae6;  border-radius:10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);" >
         <form id ="form_nuevoD" class="row g-4" style="overflow: scroll;">
-            <h2 style="text-align: center;">Consultar salidas de almacen</h2>
+            <h2 style="text-align: center;">Consultar salidas del almacén</h2>
             <h5 style="text-align: center;">Buscar por:</h5>
             <div class="col-md-4">
-                <label for="FechaSa" class="form-label">Fecha</label>
-                <input type="date" class="form-control"  id="FechaSa" required>
+                <label for="FechaEn" class="form-label">Fecha</label>
+                <input type="date" class="form-control"  id="FechaEn" required>
             </div>
             <div class="col-md-4">
-                <label for="No_diseñoSa" class="form-label">Numero de diseño</label>
-                <input type="text" class="form-control"  id="No_diseñoSa" placeholder="Numero de diseño" required>
+                <label for="No_diseñoEn" class="form-label">Numero de diseño</label>
+                <input type="text" class="form-control"  id="No_diseñoEn" placeholder="Numero de diseño" required>
             </div>
             <div class="col-md-4">
-                <label for="Orden_compraSa" class="form-label">Orden de compra</label>
-                <input type="text" class="form-control" id="Orden_compraSa" placeholder="Orden de compra" required>
+                <label for="Orden_compraEn" class="form-label">Orden de compra</label>
+                <input type="text" class="form-control" id="Orden_compraEn" placeholder="Orden de compra" required>
             </div>
             
             <!-- ------------------------------------------------------------------------------------------ -->
             <div class="col-4" >
             </div>
             <div class="col-4" >
-                <input  onclick="return busqueda_Filtrada_Piezas(btnSelected);"  type="button" class="btn btn-primary col-12" style="height: 50px; min-height: auto; font-size: auto;" value="Buscar">
+                <input  onclick="return BuscarSalidas();"  type="button" class="btn btn-primary col-12" style="height: 50px; min-height: auto; font-size: auto;" value="Buscar">
             </div>
             <div class="col-4" >
             </div>
@@ -46,23 +49,23 @@
                         <th scope="col">Fecha de salida</th>
                         <th scope="col">No. diseño</th>
                         <th scope="col">Orden de compra</th>
-                        <th scope="col">Cantidad de piezas</th>
+                        <th scope="col">Cantidad de salida</th>
                       </tr>
                     </thead>
                     <tbody id="cuerpoTabla">
-                      <!-- <?php
+                       <?php
 
                         require_once("../conexionBD/Consultas.php");
                         $miloraObj = MiloraClass::singleton();
-                        $data = $miloraObj->GetAllPiezas();
+                        $data = $miloraObj->GetAllSalidas();
                         if(count($data)>0){
                           foreach($data as $fila){
                             ?>
                             <tr style="max-height: 10px;">
-                                <th scope="row">  <?php echo $fila['No_diseno']; ?>  </th>
+                                <th scope="row">  <?php echo $fila['Fecha_entrada']; ?>  </th>
                                 <td style="max-width: 15px;">  <?php echo $fila['No_diseno']; ?> </td>
                                 <td>  <?php echo $fila['Orden_compra']; ?>  </td>
-                                <td>  <?php echo $fila['Cantidad_pieza']; ?>  </td>
+                                <td>  <?php echo $fila['Cantidad_entrada']; ?>  </td>
                             </tr>
                             <?php
                           }
@@ -70,12 +73,12 @@
                         else{
                           ?>
                           <script>
-                            alertify.alert("¡Oops!", "Parece que no hay piezas en existencia");
+                            alertify.alert("¡Oops!", "Parece que no hay registro de entradas");
                           </script>
                         <?php
                         }
 
-                      ?> -->
+                      ?>
 
                     </tbody>
                   </table>
@@ -83,4 +86,5 @@
         </form>
     </section>
 </body>
+
 </html>
