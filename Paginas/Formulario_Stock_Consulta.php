@@ -122,11 +122,29 @@
 </body>
 
 <script>
-  
-  $("#botonExcel").click(function(){
-            var table2excel = new Table2Excel();
-            table2excel.export(document.getElementById("TablaInfo"));
+      $("#botonExcel").click(function() {
+        var table = document.getElementById("TablaInfo");
+
+            // Crear un nuevo libro de Excel
+            var wb = XLSX.utils.book_new();
+            // Crear una hoja en el libro
+            var ws = XLSX.utils.table_to_sheet(table);
+
+            // Aplicar estilo personalizado a la primera fila (encabezado)
+            for (var i = 0; i < table.rows[0].cells.length; i++) {
+                var cell = ws[XLSX.utils.encode_cell({ r: 0, c: i })];
+                if (cell && cell.s) {
+                    cell.s.font = { bold: true };
+                    cell.s.fill = { fgColor: { rgb: "0000FF" } }; // Color azul
+                }
+            }
+
+            // Agregar la hoja al libro
+            XLSX.utils.book_append_sheet(wb, ws, "Hoja1");
+
+            // Exportar el libro como un archivo Excel
+            XLSX.writeFile(wb, "mi_archivo_excel.xlsx");
     });
-</script>
+    </script>
 
 </html>
