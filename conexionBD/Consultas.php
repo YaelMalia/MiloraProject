@@ -83,7 +83,7 @@ public function CheckLogin($usuario, $pass){
 
     public function selectPieza($noDis){
         try {
-            $query = $this->dbh->prepare("SELECT * FROM piezas WHERE No_diseno LIKE ?");
+            $query = $this->dbh->prepare("SELECT piezas.No_diseno, Descripcion_MP, Codigo_MP, ordenes_compras.Orden_compra, ordenes_compras.Cliente, Corte, Dobles, Rolado, Bisel, Taladro, Prensa FROM piezas INNER JOIN ordenes_compras ON piezas.No_diseno = ordenes_compras.No_diseno WHERE piezas.No_diseno LIKE ?");
             $query->bindParam(1, $noDis);
             $query->execute();
             return $query->fetchAll();
@@ -96,7 +96,7 @@ public function CheckLogin($usuario, $pass){
 
     public function selectByCode($codeMp){
         try {
-            $query = $this->dbh->prepare("SELECT * FROM piezas WHERE Codigo_MP LIKE ?");
+            $query = $this->dbh->prepare("SELECT piezas.No_diseno, Descripcion_MP, Codigo_MP, ordenes_compras.Orden_compra, ordenes_compras.Cliente, Corte, Dobles, Rolado, Bisel, Taladro, Prensa FROM piezas INNER JOIN ordenes_compras ON piezas.No_diseno = ordenes_compras.No_diseno WHERE piezas.Codigo_MP LIKE ?");
             $query->bindParam(1, $codeMp);
             $query->execute();
             return $query->fetchAll();

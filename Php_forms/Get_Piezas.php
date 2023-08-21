@@ -18,6 +18,8 @@
                                 <th scope="row">  <?php echo $fila['No_diseno']; ?>  </th>
                                 <td style="max-width: 15px;">  <?php echo $fila['Descripcion_MP']; ?> </td>
                                 <td>  <?php echo $fila['Codigo_MP']; ?>  </td>
+                                <td>  <?php echo $fila['Orden_compra']; ?>  </td>
+                                <td>  <?php echo $fila['Cliente']; ?>  </td>
                                 <td>  <?php echo $fila['Corte']; ?>  </td>
                                 <td>  <?php echo $fila['Dobles']; ?>  </td>
                                 <td>  <?php echo $fila['Rolado']; ?>  </td>

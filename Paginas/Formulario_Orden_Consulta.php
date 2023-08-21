@@ -119,7 +119,7 @@
                     <th scope="col">Dias atraso o restantes</th>
                     <th scope="col">Orden compra</th>
                     <th scope="col">Estatus de orden</th>
-                    <th scope="col">No diseno</th>
+                    <th scope="col">No diseño</th>
                     <th scope="col">Piezas solicitadas</th>
                     <th scope="col">Piezas realizadas</th>
                     <th scope="col">Piezas restantes</th>
