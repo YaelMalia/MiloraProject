@@ -100,8 +100,8 @@
         <table id="table_id" class="table table-success table-striped" style="box-shadow: 0px 0px 24px 0px rgba(0,0,0,0.18); margin:0 auto; background-color: #d2dae6;">
             <thead id="Head_resumida" style="background-color: #adbdd3;">
                 <tr>
-                    <th scope="col">Fecha realizacion</th>
-                    <th scope="col">Fecha límite</th>
+                    <th scope="col" style="min-width:100px;">Fecha realizacion</th>
+                    <th scope="col" style="min-width:100px;">Fecha límite</th>
                     <th scope="col">Dias atraso o restantes</th>
                     <th scope="col">Orden compra</th>
                     <th scope="col">No diseño</th>
@@ -114,8 +114,8 @@
             <!-- Completa -->
             <thead id="Head_completa" style="background-color: #adbdd3;">
                 <tr>
-                    <th scope="col">Fecha realizacion</th>
-                    <th scope="col">Fecha límite</th>
+                    <th scope="col" style="min-width:100px;">Fecha realizacion</th>
+                    <th scope="col" style="min-width:100px;">Fecha límite</th>
                     <th scope="col">Dias atraso o restantes</th>
                     <th scope="col">Orden compra</th>
                     <th scope="col">Estatus de orden</th>
