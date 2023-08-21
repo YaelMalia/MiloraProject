@@ -122,6 +122,7 @@
 </body>
 
 <script>
+  
   $("#botonExcel").click(function(){
             var table2excel = new Table2Excel();
             table2excel.export(document.getElementById("TablaInfo"));
