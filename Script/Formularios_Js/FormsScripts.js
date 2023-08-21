@@ -379,7 +379,7 @@ function OrdenesResFull(Seleccion){
                             url: '../Php_forms/Get_Ordenes_Filtrado.php',
                             data: parametros,
                             success: function(returning){
-                                alert(returning);
+                                // alert(returning);
                                 if(Seleccion == "Resumida"){
                                     $("#Head_completa").hide();
                                     $("#Head_resumida").show();

@@ -160,7 +160,7 @@ public function CheckLogin($usuario, $pass){
 
     public function GetAllOrdenes(){
         try {
-            $query = $this->dbh->prepare("SELECT * FROM ordenes_compras WHERE 1");
+            $query = $this->dbh->prepare("SELECT *, DATEDIFF(Fecha_limite, CURRENT_DATE()) as DiasRestantes FROM ordenes_compras ORDER BY DiasRestantes ASC;");
             $query->execute();
             return $query->fetchAll();
             $this->dbh = null;
@@ -173,26 +173,26 @@ public function CheckLogin($usuario, $pass){
         try{
             if(($fI !="" && $fS !="")){
                 if(($orden == "" && $dis == "" && $cliente == "")){
-                    $query = $this->dbh->prepare("SELECT * FROM ordenes_compras WHERE Fecha_realizacion BETWEEN ? AND ?;");
+                    $query = $this->dbh->prepare("SELECT *, DATEDIFF(Fecha_limite, CURRENT_DATE()) as DiasRestantes FROM ordenes_compras WHERE Fecha_realizacion BETWEEN ? AND ? ORDER BY DiasRestantes ASC;");
                     $query->bindParam(1, $fI);
                     $query->bindParam(2, $fS); 
                 }
                 //Orden con algo
                 if(($orden!="") && ($dis == "" && $cliente == "")){
-                    $query = $this->dbh->prepare("SELECT * FROM ordenes_compras WHERE (Fecha_realizacion BETWEEN ? AND ?) AND Orden_compra LIKE ?;");
+                    $query = $this->dbh->prepare("SELECT *, DATEDIFF(Fecha_limite, CURRENT_DATE()) as DiasRestantes FROM ordenes_compras WHERE (Fecha_realizacion BETWEEN ? AND ?) AND Orden_compra LIKE ? ORDER BY DiasRestantes ASC;");
                     $query->bindParam(1, $fI);
                     $query->bindParam(2, $fS); 
                     $query->bindParam(3, $orden);
                 }
                 if(($orden!="") && ($dis!="" && $cliente == "")){
-                    $query = $this->dbh->prepare("SELECT * FROM ordenes_compras WHERE (Fecha_realizacion BETWEEN ? AND ?) AND (Orden_compra LIKE ?) AND (No_diseno LIKE ?);");
+                    $query = $this->dbh->prepare("SELECT *, DATEDIFF(Fecha_limite, CURRENT_DATE()) as DiasRestantes FROM ordenes_compras WHERE (Fecha_realizacion BETWEEN ? AND ?) AND (Orden_compra LIKE ?) AND (No_diseno LIKE ?) ORDER BY DiasRestantes ASC;");
                     $query->bindParam(1, $fI);
                     $query->bindParam(2, $fS); 
                     $query->bindParam(3, $orden);
                     $query->bindParam(4, $dis);
                 }
                 if(($orden!="") && ($dis!="" && $cliente!="")){ // TODO ESTÁ LLENO
-                    $query = $this->dbh->prepare("SELECT * FROM ordenes_compras WHERE (Fecha_realizacion BETWEEN ? AND ?) AND (Orden_compra LIKE ?) AND (No_diseno LIKE ?) AND (Cliente LIKE ?);");
+                    $query = $this->dbh->prepare("SELECT *, DATEDIFF(Fecha_limite, CURRENT_DATE()) as DiasRestantes FROM ordenes_compras WHERE (Fecha_realizacion BETWEEN ? AND ?) AND (Orden_compra LIKE ?) AND (No_diseno LIKE ?) AND (Cliente LIKE ?) ORDER BY DiasRestantes ASC;");
                     $query->bindParam(1, $fI);
                     $query->bindParam(2, $fS); 
                     $query->bindParam(3, $orden);
@@ -201,13 +201,13 @@ public function CheckLogin($usuario, $pass){
                 }
                 //Orden vacía, iniciamos con el diseño
                 if(($dis!="") && ($orden == "" && $cliente == "")){
-                    $query = $this->dbh->prepare("SELECT * FROM ordenes_compras WHERE (Fecha_realizacion BETWEEN ? AND ?) AND No_diseno LIKE ?;");
+                    $query = $this->dbh->prepare("SELECT *, DATEDIFF(Fecha_limite, CURRENT_DATE()) as DiasRestantes FROM ordenes_compras WHERE (Fecha_realizacion BETWEEN ? AND ?) AND No_diseno LIKE ? ORDER BY DiasRestantes ASC;");
                     $query->bindParam(1, $fI);
                     $query->bindParam(2, $fS); 
                     $query->bindParam(3, $dis);
                 }
                 if(($dis!="") && ($orden  == "" && $cliente!="")){
-                    $query = $this->dbh->prepare("SELECT * FROM ordenes_compras WHERE (Fecha_realizacion BETWEEN ? AND ?) AND (No_diseno LIKE ?) AND (Cliente LIKE ?);");
+                    $query = $this->dbh->prepare("SELECT *, DATEDIFF(Fecha_limite, CURRENT_DATE()) as DiasRestantes FROM ordenes_compras WHERE (Fecha_realizacion BETWEEN ? AND ?) AND (No_diseno LIKE ?) AND (Cliente LIKE ?) ORDER BY DiasRestantes ASC;");
                     $query->bindParam(1, $fI);
                     $query->bindParam(2, $fS); 
                     $query->bindParam(3, $dis);
@@ -215,13 +215,13 @@ public function CheckLogin($usuario, $pass){
                 }
                 //Cliente lleno y resto vacío
                 if(($cliente!="") && ($dis == "" && $orden == "")){
-                    $query = $this->dbh->prepare("SELECT * FROM ordenes_compras WHERE (Fecha_realizacion BETWEEN ? AND ?) AND Cliente LIKE ?;");
+                    $query = $this->dbh->prepare("SELECT *, DATEDIFF(Fecha_limite, CURRENT_DATE()) as DiasRestantes FROM ordenes_compras WHERE (Fecha_realizacion BETWEEN ? AND ?) AND Cliente LIKE ? ORDER BY DiasRestantes ASC;");
                     $query->bindParam(1, $fI);
                     $query->bindParam(2, $fS); 
                     $query->bindParam(3, $cliente);
                 }
                 if(($cliente!="") && ($orden!="" && $dis == "")){
-                    $query = $this->dbh->prepare("SELECT * FROM ordenes_compras WHERE (Fecha_realizacion BETWEEN ? AND ?) AND (Cliente LIKE ?) AND (Orden_compra LIKE ?);");
+                    $query = $this->dbh->prepare("SELECT *, DATEDIFF(Fecha_limite, CURRENT_DATE()) as DiasRestantes FROM ordenes_compras WHERE (Fecha_realizacion BETWEEN ? AND ?) AND (Cliente LIKE ?) AND (Orden_compra LIKE ?) ORDER BY DiasRestantes ASC;");
                     $query->bindParam(1, $fI);
                     $query->bindParam(2, $fS); 
                     $query->bindParam(3, $cliente);
@@ -231,37 +231,37 @@ public function CheckLogin($usuario, $pass){
             }else{
                 //Orden con algo
                 if(($orden!="") && ($dis == "" && $cliente == "")){
-                    $query = $this->dbh->prepare("SELECT * FROM ordenes_compras WHERE Orden_compra LIKE ?;");
+                    $query = $this->dbh->prepare("SELECT *, DATEDIFF(Fecha_limite, CURRENT_DATE()) as DiasRestantes FROM ordenes_compras WHERE Orden_compra LIKE ? ORDER BY DiasRestantes ASC;");
                     $query->bindParam(1, $orden);
                 }
                 if(($orden!="") && ($dis!="" && $cliente == "")){
-                    $query = $this->dbh->prepare("SELECT * FROM ordenes_compras WHERE (Orden_compra LIKE ?) AND (No_diseno LIKE ?);");
+                    $query = $this->dbh->prepare("SELECT *, DATEDIFF(Fecha_limite, CURRENT_DATE()) as DiasRestantes FROM ordenes_compras WHERE (Orden_compra LIKE ?) AND (No_diseno LIKE ?) ORDER BY DiasRestantes ASC;");
                     $query->bindParam(1, $orden);
                     $query->bindParam(2, $dis);
                 }
                 if(($orden!="") && ($dis!="" && $cliente!="")){ // TODO ESTÁ LLENO
-                    $query = $this->dbh->prepare("SELECT * FROM ordenes_compras WHERE (Orden_compra LIKE ?) AND (No_diseno LIKE ?) AND (Cliente LIKE ?);"); 
+                    $query = $this->dbh->prepare("SELECT *, DATEDIFF(Fecha_limite, CURRENT_DATE()) as DiasRestantes FROM ordenes_compras WHERE (Orden_compra LIKE ?) AND (No_diseno LIKE ?) AND (Cliente LIKE ?) ORDER BY DiasRestantes ASC;"); 
                     $query->bindParam(1, $orden);
                     $query->bindParam(2, $dis);
                     $query->bindParam(3, $cliente);
                 }
                 //Orden vacía, iniciamos con el diseño
                 if(($dis!="") && ($orden == "" && $cliente == "")){
-                    $query = $this->dbh->prepare("SELECT * FROM ordenes_compras WHERE No_diseno LIKE ?;");
+                    $query = $this->dbh->prepare("SELECT *, DATEDIFF(Fecha_limite, CURRENT_DATE()) as DiasRestantes FROM ordenes_compras WHERE No_diseno LIKE ? ORDER BY DiasRestantes ASC;");
                     $query->bindParam(1, $dis);
                 }
                 if(($dis!="") && ($orden  == "" && $cliente!="")){
-                    $query = $this->dbh->prepare("SELECT * FROM ordenes_compras WHERE (No_diseno LIKE ?) AND (Cliente LIKE ?);");
+                    $query = $this->dbh->prepare("SELECT *, DATEDIFF(Fecha_limite, CURRENT_DATE()) as DiasRestantes FROM ordenes_compras WHERE (No_diseno LIKE ?) AND (Cliente LIKE ?) ORDER BY DiasRestantes ASC;");
                     $query->bindParam(1, $dis);
                     $query->bindParam(2, $cliente);
                 }
                 //Cliente lleno y resto vacío
                 if(($cliente!="") && ($dis == "" && $orden == "")){
-                    $query = $this->dbh->prepare("SELECT * FROM ordenes_compras WHERE Cliente LIKE ?;");
+                    $query = $this->dbh->prepare("SELECT *, DATEDIFF(Fecha_limite, CURRENT_DATE()) as DiasRestantes FROM ordenes_compras WHERE Cliente LIKE ? ORDER BY DiasRestantes ASC;");
                     $query->bindParam(1, $cliente);
                 }
                 if(($cliente!="") && ($orden!="" && $dis == "")){
-                    $query = $this->dbh->prepare("SELECT * FROM ordenes_compras WHERE (Cliente LIKE ?) AND (Orden_compra LIKE ?);"); 
+                    $query = $this->dbh->prepare("SELECT *, DATEDIFF(Fecha_limite, CURRENT_DATE()) as DiasRestantes FROM ordenes_compras WHERE (Cliente LIKE ?) AND (Orden_compra LIKE ?) ORDER BY DiasRestantes ASC;"); 
                     $query->bindParam(1, $cliente);
                     $query->bindParam(2, $orden);
                 }
