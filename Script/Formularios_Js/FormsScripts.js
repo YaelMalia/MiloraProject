@@ -767,8 +767,6 @@ function BuscarSalidas(){
 }
 // -------------------------------- FIN REGISTRO DE SALIDAS ---------------------------------//
 
-
-
 // ---------------------------------------- BUSQUEDAS STOCK ------------------------//
 
 function buscarStock(){
