@@ -82,8 +82,8 @@
                 <input type="number" class="form-control" id="Placa_cortada" placeholder="Placas cortadas" required>
             </div>
             <div class="col-md-3">
-                <label for="Proyecto" class="form-label">Proyecto</label>
-                <input type="text" class="form-control" id="Proyecto" placeholder="Cantidad reportada" required>
+                <label for="Orden_de_compra" class="form-label">Orden de compra</label>
+                <input type="text" class="form-control" id="Orden_de_compra" placeholder="Orden de compra" required>
             </div>
             <!-- ------------------------------------------------------------------------------------------------------ -->
             <div class="col-md-3">
