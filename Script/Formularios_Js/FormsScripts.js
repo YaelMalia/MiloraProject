@@ -832,52 +832,76 @@ function Insert_Turno(){
     let Orden_de_compraT = $("#Orden_de_compraT")[0].value;
     let HorasT = $("#HorasT")[0].value;
 
-    if(noDiseno == null || noDiseno == ""){
-        alertify.alert("Aviso", "No se ha ingresado el número de diseño o pieza");
+    if(fecha_inicio == null || fecha_inicio == ""){
+        alertify.alert("Error", "Fecha de inicio de la orden no se ha ingresado");
     }else{
-        if(descripcion_mp == null || descripcion_mp == ""){
-            alertify.alert("Aviso", "No se ha ingresado descripción de materia prima");
+        if(fecha_limite == null || fecha_limite == ""){
+            alertify.alert("Error", "Fecha límite de la orden no se ha ingresado");
         }else{
-            if(codigo_mp == null || codigo_mp == ""){
-                alertify.alert("Aviso", "No se ha ingresado el código de materia prima"); 
+            if(orden_compra == null || orden_compra == ""){
+                alertify.alert("Error", "No se ha ingresado el identificador de la orden de compra");
             }else{
-                // Nada vacío -----
-                flag = true;
-                if(flag == true){
-                    let parametros = {
-                        "noDiseno": noDiseno,
-                        "descripcion_mp": descripcion_mp,
-                        "codigo_mp": codigo_mp,
-                        "corte": corte,
-                        "dobles": dobles,
-                        "rolado": rolado,
-                        "bisel": bisel,
-                        "taladro": taladro,
-                        "prensa": prensa
-                    };
-                    // Enviar por Ajax
-                    $.ajax({
-                        type: 'POST',
-                        url: '../Php_forms/Insert_Pieza.php',
-                        data: parametros,
-                        success: function(returning){
-                            if(returning == "si"){
-                               // alertify.success('Pieza agregada');
-                                alertify.alert("¡Exito!", "El modelo o pieza se ha agregado con éxito");
-                                let formulario = $("#form_nuevoD");
-                                $("#No_disenoFD")[0].value = "";
-                                $("#Descripcion_MP")[0].value = "";
-                                $("#Codigo_MP")[0].value = "";
-                                $("#Dobles")[0].value = "No";
-                                $("#Rolado")[0].value = "No";
-                                $("#Bisel")[0].value = "No";
-                                $("#Taladro")[0].value = "No";
-                                $("#Prensa")[0].value = "No";
+                if(cliente == null || cliente == ""){
+                    alertify.alert("Error", "No se ha seleccionado un cliente de compra válido");
+                }else{
+                    if(noDiseno == null || noDiseno == ""){
+                        alertify.alert("Eror", "No se ha ingresado un número de diseño");
+                    }else{
+                        if(noPiezas == null || noPiezas == ""){
+                            alertify.alert("Error", "No se ha ingresado la cantidad de piezas para la orden de compra");
+                        }else{
+                            if(noPiezas<=0){
+                                alertify.alert("Error", "La cantidad de piezas para la orden no puede ser menor a cero");
                             }else{
-                                alertify.alert("Error", "Se ha producido un error al ingresar el número de diseño o pieza, revise que no esté repetida");
+                                flag = true;
+                            }
+                            if(flag == true){
+                               
+                                if(Date.parse(fecha_limite) < Date.parse(fecha_inicio)){
+                                    alertify.alert("Error", "La fecha límite no puede ser menor a la fecha de inicio de la orden de compra, intenta de nuevo");
+                                }else{
+                                     // Todo correcto
+
+                                     let parametros = {
+                                        "fechaInicio": fecha_inicio,
+                                        "fechaLimite": fecha_limite,
+                                        "ID_Orden": orden_compra,
+                                        "Cliente": cliente,
+                                        "No_diseno": noDiseno,
+                                        "CantidadPzs": noPiezas
+                                     };
+
+                                     $.ajax({
+                                        type: 'POST',
+                                        url: '../Php_forms/Insert_Ordenes.php',
+                                        data: parametros,
+                                        async: false,
+                                        success: function(returning){
+                                            if(returning=="si"){
+                                                alertify.alert("¡Exito!", "Se ha registrado la nueva orden de compra correctamente");
+                                                $("#Fecha_inicio")[0].value = "";
+                                                $("#Fecha_final")[0].value = "";
+                                                $("#Orden_de_compra")[0].value = "";
+                                                $("#lst_Clientes")[0].value = "";
+                                                $("#No_diseno")[0].value = "";
+                                                $("#Numero_de_piezas")[0].value = "";
+                                            }else{
+                                                alertify.alert("Error", "No se ha podido agregar la orden de compra, revisa los datos ingresados e intenta de nuevo");
+                                            }
+                                        }                                     
+                                     });
+
+                                }
+
+                            }else{
+                                if(noPiezas<=0){
+                                    alertify.alert("Error", "La cantidad de piezas para la orden no puede ser menor a cero");
+                                }else{
+                                    alertify.alert("Error", "Algo se ha ingresado de manera incorrecta, revise sus datos");
+                                }
                             }
                         }
-                    });
+                    }
                 }
             }
         }
