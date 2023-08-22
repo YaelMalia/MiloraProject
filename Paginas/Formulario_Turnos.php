@@ -67,8 +67,8 @@
             </div>
             <!-- ------------------------------------------------------------------------------------------------------ -->
             <div class="col-md-3">
-                <label for="Cantidad_reportadaT" class="form-label">Piezas con fallo</label>
-                <input type="number" class="form-control" id="Cantidad_reportadaT" placeholder="Piezas que presentan errores"
+                <label for="Piezas_FalloT" class="form-label">Piezas con fallo</label>
+                <input type="number" class="form-control" id="Piezas_FalloT" placeholder="Piezas que presentan errores"
                     required>
             </div>
 

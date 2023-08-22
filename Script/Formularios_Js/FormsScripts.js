@@ -62,7 +62,6 @@ function nueva_Pieza(){
              }
          }
     }
-
 }
 
 function buscar_Pieza(){
@@ -818,7 +817,71 @@ function buscarStock(){
 
 // --------------------------------- INICIO TURNOS/CORTE TURNO ---------------------------------
 function Insert_Turno(){
+    let flag = false; 
+    let FechaT = $("#FechaT")[0].value;
+    let TurnoT = $("#TurnoT")[0].value;
+    let MaquinasT = $("#MaquinasT")[0].value;
+    let OperadorT = $("#OperadorT")[0].value;
+    let Proceso_piezaT = $("#Proceso_piezaT")[0].value;
+    let Folio_mpT = $("#Folio_mpT")[0].value;
+    let Cantidad_NESTT = $("#Cantidad_NESTT")[0].value;
+    let Cantidad_reportadaT = $("#Cantidad_reportadaT")[0].value;
+    let Piezas_FalloT = $("#Piezas_FalloT")[0].value;
+    let Placa_solicitadaT = $("#Placa_solicitadaT")[0].value;
+    let Placa_cortadaT = $("#Placa_cortadaT")[0].value;
+    let Orden_de_compraT = $("#Orden_de_compraT")[0].value;
+    let HorasT = $("#HorasT")[0].value;
 
+    if(noDiseno == null || noDiseno == ""){
+        alertify.alert("Aviso", "No se ha ingresado el número de diseño o pieza");
+    }else{
+        if(descripcion_mp == null || descripcion_mp == ""){
+            alertify.alert("Aviso", "No se ha ingresado descripción de materia prima");
+        }else{
+            if(codigo_mp == null || codigo_mp == ""){
+                alertify.alert("Aviso", "No se ha ingresado el código de materia prima"); 
+            }else{
+                // Nada vacío -----
+                flag = true;
+                if(flag == true){
+                    let parametros = {
+                        "noDiseno": noDiseno,
+                        "descripcion_mp": descripcion_mp,
+                        "codigo_mp": codigo_mp,
+                        "corte": corte,
+                        "dobles": dobles,
+                        "rolado": rolado,
+                        "bisel": bisel,
+                        "taladro": taladro,
+                        "prensa": prensa
+                    };
+                    // Enviar por Ajax
+                    $.ajax({
+                        type: 'POST',
+                        url: '../Php_forms/Insert_Pieza.php',
+                        data: parametros,
+                        success: function(returning){
+                            if(returning == "si"){
+                               // alertify.success('Pieza agregada');
+                                alertify.alert("¡Exito!", "El modelo o pieza se ha agregado con éxito");
+                                let formulario = $("#form_nuevoD");
+                                $("#No_disenoFD")[0].value = "";
+                                $("#Descripcion_MP")[0].value = "";
+                                $("#Codigo_MP")[0].value = "";
+                                $("#Dobles")[0].value = "No";
+                                $("#Rolado")[0].value = "No";
+                                $("#Bisel")[0].value = "No";
+                                $("#Taladro")[0].value = "No";
+                                $("#Prensa")[0].value = "No";
+                            }else{
+                                alertify.alert("Error", "Se ha producido un error al ingresar el número de diseño o pieza, revise que no esté repetida");
+                            }
+                        }
+                    });
+                }
+            }
+        }
+    }
 }
 
 // --------------------------------- FIN TURNOS/CORTE TURNO ---------------------------------
