@@ -10,10 +10,13 @@
 </head>
 
 <body style="padding-left: 25px; padding-top: 25px; padding-bottom: 25px; padding-right: 25px;">
-    <h1 style="text-align: center;">Corte de turno</h1>
+   
     <section class="d-flex justify-content-center"
         style="padding-left: 20px; padding-top: 20px; padding-bottom: 20px; padding-right: 20px; background-color: #d2dae6;  border-radius:10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);" >
         <form id ="form_Turnos" class="row g-5">
+        
+        <h2 style="text-align: center;">Corte de turno</h2>
+
             <div class="col-md-3">
                 <label for="FechaT" class="form-label">Fecha</label>
                 <input type="date" class="form-control" id="FechaT" placeholder="Fecha" required>
