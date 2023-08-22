@@ -12,23 +12,23 @@
 <body style="padding-left: 25px; padding-top: 25px; padding-bottom: 25px; padding-right: 25px;">
     <h1 style="text-align: center;">Corte de turno</h1>
     <section class="d-flex justify-content-center"
-        style="padding-left: 20px; padding-top: 20px; padding-bottom: 20px; padding-right: 20px; background-color: #d2dae6;">
-        <form class="row g-5">
+        style="padding-left: 20px; padding-top: 20px; padding-bottom: 20px; padding-right: 20px; background-color: #d2dae6;  border-radius:10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);" >
+        <form id ="form_Turnos" class="row g-5">
             <div class="col-md-3">
-                <label for="Fecha" class="form-label">Fecha</label>
-                <input type="date" class="form-control" id="Fecha" placeholder="Fecha" required>
+                <label for="FechaT" class="form-label">Fecha</label>
+                <input type="date" class="form-control" id="FechaT" placeholder="Fecha" required>
             </div>
             <div class="col-md-3">
-                <label for="Turno" class="form-label">Turno</label>
-                <select id="Turno" class="form-select" required>
+                <label for="TurnoT" class="form-label">Turno</label>
+                <select id="TurnoT" class="form-select" required>
                     <option selected></option>
                     <option>Turno 1</option>
                     <option>Turno 2</option>
                 </select>
             </div>
             <div class="col-md-3">
-                <label for="Maquinas" class="form-label">Maquina</label>
-                <select id="Maquinas" class="form-select" required>
+                <label for="MaquinasT" class="form-label">Maquina</label>
+                <select id="MaquinasT" class="form-select" required>
                     <option selected></option>
                     <option>Tigres del norte</option>
                     <option>Pantera rosa</option>
@@ -36,13 +36,13 @@
                 </select>
             </div>
             <div class="col-md-3">
-                <label for="Operador" class="form-label">Operador</label>
-                <input type="text" class="form-control" id="Operador" placeholder="Nombre del operador" required>
+                <label for="OperadorT" class="form-label">Operador</label>
+                <input type="text" class="form-control" id="OperadorT" placeholder="Nombre del operador" required>
             </div>
             <!-- ------------------------------------------------------------------------------------------------------ -->
             <div class="col-md-3">
-                <label for="Proceso_pieza" class="form-label">Proceso</label>
-                <select id="Turno" class="form-select" required>
+                <label for="Proceso_piezaT" class="form-label">Proceso</label>
+                <select id="Proceso_piezaT" class="form-select" required>
                     <option selected></option>
                     <option>Corte</option>
                     <option>Dobles</option>
@@ -53,42 +53,42 @@
                 </select>
             </div>
             <div class="col-md-3">
-                <label for="Folio_mp" class="form-label">Folio de materia prima(MP)</label>
-                <input type="text" class="form-control" id="Folio_mp" placeholder="Folio de MP" required>
+                <label for="Folio_mpT" class="form-label">Folio de materia prima(MP)</label>
+                <input type="text" class="form-control" id="Folio_mpT" placeholder="Folio de MP" required>
             </div>
             <div class="col-md-3">
-                <label for="Cantidad_NEST" class="form-label">Cantidad</label>
-                <input type="number" class="form-control" id="Cantidad_NEST" placeholder="Cantidad NEST" required>
+                <label for="Cantidad_NESTT" class="form-label">Cantidad</label>
+                <input type="number" class="form-control" id="Cantidad_NESTT" placeholder="Cantidad NEST" required>
             </div>
             <div class="col-md-3">
-                <label for="Cantidad_reportada" class="form-label">Cantidad reportada</label>
-                <input type="number" class="form-control" id="Cantidad_reportada" placeholder="Cantidad reportada"
+                <label for="Cantidad_reportadaT" class="form-label">Cantidad reportada</label>
+                <input type="number" class="form-control" id="Cantidad_reportadaT" placeholder="Cantidad reportada"
                     required>
             </div>
             <!-- ------------------------------------------------------------------------------------------------------ -->
             <div class="col-md-3">
-                <label for="Cantidad_reportada" class="form-label">Piezas con fallo</label>
-                <input type="number" class="form-control" id="Cantidad_reportada" placeholder="Piezas que presentan errores"
+                <label for="Cantidad_reportadaT" class="form-label">Piezas con fallo</label>
+                <input type="number" class="form-control" id="Cantidad_reportadaT" placeholder="Piezas que presentan errores"
                     required>
             </div>
 
             <div class="col-md-3">
-                <label for="Placa_solicitada" class="form-label">Placas solicitadas</label>
-                <input type="number" class="form-control" id="Placa_solicitada" placeholder="Placas solicitadas"
+                <label for="Placa_solicitadaT" class="form-label">Placas solicitadas</label>
+                <input type="number" class="form-control" id="Placa_solicitadaT" placeholder="Placas solicitadas"
                     required>
             </div>
             <div class="col-md-3">
-                <label for="Placa_cortada" class="form-label">Placas cortadas</label>
-                <input type="number" class="form-control" id="Placa_cortada" placeholder="Placas cortadas" required>
+                <label for="Placa_cortadaT" class="form-label">Placas cortadas</label>
+                <input type="number" class="form-control" id="Placa_cortadaT" placeholder="Placas cortadas" required>
             </div>
             <div class="col-md-3">
-                <label for="Orden_de_compra" class="form-label">Orden de compra</label>
-                <input type="text" class="form-control" id="Orden_de_compra" placeholder="Orden de compra" required>
+                <label for="Orden_de_compraT" class="form-label">Orden de compra</label>
+                <input type="text" class="form-control" id="Orden_de_compraT" placeholder="Orden de compra" required>
             </div>
             <!-- ------------------------------------------------------------------------------------------------------ -->
             <div class="col-md-3">
-                <label for="Horas" class="form-label">Horas</label>
-                <input type="number" class="form-control" id="Horas" placeholder="Horas de proceso" required>
+                <label for="HorasT" class="form-label">Horas</label>
+                <input type="number" class="form-control" id="HorasT" placeholder="Horas de proceso" required>
             </div>
             <div class="col-md-9">
             </div>

@@ -1,7 +1,6 @@
+// -------------------------------- INICIAN PIEZAS --------------------------------
 function nueva_Pieza(){
-   
     let flag = false; 
-
     let noDiseno = $("#No_disenoFD")[0].value;
     let descripcion_mp = $("#Descripcion_MP")[0].value;
     let codigo_mp = $("#Codigo_MP")[0].value;
@@ -765,9 +764,9 @@ function BuscarSalidas(){
         });
     }
 }
-// -------------------------------- FIN REGISTRO DE SALIDAS ---------------------------------//
+// -------------------------------- FIN REGISTRO DE SALIDAS ---------------------------------
 
-// ---------------------------------------- BUSQUEDAS STOCK ------------------------//
+// --------------------------------- INICIO STOCK ---------------------------------
 
 function buscarStock(){
    let disenoF = $("#No_disenoSt")[0].value;
@@ -815,3 +814,11 @@ function buscarStock(){
 
    }
 }
+// --------------------------------- FIN BUSQUEDAS STOCK ---------------------------------
+
+// --------------------------------- INICIO TURNOS/CORTE TURNO ---------------------------------
+function Insert_Turno(){
+
+}
+
+// --------------------------------- FIN TURNOS/CORTE TURNO ---------------------------------
