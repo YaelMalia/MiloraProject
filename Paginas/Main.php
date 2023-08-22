@@ -20,22 +20,6 @@
 </head>
 <body>
 
-      <!-- <div class="panel">
-        <h2>Panel de Control</h2>
-        <ul class="menu">
-          <li><a href="#"></a></li>
-          <li><a href="#">Facturacion</a></li>
-          <li><a href="#">Ingenieria</a></li>
-          <li><a href="#">Calidad externa</a></li>
-          <li><a href="#">Calidad interna</a></li>
-          <li><a href="#">Existencias</a></li>
-          <li><a href="#"></a></li>
-        </ul>
-        <div class="content">
-          
-        </div>
-      </div> -->
-
 
       <header class="headerSuperior">
         <div id="main">
@@ -52,7 +36,7 @@
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-container">
-        <a href="#">Registrar producción</a>
+        <a id="Nuevo-CorteT" class="enlace">Registrar producción</a>
         <a href="#">Consultar datos de producción</a>
       </div>
       <!--  -->
@@ -235,11 +219,6 @@ for (i = 0; i < dropdown.length; i++) {
     }
   });
 }
-
-
-
-
-
 // ------------------------------------------------------------- DROPDOWN CONTAINTERS---------------
 
 // ------------------- NUEVOS
@@ -270,6 +249,14 @@ $("#Nueva-entrada").click(function(){
 $("#Nueva-salida").click(function(){
   document.getElementById("ControlCentral").innerHTML="";
   $("#ControlCentral").load("Formulario_Salidas_Almacen.html");
+  closeNav();
+  const enlaces = document.getElementsByClassName("enlace");
+  enlaces.setAttribute('color', 'rgb(129, 129, 129)');
+});
+
+$("#Nuevo-CorteT").click(function(){
+  document.getElementById("ControlCentral").innerHTML="";
+  $("#ControlCentral").load("Formulario_Turnos.php");
   closeNav();
   const enlaces = document.getElementsByClassName("enlace");
   enlaces.setAttribute('color', 'rgb(129, 129, 129)');
@@ -337,14 +324,6 @@ $("#Consulta-existencias").click(function(){
 });
 
 // ------------------------------------------------------------- END DROPDOWN CONTAINTERS---------------
-
-
-
-
-
-
-
-
 
 $("#EndSession").click(function(){
     $.post("../Script/Formularios_Js/Sessions_Php/EndSession.php");
