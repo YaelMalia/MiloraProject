@@ -97,6 +97,7 @@
             <!-- Fin vista -->
 
             <section class="d-flex justify-content-center;" style="padding-left: 20px; padding-top: 20px; padding-bottom: 20px; padding-right: 20px;">
+        <div class="table-responsive">
         <table id="table_id" class="table table-success table-striped" style="box-shadow: 0px 0px 24px 0px rgba(0,0,0,0.18); margin:0 auto; background-color: #d2dae6;">
             <thead id="Head_resumida" style="background-color: #adbdd3;">
                 <tr>
@@ -194,6 +195,7 @@
                 ?>
         </tbody>
     </table>
+        </div>
 </section>
         </form>
     </section>
