@@ -39,7 +39,7 @@
             </div>
 
             <!--  tabla resultante -->
-            <div class="col-12" id="tableResult">
+            <div class="col-12 table-responsive" id="tableResult">
                 <table class="table" style="text-align: center; box-shadow: 0px 0px 24px 0px rgba(0,0,0,0.18); background-color: #d2dae6; ">
                     <thead style="background-color: #adbdd3; ">
                       <tr>

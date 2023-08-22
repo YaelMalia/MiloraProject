@@ -36,8 +36,8 @@
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-container">
-        <a id="Nuevo-CorteT" class="enlace">Registrar producción</a>
-        <a href="#">Consultar datos de producción</a>
+        <a id="Nuevo-CorteT" class="enlace">Iniciar proceso corte</a>
+        <a href="#">Procesos activos</a>
       </div>
       <!--  -->
       <button class="dropdown-btn Prod-Nav">Diseños/piezas
