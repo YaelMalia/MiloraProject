@@ -866,4 +866,34 @@ function Insert_Turno(){
     }
 }
 
+
+
+function AgregarProceso_Test(){
+    let diseno = "165039_d";
+    let orden = "MXVP-PRUEBA_PROCESOS";
+    let BuscarDatos = {
+        "diseno": diseno,
+        "orden_compra": orden
+    };
+    $.ajax({
+        type: 'POST',
+        url: '../Php_forms/Buscar_OrdenProcesos.php',
+        data: BuscarDatos,
+        async: false,
+        success: function(returning){
+            if(returning == "Nada"){
+                alertify.alert("Error", "No se encontraron datos");
+            }else{
+                var today = new Date();
+                var date = today.toISOString().slice(0,10);
+                var time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+                var dateTime = date + ' ' + time;
+                var ArrayDatos = returning.split(':');
+                let noOrden = ArrayDatos[0];
+                let Procesos = ArrayDatos[1];
+                alert("No orden: " + noOrden + " - Procesos: "+ Procesos + " - Fecha y hora: " + dateTime);
+            }
+        }
+    });
+}
 // --------------------------------- FIN TURNOS/CORTE TURNO ---------------------------------

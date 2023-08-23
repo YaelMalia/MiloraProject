@@ -542,6 +542,37 @@ public function Ordenar_Stock(){
         $e->getMessage();
     }
 }
+
+
+
+
+// ------------------ PROCESOS ---------------------------------------------- //
+
+public function GetProcesos(){
+    try {
+        $query = $this->dbh->prepare("SELECT * FROM procesos_produccion WHERE 1");
+        $query->execute();
+        return $query->fetchAll();
+        $this->dbh = null;
+    } catch (PDOException $e) {
+        $e->getMessage();
+    }
+}
+
+public function GetOrden_P($disenoBus, $ordenBus){
+    try {
+        $query = $this->dbh->prepare("SELECT ordenes_compras.Numero_orden, piezas.Corte, piezas.Dobles, piezas.Rolado, piezas.Bisel, piezas.Taladro, piezas.Prensa FROM ordenes_compras INNER JOIN piezas on ordenes_compras.No_diseno = piezas.No_diseno WHERE ordenes_compras.No_diseno LIKE ? AND ordenes_compras.Orden_compra LIKE ?;");
+        $query->bindParam(1, $disenoBus);
+        $query->bindParam(2, $ordenBus);
+        $query->execute();
+        return $query->fetchAll();
+        $this->dbh = null;
+    } catch (PDOException $e) {
+        $e->getMessage();
+    }
+}
+
+
 /*-----------------------------------------------------------------------------------------------------*/
 
 
