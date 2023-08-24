@@ -692,11 +692,11 @@ function RegistrarSalida(){
             async: false,
             success: function(returning){
                if(returning == "notFound"){
-                // alertify.alert("Error", "Parece que no hay stock en almacén de dicha pieza, revise sus datos");
-                alert("No orden existente");
+                alertify.alert("Error", "Parece que no hay orden o stock existente, revise sus datos");
+                
                }else if(returning.includes("Fatal Error")){
-                // alertify.alert("Error", "Se ha producido un error, revise su conexión a internet");
-                alert("Error de conexión");
+                alertify.alert("Error", "Se ha producido un error, revise su conexión a internet");
+                // alert("Error de conexión");
                }else{
                 
                 let parametros = {
@@ -724,6 +724,42 @@ function RegistrarSalida(){
                                 $("#Orden_de_compra")[0].value = "";
                                 $("#Numero_de_pieza")[0].value = "";
                                 $("#Cantidad_de_piezas")[0].value = "";
+
+                                // Modificar estado de orden y stock
+                                let p_cerrarCompra = {
+                                    "disenoC": noDiseno,
+                                    "ordenC": ordenCompra
+                                };
+
+                                $.ajax({
+                                    type: 'POST',
+                                    url: '../Php_forms/Obtener_stock_cerrarCompra.php',
+                                    data: p_cerrarCompra,
+                                    async: false,
+                                    success: function(cantidad){
+                                        if(cantidad == 0){
+                                            if(confirm("Se ha detectado que las existencias para esta orden de compra ha llegado a cero, ¿deseas cerrar esta orden de compra?")){
+                                                $.ajax({
+                                                    type: 'POST',
+                                                    url: '../Php_forms/CerrarOrden_Auto.php',
+                                                    data: p_cerrarCompra,
+                                                    async: false,
+                                                    success: function(bandera){
+                                                        if(bandera == "Hecho"){
+                                                            alert("Orden cerrada correctamente");
+                                                        }else{
+                                                            alert(bandera);
+                                                            alert("Se ha producido un error al cerrar la compra, revise su conexión a internet");
+                                                        }
+                                                    }
+                                                });
+                                            }
+                                        }else{
+                                           alert(cantidad);
+                                        }
+                                    }
+                                });
+
                             }else{
                                 alertify.alert("Error", "Se ha producido un error al registrar la salida, revise su conexión");
                             }

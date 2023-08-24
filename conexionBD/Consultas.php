@@ -493,7 +493,52 @@ public function Insertar_Salida($disenoI, $NoStock, $ordenCI, $fechaSI, $cantida
     }
 }
 
+public function Cantidad_stock($disenoStock, $ordenStock){
+    try {
+        $query = $this->dbh->prepare("SELECT Cantidad_actual FROM stock_almacen WHERE No_diseno LIKE ? AND Orden_compra LIKE ?");
+        $query->bindParam(1, $disenoStock);
+        $query->bindParam(2, $ordenStock);
+        $query->execute();
+        return $query->fetchAll();
+        $this->dbh = null;
+    } catch (PDOException $e) {
+        $e->getMessage();
+    }
+}
 
+public function Cerrar_Orden_Auto($disenoCerrar, $ordenCerrar){
+    try {
+        $inactiva = "Inactiva";
+        $query = $this->dbh->prepare("UPDATE stock_almacen SET Estatus=? WHERE Orden_compra LIKE ? AND No_diseno LIKE ?;");
+        $query->bindParam(1, $inactiva);
+        $query->bindParam(2, $ordenCerrar);
+        $query->bindParam(3, $disenoCerrar);
+        $query->execute();
+        return $query->fetchAll();
+        $this->dbh = null;
+
+    } catch (PDOException $e) {
+        $e->getMessage();
+        echo $e;
+    }
+}
+
+public function Cerrar_Stock($disenoCerrar, $ordenCerrar){
+    try {
+        $cerrado = "Cerrada";
+        $query = $this->dbh->prepare("UPDATE ordenes_compras SET Estatus_orden=? WHERE Orden_compra LIKE ? AND No_diseno LIKE ?;");
+        $query->bindParam(1, $cerrado);
+        $query->bindParam(2, $ordenCerrar);
+        $query->bindParam(3, $disenoCerrar);
+        $query->execute();
+        return $query->fetchAll();
+        $this->dbh = null;
+
+        } catch (\Throwable $th) {
+            $e->getMessage();
+            echo $e;
+        }
+}
 
 // --------------------------- CONSULTAS DE ALMACEN ------------------------ //
 
