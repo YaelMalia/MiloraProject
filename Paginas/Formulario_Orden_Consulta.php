@@ -184,6 +184,21 @@
                             </tr>
                                 <?php
                             }
+                            if($fila["Estatus_orden"] == "Cerrada"){
+                                ?>
+                                 <tr style="color:#000000">
+                                <td><?php echo $fila["Fecha_realizacion"]; ?></td>
+                                <td><?php echo $fila["Fecha_limite"]; ?></td>
+                                <td><?php echo "Cerrada";?></td>
+                                <td><?php echo $fila["Orden_compra"]; ?></td>
+                                <td><?php echo $fila["No_diseno"]; ?></td>
+                                <td><?php echo $fila["Piezas_solicitadas"]; ?></td>
+                                <td><?php echo $fila["Piezas_realizadas"]; ?></td>
+                                <td><?php echo $fila["Piezas_restantes"]; ?></td>
+                                <td><?php echo $fila["Cliente"]; ?></td>
+                            </tr>
+                                <?php
+                            }
                         }
                     }else{
                         ?>
