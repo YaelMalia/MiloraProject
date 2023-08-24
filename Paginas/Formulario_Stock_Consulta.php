@@ -11,6 +11,8 @@
     <script src="../Script/jquery.js"></script>
     <script src="../Script/jquery-3.5.1.min.js"></script>
     <script src="../Script/table2excel.js"></script>
+    <script src="../Script/xlsx.mini.flow.js"></script>
+    
     
     
     <style>
