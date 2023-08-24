@@ -145,7 +145,7 @@
             XLSX.utils.book_append_sheet(wb, ws, "Hoja1");
 
             // Exportar el libro como un archivo Excel
-            XLSX.writeFile(wb, "mi_archivo_excel.xlsx");
+            XLSX.writeFile(wb, "Excel-existencias.xlsx");
     });
     </script>
 
