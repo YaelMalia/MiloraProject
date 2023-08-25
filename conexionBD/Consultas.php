@@ -160,7 +160,7 @@ public function CheckLogin($usuario, $pass){
 
     public function GetAllOrdenes(){
         try {
-            $query = $this->dbh->prepare("SELECT *, DATEDIFF(Fecha_limite, CURRENT_DATE()) as DiasRestantes FROM ordenes_compras ORDER BY DiasRestantes ASC;");
+            $query = $this->dbh->prepare("SELECT *, DATEDIFF(Fecha_limite, CURRENT_DATE()) as DiasRestantes FROM ordenes_compras ORDER BY Estatus_orden ASC, DiasRestantes ASC;");
             $query->execute();
             return $query->fetchAll();
             $this->dbh = null;
