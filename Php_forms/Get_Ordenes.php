@@ -7,7 +7,7 @@
         if(count($data)>0){
             if($vista == "Resumida"){
                 foreach($data as $fila){
-                    if(($fila["Estatus_orden"] == "Activa") && ($fila["DiasRestantes"] <=20)){
+                    if(($fila["Estatus_orden"] !="Cerrada") && ($fila["DiasRestantes"] <=20)){
                         ?>
                     <tr style="color:#BC2727;">
                         <td><?php echo $fila["Fecha_realizacion"]; ?></td>
@@ -21,7 +21,7 @@
                         <td><?php echo $fila["Cliente"]; ?></td>
                     </tr>
                         <?php
-                    }if(($fila["Estatus_orden"] == "Activa") && ($fila["DiasRestantes"]>20 && $fila["DiasRestantes"]<=80)){
+                    }if(($fila["Estatus_orden"] !="Cerrada") && ($fila["DiasRestantes"]>20 && $fila["DiasRestantes"]<=80)){
                         ?>
                          <tr style="color:#F76C00;">
                         <td><?php echo $fila["Fecha_realizacion"]; ?></td>
@@ -35,7 +35,7 @@
                         <td><?php echo $fila["Cliente"]; ?></td>
                     </tr>
                         <?php
-                    }if( ($fila["Estatus_orden"] == "Activa") && ($fila["DiasRestantes"]>80)){
+                    }if( ($fila["Estatus_orden"] !="Cerrada") && ($fila["DiasRestantes"]>80)){
                         ?>
                          <tr style="color:#369A31;">
                         <td><?php echo $fila["Fecha_realizacion"]; ?></td>
@@ -69,7 +69,7 @@
                 }
             }else{
                 foreach($data as $fila){
-                    if(($fila["Estatus_orden"] == "Activa") && ($fila["DiasRestantes"] <=20)){
+                    if(($fila["Estatus_orden"] !="Cerrada") && ($fila["DiasRestantes"] <=20)){
                         ?>
                             <tr style="color:#BC2727;">
                                 <td><?php echo $fila["Fecha_realizacion"]; ?></td>
@@ -90,7 +90,7 @@
                                 <td><?php echo $fila["Piezas_prensadas"]; ?></td>
                             </tr>
                         <?php
-                    }if( ($fila["Estatus_orden"] == "Activa") && ($fila["DiasRestantes"]>20 && $fila["DiasRestantes"]<=80)){
+                    }if( ($fila["Estatus_orden"] !="Cerrada") && ($fila["DiasRestantes"]>20 && $fila["DiasRestantes"]<=80)){
                         ?>
                         <tr style="color:#F76C00;">
                                 <td><?php echo $fila["Fecha_realizacion"]; ?></td>
@@ -111,7 +111,7 @@
                                 <td><?php echo $fila["Piezas_prensadas"]; ?></td>
                             </tr>
                         <?php
-                    }if($fila["DiasRestantes"]>80){
+                    }if(($fila["Estatus_orden"] !="Cerrada") && ($fila["DiasRestantes"]>80)){
                         ?>
                         <tr style="color:#369A31;">
                                 <td><?php echo $fila["Fecha_realizacion"]; ?></td>
