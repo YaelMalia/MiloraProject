@@ -36,7 +36,7 @@
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-container">
-        <a id="Nuevo-CorteT" class="enlace">Iniciar proceso corte</a>
+        <a id="Nuevo-CorteT" class="enlace">Reportar corte</a>
         <a href="#">Procesos activos</a>
       </div>
       <!--  -->

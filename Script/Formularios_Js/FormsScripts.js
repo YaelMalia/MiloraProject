@@ -927,6 +927,17 @@ function AgregarProceso_Test(){
                 let noOrden = ArrayDatos[0];
                 let Procesos = ArrayDatos[1];
                 alert("No orden: " + noOrden + " - Procesos: "+ Procesos + " - Fecha y hora: " + dateTime);
+
+                //Insertar proceso
+                $.ajax({
+                    type: 'POST',
+                    url: '../Php_forms/Insertar_Nproceso.php',
+                    data: BuscarDatos,
+                    async: false,
+                    success: function(returning){
+
+                    }
+                });
             }
         }
     });

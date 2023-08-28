@@ -15,7 +15,7 @@
         style="padding-left: 20px; padding-top: 20px; padding-bottom: 20px; padding-right: 20px; background-color: #d2dae6;  border-radius:10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);" >
         <form id ="form_Turnos" class="row g-5">
         
-        <h2 style="text-align: center;">Corte de turno</h2>
+        <h2 style="text-align: center;">Reporte de corte</h2>
 
             <div class="col-md-3">
                 <label for="FechaT" class="form-label">Fecha</label>

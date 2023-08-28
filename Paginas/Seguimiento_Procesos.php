@@ -31,6 +31,7 @@
                       <tr>
                         <th scope="col">Diseño</th>
                         <th scope="col">Orden de compra</th>
+                        <th scope="col">Terminado</th>
                         <th scope="col">Proceso actual</th>
                         <th scope="col">Procesos realizados</th>
                         <th scope="col">Estado del proceso</th>
