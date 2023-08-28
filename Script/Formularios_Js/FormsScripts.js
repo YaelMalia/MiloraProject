@@ -121,7 +121,6 @@ function busqueda_Filtrada_Piezas(Seleccion){
     }else{
         identificador = $("#Codigo_MP")[0].value;
     }
-    
     let parametros = {
         "dato-Rbt": Seleccion,
         "ID": identificador
@@ -901,7 +900,6 @@ function Insert_Turno(){
         }
     }
 }
-
 
 function AgregarProceso_Test(){
     let diseno = "165039_d";

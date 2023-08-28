@@ -5,7 +5,10 @@
             require_once("../conexionBD/Consultas.php");
             $miloraObj = MiloraClass::singleton();
             $data;
-        if($tipo == "noDiseno"){
+        if(($id == "" || $id == null)){
+            $data= $miloraObj->GetAllPiezas();
+        }
+        else if($tipo == "noDiseno"){
             $data = $miloraObj->selectPieza($id);
         }else if($tipo == "Codemp"){
             $data = $miloraObj->selectByCode($id);
