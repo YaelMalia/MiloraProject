@@ -22,8 +22,7 @@
     <section class="d-flex justify-content-center"
         style="padding-left: 20px; max-height: 600px; padding-top: 20px; padding-bottom: 20px; padding-right: 20px; background-color: #d2dae6;  border-radius:10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);" >
         <form id ="form_nuevoD" class="row g-4" style="">
-            <h2 style="text-align: center;">Seguimiento de procesos de producción</h2>
-            <input onclick="AgregarProceso_Test();" type="button" class="btn btn-primary col-12" value="Agregar">
+            
             <!--  tabla resultante -->
             <div class="table-responsive col-12" id="tableResult">
                 <table class="table" id="TablaInfo" style="text-align: center; box-shadow: 0px 0px 24px 0px rgba(0,0,0,0.18); background-color: #d2dae6; ">

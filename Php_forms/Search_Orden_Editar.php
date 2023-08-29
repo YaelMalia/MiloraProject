@@ -10,7 +10,7 @@
         if(count($data)>0){
             foreach($data as $fila){
                 echo $fila["Fecha_limite"]. ",".$fila["Orden_compra"].",".$fila["No_diseno"].
-                ",".$fila["Piezas_solicitadas"].",".$fila["Cliente"];
+                ",".$fila["Piezas_solicitadas"].",".$fila["Cliente"].",".$fila["Numero_orden"].",".$fila["Piezas_realizadas"];
                }
         }else{
             echo "no";

@@ -308,6 +308,21 @@ public function CheckLogin($usuario, $pass){
             echo $e;
         }
     }
+
+    public function Actualiza_Restantes($Norden, $restantes){
+        try {
+            $query = $this->dbh->prepare("UPDATE ordenes_compras SET Piezas_restantes=? WHERE Numero_orden LIKE ?");
+            $query->bindParam(1, $restantes);
+            $query->bindParam(2, $Norden);
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
+        } catch (PDOException $e) {
+            $e->getMessage();
+            echo $e;
+        }
+}
+
     // --------------------------------  Entradas  ----------------------------------------//
     public function Get_noOrden_Entradas($disenoR, $ordenR){
         try {

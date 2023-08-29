@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar proceso de corte</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+
+    <script src="../alertify/alertify.js"></script>
+    <link rel="stylesheet" href="../alertify/alertify.css">
+
+    <script src="../Script/Formularios_Js/FormsScripts.js"></script>
+    <script src="../Script/jquery.js"></script>
+    <script src="../Script/jquery-3.5.1.min.js"></script>
+
+
+</head>
+<body>
+    <body style="padding-left: 20px; padding-top: 20px; padding-bottom: 20px; padding-right: 20px;">
+   
+        <section class="d-flex justify-content-center"
+            style="padding-left: 20px; max-height: 600px; padding-top: 20px; padding-bottom: 20px; padding-right: 20px; background-color: #d2dae6;  border-radius:10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);" >
+            <form id ="form_nuevoD" class="row g-3">
+                
+                <h2 style="text-align: center;">Inicio de corte para producción</h2>
+
+                <div class="col-md-4">
+                    <label for="P_Diseno" class="form-label">Diseño de pieza</label>
+                    <input type="text" class="form-control" id="P_Diseno" placeholder="Ingresa diseño de la pieza" required>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="P_orden" class="form-label">Orden de compra</label>
+                    <input type="text" class="form-control" id="P_orden" placeholder="Ingresa orden de compra" required>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="Cantidad" class="form-label">Cantidad</label>
+                    <input type="text" class="form-control" id="P_cantidad" placeholder="Ingresa cantidad del proceso" required>
+                </div>
+                <div class="col-md-4"></div>
+                <input onclick="AgregarProceso();" type="button" class="btn btn-primary col-4" value="Agregar proceso">
+                <div class="col-md-4"></div>
+                  
+            </form>
+        </section>
+    </body>
+</body>
+</html>

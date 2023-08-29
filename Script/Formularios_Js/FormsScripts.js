@@ -436,6 +436,9 @@ function OrdenesResFull(Seleccion){
 }
 
 // -------------------------------- Busqueda para editar --------------------------------
+var NoOrdenGlobal;
+var PRealizadasGlobal;
+
 function Buscar_Orden_Filtro(){
     let ordenB = $("#B_orden")[0].value;
     let disenoB = $("#B_Diseno")[0].value;
@@ -473,8 +476,12 @@ function Buscar_Orden_Filtro(){
                         $("#No_diseno")[0].value = ArrayDatos[2];
                         document.getElementById("Numero_de_piezas").disabled = false;
                         $("#Numero_de_piezas")[0].value = ArrayDatos[3];
+                        
                         document.getElementById("Cliente").disabled = false;
                         $("#Cliente")[0].value = ArrayDatos[4];
+
+                        NoOrdenGlobal = ArrayDatos[5];
+                        PRealizadasGlobal = ArrayDatos[6];
 
                         document.getElementById("Actualizar_Orden").disabled = false;
                     }else{
@@ -555,6 +562,26 @@ function Editar_Orden(){
                                         $("#Cliente")[0].value = "";
 
                                         document.getElementById("Actualizar_Orden").disabled = true;
+
+                                        let Restantes;
+                                        Restantes = cantidadP - PRealizadasGlobal;
+                                        alert(Restantes);
+
+                                        P_restantes = {
+                                            "NoOrden":NoOrdenGlobal,
+                                            "Restantes": Restantes
+                                        };
+
+                                        $.ajax({
+                                            type: 'POST',
+                                            url: '../Php_forms/Actualiza_restantes.php',
+                                            data: P_restantes,
+                                            async: false,
+                                            success: function(res){
+                                                alert(res);
+                                            }
+                                        });
+
                                     }else{
                                         alertify.alert("Error", "No se ha podido actualizar la orden de compra, revise sus datos e intente nuevamente");
                                     }
@@ -618,7 +645,8 @@ function RegistrarEntrada(){
                     data: parametros,
                     async: false,
                     success: function(returningEntrada){
-                        if(returningEntrada.includes("OK")){
+                        alert(returningEntrada);
+                        if(returningEntrada!="no" && !returningEntrada.includes("Cantidad de entrada supera a las restantes")){
                             alertify.alert("¡Exito!", "Se ha registrado una entrada en el almacén");
                             // alert(returningEntrada);
                             $("#Fecha_de_ingreso")[0].value = "";
@@ -626,8 +654,12 @@ function RegistrarEntrada(){
                             $("#Numero_de_pieza")[0].value = "";
                             $("#Cantidad_de_piezas")[0].value = "";
                         }else{
+                            if(returningEntrada.includes("Cantidad de entrada supera a las restantes")){
+                                alertify.alert("Error", "Cantidad de entrada supera a las restantes");
+                            }else{
                             alertify.alert("Error", "Se ha producido un error al registrar la entrada, revise su conexión");
                             // alert(returningEntrada);
+                            }
                         }
                     }
                 });
@@ -642,7 +674,7 @@ function BuscarEntradas(){
     let ordenSa = $("#Orden_compraEn")[0].value;
     let noDisenoSa = $("#No_diseñoEn")[0].value;
     if (fechaSa=="" && ordenSa=="" && noDisenoSa==""){
-        alert("datos vacios");
+        alertify.alert("Aviso", "No se han ingresado alguno de los datos");
     }else{
         let parametros = {
             "FechaEn": fechaSa,
@@ -656,7 +688,7 @@ function BuscarEntradas(){
             async: false,
             success: function(returning){
                 if(returning == "Nada"){
-                    alert("No se encontraron datos");
+                    alertify.alert("Error","No se encontraron datos");
                 }else{
                     document.getElementById("cuerpoTabla").innerHTML=returning;
                 }
@@ -901,8 +933,9 @@ function Insert_Turno(){
     }
 }
 
-function AgregarProceso_Test(){
-    let diseno = "165039_d";
+function AgregarProceso(){
+    let P_diseno = $("#P_Diseno")[0].value;
+    let P_orden = $("#P_orden")[0].value;
     let orden = "MXVP-PRUEBA_PROCESOS";
     let BuscarDatos = {
         "diseno": diseno,
