@@ -949,7 +949,7 @@ function AgregarProceso(){
                 alertify.alert("Aviso", "No se ha ingresado una cantidad de producción o no es válida");
             }else{
                 // Aquí inicia todo el quilombo para ingresar los procesos
-
+                
 
 
             }
