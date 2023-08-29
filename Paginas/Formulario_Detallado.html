@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <title>Registro de almacen</title>
+
+    <script src="../Script/Formularios_Js/FormsScripts.js"></script>
+    <script src="../Script/jquery.js"></script>
+    <script src="../Script/jquery-3.5.1.min.js"></script>
+
+</head>
+<body style="padding-left: 20px; padding-top: 20px; padding-bottom: 20px; padding-right: 20px;">
+    <section class="d-flex justify-content-center"
+        style="padding-left: 20px; padding-top: 20px; padding-bottom: 20px; padding-right: 20px;
+        background-color: #d2dae6;  border-radius:10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);" >
+        <form id ="form_nuevoD" class="row g-4">
+            <h2 style="text-align: center;">Detallado</h2>
+            <div class="col-md-3">
+                <label for="TurnoFD" class="form-label">Turno</label>
+                <select id="TurnoFD" class="form-select">
+                    <option selected>Matutino</option>
+                    <option>Nocturno</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="FechaFD" class="form-label">Fecha de ingreso</label>
+                <input type="date" class="form-control"  id="FechaFD" required>
+            </div>
+            <div class="col-md-3">
+                <label for="NoDesinoFD" class="form-label">No diseño</label>
+                <input type="text" class="form-control" id="NoDesinoFD" placeholder="No diseño" required>
+            </div>
+            <div class="col-md-3">
+                <label for="Cantidad_a_procesarFD" class="form-label">Cantidad a procesar</label>
+                <input type="number" class="form-control" id="Cantidad_a_procesarFD" placeholder="" required>
+            </div>
+            <!-- ---------------------------------------------------------------------------------------- -->
+            <div class="col-md-3">
+                <label for="TotalParcialFD" class="form-label">Total o parcial</label>
+                <select id="TotalParcialFD" class="form-select">
+                    <option selected>Total</option>
+                    <option>Parcial</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="ObservacionesFD" class="form-label">Observaciones</label>
+                <input type="number" class="form-control" id="ObservacionesFD" placeholder="" required>
+            </div>
+            <div class="col-md-3">
+            </div>
+            <div class="col-md-3">
+            </div>
+            <!-- ---------------------------------------------------------------------------------------- -->
+            <div class="col-4"></div>
+            <div class="col-4" >
+                <input  onclick=""  type="button" class="btn btn-primary col-12" style="height: 50px;
+                min-height: auto; font-size: auto;" value="...">
+            </div>
+            <div class="col-4"></div>
+        </form>
+    </section>
+</body> 
+</html>
