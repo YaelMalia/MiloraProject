@@ -45,7 +45,7 @@ public function CheckLogin($usuario, $pass){
 
     public function insertOrden($FechaI, $FechaF, $OrdenCompra, $Cliente, $NoPieza, $CantidadPieza){
         try {
-            $query = $this->dbh->prepare("INSERT INTO  (Fecha_realizacion, Fecha_finalizacion, Orden_compra, No_diseno, Piezas_solicitadas, Cliente, ) VALUES (?, ?, ?, ?, ?, ?)");
+            $query = $this->dbh->prepare("INSERT INTO ordenes_compras (Fecha_realizacion, Fecha_finalizacion, Orden_compra, No_diseno, Piezas_solicitadas, Cliente, ) VALUES (?, ?, ?, ?, ?, ?)");
             $query->bindParam(1, $FechaI);
             $query->bindParam(2, $FechaF);
             $query->bindParam(3, $OrdenCompra);
@@ -608,9 +608,26 @@ public function Ordenar_Stock(){
 
 // ------------------ PROCESOS ---------------------------------------------- //
 
+public function Agregar_proceso(){
+    try {
+        $query = $this->dbh->prepare("INSERT INTO procesos_produccion () VALUES (?, ?, ?, ?, ?)");
+        $query->bindParam(1, );
+        $query->bindParam(2, );
+        $query->bindParam(3, );
+        $query->bindParam(4, );
+        $query->bindParam(5, );
+        $query->execute();
+        return $query->fetchAll();
+        $this->dbh = null;
+    } catch (PDOException $e) {
+        $e->getMessage();
+        echo $e;
+    }
+}
+
 public function GetProcesos(){
     try {
-        $query = $this->dbh->prepare("SELECT * FROM procesos_produccion WHERE 1");
+        $query = $this->dbh->prepare("SELECT * FROM procesos_produccion INNER JOIN ordenes_compras ON procesos_produccion.No_orden = ordenes_compras.Numero_orden;");
         $query->execute();
         return $query->fetchAll();
         $this->dbh = null;

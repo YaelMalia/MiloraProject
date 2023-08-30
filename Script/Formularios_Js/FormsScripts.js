@@ -977,15 +977,24 @@ function AgregarProceso(){
                             alert("No orden: " + noOrden + " - Procesos: "+ Procesos + " - Fecha y hora: " + dateTime);
             
                             //Insertar proceso
-                            // $.ajax({
-                            //     type: 'POST',
-                            //     url: '../Php_forms/Insertar_Nproceso.php',
-                            //     data: BuscarDatos,
-                            //     async: false,
-                            //     success: function(returningInsert){
+                            let DatosInsertar = {
+                                "No_orden": noOrden,
+                                "ProcesoActual": "Corte",
+                                "Cantidad": cantidadProd,
+                                "Estado_proceso": "En progreso..",
+                                "Procesos_restantes": Procesos,
+                                "Inicio": dateTime
+                            };
+
+                            $.ajax({
+                                type: 'POST',
+                                url: '../Php_forms/Insertar_Nuevo_proceso.php',
+                                data: DatosInsertar,
+                                async: false,
+                                success: function(returningInsert){
             
-                            //     }
-                            // });
+                                }
+                            });
                         }
             
                     }
