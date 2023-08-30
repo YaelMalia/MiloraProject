@@ -38,6 +38,7 @@
                 <table class="table" id="TablaInfo" style="text-align: center; box-shadow: 0px 0px 24px 0px rgba(0,0,0,0.18); background-color: #d2dae6; ">
                     <thead id="headTable" style="background-color: #adbdd3; ">
                       <tr>
+                      <th scope="col">#</th>
                         <th scope="col">Diseño</th>
                         <th scope="col">Orden de compra</th>
                         <th scope="col">Cantidad</th>
@@ -61,6 +62,7 @@
                             if($fila["Estado_proceso"] == "En progreso.."){
                               ?>
                               <tr style="font-weight:bold;">
+                              <td style="background-color:#7EA8ED !important;"><?php echo $fila["no_proceso"];?></td>
                               <td style="background-color:#7EA8ED !important;"><?php echo $fila["No_diseno"];?></td>
                               <td style="background-color:#7EA8ED !important;"><?php echo $fila["Orden_compra"];?></td>
                               <td style="background-color:#7EA8ED !important;"><?php echo $fila["Cantidad"];?></td>
@@ -76,6 +78,7 @@
                             }if($fila["Estado_proceso"] == "Terminado"){
                               ?>
                               <tr style="font-weight:bold;">
+                              <td style="background-color:#55C736 !important;"><?php echo $fila["no_proceso"];?></td>
                               <td style="background-color:#55C736 !important;"><?php echo $fila["No_diseno"];?></td>
                               <td style="background-color:#55C736 !important;"><?php echo $fila["Orden_compra"];?></td>
                               <td style="background-color:#55C736 !important;"><?php echo $fila["Cantidad"];?></td>

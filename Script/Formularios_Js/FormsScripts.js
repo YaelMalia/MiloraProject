@@ -981,7 +981,7 @@ function AgregarProceso(){
                             var ArrayDatos = returning.split(':');
                             let noOrden = ArrayDatos[0];
                             let Procesos = ArrayDatos[1];
-                            alert("No orden: " + noOrden + " - Procesos: "+ Procesos + "" + dateTime);
+                            // alert("No orden: " + noOrden + " - Procesos: "+ Procesos + "" + dateTime);
             
                             //Insertar proceso
                             let DatosInsertar = {
@@ -999,7 +999,14 @@ function AgregarProceso(){
                                 data: DatosInsertar,
                                 async: false,
                                 success: function(returningInsert){
-                                    alert(returningInsert);
+                                    if(returningInsert == "si"){
+                                        alertify.alert("¡Correcto!", "Proceso iniciado correctamente, verifique la información en el seguimiento de procesos");
+                                        $("#P_Diseno")[0].value = "";
+                                        $("#P_orden")[0].value = "";
+                                        $("#P_cantidad")[0].value = "";
+                                    }else{
+                                        alertify.alert("Error", "Se ha producido un error al ingresar el proceso, revise su conexión a internet");
+                                    }
                                 }
                             });
                         }
