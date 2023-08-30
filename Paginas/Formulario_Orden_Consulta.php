@@ -98,7 +98,7 @@
 
             <section class="d-flex justify-content-center;" style="padding-left: 20px; padding-top: 20px; padding-bottom: 20px; padding-right: 20px;">
         <div class="table-responsive">
-        <table id="table_id" class="table table-success table-striped" style="box-shadow: 0px 0px 24px 0px rgba(0,0,0,0.18); margin:0 auto; background-color: #d2dae6;">
+        <table id="table_id" class="table table-success" style="box-shadow: 0px 0px 24px 0px rgba(0,0,0,0.18); margin:0 auto; background-color: #d2dae6;">
             <thead id="Head_resumida" style="background-color: #adbdd3;">
                 <tr>
                     <th scope="col" style="min-width:100px;">Fecha realizacion</th>
@@ -143,59 +143,59 @@
                         foreach($data as $fila){
                             if(($fila["Estatus_orden"] !="Cerrada") && ($fila["DiasRestantes"] <=20)){
                                 ?>
-                            <tr style="color:#BC2727;">
-                                <td><?php echo $fila["Fecha_realizacion"]; ?></td>
-                                <td><?php echo $fila["Fecha_limite"]; ?></td>
-                                <td><?php if($fila["DiasRestantes"]<0){echo "Atraso: ".($fila["DiasRestantes"]*-1);}else{echo "Restan: ".$fila["DiasRestantes"];}?></td>
-                                <td><?php echo $fila["Orden_compra"]; ?></td>
-                                <td><?php echo $fila["No_diseno"]; ?></td>
-                                <td><?php echo $fila["Piezas_solicitadas"]; ?></td>
-                                <td><?php echo $fila["Piezas_realizadas"]; ?></td>
-                                <td><?php echo $fila["Piezas_restantes"]; ?></td>
-                                <td><?php echo $fila["Cliente"]; ?></td>
+                            <tr>
+                                <td style="background-color:#F76D6D !important;"><?php echo $fila["Fecha_realizacion"]; ?></td>
+                                <td style="background-color:#F76D6D !important;"><?php echo $fila["Fecha_limite"]; ?></td>
+                                <td style="background-color:#F76D6D !important; font-weight:bold;"><?php if($fila["DiasRestantes"]<0){echo "Atraso: ".($fila["DiasRestantes"]*-1);}else{echo "Restan: ".$fila["DiasRestantes"];}?></td>
+                                <td style="background-color:#F76D6D !important;"><?php echo $fila["Orden_compra"]; ?></td>
+                                <td style="background-color:#F76D6D !important;"><?php echo $fila["No_diseno"]; ?></td>
+                                <td style="background-color:#F76D6D !important;"><?php echo $fila["Piezas_solicitadas"]; ?></td>
+                                <td style="background-color:#F76D6D !important;"><?php echo $fila["Piezas_realizadas"]; ?></td>
+                                <td style="background-color:#F76D6D !important;"><?php echo $fila["Piezas_restantes"]; ?></td>
+                                <td style="background-color:#F76D6D !important;"><?php echo $fila["Cliente"]; ?></td>
                             </tr>
                                 <?php
                             }if(($fila["Estatus_orden"] !="Cerrada") && ($fila["DiasRestantes"]>20 && $fila["DiasRestantes"]<=80)){
                                 ?>
-                                 <tr style="color:#F76C00;">
-                                <td><?php echo $fila["Fecha_realizacion"]; ?></td>
-                                <td><?php echo $fila["Fecha_limite"]; ?></td>
-                                <td><?php echo "Restan: ".$fila["DiasRestantes"];?></td>
-                                <td><?php echo $fila["Orden_compra"]; ?></td>
-                                <td><?php echo $fila["No_diseno"]; ?></td>
-                                <td><?php echo $fila["Piezas_solicitadas"]; ?></td>
-                                <td><?php echo $fila["Piezas_realizadas"]; ?></td>
-                                <td><?php echo $fila["Piezas_restantes"]; ?></td>
-                                <td><?php echo $fila["Cliente"]; ?></td>
+                                 <tr>
+                                <td style="background-color:#F89351 !important;"><?php echo $fila["Fecha_realizacion"]; ?></td>
+                                <td style="background-color:#F89351 !important;"><?php echo $fila["Fecha_limite"]; ?></td>
+                                <td style="background-color:#F89351 !important; font-weight:bold;"><?php echo "Restan: ".$fila["DiasRestantes"];?></td>
+                                <td style="background-color:#F89351 !important;"><?php echo $fila["Orden_compra"]; ?></td>
+                                <td style="background-color:#F89351 !important;"><?php echo $fila["No_diseno"]; ?></td>
+                                <td style="background-color:#F89351 !important;"><?php echo $fila["Piezas_solicitadas"]; ?></td>
+                                <td style="background-color:#F89351 !important;"><?php echo $fila["Piezas_realizadas"]; ?></td>
+                                <td style="background-color:#F89351 !important;"><?php echo $fila["Piezas_restantes"]; ?></td>
+                                <td style="background-color:#F89351 !important;"><?php echo $fila["Cliente"]; ?></td>
                             </tr>
                                 <?php
                             }if((($fila["Estatus_orden"] !="Cerrada")) && ($fila["DiasRestantes"]>80)){
                                 ?>
-                                 <tr style="color:#369A31;">
-                                <td><?php echo $fila["Fecha_realizacion"]; ?></td>
-                                <td><?php echo $fila["Fecha_limite"]; ?></td>
-                                <td><?php echo "Restan: ".$fila["DiasRestantes"];?></td>
-                                <td><?php echo $fila["Orden_compra"]; ?></td>
-                                <td><?php echo $fila["No_diseno"]; ?></td>
-                                <td><?php echo $fila["Piezas_solicitadas"]; ?></td>
-                                <td><?php echo $fila["Piezas_realizadas"]; ?></td>
-                                <td><?php echo $fila["Piezas_restantes"]; ?></td>
-                                <td><?php echo $fila["Cliente"]; ?></td>
+                                 <tr>
+                                <td style="background-color:#63E346 !important;"><?php echo $fila["Fecha_realizacion"]; ?></td>
+                                <td style="background-color:#63E346 !important;"><?php echo $fila["Fecha_limite"]; ?></td>
+                                <td style="background-color:#63E346 !important; font-weight:bold;"><?php echo "Restan: ".$fila["DiasRestantes"];?></td>
+                                <td style="background-color:#63E346 !important;"><?php echo $fila["Orden_compra"]; ?></td>
+                                <td style="background-color:#63E346 !important;"><?php echo $fila["No_diseno"]; ?></td>
+                                <td style="background-color:#63E346 !important;"><?php echo $fila["Piezas_solicitadas"]; ?></td>
+                                <td style="background-color:#63E346 !important;"><?php echo $fila["Piezas_realizadas"]; ?></td>
+                                <td style="background-color:#63E346 !important;"><?php echo $fila["Piezas_restantes"]; ?></td>
+                                <td style="background-color:#63E346 !important;"><?php echo $fila["Cliente"]; ?></td>
                             </tr>
                                 <?php
                             }
                             if($fila["Estatus_orden"] == "Cerrada"){
                                 ?>
-                                 <tr style="color:#000000">
-                                <td><?php echo $fila["Fecha_realizacion"]; ?></td>
-                                <td><?php echo $fila["Fecha_limite"]; ?></td>
-                                <td><?php echo "Cerrada";?></td>
-                                <td><?php echo $fila["Orden_compra"]; ?></td>
-                                <td><?php echo $fila["No_diseno"]; ?></td>
-                                <td><?php echo $fila["Piezas_solicitadas"]; ?></td>
-                                <td><?php echo $fila["Piezas_realizadas"]; ?></td>
-                                <td><?php echo $fila["Piezas_restantes"]; ?></td>
-                                <td><?php echo $fila["Cliente"]; ?></td>
+                                 <tr>
+                                <td style="background-color:#E1E1E1 !important;"><?php echo $fila["Fecha_realizacion"]; ?></td>
+                                <td style="background-color:#E1E1E1 !important;"><?php echo $fila["Fecha_limite"]; ?></td>
+                                <td style="background-color:#E1E1E1 !important; font-weight:bold;"><?php echo "Cerrada";?></td>
+                                <td style="background-color:#E1E1E1 !important;"><?php echo $fila["Orden_compra"]; ?></td>
+                                <td style="background-color:#E1E1E1 !important;"><?php echo $fila["No_diseno"]; ?></td>
+                                <td style="background-color:#E1E1E1 !important;"><?php echo $fila["Piezas_solicitadas"]; ?></td>
+                                <td style="background-color:#E1E1E1 !important;"><?php echo $fila["Piezas_realizadas"]; ?></td>
+                                <td style="background-color:#E1E1E1 !important;"><?php echo $fila["Piezas_restantes"]; ?></td>
+                                <td style="background-color:#E1E1E1 !important;"><?php echo $fila["Cliente"]; ?></td>
                             </tr>
                                 <?php
                             }

@@ -965,16 +965,23 @@ function AgregarProceso(){
                     async: false,
                     success: function(returning){
                         if(returning == "Nada"){
-                            alertify.alert("Error", "No se encontraron datos");
+                            alertify.alert("Error", "No se encontraron para la orden de compra y diseño ingresado, revise su información");
                         }else{
                             var today = new Date();
                             var date = today.toISOString().slice(0,10);
-                            var time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
-                            var dateTime = date + ' ' + time;
+                            var time;
+
+                            var horas = today.getHours();
+                            horas < 10 ? horas = '0'+horas : 0;
+                            var minutos = today.getMinutes();
+                            minutos < 10 ? minutos = '0'+minutos : 0;
+                            time = horas + ':' + minutos;
+
+                            var dateTime = date + ' a las ' + time;
                             var ArrayDatos = returning.split(':');
                             let noOrden = ArrayDatos[0];
                             let Procesos = ArrayDatos[1];
-                            alert("No orden: " + noOrden + " - Procesos: "+ Procesos + " - Fecha y hora: " + dateTime);
+                            alert("No orden: " + noOrden + " - Procesos: "+ Procesos + "" + dateTime);
             
                             //Insertar proceso
                             let DatosInsertar = {
@@ -992,7 +999,7 @@ function AgregarProceso(){
                                 data: DatosInsertar,
                                 async: false,
                                 success: function(returningInsert){
-            
+                                    alert(returningInsert);
                                 }
                             });
                         }

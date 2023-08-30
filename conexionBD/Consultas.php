@@ -608,14 +608,16 @@ public function Ordenar_Stock(){
 
 // ------------------ PROCESOS ---------------------------------------------- //
 
-public function Agregar_proceso(){
+public function Agregar_proceso($Norden, $ProcActual, $Cantidad, $Estado_proc, $Proc_restantes, $InicioFH){
     try {
-        $query = $this->dbh->prepare("INSERT INTO procesos_produccion () VALUES (?, ?, ?, ?, ?)");
-        $query->bindParam(1, );
-        $query->bindParam(2, );
-        $query->bindParam(3, );
-        $query->bindParam(4, );
-        $query->bindParam(5, );
+        $query = $this->dbh->prepare("INSERT INTO procesos_produccion (No_orden, Proceso_actual, Cantidad, Estado_proceso, Procesos_restantes, Inicio_FH) VALUES (?, ?, ?, ?, ?, ?)");
+        $query->bindParam(1, $Norden);
+        $query->bindParam(2, $ProcActual);
+        $query->bindParam(3, $Cantidad);
+        $query->bindParam(4, $Estado_proc);
+        $query->bindParam(5, $Proc_restantes);
+        $query->bindParam(6, $InicioFH);
+
         $query->execute();
         return $query->fetchAll();
         $this->dbh = null;
@@ -627,7 +629,7 @@ public function Agregar_proceso(){
 
 public function GetProcesos(){
     try {
-        $query = $this->dbh->prepare("SELECT * FROM procesos_produccion INNER JOIN ordenes_compras ON procesos_produccion.No_orden = ordenes_compras.Numero_orden;");
+        $query = $this->dbh->prepare("SELECT * FROM procesos_produccion INNER JOIN ordenes_compras ON procesos_produccion.No_orden = ordenes_compras.Numero_orden WHERE Inicio_FH LIKE CONCAT('%', CURRENT_DATE, '%') ORDER BY Estado_proceso DESC;");
         $query->execute();
         return $query->fetchAll();
         $this->dbh = null;

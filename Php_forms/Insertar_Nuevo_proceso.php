@@ -10,7 +10,7 @@
         try {
             require_once("../conexionBD/Consultas.php");
             $miloraObj = MiloraClass::singleton();
-            $data = $miloraObj->Agregar_proceso();
+            $data = $miloraObj->Agregar_proceso($Norden, $ProcActual, $Cantidad, $Estado_proc, $Proc_restantes, $InicioFH);
 
             echo "si";
         } catch (\Throwable $th) {
