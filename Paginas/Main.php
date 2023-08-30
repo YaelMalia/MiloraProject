@@ -42,7 +42,7 @@
         <a id="" class="enlace">consultar corte (Lohr)</a>
       </div>
       <!--  -->
-      <button class="dropdown-btn Prod-Nav">Procesos de producción
+      <button class="dropdown-btn Prod-Nav">Procesos
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-container">
