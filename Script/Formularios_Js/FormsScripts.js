@@ -649,7 +649,7 @@ function RegistrarEntrada(){
                     data: parametros,
                     async: false,
                     success: function(returningEntrada){
-                        alert(returningEntrada);
+                        
                         if(returningEntrada!="no" && !returningEntrada.includes("Cantidad de entrada supera a las restantes")){
                             alertify.alert("¡Exito!", "Se ha registrado una entrada en el almacén");
                             // alert(returningEntrada);
@@ -1017,5 +1017,21 @@ function AgregarProceso(){
             }
         }
     }
+}
+
+function mostrarModal(btn){
+    $("#modal").show(800);
+
+    var today = new Date();
+    var date = today.toISOString().slice(0,10);
+    var time;
+
+    var horas = today.getHours();
+    horas < 10 ? horas = '0'+horas : 0;
+    var minutos = today.getMinutes();
+    minutos < 10 ? minutos = '0'+minutos : 0;
+    time = horas + ':' + minutos;
+
+    var dateTime = date + ' a las ' + time;
 }
 // --------------------------------- FIN TURNOS/CORTE TURNO ---------------------------------

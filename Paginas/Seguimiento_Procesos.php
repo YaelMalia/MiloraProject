@@ -18,15 +18,52 @@
 
     <script>
       window.onload = function(){
+        // $("#modal").hide();
+        document.getElementById("modal").style.display = "none";
         var today = new Date();
         var date = today.toISOString().slice(0,10);
         document.getElementById("p-dia").innerText = "Procesos activos para el día: " + date;
       }
     </script>
-
+    <style>
+      .modalMine{
+        margin:0 auto;
+        border-radius:10px;
+        background-color:#E5E6E6;
+        width:70%;
+        min-height: 500px;
+        position:fixed;
+        z-index:10;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: 0px 0px 24px 0px rgba(0,0,0,0.18);
+        padding:30px;
+      }
+    </style>
 </head>
 <body style="padding-left: 20px; padding-top: 20px; padding-bottom: 20px; padding-right: 20px;">
    
+    <!-- Modal para registro de producción -->
+    <div class="modalMine" id="modal">
+    <h2 style="text-align: center;">Registro de proceso terminado</h2>
+      <div class="row g-2" style="margin-top:10px;">
+        
+        <div class="col-md-12">
+            <label for="" class="form-label">Siguiente proceso:</label>
+            <input type="text" class="form-control" id="" placeholder="Ingresa el siguiente proceso" required>
+        </div>
+
+        <input id="btn-Cancel" onclick="" type="button" class="btn btn-danger col-md-4" value="Cancelar">
+        <div class="col-md-4"></div>    
+        <input onclick="" type="button" class="btn btn-success col-md-4" value="Aceptar">
+
+
+      </div>
+
+    </div>
+    <!-- Fin modal -->
+
     <section class="d-flex justify-content-center"
         style="padding-left: 20px; max-height: 600px; padding-top: 20px; padding-bottom: 20px; padding-right: 20px; background-color: #d2dae6;  border-radius:10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);" >
         <form id ="form_nuevoD" class="row g-4" style="overflow:scroll;">
@@ -66,7 +103,7 @@
                               <td style="background-color:#7EA8ED !important;"><?php echo $fila["No_diseno"];?></td>
                               <td style="background-color:#7EA8ED !important;"><?php echo $fila["Orden_compra"];?></td>
                               <td style="background-color:#7EA8ED !important;"><?php echo $fila["Cantidad"];?></td>
-                              <td style="background-color:#7EA8ED !important;"><input id="btn-check" type="button" class="btn btn-success" value="✅"></td>
+                              <td style="background-color:#7EA8ED !important;"><input onclick="mostrarModal(this);" id="btn-check" type="button" class="btn btn-success" value="✅"></td>
                               <td style="background-color:#7EA8ED !important;"><?php echo $fila["Proceso_actual"];?></td>
                               <td style="background-color:#7EA8ED !important;"><?php echo $fila["Procesos_realizados"];?></td>
                               <td style="background-color:#7EA8ED !important;"><?php echo $fila["Estado_proceso"];?></td>
@@ -107,8 +144,12 @@
                     </tbody>
                   </table>
             </div>
-              
         </form>
     </section>
+   <script>
+    $("#btn-Cancel").click(function(){
+      $("#modal").hide(800);
+    });
+   </script>
 </body>
 </html>
