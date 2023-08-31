@@ -150,7 +150,6 @@
     <script>
 
       window.onload = function(){
-        alertify.alert("¡Correcto!", "Datos validados, bienvenido al panel de control");
         <?php
           if($_SESSION["TipoUser"] != "Admin"){
             ?>

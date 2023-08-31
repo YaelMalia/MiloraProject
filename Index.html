@@ -66,13 +66,16 @@
             // alert(returning);
             if(returning == "check"){
               ACK1 = "checked";
+              
             }else{
               ACK1 = "non-checked";
             }
           }
         });
         if(ACK1 == "checked"){
+          
           // setTimeout( function() { return false; }, 500 );
+          alertify.success("¡Correcto!", "Datos validados, bienvenido al panel de control");
           return true;
         }else{
           alertify.alert("¡Oops!", "No se han podido validar sus datos, intente de nuevo");
