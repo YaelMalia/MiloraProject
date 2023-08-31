@@ -608,15 +608,16 @@ public function Ordenar_Stock(){
 
 // ------------------ PROCESOS ---------------------------------------------- //
 
-public function Agregar_proceso($Norden, $ProcActual, $Cantidad, $Estado_proc, $Proc_restantes, $InicioFH){
+public function Agregar_proceso($Norden, $ProcActual, $Cantidad, $responsable, $Estado_proc, $Proc_restantes, $InicioFH){
     try {
-        $query = $this->dbh->prepare("INSERT INTO procesos_produccion (No_orden, Proceso_actual, Cantidad, Estado_proceso, Procesos_restantes, Inicio_FH) VALUES (?, ?, ?, ?, ?, ?)");
+        $query = $this->dbh->prepare("INSERT INTO procesos_produccion (No_orden, Proceso_actual, Cantidad, Responsable, Estado_proceso, Procesos_restantes, Inicio_FH) VALUES (?, ?, ?, ?, ?, ?, ?)");
         $query->bindParam(1, $Norden);
         $query->bindParam(2, $ProcActual);
         $query->bindParam(3, $Cantidad);
-        $query->bindParam(4, $Estado_proc);
-        $query->bindParam(5, $Proc_restantes);
-        $query->bindParam(6, $InicioFH);
+        $query->bindParam(4, $responsable);
+        $query->bindParam(5, $Estado_proc);
+        $query->bindParam(6, $Proc_restantes);
+        $query->bindParam(7, $InicioFH);
 
         $query->execute();
         return $query->fetchAll();

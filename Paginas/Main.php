@@ -81,40 +81,40 @@
         <a id="Consulta-existencias" class="enlace">Consultar existencias</a>
       </div>
       <!--  -->
-      <button class="dropdown-btn" id="bodega">Bodega
+      <!-- <button class="dropdown-btn" id="bodega">Bodega
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-container">
         <a href="#">Cosas de bodega</a>
-      </div>
+      </div> -->
       <!--  -->
-      <button class="dropdown-btn" id="ingenieria">Ingeniería
+      <!-- <button class="dropdown-btn" id="ingenieria">Ingeniería
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-container">
         <a href="#">Cosas de ingeniería</a>
-      </div>
+      </div> -->
       <!--  -->
-      <button class="dropdown-btn" id="cInterna">Calidad interna
+      <!-- <button class="dropdown-btn" id="cInterna">Calidad interna
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-container">
         <a href="#">Cosas de calidad interna</a>
-      </div>
+      </div> -->
       <!--  -->
-      <button class="dropdown-btn" id="cExterna">Calidad externa
+      <!-- <button class="dropdown-btn" id="cExterna">Calidad externa
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-container">
         <a href="#">Cosas de calidad externa</a>
-      </div>
+      </div> -->
       <!--  -->
-      <button class="dropdown-btn" id="facturacion">Facturación
+      <!-- <button class="dropdown-btn" id="facturacion">Facturación
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-container">
         <a href="#">Cosas de facturación</a>
-      </div>
+      </div> -->
       <!--  -->
       <a class="EndSession" id="EndSession" style="margin-top:95%;">Cerrar Sesión</a>
     </div>

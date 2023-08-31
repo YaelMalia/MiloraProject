@@ -31,7 +31,7 @@
         border-radius:10px;
         background-color:#E5E6E6;
         width:70%;
-        min-height: 500px;
+        min-height: 250px;
         position:fixed;
         z-index:10;
         top: 50%;
@@ -92,6 +92,7 @@
                         <th scope="col">Diseño</th>
                         <th scope="col">Orden de compra</th>
                         <th scope="col">Cantidad</th>
+                        <th scope="col">Responsable</th>
                         <th scope="col">Terminado</th>
                         <th scope="col">Proceso actual</th>
                         <th scope="col">Procesos realizados</th>
@@ -116,6 +117,7 @@
                               <td style="background-color:#7EA8ED !important;"><?php echo $fila["No_diseno"];?></td>
                               <td style="background-color:#7EA8ED !important;"><?php echo $fila["Orden_compra"];?></td>
                               <td style="background-color:#7EA8ED !important;"><?php echo $fila["Cantidad"];?></td>
+                              <td style="background-color:#7EA8ED !important;"><?php echo $fila["Responsable"];?></td>
                               <td style="background-color:#7EA8ED !important;"><input onclick="mostrarModal(this);" id="btn-check" type="button" class="btn btn-success" value="✅"></td>
                               <td style="background-color:#7EA8ED !important;"><?php echo $fila["Proceso_actual"];?></td>
                               <td style="background-color:#7EA8ED !important;"><?php echo $fila["Procesos_realizados"];?></td>
@@ -132,6 +134,7 @@
                               <td style="background-color:#55C736 !important;"><?php echo $fila["No_diseno"];?></td>
                               <td style="background-color:#55C736 !important;"><?php echo $fila["Orden_compra"];?></td>
                               <td style="background-color:#55C736 !important;"><?php echo $fila["Cantidad"];?></td>
+                              <td style="background-color:#55C736 !important;"><?php echo $fila["Responsable"];?></td>
                               <td style="background-color:#55C736 !important;">✅</td>
                               <td style="background-color:#55C736 !important;"><?php echo $fila["Proceso_actual"];?></td>
                               <td style="background-color:#55C736 !important;"><?php echo $fila["Procesos_realizados"];?></td>

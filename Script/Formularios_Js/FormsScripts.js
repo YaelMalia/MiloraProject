@@ -999,6 +999,7 @@ function AgregarProceso(){
                                 data: DatosInsertar,
                                 async: false,
                                 success: function(returningInsert){
+                                    // alert(returningInsert);
                                     if(returningInsert == "si"){
                                         alertify.alert("¡Correcto!", "Proceso iniciado correctamente, verifique la información en el seguimiento de procesos");
                                         $("#P_Diseno")[0].value = "";

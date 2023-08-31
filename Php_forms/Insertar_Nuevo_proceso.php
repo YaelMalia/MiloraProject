@@ -8,9 +8,11 @@
         $InicioFH = $_POST["Inicio"];
 
         try {
+            require_once("../Script/Formularios_Js/Sessions_Php/CheckSession.php");
+            $usuario = $_SESSION["Nombres"].' '.$_SESSION["APaterno"];
             require_once("../conexionBD/Consultas.php");
             $miloraObj = MiloraClass::singleton();
-            $data = $miloraObj->Agregar_proceso($Norden, $ProcActual, $Cantidad, $Estado_proc, $Proc_restantes, $InicioFH);
+            $data = $miloraObj->Agregar_proceso($Norden, $ProcActual, $Cantidad, $usuario, $Estado_proc, $Proc_restantes, $InicioFH);
 
             echo "si";
         } catch (\Throwable $th) {
