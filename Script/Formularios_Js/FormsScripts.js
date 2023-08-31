@@ -565,7 +565,7 @@ function Editar_Orden(){
 
                                         let Restantes;
                                         Restantes = cantidadP - PRealizadasGlobal;
-                                        alert(Restantes);
+                                        // alert(Restantes);
 
                                         P_restantes = {
                                             "NoOrden":NoOrdenGlobal,
@@ -1019,9 +1019,40 @@ function AgregarProceso(){
     }
 }
 
+var P_actualGlobal, P_restantesGlobal, noProceso;
 function mostrarModal(btn){
     $("#modal").show(800);
 
+    document.getElementById("ComboProcesos").innerHTML = "";
+
+    noProceso = btn.parentNode.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.textContent;
+    P_actualGlobal = btn.parentNode.nextElementSibling.textContent;
+    P_restantesGlobal = btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.firstChild.textContent;
+    // alert(noProceso + " : " + P_actualGlobal + " : " + P_restantesGlobal);
+
+    let ArrAuxiliar = P_restantesGlobal.split(',');
+    for (let i = 0; i < ArrAuxiliar.length; i++) {
+        ArrAuxiliar[i] == P_actualGlobal? delete(ArrAuxiliar[i]): 0;
+    }
+    if(ArrAuxiliar.length > 1){
+        P_restantesGlobal = "";
+        ArrAuxiliar.forEach(element => {
+            P_restantesGlobal+=element+",";
+    });
+        P_restantesGlobal = P_restantesGlobal.substring(0, P_restantesGlobal.length - 1);
+        // alert("Fin: " + P_restantesGlobal);
+    }else{
+        P_restantesGlobal = "Ninguno";
+        $("#ComboProcesos").append('<option>'+P_restantesGlobal+'</option>');
+        // alert(P_restantesGlobal);
+    }
+
+    ArrAuxiliar.forEach(elt => {
+        $("#ComboProcesos").append('<option>'+elt+'</option>');
+    });
+}
+
+function Actualizar_Procesos(){
     var today = new Date();
     var date = today.toISOString().slice(0,10);
     var time;
@@ -1032,6 +1063,7 @@ function mostrarModal(btn){
     minutos < 10 ? minutos = '0'+minutos : 0;
     time = horas + ':' + minutos;
 
-    var dateTime = date + ' a las ' + time;
+    var dateTime = date + ' a las ' + time; //Tiempo de termino
+    
 }
 // --------------------------------- FIN TURNOS/CORTE TURNO ---------------------------------

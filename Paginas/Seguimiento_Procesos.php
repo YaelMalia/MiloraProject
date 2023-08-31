@@ -49,10 +49,23 @@
       <h2 style="text-align: center;">Registro de proceso terminado</h2>
       <div class="row g-3" style="margin-top:30px;">
         
-        <div class="col-md-12">
-            <label for="" class="form-label">Siguiente proceso:</label>
-            <input type="text" class="form-control" id="" placeholder="Ingresa el siguiente proceso" required>
-        </div>
+            <div class="col-md-4">
+                <label for="ComboProcesos" class="form-label">Siguiente proceso:</label>
+                <select id="ComboProcesos" class="form-select">
+                    <!-- <option>Si</option>
+                    <option selected>No</option> -->
+                </select>
+            </div>
+
+            <div class="col-md-4">
+                <label for="SigProc" class="form-label">Responsable del siguiente proceso</label>
+                <input type="text" class="form-control" id="SigProc" placeholder="Responsable del siguiente proceso">
+            </div>
+
+            <div class="col-md-4">
+                <label for="CantidadSP" class="form-label">Cantidad de piezas</label>
+                <input type="text" class="form-control" id="CantidadSP" placeholder="Piezas por hacer para el siguiente proceso">
+            </div>
 
         <input id="btn-Cancel" onclick="" type="button" class="btn btn-danger col-md-4" value="Cancelar">
         <div class="col-md-4"></div>    
