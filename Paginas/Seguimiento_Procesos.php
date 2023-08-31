@@ -58,8 +58,8 @@
             </div>
 
             <div class="col-md-4">
-                <label for="SigProc" class="form-label">Responsable del siguiente proceso</label>
-                <input type="text" class="form-control" id="SigProc" placeholder="Responsable del siguiente proceso">
+                <label for="Responsable" class="form-label">Responsable del siguiente proceso</label>
+                <input type="text" class="form-control" id="Responsable" placeholder="Responsable del siguiente proceso">
             </div>
 
             <div class="col-md-4">
@@ -69,7 +69,7 @@
 
         <input id="btn-Cancel" onclick="" type="button" class="btn btn-danger col-md-4" value="Cancelar">
         <div class="col-md-4"></div>    
-        <input onclick="" type="button" class="btn btn-success col-md-4" value="Aceptar">
+        <input onclick="Actualizar_Procesos();" type="button" class="btn btn-success col-md-4" value="Aceptar">
 
 
       </div>

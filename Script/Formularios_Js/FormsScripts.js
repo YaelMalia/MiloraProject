@@ -1020,16 +1020,18 @@ function AgregarProceso(){
     }
 }
 
-var P_actualGlobal, P_restantesGlobal, noProceso;
+var P_actualGlobal, P_restantesGlobal, noProceso, no_DisenoGlobal, orden_compraGlobal, P_realizados;
 function mostrarModal(btn){
     $("#modal").show(800);
 
     document.getElementById("ComboProcesos").innerHTML = "";
 
-    noProceso = btn.parentNode.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.textContent;
+    P_realizados = btn.parentNode.nextElementSibling.nextElementSibling.textContent;
+    no_DisenoGlobal = btn.parentNode.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.textContent;
+    orden_compraGlobal = btn.parentNode.previousElementSibling.previousElementSibling.previousElementSibling.textContent;
+    noProceso = btn.parentNode.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.textContent;
     P_actualGlobal = btn.parentNode.nextElementSibling.textContent;
     P_restantesGlobal = btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.firstChild.textContent;
-    // alert(noProceso + " : " + P_actualGlobal + " : " + P_restantesGlobal);
 
     let ArrAuxiliar = P_restantesGlobal.split(',');
     for (let i = 0; i < ArrAuxiliar.length; i++) {
@@ -1066,5 +1068,18 @@ function Actualizar_Procesos(){
 
     var dateTime = date + ' a las ' + time; //Tiempo de termino
     
+    let sigProceso = $("#ComboProcesos")[0].value;
+    let responsable = $("#Responsable")[0].value;
+    let cantidadProcesoSig = $("#CantidadSP")[0].value;
+    let PReal;
+    P_realizados == "Ninguno"? PReal = "" + P_actualGlobal: PReal=P_realizados + "," + P_actualGlobal;  
+
+    // alert("Proc Realizados:" + PReal);
+    // Continuar xd
+
+    let parametrosActualiza_pAct = {
+        "NoProcesoAct": noProceso,
+    };
+
 }
 // --------------------------------- FIN TURNOS/CORTE TURNO ---------------------------------
