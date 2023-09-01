@@ -16,15 +16,6 @@
     <script src="../Script/jquery.js"></script>
     <script src="../Script/jquery-3.5.1.min.js"></script>
 
-    <script>
-      window.onload = function(){
-        // $("#modal").hide();
-        
-        var today = new Date();
-        var date = today.toISOString().slice(0,10);
-        document.getElementById("p-dia").innerText = "Procesos activos para el día: " + date;
-      }
-    </script>
     <style>
       .modalMine{
         margin:0 auto;
@@ -84,7 +75,7 @@
         style="padding-left: 20px; max-height: 600px; padding-top: 20px; padding-bottom: 20px; padding-right: 20px; background-color: #d2dae6;  border-radius:10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);" >
         <form id ="form_nuevoD" class="row g-4" style="overflow:scroll;">
         <h2 style="text-align: center;">Procesos de producción activos</h2>
-        <center><p id="p-dia" style="font-size:20px;"></p></center>
+        <center><p id="p-dia" style="font-size:20px;">Procesos activos para el día de hoy</p></center>
             <!--  tabla resultante -->
             <!--  -->
             <div class="col-md-4">
