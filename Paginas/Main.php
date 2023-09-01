@@ -19,8 +19,7 @@
     
 </head>
 <body>
-
-
+  
       <header class="headerSuperior">
         <div id="main">
           <button class="openbtn" onclick="openNav()">☰ Áreas</button>  
@@ -148,7 +147,7 @@
     </main>
     
     <script>
-
+      
       window.onload = function(){
         <?php
           if($_SESSION["TipoUser"] != "Admin"){
