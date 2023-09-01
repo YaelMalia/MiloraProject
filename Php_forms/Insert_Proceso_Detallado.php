@@ -1,10 +1,10 @@
 <?php
-    if(){
+    if(isset($_POST["FechaFD"])){
         
         try {
             require_once("../conexionBD/Consultas.php");
             $miloraObj = MiloraClass::singleton();
-            $data = ;
+            //$data = ;
 
             echo "si";
         } catch (\Throwable $th) {
