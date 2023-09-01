@@ -671,6 +671,27 @@ public function Actualiza_ProcesoEstado($NoProceso, $estadoProceso, $Prealizados
         }
 }
 
+public function NuevoProceso_Upd($Norden, $ProcActual, $Cantidad, $responsable, $PrealizadosU, $Estado_proc, $Proc_restantes, $InicioFH){
+    try {
+        $query = $this->dbh->prepare("INSERT INTO procesos_produccion (No_orden, Proceso_actual, Cantidad, Responsable, Procesos_realizados, Estado_proceso, Procesos_restantes, Inicio_FH) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        $query->bindParam(1, $Norden);
+        $query->bindParam(2, $ProcActual);
+        $query->bindParam(3, $Cantidad);
+        $query->bindParam(4, $responsable);
+        $query->bindParam(5, $PrealizadosU);
+        $query->bindParam(6, $Estado_proc);
+        $query->bindParam(7, $Proc_restantes);
+        $query->bindParam(8, $InicioFH);
+
+        $query->execute();
+        return $query->fetchAll();
+        $this->dbh = null;
+    } catch (PDOException $e) {
+        $e->getMessage();
+        echo $e;
+    }
+}
+
 public function GetOrden_P($disenoBus, $ordenBus){
     try {
         $query = $this->dbh->prepare("SELECT ordenes_compras.Numero_orden, piezas.Corte, piezas.Dobles, piezas.Rolado, piezas.Bisel, piezas.Taladro, piezas.Prensa FROM ordenes_compras INNER JOIN piezas on ordenes_compras.No_diseno = piezas.No_diseno WHERE ordenes_compras.No_diseno LIKE ? AND ordenes_compras.Orden_compra LIKE ?;");

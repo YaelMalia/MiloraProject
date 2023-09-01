@@ -1091,6 +1091,7 @@ function mostrarModal(btn) {
 }
 
 function Actualizar_Procesos() {
+
     let SigProceso = $("#ComboProcesos")[0].value;
     let Responsable = $("#Responsable")[0].value;
     let CantidadSP = $("#CantidadSP")[0].value;
@@ -1117,9 +1118,6 @@ function Actualizar_Procesos() {
 
                 var dateTime = date + ' a las ' + time; //Tiempo de termino
 
-                let sigProceso = $("#ComboProcesos")[0].value;
-                let responsable = $("#Responsable")[0].value;
-                let cantidadProcesoSig = $("#CantidadSP")[0].value;
                 let PReal;
                 P_realizados == "Ninguno" ? PReal = "" + P_actualGlobal : PReal = P_realizados + "," + P_actualGlobal;
 
@@ -1144,9 +1142,41 @@ function Actualizar_Procesos() {
                         if (returnUpdate.includes("Warning") || returnUpdate == "No") {
                             alertify.alert("Error", "Se ha producido un error, revise su conexión a internet");
                         } else {
-                            alertify.success("Proceso actualizado");
-                            Refresh();
-                            $("#modal").hide(800);
+                            
+                            if(P_restantesGlobal == "Ninguno"){
+                                alertify.alert("Aviso", "Este proceso ha completado todos sus procesos y está listo para entrar a almacén");
+                                alertify.success("Proceso actualizado");
+                                Refresh();
+                                $("#modal").hide(800);
+                            }else{
+                                // Insertar nuevo proceso
+                                let parametrosNP = {
+                                    "NoOrden": Norden_compraGlobal,
+                                    "Pactual": SigProceso,
+                                    "CantidadSP": CantidadSP,
+                                    "Responsable": Responsable,
+                                    "PRealizados": PReal,
+                                    "Estado_proceso": "En progreso..",
+                                    "PRestantes": P_restantesGlobal,
+                                    "InicioFH": dateTime
+                                };
+                                $.ajax({
+                                    type: 'POST',
+                                    url: '../Php_forms/Push_Proceso_Actualizar.php',
+                                    data: parametrosNP,
+                                    async: false,
+                                    success: function (returnNP) {
+                                        if(returnNP.includes("No")){
+                                            alertify.error("Se ha producido un error al agregar el seguimiento del proceso");
+                                        }else{
+                                            alertify.success("Proceso actualizado");
+                                            Refresh();
+                                            $("#modal").hide(800);
+                                        }           
+                                    }
+                                });
+                               
+                            }
                         }
                     }
                 });
