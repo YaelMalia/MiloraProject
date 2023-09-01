@@ -628,6 +628,18 @@ public function Agregar_proceso($Norden, $ProcActual, $Cantidad, $responsable, $
     }
 }
 
+public function Get_noOrdenProc($noProc){
+    try {
+        $query = $this->dbh->prepare("SELECT No_orden FROM procesos_produccion WHERE no_proceso LIKE ?;");
+        $query->bindParam(1, $noProc);
+        $query->execute();
+        return $query->fetchAll();
+        $this->dbh = null;
+    } catch (PDOException $e) {
+        $e->getMessage();
+    }
+}
+
 public function GetProcesos(){
     try {
         $query = $this->dbh->prepare("SELECT * FROM procesos_produccion INNER JOIN ordenes_compras ON procesos_produccion.No_orden = ordenes_compras.Numero_orden WHERE Inicio_FH LIKE CONCAT('%', CURRENT_DATE, '%') ORDER BY Estado_proceso DESC;");
@@ -637,6 +649,26 @@ public function GetProcesos(){
     } catch (PDOException $e) {
         $e->getMessage();
     }
+}
+
+public function Actualiza_ProcesoEstado($NoProceso, $estadoProceso, $Prealizados, $Prestantes, $TerminoFH){
+    try {
+        $cerrado = "Cerrada";
+        $query = $this->dbh->prepare("UPDATE procesos_produccion SET Estado_proceso=?, Procesos_realizados=?, Procesos_restantes=?, Termino_FH=? WHERE no_proceso LIKE ?;");
+        $query->bindParam(1, $estadoProceso);
+        $query->bindParam(2, $Prealizados);
+        $query->bindParam(3, $Prestantes);
+        $query->bindParam(4, $TerminoFH);
+        $query->bindParam(5, $NoProceso);
+
+        $query->execute();
+        return $query->fetchAll();
+        $this->dbh = null;
+
+        } catch (\Throwable $th) {
+            $e->getMessage();
+            echo $e;
+        }
 }
 
 public function GetOrden_P($disenoBus, $ordenBus){

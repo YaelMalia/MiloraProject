@@ -271,6 +271,14 @@ $("#Nuevo-CorteT").click(function(){
   enlaces.setAttribute('color', 'rgb(129, 129, 129)');
 });
 
+$("#Nuevo-proceso").click(function(){  
+  document.getElementById("ControlCentral").innerHTML="";
+  $("#ControlCentral").load("Inicio_corte.html");
+  closeNav();
+  const enlaces = document.getElementsByClassName("enlace");
+  enlaces.setAttribute('color', 'rgb(129, 129, 129)');
+});
+
 // --------------------- EDITAR
 $("#Editar-diseno").click(function(){
   document.getElementById("ControlCentral").innerHTML="";
@@ -332,6 +340,14 @@ $("#Consulta-existencias").click(function(){
   enlaces.setAttribute('color', 'rgb(129, 129, 129)');
 });
 
+
+$("#Seguimiento-Procesos").click(function(){  
+  document.getElementById("ControlCentral").innerHTML="";
+  $("#ControlCentral").load("Seguimiento_Procesos.php");
+  closeNav();
+  const enlaces = document.getElementsByClassName("enlace");
+  enlaces.setAttribute('color', 'rgb(129, 129, 129)');
+});
 // ------------------------------------------------------------- END DROPDOWN CONTAINTERS---------------
 
 $("#EndSession").click(function(){

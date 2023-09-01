@@ -19,7 +19,7 @@
     <script>
       window.onload = function(){
         // $("#modal").hide();
-        document.getElementById("modal").style.display = "none";
+        
         var today = new Date();
         var date = today.toISOString().slice(0,10);
         document.getElementById("p-dia").innerText = "Procesos activos para el día: " + date;
@@ -39,10 +39,13 @@
         transform: translate(-50%, -50%);
         box-shadow: 0px 0px 24px 0px rgba(0,0,0,0.18);
         padding:30px;
+        display:none;
       }
+
+      
     </style>
 </head>
-<body style="padding-left: 20px; padding-top: 20px; padding-bottom: 20px; padding-right: 20px;">
+<body id="cuerpoP" style="padding-left: 20px; padding-top: 20px; padding-bottom: 20px; padding-right: 20px; ">
    
     <!-- Modal para registro de producción -->
     <div class="modalMine" id="modal">
@@ -77,13 +80,19 @@
     </div>
     <!-- Fin modal -->
 
-    <section class="d-flex justify-content-center"
+    <section id="DetrasP" class="d-flex justify-content-center"
         style="padding-left: 20px; max-height: 600px; padding-top: 20px; padding-bottom: 20px; padding-right: 20px; background-color: #d2dae6;  border-radius:10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);" >
         <form id ="form_nuevoD" class="row g-4" style="overflow:scroll;">
         <h2 style="text-align: center;">Procesos de producción activos</h2>
         <center><p id="p-dia" style="font-size:20px;"></p></center>
             <!--  tabla resultante -->
-          
+            <!--  -->
+            <div class="col-md-4">
+                    <div class="col-4" style="align-text:center">
+                        <input onclick="Refresh();" type="button" class="btn btn-primary" style="margin:0 auto; display:flex; min-width:140px; justify-content:center;" value="Recargar">
+                    </div>
+                </div>
+                <!--  -->
             <div class="table-responsive" id="tableResult">
                 <table class="table" id="TablaInfo" style="text-align: center; box-shadow: 0px 0px 24px 0px rgba(0,0,0,0.18); background-color: #d2dae6; ">
                     <thead id="headTable" style="background-color: #adbdd3; ">
@@ -165,6 +174,8 @@
    <script>
     $("#btn-Cancel").click(function(){
       $("#modal").hide(800);
+      document.getElementById("DetrasP").style.filter = "blur(0) grayscale(0%)";
+      document.getElementById("DetrasP").style.pointerEvents = "auto";
     });
    </script>
 </body>
