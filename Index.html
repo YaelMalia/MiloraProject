@@ -1,59 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="Estilos/login.css">
-  <script src="Script/login.js"></script>
-  <!-- Alertify -->
-  <script src="alertify/alertify.js"></script>
-  <link rel="stylesheet" href="alertify/alertify.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="Estilos/login.css">
+    <script src="Script/login.js"></script>
+    <!-- Alertify -->
+    <script src="alertify/alertify.js"></script>
+    <link rel="stylesheet" href="alertify/alertify.css">
 
-  <!-- JQuery Libs -->
-  <script src="Script/jquery.js"></script>
-  <script src="Script/jquery-3.5.1.min.js"></script>
+    <!-- JQuery Libs -->
+    <script src="Script/jquery.js"></script>
+    <script src="Script/jquery-3.5.1.min.js"></script>
 
-  <title>Login</title>
+    <title>Login</title>
 </head>
-
 <body>
   <div class="container">
     <!-- IZQ -->
     <div class="izquierda" id="izquierda">
-      <h2 class="iSesion">Iniciar Sesión</h2>
+        <h2 class="iSesion">Iniciar Sesión</h2>
       <form action="Paginas/Main.php" method="post" style="max-height: max-content;">
         <label for="username">Usuario:</label><br>
         <input class="inputs" type="text" id="username" name="username" required><br><br>
-
+      
         <label for="password">Contraseña:</label><br>
         <input class="inputs" type="password" id="password" name="password" required><br><br>
-        <label class="show-password">
-        </label><br><br>
-        <button class="btnS" type="submit" onclick="return ValidarDatosLogin();">Iniciar Sesión</button>
+          <label class="show-password">
+          </label><br><br>  
+          <button class="btnS" type="submit" onclick="return ValidarDatosLogin();">Iniciar Sesión</button>
       </form>
     </div>
     <!-- Separación -->
     <!-- DER -->
     <div class="imagenDerecha" id="imagenDerecha">
-      <img class="Logo" id="Logo" src="Images/LogoMilora.png" width="250" height="250" alt="" srcset=""
-        style="margin: 0 auto;">
-      <h3 class="textoDer" style="margin-top:25px; color: rgb(51, 51, 51);">Control de gestión general | 2023 ©</h3>
+      <img class="Logo" id="Logo" src="Images/LogoMilora.png" width="250" height="250" alt="" srcset="" style="margin: 0 auto;">
+      <h3 class="textoDer" style="margin-top:25px; color: rgb(51, 51, 51);">Control de gestión general  |  2023 ©</h3>
     </div>
-
+    
   </div>
-</body>
-<script>
-  function ValidarDatosLogin() {
+  </body>
+  <script>
+    function ValidarDatosLogin(){
     let usuario = $("#username")[0].value;
     let password = $("#password")[0].value;
-    if (usuario == "" || usuario == null) {
+    if(usuario == "" || usuario == null){
       alertify.alert("El usuario ingresado tiene un formato erróneo o está vacío, intente de nuevo");
-    } else {
-      if (password == "" || password == null) {
-        alertify.alert("La contraseña está vacía, intente de nuevo");
-        return false;
-      } else {
+    }else{
+      if(password == "" || password == null){
+      alertify.alert("La contraseña está vacía, intente de nuevo");
+      return false;
+      }else{
         // Valida datos
         let datosLogin = {
           "user": usuario,
@@ -65,28 +62,24 @@
           url: 'Script/Formularios_Js/Sessions_Php/ValidarDatos.php',
           data: datosLogin,
           async: false,
-          success: function (returning) {
+          success: function(returning){
             // alert(returning);
-            if (returning == "check") {
+            if(returning == "check"){
               ACK1 = "checked";
-
-            } else {
+            }else{
               ACK1 = "non-checked";
             }
           }
         });
-        if (ACK1 == "checked") {
-
+        if(ACK1 == "checked"){
           // setTimeout( function() { return false; }, 500 );
-          alertify.alert("El usuario ingresado tiene un formato erróneo o está vacío, intente de nuevo");
           return true;
-        } else {
+        }else{
           alertify.alert("¡Oops!", "No se han podido validar sus datos, intente de nuevo");
           return false;
         }
       }
     }
   }
-</script>
-
+  </script>
 </html>

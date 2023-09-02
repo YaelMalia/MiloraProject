@@ -944,7 +944,6 @@ function AgregarProceso() {
     let P_diseno = $("#P_Diseno")[0].value;
     let P_orden = $("#P_orden")[0].value;
     let cantidadProd = $("#P_cantidad")[0].value;
-
     if (P_diseno == null || P_diseno == "") {
         alertify.alert("Aviso", "No se ha ingresado un diseño");
     } else {
@@ -969,11 +968,16 @@ function AgregarProceso() {
                         if (returning == "Nada") {
                             alertify.alert("Error", "No se encontraron para la orden de compra y diseño ingresado, revise su información");
                         } else {
-                            var today = new Date();
+                            var fechaUTC = new Date();
+                            const desplazamientoUTC6 = -6 * 60;
+                            let today = new Date(fechaUTC.getTime() + (desplazamientoUTC6 * 60000));
+
+                            // alert(today);
+
                             var date = today.toISOString().slice(0, 10);
                             var time;
 
-                            var horas = today.getHours();
+                            var horas = today.getHours()+6;
                             horas < 10 ? horas = '0' + horas : 0;
                             var minutos = today.getMinutes();
                             minutos < 10 ? minutos = '0' + minutos : 0;
@@ -1106,11 +1110,16 @@ function Actualizar_Procesos() {
                 alertify.alert("Error", "No se ha ingresado la cantidad de piezas para el siguiente proceso o es incorrecta");
             } else {
                 //Todo correcto uwu
-                var today = new Date();
+                var fechaUTC = new Date();
+                const desplazamientoUTC6 = -6 * 60;
+                let today = new Date(fechaUTC.getTime() + (desplazamientoUTC6 * 60000));
+
+                // alert(today);
+
                 var date = today.toISOString().slice(0, 10);
                 var time;
 
-                var horas = today.getHours();
+                var horas = today.getHours()+6;
                 horas < 10 ? horas = '0' + horas : 0;
                 var minutos = today.getMinutes();
                 minutos < 10 ? minutos = '0' + minutos : 0;
