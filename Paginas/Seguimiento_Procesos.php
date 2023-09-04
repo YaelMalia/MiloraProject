@@ -41,8 +41,8 @@
     <!-- Modal para registro de producción -->
     <div class="modalMine" id="modal">
       <h2 style="text-align: center;">Registro de proceso terminado</h2>
+      <p style="text-align: center;">(En caso que el siguiente proceso sea "ninguno", ingresar almacén como el siguiente responsable y la cantidad de piezas)</p>
       <div class="row g-3" style="margin-top:30px;">
-        
             <div class="col-md-4">
                 <label for="ComboProcesos" class="form-label">Siguiente proceso:</label>
                 <select id="ComboProcesos" class="form-select">
