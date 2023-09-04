@@ -37,8 +37,9 @@
       <div class="dropdown-container">
         <a id="Nuevo-CorteT" class="enlace">Realizar reporte de corte</a>
         <a id="Consultar-corte" class="enlace">Consultar corte</a>
+        <a id="Detalladas" class="enlace">Proceso detallado</a>
         <a id="" class="enlace">Reporte de corte (Lohr)</a>
-        <a id="" class="enlace">consultar corte (Lohr)</a>
+        <a id="" class="enlace">Consultar corte (Lohr)</a>
       </div>
       <!--  -->
       <button class="dropdown-btn Prod-Nav">Procesos
@@ -79,7 +80,6 @@
         <a id="Consulta-salida" class="enlace">Consultar salidas</a>
         <a id="Consulta-existencias" class="enlace">Consultar existencias</a>
       </div>
-      <!--  -->
       <!-- <button class="dropdown-btn" id="bodega">Bodega
         <i class="fa fa-caret-down"></i>
       </button>
@@ -114,7 +114,6 @@
       <div class="dropdown-container">
         <a href="#">Cosas de facturación</a>
       </div> -->
-      <!--  -->
       <a class="EndSession" id="EndSession" style="margin-top:95%;">Cerrar Sesión</a>
     </div>
     
@@ -273,6 +272,14 @@ $("#Nuevo-CorteT").click(function(){
 $("#Nuevo-proceso").click(function(){  
   document.getElementById("ControlCentral").innerHTML="";
   $("#ControlCentral").load("Inicio_corte.html");
+  closeNav();
+  const enlaces = document.getElementsByClassName("enlace");
+  enlaces.setAttribute('color', 'rgb(129, 129, 129)');
+});
+
+$("#Detalladas").click(function(){  
+  document.getElementById("ControlCentral").innerHTML="";
+  $("#ControlCentral").load("Formulario_Detallado.html");
   closeNav();
   const enlaces = document.getElementsByClassName("enlace");
   enlaces.setAttribute('color', 'rgb(129, 129, 129)');
