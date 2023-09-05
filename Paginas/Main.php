@@ -81,12 +81,12 @@
         <a id="Consulta-salida" class="enlace">Consultar salidas</a>
         <a id="Consulta-existencias" class="enlace">Consultar existencias</a>
       </div>
-      <!-- <button class="dropdown-btn" id="bodega">Bodega
+      <button class="dropdown-btn" id="bodega">Bodega
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-container">
-        <a href="#">Cosas de bodega</a>
-      </div> -->
+        <a id="Inventario" class="enlace">Cosas de bodega</a>
+      </div>
       <!--  -->
       <!-- <button class="dropdown-btn" id="ingenieria">Ingeniería
         <i class="fa fa-caret-down"></i>
@@ -281,6 +281,14 @@ $("#Nuevo-proceso").click(function(){
 $("#Detalladas").click(function(){  
   document.getElementById("ControlCentral").innerHTML="";
   $("#ControlCentral").load("Formulario_Detallado.html");
+  closeNav();
+  const enlaces = document.getElementsByClassName("enlace");
+  enlaces.setAttribute('color', 'rgb(129, 129, 129)');
+});
+
+$("#Inventario").click(function(){  
+  document.getElementById("ControlCentral").innerHTML="";
+  $("#ControlCentral").load("../Paginas_insumos/Formulario_Inventario_insumos.html");
   closeNav();
   const enlaces = document.getElementsByClassName("enlace");
   enlaces.setAttribute('color', 'rgb(129, 129, 129)');
