@@ -40,6 +40,7 @@ function nueva_Pieza() {
                         type: 'POST',
                         url: '../Php_forms/Insert_Pieza.php',
                         data: parametros,
+                        async: false,
                         success: function (returning) {
                             if (returning == "si") {
                                 // alertify.success('Pieza agregada');
@@ -77,6 +78,7 @@ function buscar_Pieza() {
             type: 'POST',
             url: '../Php_forms/Select_Pieza.php',
             data: parametros,
+            async: false,
             success: function (returning) {
                 if (returning != "no") {
                     var ArrayDatos = returning.split(',');
@@ -130,6 +132,7 @@ function busqueda_Filtrada_Piezas(Seleccion) {
         type: 'POST',
         url: '../Php_forms/Get_Piezas.php',
         data: parametros,
+        async: false,
         success: function (returning) {
             if (returning != "No") {
                 $("#cuerpoTabla")[0].value = "";
@@ -184,6 +187,7 @@ function actualizar_Pieza() {
                         type: 'POST',
                         url: '../Php_forms/Update_Pieza.php',
                         data: parametros,
+                        async: false,
                         success: function (returning) {
                             if (returning == "si") {
                                 alertify.alert("¡Exito!", "El modelo o pieza se ha modificado con éxito");
@@ -331,6 +335,7 @@ function OrdenesResFull(Seleccion) {
             type: 'POST',
             url: '../Php_forms/Get_Ordenes.php',
             data: parametros,
+            async: false,
             success: function (returning) {
                 if (Seleccion == "Resumida") {
                     $("#Head_completa").hide();
@@ -375,6 +380,7 @@ function OrdenesResFull(Seleccion) {
                             type: 'POST',
                             url: '../Php_forms/Get_Ordenes_Filtrado.php',
                             data: parametros,
+                            async: false,
                             success: function (returning) {
                                 // alert(returning);
                                 if (Seleccion == "Resumida") {
@@ -410,6 +416,7 @@ function OrdenesResFull(Seleccion) {
                     type: 'POST',
                     url: '../Php_forms/Get_Ordenes_Filtrado.php',
                     data: parametros,
+                    async: false,
                     success: function (returning) {
                         // alert(returning);
                         if (Seleccion == "Resumida") {
@@ -459,6 +466,7 @@ function Buscar_Orden_Filtro() {
                 type: 'POST',
                 url: '../Php_forms/Search_Orden_Editar.php',
                 data: parametros,
+                async: false,
                 success: function (returning) {
 
                     if (returning != "no") {
@@ -1193,5 +1201,38 @@ function Actualizar_Procesos() {
         }
     }
 
+}
+
+function BuscarProceso(){
+    
+    let Diseno = $("#BP_Diseno")[0].value;
+    let Orden = $("#BP_orden")[0].value;
+    let Fecha = $("#FechaProc")[0].value;
+
+    let parametros = {
+        "where": 1,
+        "DisenoBuscar": Diseno,
+        "OrdenBuscar": Orden,
+        "FechaProc": Fecha
+    };
+
+    $.ajax({
+        type: 'POST',
+        url: '../Php_forms/Filtrar_Procesos.php',
+        data: parametros,
+        async: false,
+        success: function (returning) {
+            if(returning.includes("En progreso..") || returning.includes("Terminado")){
+                $("#cuerpoTabla")[0].value = "";
+                document.getElementById("cuerpoTabla").innerHTML = returning;
+            }else{
+                if(returning == "Nada"){
+                    alertify.alert("¡Oops!", "No se han podido recuperar datos con la información ingresada");
+                }else{
+                    alertify.alert("Error", "Se ha producido un error, revise su conexión");
+                }
+            }
+        }
+    });
 }
 // --------------------------------- FIN TURNOS/CORTE TURNO ---------------------------------
