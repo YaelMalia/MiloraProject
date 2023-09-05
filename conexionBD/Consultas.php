@@ -651,6 +651,58 @@ public function GetProcesos(){
     }
 }
 
+public function GetAllProcesos(){
+    try {
+        $query = $this->dbh->prepare("SELECT * FROM procesos_produccion INNER JOIN ordenes_compras ON procesos_produccion.No_orden = ordenes_compras.Numero_orden;");
+        $query->execute();
+        return $query->fetchAll();
+        $this->dbh = null;
+    } catch (PDOException $e) {
+        $e->getMessage();
+    }
+}
+
+public function Filtrar_Proceso($DisenoBuscar, $OrdenBuscar, $FechaProceso){
+    try {
+        if($DisenoBuscar == "" && $OrdenBuscar == "" && $FechaProceso == ""){
+            $query = $this->dbh->prepare("SELECT * FROM procesos_produccion INNER JOIN ordenes_compras ON procesos_produccion.No_orden = ordenes_compras.Numero_orden;");
+        }else{
+            if($DisenoBuscar!="" && $OrdenBuscar == "" && $FechaProceso == ""){
+                $query = $this->dbh->prepare("SELECT * FROM procesos_produccion INNER JOIN ordenes_compras ON procesos_produccion.No_orden = ordenes_compras.Numero_orden WHERE ordenes_compras.No_diseno LIKE ?");
+                $query->bindParam(1, $DisenoBuscar);
+            }if($DisenoBuscar!="" && $OrdenBuscar!="" && $FechaProceso ==""){
+                $query = $this->dbh->prepare("SELECT * FROM procesos_produccion INNER JOIN ordenes_compras ON procesos_produccion.No_orden = ordenes_compras.Numero_orden WHERE ordenes_compras.No_diseno LIKE ? AND ordenes_compras.Orden_compra LIKE ?");
+                $query->bindParam(1, $DisenoBuscar);
+                $query->bindParam(2, $OrdenBuscar);
+            }if($DisenoBuscar!="" && $OrdenBuscar!="" && $FechaProceso!=""){
+                $query = $this->dbh->prepare("SELECT * FROM procesos_produccion INNER JOIN ordenes_compras ON procesos_produccion.No_orden = ordenes_compras.Numero_orden WHERE ordenes_compras.No_diseno LIKE ? AND ordenes_compras.Orden_compra LIKE ? AND procesos_produccion.Inicio_FH LIKE '%$FechaProceso%'");
+                $query->bindParam(1, $DisenoBuscar);
+                $query->bindParam(2, $OrdenBuscar);
+                // $query->bindParam(3, $FechaProceso);
+            }if($DisenoBuscar == "" && $OrdenBuscar!="" && $FechaProceso == ""){
+                $query = $this->dbh->prepare("SELECT * FROM procesos_produccion INNER JOIN ordenes_compras ON procesos_produccion.No_orden = ordenes_compras.Numero_orden WHERE ordenes_compras.Orden_compra LIKE ?");
+                $query->bindParam(1, $OrdenBuscar);
+            }if($DisenoBuscar == "" && $OrdenBuscar!="" && $FechaProceso!=""){
+                $query = $this->dbh->prepare("SELECT * FROM procesos_produccion INNER JOIN ordenes_compras ON procesos_produccion.No_orden = ordenes_compras.Numero_orden WHERE ordenes_compras.Orden_compra LIKE ? AND procesos_produccion.Inicio_FH LIKE '%$FechaProceso%'");
+                $query->bindParam(1, $OrdenBuscar);
+                // $query->bindParam(2, $FechaProceso);
+            }if($DisenoBuscar == "" && $OrdenBuscar == "" && $FechaProceso!=""){
+                $query = $this->dbh->prepare("SELECT * FROM procesos_produccion INNER JOIN ordenes_compras ON procesos_produccion.No_orden = ordenes_compras.Numero_orden WHERE procesos_produccion.Inicio_FH LIKE '%$FechaProceso%' ");
+                // $query->bindParam(1, $FechaProceso);
+            }if($DisenoBuscar!="" && $OrdenBuscar == "" && $FechaProceso!=""){
+                $query = $this->dbh->prepare("SELECT * FROM procesos_produccion INNER JOIN ordenes_compras ON procesos_produccion.No_orden = ordenes_compras.Numero_orden WHERE ordenes_compras.No_diseno LIKE ? AND procesos_produccion.Inicio_FH LIKE '%$FechaProceso%'");
+                $query->bindParam(1, $DisenoBuscar);
+                // $query->bindParam(2, $FechaProceso);
+            }
+        }
+        $query->execute();
+        return $query->fetchAll();
+        $this->dbh = null;
+    } catch (PDOException $e) {
+        $e->getMessage();
+    }   
+}
+
 public function Actualiza_ProcesoEstado($NoProceso, $estadoProceso, $Prealizados, $Prestantes, $TerminoFH){
     try {
         $cerrado = "Cerrada";

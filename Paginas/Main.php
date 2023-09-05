@@ -381,6 +381,16 @@ $("#Seguimiento-Procesos").click(function(){
   const enlaces = document.getElementsByClassName("enlace");
   enlaces.setAttribute('color', 'rgb(129, 129, 129)');
 });
+
+
+$("#Consulta-procesos").click(function(){  
+  document.getElementById("ControlCentral").innerHTML="";
+  $("#ControlCentral").load("Historial_Procesos.php");
+  closeNav();
+  const enlaces = document.getElementsByClassName("enlace");
+  enlaces.setAttribute('color', 'rgb(129, 129, 129)');
+});
+
 // ------------------------------------------------------------- END DROPDOWN CONTAINTERS---------------
 
 $("#EndSession").click(function(){
