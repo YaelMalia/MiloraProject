@@ -81,12 +81,14 @@
         <a id="Consulta-salida" class="enlace">Consultar salidas</a>
         <a id="Consulta-existencias" class="enlace">Consultar existencias</a>
       </div>
-      <!-- <button class="dropdown-btn" id="bodega">Bodega
+      <button class="dropdown-btn" id="bodega">Bodega
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-container">
-        <a href="#">Cosas de bodega</a>
-      </div> -->
+        <a id="Inventario-Insumo" class="enlace">Inventario</a>
+        <a id="Entrada-Insumo" class="enlace">Entradas de insumo</a>
+        <a id="Salida-Insumo" class="enlace">Salidas de insumo</a>
+      </div>
       <!--  -->
       <!-- <button class="dropdown-btn" id="ingenieria">Ingeniería
         <i class="fa fa-caret-down"></i>
@@ -227,9 +229,9 @@ for (i = 0; i < dropdown.length; i++) {
     }
   });
 }
-// ------------------------------------------------------------- DROPDOWN CONTAINTERS---------------
+// -------------------------------- DROPDOWN CONTAINTERS--------------------------------
 
-// ------------------- NUEVOS
+// -------------------------------- NUEVOS
 $("#Nueva-orden").click(function(){
   document.getElementById("ControlCentral").innerHTML="";
   $("#ControlCentral").load("Formulario_Orden.html");
@@ -286,7 +288,31 @@ $("#Detalladas").click(function(){
   enlaces.setAttribute('color', 'rgb(129, 129, 129)');
 });
 
-// --------------------- EDITAR
+$("#Inventario-Insumo").click(function(){  
+  document.getElementById("ControlCentral").innerHTML="";
+  $("#ControlCentral").load("../Paginas_insumos/Formulario_Inventario_insumos.html");
+  closeNav();
+  const enlaces = document.getElementsByClassName("enlace");
+  enlaces.setAttribute('color', 'rgb(129, 129, 129)');
+});
+
+$("#Entrada-Insumo").click(function(){  
+  document.getElementById("ControlCentral").innerHTML="";
+  $("#ControlCentral").load("../Paginas_insumos/Formulario_Entrada_insumos.html");
+  closeNav();
+  const enlaces = document.getElementsByClassName("enlace");
+  enlaces.setAttribute('color', 'rgb(129, 129, 129)');
+});
+
+$("#Salida-Insumo").click(function(){  
+  document.getElementById("ControlCentral").innerHTML="";
+  $("#ControlCentral").load("../Paginas_insumos/Formulario_Salida_insumos.html");
+  closeNav();
+  const enlaces = document.getElementsByClassName("enlace");
+  enlaces.setAttribute('color', 'rgb(129, 129, 129)');
+});
+
+// -------------------------------- EDITAR
 $("#Editar-diseno").click(function(){
   document.getElementById("ControlCentral").innerHTML="";
   $("#ControlCentral").load("Formulario_Diseños_Editar.html");
