@@ -17,29 +17,24 @@
         background-color: #d2dae6;  border-radius:10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);">
         <form id="form_nuevoD" class="row g-4">
             <h2 style="text-align: center;">Almacen chiquito</h2>
-            <div class="col-md-3">
-                <label for="TurnoFD" class="form-label">Turno</label>
-                <select id="TurnoFD" class="form-select">
-                    <option selected>Matutino</option>
-                    <option>Nocturno</option>
-                </select>
+            <div class="col-md-4">
+                <label for="IdentificadorIn" class="form-label">Identificador de insumo</label>
+                <input type="text" class="form-control" id="IdentificadorIn" required>
             </div>
-            <div class="col-md-3">
-                <label for="FechaFD" class="form-label">Fecha de ingreso</label>
-                <input type="date" class="form-control" id="FechaFD" required>
+            <div class="col-md-4">
+                <label for="NombreIn" class="form-label">Nombre de insumo</label>
+                <input type="text" class="form-control" id="NombreIn" required>
             </div>
-            <div class="col-md-3">
-                <label for="FechaFD" class="form-label">Fecha de ingreso</label>
-                <input type="date" class="form-control" id="FechaFD" required>
+            <div class="col-md-4">
+                <label for="DescripcionIn" class="form-label">Fecha de ingreso</label>
+                <input type="text" class="form-control" id="DescripcionIn" required>
             </div>
-            <div class="col-md-3">
-                <label for="FechaFD" class="form-label">Fecha de ingreso</label>
-                <input type="date" class="form-control" id="FechaFD" required>
+            <div class="col-4"></div>
+            <div class="col-4" >
+                <input  onclick=""  type="button" class="btn btn-primary col-12" style="height: 50px;
+                min-height: auto; font-size: auto;" value="Agregar nuevo insumo">
             </div>
-            <div class="col-md-3">
-                <label for="FechaFD" class="form-label">Fecha de ingreso</label>
-                <input type="date" class="form-control" id="FechaFD" required>
-            </div>
+            <div class="col-4"></div>
         </form>
     </section>
 </body>
