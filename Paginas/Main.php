@@ -85,9 +85,9 @@
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-container">
-        <a id="Inventario-Insumo" class="enlace">Cosas de bodega</a>
-        <a id="Entrada-Insumo" class="enlace">Cosas de bodega</a>
-        <a id="Salida-Insumo" class="enlace">Cosas de bodega</a>
+        <a id="Inventario-Insumo" class="enlace">Inventario</a>
+        <a id="Entrada-Insumo" class="enlace">Entradas de insumo</a>
+        <a id="Salida-Insumo" class="enlace">Salidas de insumo</a>
       </div>
       <!--  -->
       <!-- <button class="dropdown-btn" id="ingenieria">Ingeniería
