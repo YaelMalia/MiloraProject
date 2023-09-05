@@ -46,8 +46,9 @@
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-container">
-        <a id="Nuevo-proceso" class="enlace">Iniciar proceso de corte</a>
-        <a id="Seguimiento-Procesos" class="enlace">Seguimiento de procesos</a>
+        <a id="Nuevo-proceso" class="enlace">Inicio de procesos</a>
+        <a id="Seguimiento-Procesos" class="enlace">Procesos activos</a>
+        <a id="Consulta-procesos" class="enlace">Historial de procesos</a>
       </div>
       <!--  -->
       <button class="dropdown-btn Prod-Nav">Diseños/piezas
