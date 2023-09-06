@@ -1161,7 +1161,7 @@ function Actualizar_Procesos() {
                         } else {
                             
                             if(P_restantesGlobal == "Ninguno"){
-                                alertify.alert("Aviso", "Este proceso ha completado todos sus procesos y está listo para entrar a almacén");
+                                alertify.alert("Aviso", "Esta pieza ha completado todos sus procesos y está lista para entrar a almacén");
                                 alertify.success("Proceso actualizado");
                                 Refresh();
                                 $("#modal").hide(800);
