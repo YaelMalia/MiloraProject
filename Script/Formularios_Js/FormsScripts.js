@@ -947,7 +947,7 @@ function Insert_Turno() {
                                                 alertify.alert("Error", "La cantidad de piezas para la orden no puede ser menor a cero");
                                             } else {
                                                 if (Orden_de_compraT == null || Orden_de_compraT == "") {
-                                                    alertify.alert("Error", "");
+                                                    alertify.alert("Error", "No se ah llenado el campo de orden de compra/proyecto");
                                                 } else {
                                                     if (HorasT <= 0 || HorasT == null || HorasT == "") {
                                                         alertify.alert("Error", "Las horas ingresadas tienen que ser mayo a cero");
