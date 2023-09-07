@@ -30,7 +30,7 @@ class MiloraClass
     }
 
 /*Consultas*/
-public function CheckLogin($usuario, $pass){
+    public function CheckLogin($usuario, $pass){
     try {
         $query = $this->dbh->prepare("SELECT * FROM usuarios WHERE usuario LIKE ? AND pass LIKE ?");
         $query->bindParam(1, $usuario);
@@ -41,7 +41,7 @@ public function CheckLogin($usuario, $pass){
     } catch (PDOException $e) {
         $e->getMessage();
     }
-}
+    }
 
     public function insertOrden($FechaI, $FechaF, $OrdenCompra, $Cliente, $NoPieza, $CantidadPieza){
         try {
@@ -138,7 +138,7 @@ public function CheckLogin($usuario, $pass){
             $e->getMessage();
         }
     }
-    // ------------------- ORDENES DE COMPRA --------------------------------------------------------
+    // -------------------------------- ORDENES DE COMPRA --------------------------------
     public function insert_orden($fechaInicio, $fechaLimite, $Orden, $Cliente, $No_Dis, $CantidadP){
         try {
             $query = $this->dbh->prepare("INSERT INTO ordenes_compras (Fecha_realizacion, Fecha_limite, Orden_compra, No_diseno, Piezas_solicitadas, Piezas_restantes, Cliente) VALUES (?, ?, ?, ?, ?, ?, ?)");
@@ -415,8 +415,8 @@ public function CheckLogin($usuario, $pass){
             $e->getMessage();
         }
     }
-// ------------------------- SALIDAS --------------------------------- //
-public function Get_noStock_Salidas($disenoR, $ordenR){
+    // ------------------------- SALIDAS --------------------------------- //
+    public function Get_noStock_Salidas($disenoR, $ordenR){
     try {
         $query = $this->dbh->prepare("SELECT cve_ai FROM stock_almacen WHERE No_diseno LIKE ? AND Orden_compra LIKE ?");
         $query->bindParam(1, $disenoR);
@@ -428,9 +428,9 @@ public function Get_noStock_Salidas($disenoR, $ordenR){
         $e->getMessage();
         echo $e;
     }
-}
+    }
 
-public function GetAllSalidas(){
+    public function GetAllSalidas(){
     try {
         $query = $this->dbh->prepare("SELECT * FROM salidas_almacen WHERE 1");
         $query->execute();
@@ -439,9 +439,9 @@ public function GetAllSalidas(){
     } catch (PDOException $e) {
         $e->getMessage();
     }
-}
+    }
 
-public function GetSalidaFilter($fechaSa, $ordenSa, $disSa){
+    public function GetSalidaFilter($fechaSa, $ordenSa, $disSa){
     try{
         if(($fechaSa !="")){
             if(($ordenSa == "" && $disSa == "")){
@@ -489,9 +489,9 @@ public function GetSalidaFilter($fechaSa, $ordenSa, $disSa){
     }catch(PDOException $e){
         $e->getMessage();
     }
-}
+    }
 
-public function Insertar_Salida($disenoI, $NoStock, $ordenCI, $fechaSI, $cantidadSI){
+    public function Insertar_Salida($disenoI, $NoStock, $ordenCI, $fechaSI, $cantidadSI){
     try {
         $query = $this->dbh->prepare("INSERT INTO salidas_almacen (cve_stock, No_diseno, Orden_compra, Fecha_Salida, Cantidad_salida) VALUES (?, ?, ?, ?, ?)");
         $query->bindParam(1, $NoStock);
@@ -506,9 +506,9 @@ public function Insertar_Salida($disenoI, $NoStock, $ordenCI, $fechaSI, $cantida
         $e->getMessage();
         echo $e;
     }
-}
+    }
 
-public function Cantidad_stock($disenoStock, $ordenStock){
+    public function Cantidad_stock($disenoStock, $ordenStock){
     try {
         $query = $this->dbh->prepare("SELECT Cantidad_actual FROM stock_almacen WHERE No_diseno LIKE ? AND Orden_compra LIKE ?");
         $query->bindParam(1, $disenoStock);
@@ -519,9 +519,9 @@ public function Cantidad_stock($disenoStock, $ordenStock){
     } catch (PDOException $e) {
         $e->getMessage();
     }
-}
+    }
 
-public function Cerrar_Orden_Auto($disenoCerrar, $ordenCerrar){
+    public function Cerrar_Orden_Auto($disenoCerrar, $ordenCerrar){
     try {
         $inactiva = "Inactiva";
         $query = $this->dbh->prepare("UPDATE stock_almacen SET Estatus=? WHERE Orden_compra LIKE ? AND No_diseno LIKE ?;");
@@ -536,9 +536,9 @@ public function Cerrar_Orden_Auto($disenoCerrar, $ordenCerrar){
         $e->getMessage();
         echo $e;
     }
-}
+    }
 
-public function Cerrar_Stock($disenoCerrar, $ordenCerrar){
+    public function Cerrar_Stock($disenoCerrar, $ordenCerrar){
     try {
         $cerrado = "Cerrada";
         $query = $this->dbh->prepare("UPDATE ordenes_compras SET Estatus_orden=? WHERE Orden_compra LIKE ? AND No_diseno LIKE ?;");
@@ -553,11 +553,11 @@ public function Cerrar_Stock($disenoCerrar, $ordenCerrar){
             $e->getMessage();
             echo $e;
         }
-}
+    }
 
 // --------------------------- CONSULTAS DE ALMACEN ------------------------ //
 
-public function GetAllStock(){
+    public function GetAllStock(){
     try {
         $query = $this->dbh->prepare("SELECT * FROM stock_almacen WHERE 1");
         $query->execute();
@@ -566,9 +566,9 @@ public function GetAllStock(){
     } catch (PDOException $e) {
         $e->getMessage();
     }
-}
+    }
 
-public function Stock_Filter($stockDiseno, $stockEstatus){
+    public function Stock_Filter($stockDiseno, $stockEstatus){
     try {
         if($stockDiseno != "" && $stockEstatus != ""){
         $query = $this->dbh->prepare("SELECT * FROM stock_almacen WHERE No_diseno LIKE ? AND Estatus LIKE ?");
@@ -590,25 +590,21 @@ public function Stock_Filter($stockDiseno, $stockEstatus){
     } catch (PDOException $e) {
         $e->getMessage();
     }
-}
-
-public function Ordenar_Stock(){
-    try {
-        $query = $this->dbh->prepare("SELECT No_diseno, (SELECT SUM(Cantidad_actual)) AS totalAlmacen, Estatus FROM stock_almacen GROUP BY No_diseno;");
-        $query->execute();
-        return $query->fetchAll();
-        $this->dbh = null;
-    } catch (PDOException $e) {
-        $e->getMessage();
     }
-}
 
-
-
-
+    public function Ordenar_Stock(){
+        try {
+            $query = $this->dbh->prepare("SELECT No_diseno, (SELECT SUM(Cantidad_actual)) AS totalAlmacen, Estatus FROM stock_almacen GROUP BY No_diseno;");
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
+        } catch (PDOException $e) {
+            $e->getMessage();
+        }
+    }
 // ------------------ PROCESOS ---------------------------------------------- //
 
-public function Agregar_proceso($Norden, $ProcActual, $Cantidad, $responsable, $Estado_proc, $Proc_restantes, $InicioFH){
+    public function Agregar_proceso($Norden, $ProcActual, $Cantidad, $responsable, $Estado_proc, $Proc_restantes, $InicioFH){
     try {
         $query = $this->dbh->prepare("INSERT INTO procesos_produccion (No_orden, Proceso_actual, Cantidad, Responsable, Estado_proceso, Procesos_restantes, Inicio_FH) VALUES (?, ?, ?, ?, ?, ?, ?)");
         $query->bindParam(1, $Norden);
@@ -626,9 +622,9 @@ public function Agregar_proceso($Norden, $ProcActual, $Cantidad, $responsable, $
         $e->getMessage();
         echo $e;
     }
-}
+    }
 
-public function Get_noOrdenProc($noProc){
+    public function Get_noOrdenProc($noProc){
     try {
         $query = $this->dbh->prepare("SELECT No_orden FROM procesos_produccion WHERE no_proceso LIKE ?;");
         $query->bindParam(1, $noProc);
@@ -638,31 +634,31 @@ public function Get_noOrdenProc($noProc){
     } catch (PDOException $e) {
         $e->getMessage();
     }
-}
-
-public function GetProcesos(){
-    try {
-        $query = $this->dbh->prepare("SELECT * FROM procesos_produccion INNER JOIN ordenes_compras ON procesos_produccion.No_orden = ordenes_compras.Numero_orden WHERE Inicio_FH LIKE CONCAT('%', CURRENT_DATE, '%') ORDER BY Estado_proceso DESC;");
-        $query->execute();
-        return $query->fetchAll();
-        $this->dbh = null;
-    } catch (PDOException $e) {
-        $e->getMessage();
     }
-}
 
-public function GetAllProcesos(){
-    try {
-        $query = $this->dbh->prepare("SELECT * FROM procesos_produccion INNER JOIN ordenes_compras ON procesos_produccion.No_orden = ordenes_compras.Numero_orden;");
-        $query->execute();
-        return $query->fetchAll();
-        $this->dbh = null;
-    } catch (PDOException $e) {
-        $e->getMessage();
+    public function GetProcesos(){
+        try {
+            $query = $this->dbh->prepare("SELECT * FROM procesos_produccion INNER JOIN ordenes_compras ON procesos_produccion.No_orden = ordenes_compras.Numero_orden WHERE Inicio_FH LIKE CONCAT('%', CURRENT_DATE, '%') ORDER BY Estado_proceso DESC;");
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
+        } catch (PDOException $e) {
+            $e->getMessage();
+        }
     }
-}
 
-public function Filtrar_Proceso($DisenoBuscar, $OrdenBuscar, $FechaProceso){
+    public function GetAllProcesos(){
+        try {
+            $query = $this->dbh->prepare("SELECT * FROM procesos_produccion INNER JOIN ordenes_compras ON procesos_produccion.No_orden = ordenes_compras.Numero_orden;");
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
+        } catch (PDOException $e) {
+            $e->getMessage();
+        }
+    }
+
+    public function Filtrar_Proceso($DisenoBuscar, $OrdenBuscar, $FechaProceso){
     try {
         if($DisenoBuscar == "" && $OrdenBuscar == "" && $FechaProceso == ""){
             $query = $this->dbh->prepare("SELECT * FROM procesos_produccion INNER JOIN ordenes_compras ON procesos_produccion.No_orden = ordenes_compras.Numero_orden;");
@@ -757,6 +753,11 @@ public function GetOrden_P($disenoBus, $ordenBus){
     }
 }
 
+//-------------------------------- Turnos --------------------------------
+
+public insert_Turno(){
+    
+}
 
 /*-----------------------------------------------------------------------------------------------------*/
 
