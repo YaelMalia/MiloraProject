@@ -931,13 +931,80 @@ function Insert_Turno() {
                         if (Folio_mpT == null || Folio_mpT == "") {
                             alertify.alert("Error", "No se ha ingresado la cantidad de piezas para la orden de compra");
                         } else {
-                            if (Cantidad_NESTT <= 0) {
+                            if (Cantidad_NESTT <= 0 || Cantidad_NESTT == null || Cantidad_NESTT == "") {
                                 alertify.alert("Error", "La cantidad de piezas para la orden no puede ser menor a cero");
                             } else {
-                                flag = true;
-                            }
-                            if (flag == true) {
-
+                                if (Cantidad_reportadaT <= 0 || Cantidad_reportadaT == null || Cantidad_reportadaT == "") {
+                                    alertify.alert("Error", "La cantidad de piezas para la orden no puede ser menor a cero");
+                                } else {
+                                    if (Piezas_FalloT <= 0 || Piezas_FalloT == null || Piezas_FalloT == "") {
+                                        alertify.alert("Error", "La cantidad de piezas para la orden no puede ser menor a cero");
+                                    } else {
+                                        if (Placa_solicitadaT <= 0 || Placa_solicitadaT == null || Placa_solicitadaT == "") {
+                                            alertify.alert("Error", "La cantidad de piezas para la orden no puede ser menor a cero");
+                                        } else {
+                                            if (Placa_cortadaT <= 0 || Placa_cortadaT == null || Placa_cortadaT == "") {
+                                                alertify.alert("Error", "La cantidad de piezas para la orden no puede ser menor a cero");
+                                            } else {
+                                                if (Orden_de_compraT == null || Orden_de_compraT == "") {
+                                                    alertify.alert("Error", "");
+                                                } else {
+                                                    if (HorasT <= 0 || HorasT == null || HorasT == "") {
+                                                        alertify.alert("Error", "Las horas ingresadas tienen que ser mayo a cero");
+                                                    } else {
+                                                        flag = true;
+                                                        if (flag == true) {
+                                                            let parametros = {
+                                                                "FechaT": FechaT,
+                                                                "TurnoT": TurnoT,
+                                                                "MaquinasT": MaquinasT,
+                                                                "OperadorT": OperadorT,
+                                                                "Proceso_piezaT": Proceso_piezaT,
+                                                                "Folio_mpT": Folio_mpT,
+                                                                "Cantidad_NESTT": Cantidad_NESTT,
+                                                                "Cantidad_reportadaT": Cantidad_reportadaT,
+                                                                "Piezas_FalloT": Piezas_FalloT,
+                                                                "Placa_solicitadaT": Placa_solicitadaT,
+                                                                "Placa_cortadaT": Placa_cortadaT,
+                                                                "Orden_de_compraT": Orden_de_compraT,
+                                                                "HorasT": HorasT
+                                                            };
+                                                            // Enviar por Ajax
+                                                            $.ajax({
+                                                                type: 'POST',
+                                                                url: '../Php_forms/Insert_Corte_Turno.php',
+                                                                data: parametros,
+                                                                async: false,
+                                                                success: function (returning) {
+                                                                    if (returning == "si") {
+                                                                        // alertify.success('Pieza agregada');
+                                                                        alertify.alert("¡Exito!", "El modelo o pieza se ha agregado con éxito");
+                                                                        let formulario = $("#form_Turnos");
+                                                                        FechaT = $("#FechaT")[0].value="";
+                                                                        TurnoT = $("#TurnoT")[0].value="";
+                                                                        MaquinasT = $("#MaquinasT")[0].value="";
+                                                                        OperadorT = $("#OperadorT")[0].value="";
+                                                                        Proceso_piezaT = $("#Proceso_piezaT")[0].value="";
+                                                                        Folio_mpT = $("#Folio_mpT")[0].value="";
+                                                                        Cantidad_NESTT = $("#Cantidad_NESTT")[0].value="";
+                                                                        Cantidad_reportadaT = $("#Cantidad_reportadaT")[0].value="";
+                                                                        Piezas_FalloT = $("#Piezas_FalloT")[0].value="";
+                                                                        Placa_solicitadaT = $("#Placa_solicitadaT")[0].value="";
+                                                                        Placa_cortadaT = $("#Placa_cortadaT")[0].value="";
+                                                                        Orden_de_compraT = $("#Orden_de_compraT")[0].value="";
+                                                                        HorasT = $("#HorasT")[0].value="";
+                                                                    } else {
+                                                                        alertify.alert("Error", "Se ha producido un error al ingresar el número de diseño o pieza, revise que no esté repetida");
+                                                                    }
+                                                                }
+                                                            });
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
@@ -985,7 +1052,7 @@ function AgregarProceso() {
                             var date = today.toISOString().slice(0, 10);
                             var time;
 
-                            var horas = today.getHours()+6;
+                            var horas = today.getHours() + 6;
                             horas < 10 ? horas = '0' + horas : 0;
                             var minutos = today.getMinutes();
                             minutos < 10 ? minutos = '0' + minutos : 0;
@@ -1114,7 +1181,7 @@ function Actualizar_Procesos() {
         if (Responsable == null || Responsable == "") {
             alertify.alert("Error", "No se ha ingresado el responsable para el siguiente proceso");
         } else {
-            if (CantidadSP == null || CantidadSP == "" || !Number.isInteger(parseInt(CantidadSP)) || CantidadSP<=0) {
+            if (CantidadSP == null || CantidadSP == "" || !Number.isInteger(parseInt(CantidadSP)) || CantidadSP <= 0) {
                 alertify.alert("Error", "No se ha ingresado la cantidad de piezas para el siguiente proceso o es incorrecta");
             } else {
                 //Todo correcto uwu
@@ -1127,7 +1194,7 @@ function Actualizar_Procesos() {
                 var date = today.toISOString().slice(0, 10);
                 var time;
 
-                var horas = today.getHours()+6;
+                var horas = today.getHours() + 6;
                 horas < 10 ? horas = '0' + horas : 0;
                 var minutos = today.getMinutes();
                 minutos < 10 ? minutos = '0' + minutos : 0;
@@ -1159,13 +1226,13 @@ function Actualizar_Procesos() {
                         if (returnUpdate.includes("Warning") || returnUpdate == "No") {
                             alertify.alert("Error", "Se ha producido un error, revise su conexión a internet");
                         } else {
-                            
-                            if(P_restantesGlobal == "Ninguno"){
+
+                            if (P_restantesGlobal == "Ninguno") {
                                 alertify.alert("Aviso", "Esta pieza ha completado todos sus procesos y está lista para entrar a almacén");
                                 alertify.success("Proceso actualizado");
                                 Refresh();
                                 $("#modal").hide(800);
-                            }else{
+                            } else {
                                 // Insertar nuevo proceso
                                 let parametrosNP = {
                                     "NoOrden": Norden_compraGlobal,
@@ -1183,16 +1250,16 @@ function Actualizar_Procesos() {
                                     data: parametrosNP,
                                     async: false,
                                     success: function (returnNP) {
-                                        if(returnNP.includes("No")){
+                                        if (returnNP.includes("No")) {
                                             alertify.error("Se ha producido un error al agregar el seguimiento del proceso");
-                                        }else{
+                                        } else {
                                             alertify.success("Proceso actualizado");
                                             Refresh();
                                             $("#modal").hide(800);
-                                        }           
+                                        }
                                     }
                                 });
-                               
+
                             }
                         }
                     }
@@ -1203,8 +1270,8 @@ function Actualizar_Procesos() {
 
 }
 
-function BuscarProceso(){
-    
+function BuscarProceso() {
+
     let Diseno = $("#BP_Diseno")[0].value;
     let Orden = $("#BP_orden")[0].value;
     let Fecha = $("#FechaProc")[0].value;
@@ -1222,13 +1289,13 @@ function BuscarProceso(){
         data: parametros,
         async: false,
         success: function (returning) {
-            if(returning.includes("En progreso..") || returning.includes("Terminado")){
+            if (returning.includes("En progreso..") || returning.includes("Terminado")) {
                 $("#cuerpoTabla")[0].value = "";
                 document.getElementById("cuerpoTabla").innerHTML = returning;
-            }else{
-                if(returning == "Nada"){
+            } else {
+                if (returning == "Nada") {
                     alertify.alert("¡Oops!", "No se han podido recuperar datos con la información ingresada");
-                }else{
+                } else {
                     alertify.alert("Error", "Se ha producido un error, revise su conexión");
                 }
             }
