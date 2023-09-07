@@ -755,8 +755,25 @@ public function GetOrden_P($disenoBus, $ordenBus){
 
 //-------------------------------- Turnos --------------------------------
 
-public insert_Turno(){
-    
+public function insert_Turno($NoProceso){
+    try {
+        $query = $this->dbh->prepare("INSERT INTO procesos_produccion (No_orden, Proceso_actual, Cantidad, Responsable, Procesos_realizados, Estado_proceso, Procesos_restantes, Inicio_FH) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        $query->bindParam(1, $Norden);
+        $query->bindParam(2, $ProcActual);
+        $query->bindParam(3, $Cantidad);
+        $query->bindParam(4, $responsable);
+        $query->bindParam(5, $PrealizadosU);
+        $query->bindParam(6, $Estado_proc);
+        $query->bindParam(7, $Proc_restantes);
+        $query->bindParam(8, $InicioFH);
+
+        $query->execute();
+        return $query->fetchAll();
+        $this->dbh = null;
+    } catch (PDOException $e) {
+        $e->getMessage();
+        echo $e;
+    }
 }
 
 /*-----------------------------------------------------------------------------------------------------*/
