@@ -417,179 +417,179 @@ class MiloraClass
     }
     // ------------------------- SALIDAS --------------------------------- //
     public function Get_noStock_Salidas($disenoR, $ordenR){
-    try {
-        $query = $this->dbh->prepare("SELECT cve_ai FROM stock_almacen WHERE No_diseno LIKE ? AND Orden_compra LIKE ?");
-        $query->bindParam(1, $disenoR);
-        $query->bindParam(2, $ordenR);
-        $query->execute();
-        return $query->fetchAll();
-        $this->dbh = null;
-    } catch (PDOException $e) {
-        $e->getMessage();
-        echo $e;
-    }
-    }
-
-    public function GetAllSalidas(){
-    try {
-        $query = $this->dbh->prepare("SELECT * FROM salidas_almacen WHERE 1");
-        $query->execute();
-        return $query->fetchAll();
-        $this->dbh = null;
-    } catch (PDOException $e) {
-        $e->getMessage();
-    }
-    }
-
-    public function GetSalidaFilter($fechaSa, $ordenSa, $disSa){
-    try{
-        if(($fechaSa !="")){
-            if(($ordenSa == "" && $disSa == "")){
-                $query = $this->dbh->prepare("SELECT * FROM salidas_almacen WHERE Fecha_salida LIKE ?;");
-                $query->bindParam(1, $fechaSa);
-            }
-            //Orden llena
-            if(($ordenSa!="") && ($disSa == "")){
-                $query = $this->dbh->prepare("SELECT * FROM salidas_almacen WHERE (Fecha_salida LIKE ?) AND Orden_compra LIKE ?;");
-                $query->bindParam(1, $fechaSa);
-                $query->bindParam(2, $ordenSa); 
-            }
-            if(($ordenSa!="") && ($disSa!="")){
-                $query = $this->dbh->prepare("SELECT * FROM salidas_almacen WHERE (Fecha_salida LIKE ?) AND (Orden_compra LIKE ?) AND (No_diseno LIKE ?);");
-                $query->bindParam(1, $fechaSa);
-                $query->bindParam(2, $ordenSa); 
-                $query->bindParam(3, $disSa);
-            }
-            //Orden vacía
-            if(($disSa!="") && ($ordenSa == "")){
-                $query = $this->dbh->prepare("SELECT * FROM salidas_almacen WHERE (Fecha_salida LIKE ?) AND No_diseno LIKE ?;");
-                $query->bindParam(1, $fechaSa);
-                $query->bindParam(2, $disSa); 
-            }
-            // Cuando las fechas están vacías
-        }else{
-            if(($ordenSa!="") && ($disSa == "")){
-                $query = $this->dbh->prepare("SELECT * FROM salidas_almacen WHERE Orden_compra LIKE ?;");
-                $query->bindParam(1, $ordenSa);
-            }
-            if(($ordenSa!="") && ($disSa!="")){
-                $query = $this->dbh->prepare("SELECT * FROM salidas_almacen WHERE (Orden_compra LIKE ?) AND (No_diseno LIKE ?);");
-                $query->bindParam(1, $ordenSa); 
-                $query->bindParam(2, $disSa);
-            }
-            //Orden vacía
-            if(($disSa!="") && ($ordenSa == "")){
-                $query = $this->dbh->prepare("SELECT * FROM salidas_almacen WHERE No_diseno LIKE ?;");
-                $query->bindParam(1, $disSa); 
-            }
-        }
-        $query->execute();
-        return $query->fetchAll();
-        $this->dbh = null;
-    }catch(PDOException $e){
-        $e->getMessage();
-    }
-    }
-
-    public function Insertar_Salida($disenoI, $NoStock, $ordenCI, $fechaSI, $cantidadSI){
-    try {
-        $query = $this->dbh->prepare("INSERT INTO salidas_almacen (cve_stock, No_diseno, Orden_compra, Fecha_Salida, Cantidad_salida) VALUES (?, ?, ?, ?, ?)");
-        $query->bindParam(1, $NoStock);
-        $query->bindParam(2, $disenoI);
-        $query->bindParam(3, $ordenCI);
-        $query->bindParam(4, $fechaSI);
-        $query->bindParam(5, $cantidadSI);
-        $query->execute();
-        return $query->fetchAll();
-        $this->dbh = null;
-    } catch (PDOException $e) {
-        $e->getMessage();
-        echo $e;
-    }
-    }
-
-    public function Cantidad_stock($disenoStock, $ordenStock){
-    try {
-        $query = $this->dbh->prepare("SELECT Cantidad_actual FROM stock_almacen WHERE No_diseno LIKE ? AND Orden_compra LIKE ?");
-        $query->bindParam(1, $disenoStock);
-        $query->bindParam(2, $ordenStock);
-        $query->execute();
-        return $query->fetchAll();
-        $this->dbh = null;
-    } catch (PDOException $e) {
-        $e->getMessage();
-    }
-    }
-
-    public function Cerrar_Orden_Auto($disenoCerrar, $ordenCerrar){
-    try {
-        $inactiva = "Inactiva";
-        $query = $this->dbh->prepare("UPDATE stock_almacen SET Estatus=? WHERE Orden_compra LIKE ? AND No_diseno LIKE ?;");
-        $query->bindParam(1, $inactiva);
-        $query->bindParam(2, $ordenCerrar);
-        $query->bindParam(3, $disenoCerrar);
-        $query->execute();
-        return $query->fetchAll();
-        $this->dbh = null;
-
-    } catch (PDOException $e) {
-        $e->getMessage();
-        echo $e;
-    }
-    }
-
-    public function Cerrar_Stock($disenoCerrar, $ordenCerrar){
-    try {
-        $cerrado = "Cerrada";
-        $query = $this->dbh->prepare("UPDATE ordenes_compras SET Estatus_orden=? WHERE Orden_compra LIKE ? AND No_diseno LIKE ?;");
-        $query->bindParam(1, $cerrado);
-        $query->bindParam(2, $ordenCerrar);
-        $query->bindParam(3, $disenoCerrar);
-        $query->execute();
-        return $query->fetchAll();
-        $this->dbh = null;
-
-        } catch (\Throwable $th) {
+        try {
+            $query = $this->dbh->prepare("SELECT cve_ai FROM stock_almacen WHERE No_diseno LIKE ? AND Orden_compra LIKE ?");
+            $query->bindParam(1, $disenoR);
+            $query->bindParam(2, $ordenR);
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
+        } catch (PDOException $e) {
             $e->getMessage();
             echo $e;
         }
     }
 
+    public function GetAllSalidas(){
+        try {
+            $query = $this->dbh->prepare("SELECT * FROM salidas_almacen WHERE 1");
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
+        } catch (PDOException $e) {
+            $e->getMessage();
+        }
+    }
+
+    public function GetSalidaFilter($fechaSa, $ordenSa, $disSa){
+        try{
+            if(($fechaSa !="")){
+                if(($ordenSa == "" && $disSa == "")){
+                    $query = $this->dbh->prepare("SELECT * FROM salidas_almacen WHERE Fecha_salida LIKE ?;");
+                    $query->bindParam(1, $fechaSa);
+                }
+                //Orden llena
+                if(($ordenSa!="") && ($disSa == "")){
+                    $query = $this->dbh->prepare("SELECT * FROM salidas_almacen WHERE (Fecha_salida LIKE ?) AND Orden_compra LIKE ?;");
+                    $query->bindParam(1, $fechaSa);
+                    $query->bindParam(2, $ordenSa); 
+                }
+                if(($ordenSa!="") && ($disSa!="")){
+                    $query = $this->dbh->prepare("SELECT * FROM salidas_almacen WHERE (Fecha_salida LIKE ?) AND (Orden_compra LIKE ?) AND (No_diseno LIKE ?);");
+                    $query->bindParam(1, $fechaSa);
+                    $query->bindParam(2, $ordenSa); 
+                    $query->bindParam(3, $disSa);
+                }
+                //Orden vacía
+                if(($disSa!="") && ($ordenSa == "")){
+                    $query = $this->dbh->prepare("SELECT * FROM salidas_almacen WHERE (Fecha_salida LIKE ?) AND No_diseno LIKE ?;");
+                    $query->bindParam(1, $fechaSa);
+                    $query->bindParam(2, $disSa); 
+                }
+                // Cuando las fechas están vacías
+            }else{
+                if(($ordenSa!="") && ($disSa == "")){
+                    $query = $this->dbh->prepare("SELECT * FROM salidas_almacen WHERE Orden_compra LIKE ?;");
+                    $query->bindParam(1, $ordenSa);
+                }
+                if(($ordenSa!="") && ($disSa!="")){
+                    $query = $this->dbh->prepare("SELECT * FROM salidas_almacen WHERE (Orden_compra LIKE ?) AND (No_diseno LIKE ?);");
+                    $query->bindParam(1, $ordenSa); 
+                    $query->bindParam(2, $disSa);
+                }
+                //Orden vacía
+                if(($disSa!="") && ($ordenSa == "")){
+                    $query = $this->dbh->prepare("SELECT * FROM salidas_almacen WHERE No_diseno LIKE ?;");
+                    $query->bindParam(1, $disSa); 
+                }
+            }
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
+        }catch(PDOException $e){
+            $e->getMessage();
+        }
+    }
+
+    public function Insertar_Salida($disenoI, $NoStock, $ordenCI, $fechaSI, $cantidadSI){
+        try {
+            $query = $this->dbh->prepare("INSERT INTO salidas_almacen (cve_stock, No_diseno, Orden_compra, Fecha_Salida, Cantidad_salida) VALUES (?, ?, ?, ?, ?)");
+            $query->bindParam(1, $NoStock);
+            $query->bindParam(2, $disenoI);
+            $query->bindParam(3, $ordenCI);
+            $query->bindParam(4, $fechaSI);
+            $query->bindParam(5, $cantidadSI);
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
+        } catch (PDOException $e) {
+            $e->getMessage();
+            echo $e;
+        }
+    }
+
+    public function Cantidad_stock($disenoStock, $ordenStock){
+        try {
+            $query = $this->dbh->prepare("SELECT Cantidad_actual FROM stock_almacen WHERE No_diseno LIKE ? AND Orden_compra LIKE ?");
+            $query->bindParam(1, $disenoStock);
+            $query->bindParam(2, $ordenStock);
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
+        } catch (PDOException $e) {
+            $e->getMessage();
+        }
+    }
+
+    public function Cerrar_Orden_Auto($disenoCerrar, $ordenCerrar){
+        try {
+            $inactiva = "Inactiva";
+            $query = $this->dbh->prepare("UPDATE stock_almacen SET Estatus=? WHERE Orden_compra LIKE ? AND No_diseno LIKE ?;");
+            $query->bindParam(1, $inactiva);
+            $query->bindParam(2, $ordenCerrar);
+            $query->bindParam(3, $disenoCerrar);
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
+
+        } catch (PDOException $e) {
+            $e->getMessage();
+            echo $e;
+        }
+    }
+
+    public function Cerrar_Stock($disenoCerrar, $ordenCerrar){
+        try {
+            $cerrado = "Cerrada";
+            $query = $this->dbh->prepare("UPDATE ordenes_compras SET Estatus_orden=? WHERE Orden_compra LIKE ? AND No_diseno LIKE ?;");
+            $query->bindParam(1, $cerrado);
+            $query->bindParam(2, $ordenCerrar);
+            $query->bindParam(3, $disenoCerrar);
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
+
+            } catch (\Throwable $th) {
+                $e->getMessage();
+                echo $e;
+            }
+    }
+
 // --------------------------- CONSULTAS DE ALMACEN ------------------------ //
 
     public function GetAllStock(){
-    try {
-        $query = $this->dbh->prepare("SELECT * FROM stock_almacen WHERE 1");
-        $query->execute();
-        return $query->fetchAll();
-        $this->dbh = null;
-    } catch (PDOException $e) {
-        $e->getMessage();
-    }
+        try {
+            $query = $this->dbh->prepare("SELECT * FROM stock_almacen WHERE 1");
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
+        } catch (PDOException $e) {
+            $e->getMessage();
+        }
     }
 
     public function Stock_Filter($stockDiseno, $stockEstatus){
-    try {
-        if($stockDiseno != "" && $stockEstatus != ""){
-        $query = $this->dbh->prepare("SELECT * FROM stock_almacen WHERE No_diseno LIKE ? AND Estatus LIKE ?");
-        $query->bindParam(1, $stockDiseno);
-        $query->bindParam(2, $stockEstatus);
-        }else{
-            if($stockDiseno!="" && $stockEstatus == ""){
-                $query = $this->dbh->prepare("SELECT * FROM stock_almacen WHERE No_diseno LIKE ?");
-                $query->bindParam(1, $stockDiseno);
+        try {
+            if($stockDiseno != "" && $stockEstatus != ""){
+            $query = $this->dbh->prepare("SELECT * FROM stock_almacen WHERE No_diseno LIKE ? AND Estatus LIKE ?");
+            $query->bindParam(1, $stockDiseno);
+            $query->bindParam(2, $stockEstatus);
+            }else{
+                if($stockDiseno!="" && $stockEstatus == ""){
+                    $query = $this->dbh->prepare("SELECT * FROM stock_almacen WHERE No_diseno LIKE ?");
+                    $query->bindParam(1, $stockDiseno);
+                }
+                if($stockDiseno == "" && $stockEstatus !=""){
+                    $query = $this->dbh->prepare("SELECT * FROM stock_almacen WHERE Estatus LIKE ?");
+                    $query->bindParam(1, $stockEstatus);
+                }
             }
-            if($stockDiseno == "" && $stockEstatus !=""){
-                $query = $this->dbh->prepare("SELECT * FROM stock_almacen WHERE Estatus LIKE ?");
-                $query->bindParam(1, $stockEstatus);
-            }
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
+        } catch (PDOException $e) {
+            $e->getMessage();
         }
-        $query->execute();
-        return $query->fetchAll();
-        $this->dbh = null;
-    } catch (PDOException $e) {
-        $e->getMessage();
-    }
     }
 
     public function Ordenar_Stock(){
@@ -605,35 +605,35 @@ class MiloraClass
 // ------------------ PROCESOS ---------------------------------------------- //
 
     public function Agregar_proceso($Norden, $ProcActual, $Cantidad, $responsable, $Estado_proc, $Proc_restantes, $InicioFH){
-    try {
-        $query = $this->dbh->prepare("INSERT INTO procesos_produccion (No_orden, Proceso_actual, Cantidad, Responsable, Estado_proceso, Procesos_restantes, Inicio_FH) VALUES (?, ?, ?, ?, ?, ?, ?)");
-        $query->bindParam(1, $Norden);
-        $query->bindParam(2, $ProcActual);
-        $query->bindParam(3, $Cantidad);
-        $query->bindParam(4, $responsable);
-        $query->bindParam(5, $Estado_proc);
-        $query->bindParam(6, $Proc_restantes);
-        $query->bindParam(7, $InicioFH);
+        try {
+            $query = $this->dbh->prepare("INSERT INTO procesos_produccion (No_orden, Proceso_actual, Cantidad, Responsable, Estado_proceso, Procesos_restantes, Inicio_FH) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            $query->bindParam(1, $Norden);
+            $query->bindParam(2, $ProcActual);
+            $query->bindParam(3, $Cantidad);
+            $query->bindParam(4, $responsable);
+            $query->bindParam(5, $Estado_proc);
+            $query->bindParam(6, $Proc_restantes);
+            $query->bindParam(7, $InicioFH);
 
-        $query->execute();
-        return $query->fetchAll();
-        $this->dbh = null;
-    } catch (PDOException $e) {
-        $e->getMessage();
-        echo $e;
-    }
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
+        } catch (PDOException $e) {
+            $e->getMessage();
+            echo $e;
+        }
     }
 
     public function Get_noOrdenProc($noProc){
-    try {
-        $query = $this->dbh->prepare("SELECT No_orden FROM procesos_produccion WHERE no_proceso LIKE ?;");
-        $query->bindParam(1, $noProc);
-        $query->execute();
-        return $query->fetchAll();
-        $this->dbh = null;
-    } catch (PDOException $e) {
-        $e->getMessage();
-    }
+        try {
+            $query = $this->dbh->prepare("SELECT No_orden FROM procesos_produccion WHERE no_proceso LIKE ?;");
+            $query->bindParam(1, $noProc);
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
+        } catch (PDOException $e) {
+            $e->getMessage();
+        }
     }
 
     public function GetProcesos(){

@@ -1332,7 +1332,7 @@ function AgregarProcesoDetallado(){
                     alertify.alert("Error", "Se ha producido un error, revise su conexión a internet");
                     // alert("Error de conexión");
                 } else {
-
+                    
                 }
             }
         });
