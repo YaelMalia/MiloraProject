@@ -766,6 +766,7 @@ class MiloraClass
             echo $e;
         }
     }
+    
     public function insert_Turno($NoProceso){
         try {
             $query = $this->dbh->prepare("INSERT INTO procesos_produccion (No_orden, Proceso_actual, Cantidad, Responsable, Procesos_realizados, Estado_proceso, Procesos_restantes, Inicio_FH) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
