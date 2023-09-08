@@ -31,16 +31,16 @@ class MiloraClass
 
 /*Consultas*/
     public function CheckLogin($usuario, $pass){
-    try {
-        $query = $this->dbh->prepare("SELECT * FROM usuarios WHERE usuario LIKE ? AND pass LIKE ?");
-        $query->bindParam(1, $usuario);
-        $query->bindParam(2, $pass);
-        $query->execute();
-        return $query->fetchAll();
-        $this->dbh = null;
-    } catch (PDOException $e) {
-        $e->getMessage();
-    }
+        try {
+            $query = $this->dbh->prepare("SELECT * FROM usuarios WHERE usuario LIKE ? AND pass LIKE ?");
+            $query->bindParam(1, $usuario);
+            $query->bindParam(2, $pass);
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
+        } catch (PDOException $e) {
+            $e->getMessage();
+        }
     }
 
     public function insertOrden($FechaI, $FechaF, $OrdenCompra, $Cliente, $NoPieza, $CantidadPieza){
@@ -766,7 +766,7 @@ class MiloraClass
             echo $e;
         }
     }
-    
+
     public function insert_Turno($NoProceso){
         try {
             $query = $this->dbh->prepare("INSERT INTO procesos_produccion (No_orden, Proceso_actual, Cantidad, Responsable, Procesos_realizados, Estado_proceso, Procesos_restantes, Inicio_FH) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
