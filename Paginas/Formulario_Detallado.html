@@ -20,19 +20,14 @@
         <form id ="form_nuevoD" class="row g-4">
             <h2 style="text-align: center;">Detallado</h2>
             <div class="col-md-3">
-                <label for="TurnoFD" class="form-label">Turno</label>
-                <select id="TurnoFD" class="form-select">
-                    <option selected>Matutino</option>
-                    <option>Nocturno</option>
+                <label for="FechaFD" class="form-label">Fecha de ingreso</label>
+                <input type="date" class="form-control"  id="FechaFD" required>
                 </select>
             </div>
             <div class="col-md-3">
-                <label for="FechaFD" class="form-label">Fecha de ingreso</label>
-                <input type="date" class="form-control"  id="FechaFD" required>
+                <label for="SupervisorFD" class="form-label">Encargado/Supervisor</label>
+                <input type="text" class="form-control" id="SupervisorFD" placeholder="" required>
             </div>
-            <div class="col-md-3">
-                <label for="NoDesinoFD" class="form-label">No diseño</label>
-                <input type="text" class="form-control" id="NoDesinoFD" placeholder="No diseño" required>
             </div>
             <div class="col-md-3">
                 <label for="TipoFD" class="form-label">Tipo de detallado</label>
@@ -44,31 +39,29 @@
                     <option>Prensa</option>
                 </select>
             </div>
+            <div class="col-md-3">
+                <label for="NoDisenoFD" class="form-label">Numero de orden</label>
+                <input type="text" class="form-control" id="NoDisenoFD" placeholder="Numero de orden" required>
+            </div>
             <!-- ---------------------------------------------------------------------------------------- -->
             <div class="col-md-3">
-                <label for="SupervisorFD" class="form-label">Encargado/Supervisor</label>
-                <input type="text" class="form-control" id="SupervisorFD" placeholder="" required>
+                <label for="CantidadSoliFD" class="form-label">Cantidad solicitada</label>
+                <input type="text" class="form-control" id="CantidadSoliFD" placeholder="Cantidad solicitada" required>
             </div>
             <div class="col-md-3">
-                <label for="Cantidad_a_procesarFD" class="form-label">Cantidad a procesar</label>
-                <input type="number" class="form-control" id="Cantidad_a_procesarFD" placeholder="" required>
-            </div>
-            
-            <div class="col-md-3">
-                <label for="TotalParcialFD" class="form-label">Total o parcial</label>
-                <select id="TotalParcialFD" class="form-select">
-                    <option selected>Total</option>
-                    <option>Parcial</option>
-                </select>
+                <label for="CantidadEntreFD" class="form-label">Cantidad entregada</label>
+                <input type="text" class="form-control" id="CantidadEntreFD" placeholder="Cantidad entregada" required>
             </div>
             <div class="col-md-3">
-                <label for="ObservacionesFD" class="form-label">Observaciones</label>
-                <input type="text" class="form-control" id="ObservacionesFD" placeholder="" required>
+                <label for="HorasFD" class="form-label">Horas trabajadas</label>
+                <input type="text" class="form-control" id="HorasFD" placeholder="Horas trabajadas" required>
+            </div>
+            <div class="col-md-3">
             </div>
             <!-- ---------------------------------------------------------------------------------------- -->
             <div class="col-4"></div>
             <div class="col-4" >
-                <input  onclick=""  type="button" class="btn btn-primary col-12" style="height: 50px;
+                <input  onclick="return AgregarProcesoDetallado();"  type="button" class="btn btn-primary col-12" style="height: 50px;
                 min-height: auto; font-size: auto;" value="...">
             </div>
             <div class="col-4"></div>

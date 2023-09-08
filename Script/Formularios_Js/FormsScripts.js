@@ -896,7 +896,7 @@ function buscarStock() {
 }
 // --------------------------------- FIN BUSQUEDAS STOCK ---------------------------------
 
-// --------------------------------- INICIO TURNOS/CORTE TURNO ---------------------------------
+// --------------------------------- INICIO TURNOS/CORTE TURNO/PROCESOS ---------------------------------
 function Insert_Turno() {
     let flag = false;
     let FechaT = $("#FechaT")[0].value;
@@ -1101,12 +1101,10 @@ function AgregarProceso() {
     }
 }
 
-
 function Refresh() {
     document.getElementById("ControlCentral").innerHTML = "";
     $("#ControlCentral").load("Seguimiento_Procesos.php");
 }
-
 
 var P_actualGlobal, P_restantesGlobal, noProceso, Norden_compraGlobal, P_realizados;
 
@@ -1301,5 +1299,18 @@ function BuscarProceso() {
             }
         }
     });
+}
+
+function AgregarProcesoDetallado(){
+    let fechaDetallada=$("#FechaFD")[0].value;
+    let fechaDetallada=$("#FechaFD")[0].value;
+    let fechaDetallada=$("#FechaFD")[0].value;
+    let fechaDetallada=$("#FechaFD")[0].value;
+    if (fecha_Entrada == "" || ordenCompra == "" || noDiseno == "" || cantidadPiezas == "") {
+        alertify.alert("Aviso", "Faltan por llenar uno o más campos, revise sus datos");
+        // alert("Faltan datos");
+    }else{
+
+    }
 }
 // --------------------------------- FIN TURNOS/CORTE TURNO ---------------------------------
