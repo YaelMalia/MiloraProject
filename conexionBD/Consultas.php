@@ -754,7 +754,18 @@ class MiloraClass
     }
 
     //-------------------------------- Turnos --------------------------------
-
+    public function Get_noOrden_Detallado($ordenR){
+        try {
+            $query = $this->dbh->prepare("SELECT Numero_orden FROM ordenes_compras WHERE Orden_compra LIKE ?");
+            $query->bindParam(1, $ordenR);
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
+        } catch (PDOException $e) {
+            $e->getMessage();
+            echo $e;
+        }
+    }
     public function insert_Turno($NoProceso){
         try {
             $query = $this->dbh->prepare("INSERT INTO procesos_produccion (No_orden, Proceso_actual, Cantidad, Responsable, Procesos_realizados, Estado_proceso, Procesos_restantes, Inicio_FH) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");

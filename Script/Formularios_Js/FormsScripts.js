@@ -1303,14 +1303,39 @@ function BuscarProceso() {
 
 function AgregarProcesoDetallado(){
     let fechaDetallada=$("#FechaFD")[0].value;
-    let fechaDetallada=$("#FechaFD")[0].value;
-    let fechaDetallada=$("#FechaFD")[0].value;
-    let fechaDetallada=$("#FechaFD")[0].value;
-    if (fecha_Entrada == "" || ordenCompra == "" || noDiseno == "" || cantidadPiezas == "") {
+    let SupervisorFD=$("#SupervisorFD")[0].value;
+    let TipoFD=$("#TipoFD")[0].value;
+    let NoDisenoFD=$("#NoDisenoFD")[0].value;
+    let CantidadSoliFD=$("#CantidadSoliFD")[0].value;
+    let CantidadEntreFD=$("#CantidadEntreFD")[0].value;
+    let HorasFD=$("#HorasFD")[0].value;
+
+
+    if (fechaDetallada == "" || SupervisorFD == "" || TipoFD == "" || NoDisenoFD == "" || CantidadSoliFD == "" || CantidadEntreFD == "" || HorasFD == "") {
         alertify.alert("Aviso", "Faltan por llenar uno o más campos, revise sus datos");
         // alert("Faltan datos");
     }else{
+        let parametrosConsulta = {
+            "disenoConsulta": noDiseno
+        };
 
+        $.ajax({
+            type: 'POST',
+            url: '../Php_forms/Get_noOrden_Detallado.php',
+            data: parametrosConsulta,
+            async: false,
+            success: function (returning) {
+                if (returning == "notFound") {
+                    alertify.alert("Error", "Parece que no hay ninguna orden de compra, revise sus datos");
+                    // alert("No orden existente");
+                } else if (returning.includes("Fatal Error")) {
+                    alertify.alert("Error", "Se ha producido un error, revise su conexión a internet");
+                    // alert("Error de conexión");
+                } else {
+
+                }
+            }
+        });
     }
 }
 // --------------------------------- FIN TURNOS/CORTE TURNO ---------------------------------

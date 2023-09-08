@@ -1,12 +1,10 @@
 <?php
-    if(isset($_POST["disenoConsulta"])){
-        
-        $diseno = $_POST["disenoConsulta"];
-        $orden = $_POST["ordenConsulta"];
+    if(isset($_POST["NoDisenoFD"])){
+        $orden = $_POST["NoDisenoFD"];
 
         require_once("../conexionBD/Consultas.php");
         $miloraObj = MiloraClass::singleton();
-        $data = $miloraObj->Get_noOrden_Entradas($diseno, $orden);
+        $data = $miloraObj->Get_noOrden_Detallado($orden);
 
         if(count($data)>0){
             foreach($data as $fila){
