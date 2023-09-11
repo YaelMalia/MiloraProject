@@ -71,7 +71,7 @@
 
             <div class="col-md-3">
                 <label for="Cantidad_NEST" class="form-label">Cantidad solicitada en NEST</label>
-                <input type="number" class="form-control" id="Cantidad_NEST" placeholder="Cantidad solicitada NEST" required>
+                <input type="text" class="form-control" id="Cantidad_NEST" placeholder="Cantidad solicitada NEST" required>
             </div>
            
             <!-- ------------------------------------------------------------------------------------------------------ -->

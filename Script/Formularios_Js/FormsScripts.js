@@ -901,24 +901,32 @@ function Insert_Turno() {
     let flag = false;
     let FechaT = $("#FechaT")[0].value;
     let TurnoT = $("#TurnoT")[0].value;
-    
     let OperadorT = $("#OperadorT")[0].value;
     let MaquinasT = $("#MaquinasT")[0].value;
     let disenoT = $("#disenoT")[0].value;
     let Orden_de_compraT = $("#Orden_de_compraT")[0].value;
     let espesorT = $("#EspesorT")[0].value;
-
-    let Folio_mpT = $("#Folio_mpT")[0].value;
-    let Cantidad_NESTT = $("#Cantidad_NESTT")[0].value;
-    let Cantidad_reportadaT = $("#Cantidad_reportadaT")[0].value;
-    let Piezas_FalloT = $("#Piezas_FalloT")[0].value;
-    let Placa_solicitadaT = $("#Placa_solicitadaT")[0].value;
+    let Folio_mpT = $("#ValeMP")[0].value;
+    let Cantidad_NEST = $("#Cantidad_NEST")[0].value;
+    let Cantidad_reportadaT = $("#CantidadRep")[0].value;
+    let PlacasNEST = $("#PlacasNEST")[0].value;
     let Placa_cortadaT = $("#Placa_cortadaT")[0].value;
-    
     let HorasT = $("#HorasT")[0].value;
+    let observaciones = $("#Observaciones")[0].value;
 
-    
+    if(FechaT == null || FechaT == ""){
+        alertify.alert("Aviso", "No se ha especificado la fecha del corte");
+    }else{
+        if(TurnoT == null || TurnoT == ""){
+            alertify.alert("Aviso","El turno no puede estar vacío.");
+        }else{
+            if(OperadorT == null || OperadorT == ""){
+                //
+            }
+        }
     }
+    
+}
 
 function AgregarProceso() {
 
