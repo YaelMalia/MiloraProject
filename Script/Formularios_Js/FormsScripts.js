@@ -901,118 +901,24 @@ function Insert_Turno() {
     let flag = false;
     let FechaT = $("#FechaT")[0].value;
     let TurnoT = $("#TurnoT")[0].value;
-    let MaquinasT = $("#MaquinasT")[0].value;
+    
     let OperadorT = $("#OperadorT")[0].value;
-    let Proceso_piezaT = $("#Proceso_piezaT")[0].value;
+    let MaquinasT = $("#MaquinasT")[0].value;
+    let disenoT = $("#disenoT")[0].value;
+    let Orden_de_compraT = $("#Orden_de_compraT")[0].value;
+    let espesorT = $("#EspesorT")[0].value;
+
     let Folio_mpT = $("#Folio_mpT")[0].value;
     let Cantidad_NESTT = $("#Cantidad_NESTT")[0].value;
     let Cantidad_reportadaT = $("#Cantidad_reportadaT")[0].value;
     let Piezas_FalloT = $("#Piezas_FalloT")[0].value;
     let Placa_solicitadaT = $("#Placa_solicitadaT")[0].value;
     let Placa_cortadaT = $("#Placa_cortadaT")[0].value;
-    let Orden_de_compraT = $("#Orden_de_compraT")[0].value;
+    
     let HorasT = $("#HorasT")[0].value;
 
-    if (FechaT == null || FechaT == "") {
-        alertify.alert("Error", "Fecha de inicio de la orden no se ha ingresado");
-    } else {
-        if (TurnoT == null || TurnoT == "") {
-            alertify.alert("Error", "Fecha límite de la orden no se ha ingresado");
-        } else {
-            if (MaquinasT == null || MaquinasT == "") {
-                alertify.alert("Error", "No se ha ingresado el identificador de la orden de compra");
-            } else {
-                if (OperadorT == null || OperadorT == "") {
-                    alertify.alert("Error", "No se ha seleccionado un cliente de compra válido");
-                } else {
-                    if (Proceso_piezaT == null || Proceso_piezaT == "") {
-                        alertify.alert("Eror", "No se ha ingresado un número de diseño");
-                    } else {
-                        if (Folio_mpT == null || Folio_mpT == "") {
-                            alertify.alert("Error", "No se ha ingresado la cantidad de piezas para la orden de compra");
-                        } else {
-                            if (Cantidad_NESTT <= 0 || Cantidad_NESTT == null || Cantidad_NESTT == "") {
-                                alertify.alert("Error", "La cantidad de piezas para la orden no puede ser menor a cero");
-                            } else {
-                                if (Cantidad_reportadaT <= 0 || Cantidad_reportadaT == null || Cantidad_reportadaT == "") {
-                                    alertify.alert("Error", "La cantidad de piezas para la orden no puede ser menor a cero");
-                                } else {
-                                    if (Piezas_FalloT <= 0 || Piezas_FalloT == null || Piezas_FalloT == "") {
-                                        alertify.alert("Error", "La cantidad de piezas para la orden no puede ser menor a cero");
-                                    } else {
-                                        if (Placa_solicitadaT <= 0 || Placa_solicitadaT == null || Placa_solicitadaT == "") {
-                                            alertify.alert("Error", "La cantidad de piezas para la orden no puede ser menor a cero");
-                                        } else {
-                                            if (Placa_cortadaT <= 0 || Placa_cortadaT == null || Placa_cortadaT == "") {
-                                                alertify.alert("Error", "La cantidad de piezas para la orden no puede ser menor a cero");
-                                            } else {
-                                                if (Orden_de_compraT == null || Orden_de_compraT == "") {
-                                                    alertify.alert("Error", "No se ah llenado el campo de orden de compra/proyecto");
-                                                } else {
-                                                    if (HorasT <= 0 || HorasT == null || HorasT == "") {
-                                                        alertify.alert("Error", "Las horas ingresadas tienen que ser mayo a cero");
-                                                    } else {
-                                                        flag = true;
-                                                        if (flag == true) {
-                                                            let parametros = {
-                                                                "FechaT": FechaT,
-                                                                "TurnoT": TurnoT,
-                                                                "MaquinasT": MaquinasT,
-                                                                "OperadorT": OperadorT,
-                                                                "Proceso_piezaT": Proceso_piezaT,
-                                                                "Folio_mpT": Folio_mpT,
-                                                                "Cantidad_NESTT": Cantidad_NESTT,
-                                                                "Cantidad_reportadaT": Cantidad_reportadaT,
-                                                                "Piezas_FalloT": Piezas_FalloT,
-                                                                "Placa_solicitadaT": Placa_solicitadaT,
-                                                                "Placa_cortadaT": Placa_cortadaT,
-                                                                "Orden_de_compraT": Orden_de_compraT,
-                                                                "HorasT": HorasT
-                                                            };
-                                                            // Enviar por Ajax
-                                                            $.ajax({
-                                                                type: 'POST',
-                                                                url: '../Php_forms/Insert_Corte_Turno.php',
-                                                                data: parametros,
-                                                                async: false,
-                                                                success: function (returning) {
-                                                                    if (returning == "si") {
-                                                                        // alertify.success('Pieza agregada');
-                                                                        alertify.alert("¡Exito!", "El modelo o pieza se ha agregado con éxito");
-                                                                        let formulario = $("#form_Turnos");
-                                                                        FechaT = $("#FechaT")[0].value="";
-                                                                        TurnoT = $("#TurnoT")[0].value="";
-                                                                        MaquinasT = $("#MaquinasT")[0].value="";
-                                                                        OperadorT = $("#OperadorT")[0].value="";
-                                                                        Proceso_piezaT = $("#Proceso_piezaT")[0].value="";
-                                                                        Folio_mpT = $("#Folio_mpT")[0].value="";
-                                                                        Cantidad_NESTT = $("#Cantidad_NESTT")[0].value="";
-                                                                        Cantidad_reportadaT = $("#Cantidad_reportadaT")[0].value="";
-                                                                        Piezas_FalloT = $("#Piezas_FalloT")[0].value="";
-                                                                        Placa_solicitadaT = $("#Placa_solicitadaT")[0].value="";
-                                                                        Placa_cortadaT = $("#Placa_cortadaT")[0].value="";
-                                                                        Orden_de_compraT = $("#Orden_de_compraT")[0].value="";
-                                                                        HorasT = $("#HorasT")[0].value="";
-                                                                    } else {
-                                                                        alertify.alert("Error", "Se ha producido un error al ingresar el número de diseño o pieza, revise que no esté repetida");
-                                                                    }
-                                                                }
-                                                            });
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
+    
     }
-}
 
 function AgregarProceso() {
 
@@ -1338,4 +1244,5 @@ function AgregarProcesoDetallado(){
         });
     }
 }
+
 // --------------------------------- FIN TURNOS/CORTE TURNO ---------------------------------

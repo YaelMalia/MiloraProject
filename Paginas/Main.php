@@ -266,7 +266,7 @@ $("#Nueva-salida").click(function(){
 
 $("#Nuevo-CorteT").click(function(){
   document.getElementById("ControlCentral").innerHTML="";
-  $("#ControlCentral").load("Formulario_Turnos.php");
+  $("#ControlCentral").load("Formulario_Corte.php");
   closeNav();
   const enlaces = document.getElementsByClassName("enlace");
   enlaces.setAttribute('color', 'rgb(129, 129, 129)');
