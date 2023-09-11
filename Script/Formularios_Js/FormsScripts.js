@@ -914,18 +914,64 @@ function Insert_Turno() {
     let HorasT = $("#HorasT")[0].value;
     let observaciones = $("#Observaciones")[0].value;
 
-    if(FechaT == null || FechaT == ""){
+    if (FechaT == null || FechaT == "") {
         alertify.alert("Aviso", "No se ha especificado la fecha del corte");
-    }else{
-        if(TurnoT == null || TurnoT == ""){
-            alertify.alert("Aviso","El turno no puede estar vacío.");
-        }else{
-            if(OperadorT == null || OperadorT == ""){
-                //
+    } else {
+        if (TurnoT == null || TurnoT == "") {
+            alertify.alert("Aviso", "El turno no puede estar vacío.");
+        } else {
+            if (OperadorT == null || OperadorT == "") {
+                alertify.alert("Aviso", "El no se ha ingresado el nombre del operador");
+            } else {
+                if (MaquinasT == null || MaquinasT == "") {
+                    alertify.alert("Aviso", "El campo maquinas no puede estar vacío");
+                } else {
+                    if (disenoT == null || disenoT == "") {
+                        alertify.alert("Aviso", "El campo diseño no puede estar vacío");
+                    } else {
+                        if (Orden_de_compraT == null || Orden_de_compraT == "") {
+                            alertify.alert("Aviso", "El campo de la orden de compra no puede estar vacío");
+                        } else {
+                            if (espesorT == null || espesorT == "") {
+                                alertify.alert("Aviso", "El campo de espesor no puede estar vacío");
+                            } else {
+                                if (Folio_mpT == null || Folio_mpT == "") {
+                                    alertify.alert("Aviso", "El campo de vale de materia prima no puede estar vacío");
+                                } else {
+                                    if (Cantidad_NEST == null || Cantidad_NEST == "") {
+                                        alertify.alert("Aviso", "El campo del NEST solicitado no puede estar vacío");
+                                    } else {
+                                        if (Cantidad_reportadaT == null || Cantidad_reportadaT == "") {
+                                            alertify.alert("Aviso", "El campo de cantidad reportada no puede estar vacío");
+                                        } else {
+                                            if (PlacasNEST == null || PlacasNEST == "") {
+                                                alertify.alert("Aviso", "El campo de las placas reuqeridas en NEST no puede estar vacío");
+                                            } else {
+                                                if (Placa_cortadaT == null || Placa_cortadaT == "") {
+                                                    alertify.alert("Aviso", "El campo de placas cortadas no puede estar vacío");
+                                                } else {
+                                                    if (HorasT == null || HorasT == "") {
+                                                        alertify.alert("Aviso", "El campo de horas trabajadas no puede estar vacío");
+                                                    }else{
+                                                        // Todo correcto!
+
+                                                        // Se preparan 
+
+
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
+
         }
     }
-    
 }
 
 function AgregarProceso() {
@@ -1215,20 +1261,20 @@ function BuscarProceso() {
     });
 }
 
-function AgregarProcesoDetallado(){
-    let fechaDetallada=$("#FechaFD")[0].value;
-    let SupervisorFD=$("#SupervisorFD")[0].value;
-    let TipoFD=$("#TipoFD")[0].value;
-    let NoDisenoFD=$("#NoDisenoFD")[0].value;
-    let CantidadSoliFD=$("#CantidadSoliFD")[0].value;
-    let CantidadEntreFD=$("#CantidadEntreFD")[0].value;
-    let HorasFD=$("#HorasFD")[0].value;
+function AgregarProcesoDetallado() {
+    let fechaDetallada = $("#FechaFD")[0].value;
+    let SupervisorFD = $("#SupervisorFD")[0].value;
+    let TipoFD = $("#TipoFD")[0].value;
+    let NoDisenoFD = $("#NoDisenoFD")[0].value;
+    let CantidadSoliFD = $("#CantidadSoliFD")[0].value;
+    let CantidadEntreFD = $("#CantidadEntreFD")[0].value;
+    let HorasFD = $("#HorasFD")[0].value;
 
 
     if (fechaDetallada == "" || SupervisorFD == "" || TipoFD == "" || NoDisenoFD == "" || CantidadSoliFD == "" || CantidadEntreFD == "" || HorasFD == "") {
         alertify.alert("Aviso", "Faltan por llenar uno o más campos, revise sus datos");
         // alert("Faltan datos");
-    }else{
+    } else {
         let parametrosConsulta = {
             "disenoConsulta": noDiseno
         };
@@ -1246,7 +1292,7 @@ function AgregarProcesoDetallado(){
                     alertify.alert("Error", "Se ha producido un error, revise su conexión a internet");
                     // alert("Error de conexión");
                 } else {
-                    
+
                 }
             }
         });
