@@ -31,15 +31,14 @@
      <div id="mySidebar" class="sidebar">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
       <!--  -->
-      <button class="dropdown-btn Prod-Nav">Corte de turno
+      <button class="dropdown-btn Prod-Nav">Cargas de trabajo
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-container">
-        <a id="Nuevo-CorteT" class="enlace">Realizar reporte de corte</a>
-        <a id="Consultar-corte" class="enlace">Consultar corte</a>
-        <a id="Detalladas" class="enlace">Proceso detallado</a>
-        <a id="" class="enlace">Reporte de corte (Lohr)</a>
-        <a id="" class="enlace">Consultar corte (Lohr)</a>
+        <a id="Nuevo-CorteT" class="enlace">Carga para corte</a>
+        <!-- <a id="Consultar-corte" class="enlace">Consultar corte</a> -->
+        <!-- <a id="Detalladas" class="enlace">Carga otros procesos</a> -->
+        <!-- <a id="" class="enlace">Consultar corte (Lohr)</a> -->
       </div>
       <!--  -->
       <button class="dropdown-btn Prod-Nav">Procesos

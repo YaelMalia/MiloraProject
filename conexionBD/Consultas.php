@@ -767,21 +767,24 @@ class MiloraClass
         }
     }
 
-    public function insert_Turno($NoProceso){
+    public function CargaCorte($fecha, $fechalimite, $turno, $operador,$maquina, $no_orden, $espesor, $foliomp, $nestSolic, $placasnest){
         try {
-            $query = $this->dbh->prepare("INSERT INTO procesos_produccion (No_orden, Proceso_actual, Cantidad, Responsable, Procesos_realizados, Estado_proceso, Procesos_restantes, Inicio_FH) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-            $query->bindParam(1, $Norden);
-            $query->bindParam(2, $ProcActual);
-            $query->bindParam(3, $Cantidad);
-            $query->bindParam(4, $responsable);
-            $query->bindParam(5, $PrealizadosU);
-            $query->bindParam(6, $Estado_proc);
-            $query->bindParam(7, $Proc_restantes);
-            $query->bindParam(8, $InicioFH);
+            $query = $this->dbh->prepare("INSERT INTO reporte_corte (Fecha, FechaLimite, Turno, Operador, Maquina, No_orden, Espesor, Vale_MP, NEST_Solicitado, Placas_NEST) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $query->bindParam(1, $fecha);
+            $query->bindParam(2, $fechalimite);
+            $query->bindParam(3, $turno);
+            $query->bindParam(4, $operador);
+            $query->bindParam(5, $maquina);
+            $query->bindParam(6, $no_orden);
+            $query->bindParam(7, $espesor);
+            $query->bindParam(8, $foliomp);
+            $query->bindParam(9, $nestSolic);
+            $query->bindParam(10, $placasnest);
 
             $query->execute();
             return $query->fetchAll();
             $this->dbh = null;
+            
         } catch (PDOException $e) {
             $e->getMessage();
             echo $e;

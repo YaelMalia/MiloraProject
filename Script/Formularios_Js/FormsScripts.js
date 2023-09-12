@@ -897,8 +897,8 @@ function buscarStock() {
 // --------------------------------- FIN BUSQUEDAS STOCK ---------------------------------
 
 // --------------------------------- INICIO TURNOS/CORTE TURNO/PROCESOS ---------------------------------
-function Insert_Turno() {
-    let flag = false;
+function InsertReporte_Corte() {
+    // let flag = false;
     let FechaT = $("#FechaT")[0].value;
     let TurnoT = $("#TurnoT")[0].value;
     let OperadorT = $("#OperadorT")[0].value;
@@ -908,14 +908,14 @@ function Insert_Turno() {
     let espesorT = $("#EspesorT")[0].value;
     let Folio_mpT = $("#ValeMP")[0].value;
     let Cantidad_NEST = $("#Cantidad_NEST")[0].value;
-    let Cantidad_reportadaT = $("#CantidadRep")[0].value;
+    // let Cantidad_reportadaT = $("#CantidadRep")[0].value;
     let PlacasNEST = $("#PlacasNEST")[0].value;
-    let Placa_cortadaT = $("#Placa_cortadaT")[0].value;
-    let HorasT = $("#HorasT")[0].value;
-    let observaciones = $("#Observaciones")[0].value;
+    // let Placa_cortadaT = $("#Placa_cortadaT")[0].value;
+    // let HorasT = $("#HorasT")[0].value;
+    // let observaciones = $("#Observaciones")[0].value;
 
     if (FechaT == null || FechaT == "") {
-        alertify.alert("Aviso", "No se ha especificado la fecha del corte");
+        alertify.alert("Aviso", "No se ha especificado la fecha límite");
     } else {
         if (TurnoT == null || TurnoT == "") {
             alertify.alert("Aviso", "El turno no puede estar vacío.");
@@ -941,26 +941,68 @@ function Insert_Turno() {
                                     if (Cantidad_NEST == null || Cantidad_NEST == "") {
                                         alertify.alert("Aviso", "El campo del NEST solicitado no puede estar vacío");
                                     } else {
-                                        if (Cantidad_reportadaT == null || Cantidad_reportadaT == "") {
-                                            alertify.alert("Aviso", "El campo de cantidad reportada no puede estar vacío");
+                                        if (PlacasNEST == null || PlacasNEST == "") {
+                                            alertify.alert("Aviso", "El campo de las placas reuqeridas en NEST no puede estar vacío");
                                         } else {
-                                            if (PlacasNEST == null || PlacasNEST == "") {
-                                                alertify.alert("Aviso", "El campo de las placas reuqeridas en NEST no puede estar vacío");
-                                            } else {
-                                                if (Placa_cortadaT == null || Placa_cortadaT == "") {
-                                                    alertify.alert("Aviso", "El campo de placas cortadas no puede estar vacío");
-                                                } else {
-                                                    if (HorasT == null || HorasT == "") {
-                                                        alertify.alert("Aviso", "El campo de horas trabajadas no puede estar vacío");
-                                                    }else{
-                                                        // Todo correcto!
+                                            // Todo correcto!
 
-                                                        // Se preparan 
+                                            // Se preparan los datos para el post
+
+                                            let parametrosConsulta = {
+                                                "disenoConsulta": disenoT,
+                                                "ordenConsulta": Orden_de_compraT
+                                            };
+
+                                            $.ajax({
+                                                type: 'POST',
+                                                url: '../Php_forms/Get_noOrden_Entradas.php',
+                                                data: parametrosConsulta,
+                                                async: false,
+                                                success: function (returning) {
+                                                    if (returning == "notFound") {
+                                                        alertify.alert("Error", "Parece que no hay ninguna orden de compra con dicha pieza, revise sus datos");
+                                                        // alert("No orden existente");
+                                                    } else if (returning.includes("Fatal Error")) {
+                                                        alertify.alert("Error", "Se ha producido un error, revise su conexión a internet");
+                                                        // alert("Error de conexión");
+                                                    } else {
+                                                        // Se han encontrado los datos
+                                                        let noOrden = returning;
+
+                                                        // Agregar a tabla
+                                                        var fechaUTC = new Date();
+                                                        const desplazamientoUTC6 = -6 * 60;
+                                                        let today = new Date(fechaUTC.getTime() + (desplazamientoUTC6 * 60000));
+                                                        // alert(today);
+                                                        var date = today.toISOString().slice(0, 10);
+
+                                                        let parametrosCarga = {
+                                                            "Fecha": date,
+                                                            "FechaLimite": FechaT,
+                                                            "Turno": TurnoT,
+                                                            "Operador": OperadorT,
+                                                            "Maquina": MaquinasT,
+                                                            "No_orden": noOrden,
+                                                            "Espesor": espesorT,
+                                                            "FolioMP": Folio_mpT,
+                                                            "NEST_solic": Cantidad_NEST,
+                                                            "Placa_NEST": PlacasNEST,
+                                                        }
 
 
+                                                        $.ajax({
+                                                            type: 'POST',
+                                                            url: '../Php_forms/Insert_CargaCorte.php',
+                                                            data: parametrosCarga,
+                                                            async: false,
+                                                            success: function (returnInsert) {
+                                                                alert(returnInsert);
+                                                            }});
                                                     }
                                                 }
-                                            }
+                                            });
+
+
                                         }
                                     }
                                 }
