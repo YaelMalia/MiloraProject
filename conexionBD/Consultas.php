@@ -754,10 +754,11 @@ class MiloraClass
     }
 
     //-------------------------------- Turnos --------------------------------
-    public function Get_noOrden_Detallado($ordenR){
+    public function Get_noOrden_Detallado($ordenR, $no_diseno){
         try {
-            $query = $this->dbh->prepare("SELECT Numero_orden FROM ordenes_compras WHERE Orden_compra LIKE ?");
+            $query = $this->dbh->prepare("SELECT Numero_orden FROM ordenes_compras WHERE Orden_compra LIKE ? and No_diseno like ?");
             $query->bindParam(1, $ordenR);
+            $query->bindParam(2, $no_diseno);
             $query->execute();
             return $query->fetchAll();
             $this->dbh = null;
