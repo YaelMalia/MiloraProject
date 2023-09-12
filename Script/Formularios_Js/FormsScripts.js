@@ -996,8 +996,25 @@ function InsertReporte_Corte() {
                                                             data: parametrosCarga,
                                                             async: false,
                                                             success: function (returnInsert) {
-                                                                alert(returnInsert);
-                                                            }});
+                                                                if (returnInsert == "si") {
+                                                                    alertify.alert("¡Exito!", "Se ha agregado una nueva carga de trabajo");
+
+                                                                    $("#FechaT")[0].value = "";
+                                                                    $("#TurnoT")[0].value = "";
+                                                                    $("#OperadorT")[0].value = "";
+                                                                    $("#MaquinasT")[0].value = "";
+                                                                    $("#disenoT")[0].value = "";
+                                                                    $("#Orden_de_compraT")[0].value = "";
+                                                                    $("#EspesorT")[0].value = "";
+                                                                    $("#ValeMP")[0].value = "";
+                                                                    $("#Cantidad_NEST")[0].value = "";
+                                                                    $("#PlacasNEST")[0].value = "";
+
+                                                                } else {
+                                                                    alertify.alert("Error", "Se ha producido un error al realizar esta carga de trabajo, revise sus datos. Si el problema persiste, vuelva a iniciar sesión");
+                                                                }
+                                                            }
+                                                        });
                                                     }
                                                 }
                                             });

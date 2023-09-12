@@ -35,7 +35,7 @@
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-container">
-        <a id="Nuevo-CorteT" class="enlace">Carga para corte</a>
+        <a id="Nuevo-Carga-Corte" class="enlace">Carga para corte</a>
         <!-- <a id="Consultar-corte" class="enlace">Consultar corte</a> -->
         <!-- <a id="Detalladas" class="enlace">Carga otros procesos</a> -->
         <!-- <a id="" class="enlace">Consultar corte (Lohr)</a> -->
@@ -263,7 +263,7 @@ $("#Nueva-salida").click(function(){
   enlaces.setAttribute('color', 'rgb(129, 129, 129)');
 });
 
-$("#Nuevo-CorteT").click(function(){
+$("#Nuevo-Carga-Corte").click(function(){
   document.getElementById("ControlCentral").innerHTML="";
   $("#ControlCentral").load("Formulario_Corte.php");
   closeNav();
