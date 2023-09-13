@@ -1328,6 +1328,7 @@ function AgregarProcesoDetallado() {
     let CantidadSoliFD = $("#CantidadSoliFD")[0].value;
     let CantidadEntreFD = $("#CantidadEntreFD")[0].value;
     let HorasFD = $("#HorasFD")[0].value;
+
     if (OrdenCompraFD == "" || fechaDetallada == "" || SupervisorFD == "" || TipoFD == "" || NoDisenoFD == "" || CantidadSoliFD == "" || CantidadEntreFD == "" || HorasFD == "") {
         alertify.alert("Aviso", "Faltan por llenar uno o más campos, revise sus datos");
         // alert("Faltan datos");
@@ -1349,24 +1350,25 @@ function AgregarProcesoDetallado() {
                     alertify.alert("Error", "Se ha producido un error, revise su conexión a internet");
                     // alert("Error de conexión");
                 } else {
-                    let parametros={
-                        "Fecha": fechaDetallada,
-                        "Operador": SupervisorFD,
-                        "TipoDetallado": TipoFD,
-                        "No_orden": returning,
-                        "CantidadSolicitada": CantidadSoliFD,
-                        "CantidadEntregada": CantidadEntreFD,
-                        "Horas_trabajadas": HorasFD
-                    }
-                    $.ajax({
-                        type: 'POST',
-                        url: '../Php_forms/mnm.php',
-                        data: parametros,
-                        async: false,
-                        success: function (returning) {
+                    alert(returning);
+                    // let parametros={
+                    //     "Fecha": fechaDetallada,
+                    //     "Operador": SupervisorFD,
+                    //     "TipoDetallado": TipoFD,
+                    //     "No_orden": returning,
+                    //     "CantidadSolicitada": CantidadSoliFD,
+                    //     "CantidadEntregada": CantidadEntreFD,
+                    //     "Horas_trabajadas": HorasFD
+                    // }
+                    // $.ajax({
+                    //     type: 'POST',
+                    //     url: '../Php_forms/mnm.php',
+                    //     data: parametros,
+                    //     async: false,
+                    //     success: function (returnings) {
                             
-                        }
-                    });
+                    //     }
+                    // });
                 }
             }
         });
