@@ -767,6 +767,9 @@ class MiloraClass
             echo $e;
         }
     }
+    public function Insertar_Proceso_Detallado(){
+        
+    }
 
     public function CargaCorte($fecha, $fechalimite, $turno, $operador,$maquina, $no_orden, $espesor, $foliomp, $nestSolic, $placasnest){
         try {
