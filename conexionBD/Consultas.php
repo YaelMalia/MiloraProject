@@ -767,8 +767,23 @@ class MiloraClass
             echo $e;
         }
     }
-    public function Insertar_Proceso_Detallado(){
-        
+    public function Insertar_Proceso_Detallado($Fecha, $FechaLim, $Operador, $TipoDetallado, $No_orden, $CantidadyCalidad){
+        try {
+            $query = $this->dbh->prepare("INSERT INTO reporte_detallado (Fecha, FechaLimite, Operador, TipoDetallado, No_orden, CantidadSolicitada) VALUES (?, ?, ?, ?, ?, ?)");
+            $query->bindParam(1, $Fecha);
+            $query->bindParam(2, $FechaLim);
+            $query->bindParam(3, $Operador);
+            $query->bindParam(4, $TipoDetallado);
+            $query->bindParam(5, $No_orden);
+            $query->bindParam(6, $CantidadyCalidad);
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
+            
+        } catch (PDOException $e) {
+            $e->getMessage();
+            echo $e;
+        }
     }
 
     public function CargaCorte($fecha, $fechalimite, $turno, $operador,$maquina, $no_orden, $espesor, $foliomp, $nestSolic, $placasnest){
