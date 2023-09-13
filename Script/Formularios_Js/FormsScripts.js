@@ -1034,7 +1034,6 @@ function InsertReporte_Corte() {
 }
 
 function AgregarProceso() {
-
     let P_diseno = $("#P_Diseno")[0].value;
     let P_orden = $("#P_orden")[0].value;
     let cantidadProd = $("#P_cantidad")[0].value;
@@ -1324,20 +1323,19 @@ function AgregarProcesoDetallado() {
     let fechaDetallada = $("#FechaFD")[0].value;
     let SupervisorFD = $("#SupervisorFD")[0].value;
     let TipoFD = $("#TipoFD")[0].value;
+    let OrdenCompraFD= $('#OrdenCompraFD')[0].value;
     let NoDisenoFD = $("#NoDisenoFD")[0].value;
     let CantidadSoliFD = $("#CantidadSoliFD")[0].value;
     let CantidadEntreFD = $("#CantidadEntreFD")[0].value;
     let HorasFD = $("#HorasFD")[0].value;
-
-
-    if (fechaDetallada == "" || SupervisorFD == "" || TipoFD == "" || NoDisenoFD == "" || CantidadSoliFD == "" || CantidadEntreFD == "" || HorasFD == "") {
+    if (OrdenCompraFD == "" || fechaDetallada == "" || SupervisorFD == "" || TipoFD == "" || NoDisenoFD == "" || CantidadSoliFD == "" || CantidadEntreFD == "" || HorasFD == "") {
         alertify.alert("Aviso", "Faltan por llenar uno o más campos, revise sus datos");
         // alert("Faltan datos");
     } else {
         let parametrosConsulta = {
-            "disenoConsulta": noDiseno
+            "ordenConsulta": OrdenCompraFD,
+            "disenoConsulta": NoDisenoFD
         };
-
         $.ajax({
             type: 'POST',
             url: '../Php_forms/Get_noOrden_Detallado.php',
@@ -1351,7 +1349,24 @@ function AgregarProcesoDetallado() {
                     alertify.alert("Error", "Se ha producido un error, revise su conexión a internet");
                     // alert("Error de conexión");
                 } else {
-
+                    let parametros={
+                        "Fecha": fechaDetallada,
+                        "Operador": SupervisorFD,
+                        "TipoDetallado": TipoFD,
+                        "No_orden": returning,
+                        "CantidadSolicitada": CantidadSoliFD,
+                        "CantidadEntregada": CantidadEntreFD,
+                        "Horas_trabajadas": HorasFD
+                    }
+                    $.ajax({
+                        type: 'POST',
+                        url: '../Php_forms/mnm.php',
+                        data: parametros,
+                        async: false,
+                        success: function (returning) {
+                            
+                        }
+                    });
                 }
             }
         });
