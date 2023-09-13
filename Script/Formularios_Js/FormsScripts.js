@@ -1326,10 +1326,8 @@ function AgregarProcesoDetallado() {
     let OrdenCompraFD = $("#OrdenCompraFD")[0].value;
     let NoDisenoFD = $("#noDisenoFD")[0].value;
     let CantidadSoliFD = $("#CantidadSoliFD")[0].value;
-    let CantidadEntreFD = $("#CantidadEntreFD")[0].value;
-    let HorasFD = $("#HorasFD")[0].value;
 
-    if (OrdenCompraFD == "" || fechaDetallada == "" || SupervisorFD == "" || TipoFD == "" || NoDisenoFD == "" || CantidadSoliFD == "" || CantidadEntreFD == "" || HorasFD == "") {
+    if (OrdenCompraFD == "" || fechaDetallada == "" || SupervisorFD == "" || TipoFD == "" || NoDisenoFD == "" || CantidadSoliFD == "") {
         alertify.alert("Aviso", "Faltan por llenar uno o más campos, revise sus datos");
         // alert("Faltan datos");
     } else {
@@ -1364,12 +1362,10 @@ function AgregarProcesoDetallado() {
                         "TipoDetallado": TipoFD,
                         "No_orden": returning,
                         "CantidadSolicitada": CantidadSoliFD,
-                        "CantidadEntregada": CantidadEntreFD,
-                        "Horas_trabajadas": HorasFD
                     }
                     $.ajax({
                         type: 'POST',
-                        url: '../Php_forms/mnm.php',
+                        url: '../Php_forms/Insert_Detallado.php',
                         data: parametros,
                         async: false,
                         success: function (returnings) {
@@ -1381,8 +1377,6 @@ function AgregarProcesoDetallado() {
                                 $("#OrdenCompraFD")[0].value="";
                                 $("#noDisenoFD")[0].value="";
                                 $("#CantidadSoliFD")[0].value="";
-                                $("#CantidadEntreFD")[0].value="";
-                                $("#HorasFD")[0].value="";
                             }
                             else{
                                 alertify.alert("Error", "Se ha producido un error al realizar esta carga de trabajo, revise sus datos. Si el problema persiste, vuelva a iniciar sesión");
