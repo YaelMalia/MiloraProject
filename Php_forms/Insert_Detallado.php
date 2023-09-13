@@ -10,7 +10,6 @@
             require_once("../conexionBD/Consultas.php");
             $miloraObj = MiloraClass::singleton();
             $data = $miloraObj->Insertar_Proceso_Detallado($fechaInicio, $fechaLimite, $Operador ,$TipoDetalle, $No_orden, $CantidadSoli);
-
             echo "si";
         } catch (\Throwable $th) {
             echo "no";
