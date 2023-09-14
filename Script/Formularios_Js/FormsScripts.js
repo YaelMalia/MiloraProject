@@ -1124,6 +1124,7 @@ function Refresh() {
     $("#ControlCentral").load("Seguimiento_Procesos.php");
 }
 
+
 var P_actualGlobal, P_restantesGlobal, noProceso, Norden_compraGlobal, P_realizados;
 
 function mostrarModal(btn) {
@@ -1387,6 +1388,46 @@ function AgregarProcesoDetallado() {
             }
         });
     }
+}
+
+let NEST_solicGlobal;
+
+function mostrarModalCorte(btn){
+    $("#modalCorte").show(800);
+
+    $("#CantidadRep")[0].value = "";
+    $("#Placa_cortadaT")[0].value = "";
+    $("#HorasT")[0].value = "";
+    $("#Observaciones")[0].value = "";
+    $("#porcentaje")[0].textContent = "0%";
+    document.getElementById("porcentaje").style.color = "black";
+
+
+    NEST_solicGlobal = btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
+
+    const input = document.querySelector("#CantidadRep");
+    
+    input.addEventListener("input", function(e){
+        let porcentaje = (e.target.value * 100)/NEST_solicGlobal;
+        porcentaje = porcentaje.toFixed(2);
+        if(porcentaje>100){
+            alertify.alert("Aviso", "Usted está sobrepasando la cantidad solicitada en NEST");
+        }else if(porcentaje >= 90 && porcentaje <= 100){
+            document.getElementById("porcentaje").style.color = "green";
+        }else if(porcentaje >=70 && porcentaje < 90){
+            document.getElementById("porcentaje").style.color = "orange";
+        }else{
+            document.getElementById("porcentaje").style.color = "red";
+        }
+
+        $("#porcentaje")[0].textContent = porcentaje + "%";
+    });
+
+    
+
+    document.getElementById("DetrasP").style.filter = "blur(8px) grayscale(100%)";
+    document.getElementById("DetrasP").style.pointerEvents = "none";
+    document.getElementById("modalCorte").style.filter = "blur(0)";
 }
 
 // --------------------------------- FIN TURNOS/CORTE TURNO ---------------------------------

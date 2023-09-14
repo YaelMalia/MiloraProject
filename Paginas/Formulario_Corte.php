@@ -86,10 +86,7 @@
            
             <!-- ------------------------------------------------------------------------------------------------------ -->
             
-            <!-- <div class="col-md-3">
-                <label for="CantidadRep" class="form-label">Cantidad reportada</label>
-                <input type="text" class="form-control" id="CantidadRep" placeholder="Cantidad reportada" required>
-            </div> -->
+            
 
             <!-- ---------- -->
 
@@ -99,22 +96,6 @@
             </div>
 
             <!-- ------------ -->
-            
-            <!-- <div class="col-md-3">
-                <label for="Placa_cortadaT" class="form-label">Placas cortadas</label>
-                <input type="text" class="form-control" id="Placa_cortadaT" placeholder="Placas cortadas" required>
-            </div> -->
-            
-            <!-- ------------------------------------------------------------------------------------------------------ -->
-            <!-- <div class="col-md-3">
-                <label for="HorasT" class="form-label">Horas</label>
-                <input type="text" class="form-control" id="HorasT" placeholder="Horas de proceso" required>
-            </div> -->
-
-            <!-- <div class="col-md-9">
-                <label for="Observaciones" class="form-label">Observaciones</label>
-                <textarea name="Observaciones" class="form-control" id="Observaciones" cols="auto" rows="1" placeholder="(En caso de no haber observaciones, dejarlo vacío)"></textarea>
-            </div> -->
             
             <div class="col-md-4"></div>
 

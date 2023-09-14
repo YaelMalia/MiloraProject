@@ -17,7 +17,7 @@
     <script src="../Script/jquery-3.5.1.min.js"></script>
 
     <style>
-      .modalMine{
+      .modalCorte{
         margin:0 auto;
         border-radius:10px;
         background-color:#E5E6E6;
@@ -39,42 +39,43 @@
 <body id="cuerpoP" style="padding-left: 20px; padding-top: 20px; padding-bottom: 20px; padding-right: 20px; ">
    
     <!-- Modal para registro de producción -->
-    <div class="modalMine" id="modal">
-      <h2 style="text-align: center;">Registro de proceso terminado</h2>
-      <p style="text-align: center;">(En caso que el siguiente proceso sea "ninguno", ingresar almacén como el siguiente responsable y la cantidad de piezas)</p>
-      <div class="row g-3" style="margin-top:30px;">
-            <div class="col-md-4">
-                <label for="ComboProcesos" class="form-label">Siguiente proceso:</label>
-                <select id="ComboProcesos" class="form-select">
-                    <!-- <option>Si</option>
-                    <option selected>No</option> -->
-                </select>
-            </div>
+    <div class="modalCorte" id="modalCorte">
+            <h2 style="text-align: center;">Reportar carga final</h2>
+            <div style="text-align: center;"><p style="font-size:18px;">Porcentaje de productividad: </p><p id="porcentaje" style="text-decoration: underline; font-size:20px;">0%</p></div>
+            <div class="row g-3" style="margin-top:30px;">
 
-            <div class="col-md-4">
-                <label for="Responsable" class="form-label">Responsable del siguiente proceso</label>
-                <input type="text" class="form-control" id="Responsable" placeholder="Responsable del siguiente proceso">
-            </div>
+        <div class="col-md-4">
+            <label for="CantidadRep" class="form-label">Cantidad reportada</label>
+            <input type="number" class="form-control" id="CantidadRep" placeholder="Cantidad reportada" required>
+        </div>
+<!--  -->
+        <div class="col-md-4">
+            <label for="Placa_cortadaT" class="form-label">Placas cortadas</label>
+            <input type="text" class="form-control" id="Placa_cortadaT" placeholder="Placas cortadas" required>
+        </div>
 
-            <div class="col-md-4">
-                <label for="CantidadSP" class="form-label">Cantidad de piezas</label>
-                <input type="text" class="form-control" id="CantidadSP" placeholder="Piezas por hacer para el siguiente proceso">
-            </div>
-
+        <div class="col-md-4">
+            <label for="HorasT" class="form-label">Horas</label>
+            <input type="text" class="form-control" id="HorasT" placeholder="Horas de proceso" required>
+        </div>
+        
+        <div class="col-md-12">
+            <label for="Observaciones" class="form-label">Observaciones</label>
+            <textarea name="Observaciones" class="form-control" id="Observaciones" cols="auto" rows="1" placeholder="(En caso de no haber observaciones, dejarlo vacío)"></textarea>
+        </div>
+        
         <input id="btn-Cancel" onclick="" type="button" class="btn btn-danger col-md-4" value="Cancelar">
-        <div class="col-md-4"></div>    
-        <input onclick="Actualizar_Procesos();" type="button" class="btn btn-success col-md-4" value="Aceptar">
+                <div class="col-md-4"></div>    
+        <input onclick="Reportar_Corte();" type="button" class="btn btn-success col-md-4" value="Aceptar">
 
-
+        </div>
       </div>
-
-    </div>
     <!-- Fin modal -->
 
     <section id="DetrasP" class="d-flex justify-content-center"
         style="padding-left: 20px; max-height: 600px; padding-top: 20px; padding-bottom: 20px; padding-right: 20px; background-color: #d2dae6;  border-radius:10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);" >
         <form id ="form_nuevoD" class="row g-4" style="overflow:scroll;">
-        <h2 style="text-align: center;">Cargas realizadas para corte</h2>
+        <h2 style="text-align: center;">Cargas para corte</h2>
         <!-- <center><p id="p-dia" style="font-size:20px;">Procesos activos para el día de hoy</p></center> -->
             <!--  tabla resultante -->
             <!--  -->
@@ -121,7 +122,7 @@
                             if($fila["Estatus"] == "En proceso"){
                               ?>
                              <th style="background-color:#7EA8ED !important;"><?php echo $fila["No_reporte"]; ?></th>
-                                <td style="background-color:#7EA8ED !important;"><input onclick="" id="btn-check" type="button" class="btn btn-success" value="✅"></td>
+                                <td style="background-color:#7EA8ED !important;"><input onclick="mostrarModalCorte(this);" id="btn-check" type="button" class="btn btn-success" value="✅"></td>
                                 <td style="background-color:#7EA8ED !important;"><?php echo $fila["Fecha"];?></td>
                                 <td style="background-color:#7EA8ED !important;"><?php echo $fila["Estatus"];?></td>
                                 <td style="background-color:#7EA8ED !important;"><?php echo $fila["FechaLimite"];?></td>
@@ -138,7 +139,7 @@
                                 <td style="background-color:#7EA8ED !important;"><?php echo $fila["Orden_compra"];?></td>
                                 <td style="background-color:#7EA8ED !important;"><?php if($fila["Horas_trabajadas"]==""){echo "- - -";}?></td>
                                 <td style="background-color:#7EA8ED !important;"><?php if($fila["Observaciones"]=="Ninguna"){echo "- - -";}?></td>
-                                <td style="background-color:#7EA8ED !important;"><?php echo $fila["Porcentaje_cumplimiento"];?></td>
+                                <td style="background-color:#7EA8ED !important;"><?php if($fila["Porcentaje_cumplimiento"] == 0){echo "- - -";}?></td>
                             </tr>
                               <?php
                             }else if($fila["Estatus"] == "Terminado"){
@@ -207,7 +208,7 @@
     </section>
    <script>
     $("#btn-Cancel").click(function(){
-      $("#modal").hide(800);
+      $("#modalCorte").hide(800);
       document.getElementById("DetrasP").style.filter = "blur(0) grayscale(0%)";
       document.getElementById("DetrasP").style.pointerEvents = "auto";
     });
