@@ -41,29 +41,29 @@ class InsumosClass
         }
     }
     //--------------
-    public function AgregarEntradaInsumo($){
-        try {
-            $query = $this->dbh->prepare("SELECT ");
-            $query->bindParam(1, $);
-            $query->execute();
-            return $query->fetchAll();
-            $this->dbh = null;
-        } catch (PDOException $e) {
-            $e->getMessage();
-        }
-    }
+    // public function AgregarEntradaInsumo($){
+    //     try {
+    //         $query = $this->dbh->prepare("SELECT ");
+    //         $query->bindParam(1, $);
+    //         $query->execute();
+    //         return $query->fetchAll();
+    //         $this->dbh = null;
+    //     } catch (PDOException $e) {
+    //         $e->getMessage();
+    //     }
+    // }
     //--------------
-    public function AgregarSalidaInsumo($){
-        try {
-            $query = $this->dbh->prepare("SELECT ");
-            $query->bindParam(1, $);
-            $query->execute();
-            return $query->fetchAll();
-            $this->dbh = null;
-        } catch (PDOException $e) {
-            $e->getMessage();
-        }
-    }
+    // public function AgregarSalidaInsumo($){
+    //     try {
+    //         $query = $this->dbh->prepare("SELECT ");
+    //         $query->bindParam(1, $);
+    //         $query->execute();
+    //         return $query->fetchAll();
+    //         $this->dbh = null;
+    //     } catch (PDOException $e) {
+    //         $e->getMessage();
+    //     }
+    // }
     //--------------
 }
 ?>
