@@ -7,7 +7,7 @@ class InsumosClass
     private function __construct(){
         try {
             $servidor = "localhost";
-            $base = "milorabd";
+            $base = "bodegadb";
             $usuario = "root";
             $contrasenia = "";
             $this->dbh = new PDO('mysql:host=' . $servidor . ';dbname=' . $base, $usuario, $contrasenia);
@@ -29,6 +29,41 @@ class InsumosClass
     }
 
 
+    public function AgregarInsumo($IdCate, $Identificador, $Nombre, $Descripcion){
+        try {
+            $query = $this->dbh->prepare("SELECT ");
+            $query->bindParam(1, $IdCate);
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
+        } catch (PDOException $e) {
+            $e->getMessage();
+        }
+    }
+    //--------------
+    public function AgregarEntradaInsumo($){
+        try {
+            $query = $this->dbh->prepare("SELECT ");
+            $query->bindParam(1, $);
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
+        } catch (PDOException $e) {
+            $e->getMessage();
+        }
+    }
+    //--------------
+    public function AgregarSalidaInsumo($){
+        try {
+            $query = $this->dbh->prepare("SELECT ");
+            $query->bindParam(1, $);
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
+        } catch (PDOException $e) {
+            $e->getMessage();
+        }
+    }
     //--------------
 }
 ?>

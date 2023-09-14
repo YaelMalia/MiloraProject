@@ -37,7 +37,7 @@
       <div class="dropdown-container">
         <a id="Nuevo-Carga-Corte" class="enlace">Carga para corte</a>
         <!-- <a id="Consultar-corte" class="enlace">Consultar corte</a> -->
-        <!-- <a id="Detalladas" class="enlace">Carga otros procesos</a> -->
+        <a id="Detalladas" class="enlace">Otras cargas</a>
         <!-- <a id="" class="enlace">Consultar corte (Lohr)</a> -->
       </div>
       <!--  -->

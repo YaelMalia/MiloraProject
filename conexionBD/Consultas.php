@@ -756,12 +756,30 @@ class MiloraClass
     //-------------------------------- Turnos --------------------------------
     public function Get_noOrden_Detallado($ordenR, $no_diseno){
         try {
-            $query = $this->dbh->prepare("SELECT Numero_orden FROM ordenes_compras WHERE Orden_compra LIKE ? and No_diseno like ?");
+            $query = $this->dbh->prepare("SELECT Numero_orden FROM ordenes_compras WHERE Orden_compra LIKE ? and No_diseno LIKE ?");
             $query->bindParam(1, $ordenR);
             $query->bindParam(2, $no_diseno);
             $query->execute();
             return $query->fetchAll();
             $this->dbh = null;
+        } catch (PDOException $e) {
+            $e->getMessage();
+            echo $e;
+        }
+    }
+    public function Insertar_Proceso_Detallado($Fecha, $FechaLim, $Operador, $TipoDetallado, $No_orden, $CantidadyCalidad){
+        try {
+            $query = $this->dbh->prepare("INSERT INTO reporte_detallado (Fecha, FechaLimite, Operador, TipoDetallado, No_orden, CantidadSolicitada) VALUES (?, ?, ?, ?, ?, ?)");
+            $query->bindParam(1, $Fecha);
+            $query->bindParam(2, $FechaLim);
+            $query->bindParam(3, $Operador);
+            $query->bindParam(4, $TipoDetallado);
+            $query->bindParam(5, $No_orden);
+            $query->bindParam(6, $CantidadyCalidad);
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
+            
         } catch (PDOException $e) {
             $e->getMessage();
             echo $e;

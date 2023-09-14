@@ -1034,7 +1034,6 @@ function InsertReporte_Corte() {
 }
 
 function AgregarProceso() {
-
     let P_diseno = $("#P_Diseno")[0].value;
     let P_orden = $("#P_orden")[0].value;
     let cantidadProd = $("#P_cantidad")[0].value;
@@ -1324,23 +1323,21 @@ function AgregarProcesoDetallado() {
     let fechaDetallada = $("#FechaFD")[0].value;
     let SupervisorFD = $("#SupervisorFD")[0].value;
     let TipoFD = $("#TipoFD")[0].value;
-    let NoDisenoFD = $("#NoDisenoFD")[0].value;
+    let OrdenCompraFD = $("#OrdenCompraFD")[0].value;
+    let NoDisenoFD = $("#noDisenoFD")[0].value;
     let CantidadSoliFD = $("#CantidadSoliFD")[0].value;
-    let CantidadEntreFD = $("#CantidadEntreFD")[0].value;
-    let HorasFD = $("#HorasFD")[0].value;
 
-
-    if (fechaDetallada == "" || SupervisorFD == "" || TipoFD == "" || NoDisenoFD == "" || CantidadSoliFD == "" || CantidadEntreFD == "" || HorasFD == "") {
+    if (OrdenCompraFD == "" || fechaDetallada == "" || SupervisorFD == "" || TipoFD == "" || NoDisenoFD == "" || CantidadSoliFD == "") {
         alertify.alert("Aviso", "Faltan por llenar uno o más campos, revise sus datos");
         // alert("Faltan datos");
     } else {
         let parametrosConsulta = {
-            "disenoConsulta": noDiseno
+            "ordenConsulta": OrdenCompraFD,
+            "disenoConsulta": NoDisenoFD
         };
-
         $.ajax({
             type: 'POST',
-            url: '../Php_forms/Get_noOrden_Detallado.php',
+            url: '../Php_forms/Get_noOrdenDetallado.php',
             data: parametrosConsulta,
             async: false,
             success: function (returning) {
@@ -1351,7 +1348,41 @@ function AgregarProcesoDetallado() {
                     alertify.alert("Error", "Se ha producido un error, revise su conexión a internet");
                     // alert("Error de conexión");
                 } else {
+                    var fechaUTC = new Date();
+                    const desplazamientoUTC6 = -6 * 60;
+                    let today = new Date(fechaUTC.getTime() + (desplazamientoUTC6 * 60000));
 
+                    // alert(today);
+
+                    var date = today.toISOString().slice(0, 10);
+                    let parametros={
+                        "Fecha": date,
+                        "FechaLim": fechaDetallada,
+                        "Operador": SupervisorFD,
+                        "TipoDetallado": TipoFD,
+                        "No_orden": returning,
+                        "CantidadSolicitada": CantidadSoliFD,
+                    }
+                    $.ajax({
+                        type: 'POST',
+                        url: '../Php_forms/Insert_Detallado.php',
+                        data: parametros,
+                        async: false,
+                        success: function (returnings) {
+                            if (returnings == "si") {
+                                alertify.alert("¡Exito!", "Se ha agregado una nueva carga de trabajo");
+                                $("#FechaFD")[0].value="";
+                                $("#SupervisorFD")[0].value="";
+                                $("#TipoFD")[0].value="";
+                                $("#OrdenCompraFD")[0].value="";
+                                $("#noDisenoFD")[0].value="";
+                                $("#CantidadSoliFD")[0].value="";
+                            }
+                            else{
+                                alertify.alert("Error", "Se ha producido un error al realizar esta carga de trabajo, revise sus datos. Si el problema persiste, vuelva a iniciar sesión");
+                            }
+                        }
+                    });
                 }
             }
         });
