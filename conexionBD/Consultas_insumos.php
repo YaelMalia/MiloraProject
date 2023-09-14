@@ -44,7 +44,7 @@ class InsumosClass
     // public function AgregarEntradaInsumo($){
     //     try {
     //         $query = $this->dbh->prepare("SELECT ");
-    //         $query->bindParam(1, $);
+    //         $query->bindParam(1, $); 
     //         $query->execute();
     //         return $query->fetchAll();
     //         $this->dbh = null;
