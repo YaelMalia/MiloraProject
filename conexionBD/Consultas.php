@@ -636,6 +636,18 @@ class MiloraClass
         }
     }
 
+    public function Get_noOrdenCarga($noCarga){
+        try {
+            $query = $this->dbh->prepare("SELECT No_orden FROM reporte_corte WHERE no_reporte LIKE ?;");
+            $query->bindParam(1, $noCarga);
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
+        } catch (PDOException $e) {
+            $e->getMessage();
+        }
+    }
+
     public function GetProcesos(){
         try {
             $query = $this->dbh->prepare("SELECT * FROM procesos_produccion INNER JOIN ordenes_compras ON procesos_produccion.No_orden = ordenes_compras.Numero_orden WHERE Inicio_FH LIKE CONCAT('%', CURRENT_DATE, '%') ORDER BY Estado_proceso DESC;");
@@ -809,6 +821,30 @@ class MiloraClass
             echo $e;
         }
     }
+    public function CargaCorteResago($fecha, $estatus, $fechalimite, $turno, $operador,$maquina, $no_orden, $espesor, $foliomp, $nestSolic, $placasnest){
+        try {
+            $query = $this->dbh->prepare("INSERT INTO reporte_corte (Estatus, Fecha, FechaLimite, Turno, Operador, Maquina, No_orden, Espesor, Vale_MP, NEST_Solicitado, Placas_NEST) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $query->bindParam(1, $estatus);
+            $query->bindParam(2, $fecha);
+            $query->bindParam(3, $fechalimite);
+            $query->bindParam(4, $turno);
+            $query->bindParam(5, $operador);
+            $query->bindParam(6, $maquina);
+            $query->bindParam(7, $no_orden);
+            $query->bindParam(8, $espesor);
+            $query->bindParam(9, $foliomp);
+            $query->bindParam(10, $nestSolic);
+            $query->bindParam(11, $placasnest);
+
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
+            
+        } catch (PDOException $e) {
+            $e->getMessage();
+            echo $e;
+        }
+    }
 
     public function Get_Cargas_Corte(){
         try {
@@ -821,147 +857,28 @@ class MiloraClass
         }
     }
 
+    public function Actualiza_Reporte($NoReporte, $Estatus, $Cant_rep, $Placas_cort, $HorasTrabajadas, $Observaciones, $PorcentajeCum){
+        try {
+            $query = $this->dbh->prepare("UPDATE reporte_corte SET Estatus=?, Cantidad_reportada=?, PlacasCortadas=?, Horas_trabajadas=?, Observaciones=?, Porcentaje_cumplimiento=? WHERE No_reporte LIKE ?");
+            
+            $query->bindParam(1, $Estatus);
+            $query->bindParam(2, $Cant_rep);
+            $query->bindParam(3, $Placas_cort);
+            $query->bindParam(4, $HorasTrabajadas);
+            $query->bindParam(5, $Observaciones);
+            $query->bindParam(6, $PorcentajeCum);
+            $query->bindParam(7, $NoReporte);
+
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
+            
+        } catch (PDOException $e) {
+            $e->getMessage();
+            echo $e;
+        }
+    }
+
 /*-----------------------------------------------------------------------------------------------------*/
 
-
-/*    public function get_user($correo, $pass)
-    {
-        try {
-            $query = $this->dbh->prepare("SELECT * FROM usuarios WHERE correo LIKE ? AND pass LIKE ?");
-            $query->bindParam(1, $correo);
-            $query->bindParam(2, $pass);
-            $query->execute();
-            return $query->fetchAll();
-            $this->dbh = null;
-        } catch (PDOException $e) {
-            $e->getMessage();
-        }
-    }
-*/
-
-
-
-/*    public function get_ventas()
-    {
-        try {
-            $query = $this->dbh->prepare("SELECT * FROM ventas WHERE 1");
-            $query->execute();
-            return $query->fetchAll();
-            $this->dbh = null;
-        } catch (PDOException $e) {
-            $e->getMessage();
-        }
-    }
-*/
-
-/*    public function insertar($name, $correo, $pass)
-    {
-        try {
-            $query = $this->dbh->prepare("INSERT INTO usuarios (nombreCompleto, correo, contra) VALUES (?, ?, ?)");
-            $query->bindParam(1, $name);
-            $query->bindParam(2, $correo);
-            $query->bindParam(3, $pass);
-            $query->execute();
-            return $query->fetchAll();
-            $this->dbh = null;
-        } catch (PDOException $e) {
-            $e->getMessage();
-        }
-    }
-*/
-
-/*    public function insertarVenta($name, $domicilio, $garrafon)
-    {
-        try {
-            $query = $this->dbh->prepare("INSERT INTO ventas (nameCliente, domicilio, totGarrafones) VALUES (?, ?, ?)");
-            $query->bindParam(1, $name);
-            $query->bindParam(2, $domicilio);
-            $query->bindParam(3, $garrafon);
-            $query->execute();
-            return $query->fetchAll();
-            $this->dbh = null;
-        } catch (PDOException $e) {
-            $e->getMessage();
-        }
-    }
-*/
-
-/*    public function BorrarVenta($p1)
-    {
-        try {
-            $query = $this->dbh->prepare("DELETE FROM ventas WHERE id_venta LIKE ?");
-            $query->bindParam(1, $p1);
-            $query->execute();
-            return $query->fetchAll();
-            $this->dbh = null;
-        } catch (PDOException $e) {
-            $e->getMessage();
-        }
-    }
-*/
-
-/*    public function Actualizar($p1, $p2)
-    {
-        try {
-            $query = $this->dbh->prepare("UPDATE tabla SET campo1=? WHERE campo2 LIKE ?");
-            $query->bindParam(1, $p1);
-            $query->bindParam(2, $p2);
-            $query->execute();
-            $this->dbh = null;
-        } catch (PDOException $e) {
-            $e->getMessage();
-        }
-    }
-*/
-
-/*    public function Actualizarv($p1, $p2, $p3, $p4)
-    {
-        try {
-            $query = $this->dbh->prepare("UPDATE ventas SET nameCliente=?, domicilio=?, totGarrafones=? WHERE id_venta LIKE ?");
-            $query->bindParam(1, $p1);
-            $query->bindParam(2, $p2);
-            $query->bindParam(3, $p3);
-            $query->bindParam(4, $p4);
-            $query->execute();
-            $this->dbh = null;
-        } catch (PDOException $e) {
-            $e->getMessage();
-        }
-    }
-*/
-
-/*    public function __clone()
-    {
-        trigger_error('La clonación no es permitida!.', E_USER_ERROR);
-    }
-*/
-
-    // Reseñas
-/*    public function insertarResena($name, $resena)
-    {
-        try {
-            $query = $this->dbh->prepare("INSERT INTO resenas (remitente, comentario) VALUES (?, ?)");
-            $query->bindParam(1, $name);
-            $query->bindParam(2, $resena);
-            $query->execute();
-            return $query->fetchAll();
-            $this->dbh = null;
-        } catch (PDOException $e) {
-            $e->getMessage();
-        }
-    }
-*/
-
-/*    public function getResenas()
-    {
-        try {
-            $query = $this->dbh->prepare("SELECT * FROM resenas WHERE 1");
-            $query->execute();
-            return $query->fetchAll();
-            $this->dbh = null;
-        } catch (PDOException $e) {
-            $e->getMessage();
-        }
-    }
-*/
 }

@@ -36,6 +36,8 @@
       </button>
       <div class="dropdown-container">
         <a id="Nuevo-Carga-Corte" class="enlace">Carga para corte</a>
+        <a id="Consulta-Carga-Corte" class="enlace">Consulta carga corte</a>
+
         <!-- <a id="Consultar-corte" class="enlace">Consultar corte</a> -->
         <a id="Detalladas" class="enlace">Otras cargas</a>
         <!-- <a id="" class="enlace">Consultar corte (Lohr)</a> -->
@@ -376,6 +378,14 @@ $("#Consulta-existencias").click(function(){
 $("#Seguimiento-Procesos").click(function(){  
   document.getElementById("ControlCentral").innerHTML="";
   $("#ControlCentral").load("Seguimiento_Procesos.php");
+  closeNav();
+  const enlaces = document.getElementsByClassName("enlace");
+  enlaces.setAttribute('color', 'rgb(129, 129, 129)');
+});
+
+$("#Consulta-Carga-Corte").click(function(){  
+  document.getElementById("ControlCentral").innerHTML="";
+  $("#ControlCentral").load("Consulta_Cargas_Corte.php");
   closeNav();
   const enlaces = document.getElementsByClassName("enlace");
   enlaces.setAttribute('color', 'rgb(129, 129, 129)');

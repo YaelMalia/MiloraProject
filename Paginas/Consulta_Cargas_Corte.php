@@ -55,8 +55,8 @@
         </div>
 
         <div class="col-md-4">
-            <label for="HorasT" class="form-label">Horas</label>
-            <input type="text" class="form-control" id="HorasT" placeholder="Horas de proceso" required>
+            <label for="HorasT" class="form-label">Horas trabajadas</label>
+            <input type="text" class="form-control" id="HorasT" placeholder="Horas de trabajadas para este proceso" required>
         </div>
         
         <div class="col-md-12">
@@ -66,7 +66,7 @@
         
         <input id="btn-Cancel" onclick="" type="button" class="btn btn-danger col-md-4" value="Cancelar">
                 <div class="col-md-4"></div>    
-        <input onclick="Reportar_Corte();" type="button" class="btn btn-success col-md-4" value="Aceptar">
+        <input onclick="ReportarCarga_Corte();" type="button" class="btn btn-success col-md-4" value="Aceptar">
 
         </div>
       </div>
@@ -81,7 +81,7 @@
             <!--  -->
             <div class="col-md-4">
                     <div class="col-4" style="align-text:center">
-                        <input onclick="Refresh_CC();" type="button" class="btn btn-primary" style="margin:0 auto; display:flex; min-width:140px; justify-content:center;" value="Recargar">
+                        <input onclick="RefreshCC();" type="button" class="btn btn-primary" style="margin:0 auto; display:flex; min-width:140px; justify-content:center;" value="Recargar">
                     </div>
                 </div>
                 <!--  -->
@@ -168,7 +168,7 @@
                             }else{
                                 ?>
                                 <th style="background-color:#F79C59 !important;"><?php echo $fila["No_reporte"]; ?></th>
-                                <td style="background-color:#F79C59 !important;"><input onclick="" id="btn-check" type="button" class="btn btn-success" value="✅"></td>
+                                <td style="background-color:#F79C59 !important;"><input onclick="mostrarModalCorte(this);" id="btn-check" type="button" class="btn btn-success" value="✅"></td>
                                 <td style="background-color:#F79C59 !important;"><?php echo $fila["Fecha"];?></td>
                                 <td style="background-color:#F79C59 !important;"><?php echo $fila["Estatus"];?></td>
                                 <td style="background-color:#F79C59 !important;"><?php echo $fila["FechaLimite"];?></td>
@@ -194,7 +194,7 @@
                         else{
                           ?>
                           <script>
-                            alertify.alert("¡Vaya!", "Parece que no hay procesos activos para el día de hoy");
+                            alertify.alert("¡Vaya!", "Parece que no hay cargas de trabajo");
                           </script>
                         <?php
                         }
