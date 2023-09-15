@@ -37,11 +37,8 @@
       <div class="dropdown-container">
         <a id="Nuevo-Carga-Corte" class="enlace">Carga para corte</a>
         <a id="Consulta-Carga-Corte" class="enlace">Consulta carga corte</a>
-
-        <!-- <a id="Consultar-corte" class="enlace">Consultar corte</a> -->
         <a id="Detallado" class="enlace">Otras cargas</a>
         <a id="Consulta-Carga-Detallado" class="enlace">Consulta carga detallado</a>
-        <!-- <a id="" class="enlace">Consultar corte (Lohr)</a> -->
       </div>
       <!--  -->
       <button class="dropdown-btn Prod-Nav">Procesos
@@ -392,7 +389,7 @@ $("#Consulta-Carga-Corte").click(function(){
   enlaces.setAttribute('color', 'rgb(129, 129, 129)');
 });
 
-$("Consulta-Carga-Detallado").click(function(){  
+$("#Consulta-Carga-Detallado").click(function(){  
   document.getElementById("ControlCentral").innerHTML="";
   $("#ControlCentral").load("Consulta_Cargas_Detallado.php");
   closeNav();

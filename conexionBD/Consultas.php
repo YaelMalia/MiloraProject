@@ -647,6 +647,17 @@ class MiloraClass
             $e->getMessage();
         }
     }
+    public function Get_noOrdenCargaDetallado($noCarga){
+        try {
+            $query = $this->dbh->prepare("SELECT No_orden FROM reporte_detallado WHERE No_reporte LIKE ?;");
+            $query->bindParam(1, $noCarga);
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
+        } catch (PDOException $e) {
+            $e->getMessage();
+        }
+    }
 
     public function GetProcesos(){
         try {
@@ -799,27 +810,40 @@ class MiloraClass
         }
     }
 
-    // public function Actualiza_ReporteD($NoReporte, $Estatus, $Cant_rep, $Placas_cort, $HorasTrabajadas, $Observaciones, $PorcentajeCum){
-    //     try {
-    //         $query = $this->dbh->prepare("UPDATE reporte_corte SET Estatus=?, Cantidad_reportada=?, PlacasCortadas=?, Horas_trabajadas=?, Observaciones=?, Porcentaje_cumplimiento=? WHERE No_reporte LIKE ?");
+    public function Insertar_Detallado_Resago($Fecha, $FechaLim, $Operador, $TipoDetallado, $No_orden, $CantidadyCalidad){
+        try {
+            $query = $this->dbh->prepare("INSERT INTO reporte_detallado (Fecha, FechaLimite, Operador, TipoDetallado, No_orden, CantidadSolicitada) VALUES (?, ?, ?, ?, ?, ?)");
+            $query->bindParam(1, $Fecha);
+            $query->bindParam(2, $FechaLim);
+            $query->bindParam(3, $Operador);
+            $query->bindParam(4, $TipoDetallado);
+            $query->bindParam(5, $No_orden);
+            $query->bindParam(6, $CantidadyCalidad);
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
             
-    //         $query->bindParam(1, $Estatus);
-    //         $query->bindParam(2, $Cant_rep);
-    //         $query->bindParam(3, $Placas_cort);
-    //         $query->bindParam(4, $HorasTrabajadas);
-    //         $query->bindParam(5, $Observaciones);
-    //         $query->bindParam(6, $PorcentajeCum);
-    //         $query->bindParam(7, $NoReporte);
+        } catch (PDOException $e) {
+            $e->getMessage();
+            echo $e;
+        }
+    }
 
-    //         $query->execute();
-    //         return $query->fetchAll();
-    //         $this->dbh = null;
+    public function Actualiza_ReporteD($NoReporte){
+        try {
+            $query = $this->dbh->prepare("UPDATE reporte_corte SET Estatus=?WHERE No_reporte LIKE ?");
             
-    //     } catch (PDOException $e) {
-    //         $e->getMessage();
-    //         echo $e;
-    //     }
-    // }
+            $query->bindParam(1, $Estatus);
+
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
+            
+        } catch (PDOException $e) {
+            $e->getMessage();
+            echo $e;
+        }
+    }
 
     public function CargaCorte($fecha, $fechalimite, $turno, $operador,$maquina, $no_orden, $espesor, $foliomp, $nestSolic, $placasnest){
         try {

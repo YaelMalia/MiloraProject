@@ -45,8 +45,8 @@
             <div class="row g-3" style="margin-top:30px;">
 
         <div class="col-md-4">
-            <label for="CantidadRepD" class="form-label">Cantidad reportada</label>
-            <input type="number" class="form-control" id="CantidadRepD" placeholder="Cantidad reportada" required>
+            <label for="CantidadEntregadaD" class="form-label">Cantidad reportada</label>
+            <input type="number" class="form-control" id="CantidadEntregadaD" placeholder="Cantidad reportada" required>
         </div>
 <!--  -->
         <div class="col-md-4">
@@ -73,7 +73,7 @@
     <section id="DetrasP" class="d-flex justify-content-center"
         style="padding-left: 20px; max-height: 600px; padding-top: 20px; padding-bottom: 20px; padding-right: 20px; background-color: #d2dae6;  border-radius:10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);" >
         <form id ="form_nuevoD" class="row g-4" style="overflow:scroll;">
-        <h2 style="text-align: center;">Cargas para corte</h2>
+        <h2 style="text-align: center;">Cargas para subprocesos</h2>
         <!-- <center><p id="p-dia" style="font-size:20px;">Procesos activos para el día de hoy</p></center> -->
             <!--  tabla resultante -->
             <!--  -->
@@ -94,6 +94,7 @@
                         <th scope="col" style="min-width:100px;">Fecha límite</th>
                         <th scope="col">Turno</th>
                         <th scope="col">Operador</th>
+                        <th scope="col">Tipo de detallado</th>
                         <th scope="col">Diseño</th>
                         <th scope="col">Proyecto o lote</th>
                         <th scope="col">Cantidad Solicitada</th>
@@ -121,6 +122,7 @@
                                 <td style="background-color:#7EA8ED !important;"><?php echo $fila["FechaLimite"]; ?></td>
                                 <td style="background-color:#7EA8ED !important;"><?php echo $fila["Turno"]; ?></td>
                                 <td style="background-color:#7EA8ED !important;"><?php echo $fila["Operador"]; ?></td>
+                                <td style="background-color:#7EA8ED !important;"><?php echo $fila["TipoDetallado"]; ?></td>
                                 <td style="background-color:#7EA8ED !important;"><?php echo $fila["No_diseno"]; ?></td>
                                 <td style="background-color:#7EA8ED !important;"><?php echo $fila["Orden_compra"]; ?></td>
                                 <td style="background-color:#7EA8ED !important;"><?php echo $fila["CantidadSolicitada"]; ?></td>
@@ -139,6 +141,7 @@
                                 <td style="background-color:#55C736 !important;"><?php echo $fila["FechaLimite"]; ?></td>
                                 <td style="background-color:#55C736 !important;"><?php echo $fila["Turno"]; ?></td>
                                 <td style="background-color:#55C736 !important;"><?php echo $fila["Operador"]; ?></td>
+                                <td style="background-color:#55C736 !important;"><?php echo $fila["TipoDetallado"]; ?></td>
                                 <td style="background-color:#55C736 !important;"><?php echo $fila["No_diseno"]; ?></td>
                                 <td style="background-color:#55C736 !important;"><?php echo $fila["Orden_compra"]; ?></td>
                                 <td style="background-color:#55C736 !important;"><?php echo $fila["CantidadSolicitada"]; ?></td>
@@ -158,6 +161,7 @@
                                 <td style="background-color:#F79C59 !important;"><?php echo $fila["FechaLimite"]; ?></td>
                                 <td style="background-color:#F79C59 !important;"><?php echo $fila["Turno"]; ?></td>
                                 <td style="background-color:#F79C59 !important;"><?php echo $fila["Operador"]; ?></td>
+                                <td style="background-color:#F79C59 !important;"><?php echo $fila["TipoDetallado"]; ?></td>
                                 <td style="background-color:#F79C59 !important;"><?php echo $fila["No_diseno"]; ?></td>
                                 <td style="background-color:#F79C59 !important;"><?php echo $fila["Orden_compra"]; ?></td>
                                 <td style="background-color:#F79C59 !important;"><?php echo $fila["CantidadSolicitada"]; ?></td>
