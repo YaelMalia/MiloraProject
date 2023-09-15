@@ -779,6 +779,7 @@ class MiloraClass
             echo $e;
         }
     }
+
     public function Insertar_Proceso_Detallado($Fecha, $FechaLim, $Operador, $TipoDetallado, $No_orden, $CantidadyCalidad){
         try {
             $query = $this->dbh->prepare("INSERT INTO reporte_detallado (Fecha, FechaLimite, Operador, TipoDetallado, No_orden, CantidadSolicitada) VALUES (?, ?, ?, ?, ?, ?)");
@@ -797,6 +798,28 @@ class MiloraClass
             echo $e;
         }
     }
+
+    // public function Actualiza_ReporteD($NoReporte, $Estatus, $Cant_rep, $Placas_cort, $HorasTrabajadas, $Observaciones, $PorcentajeCum){
+    //     try {
+    //         $query = $this->dbh->prepare("UPDATE reporte_corte SET Estatus=?, Cantidad_reportada=?, PlacasCortadas=?, Horas_trabajadas=?, Observaciones=?, Porcentaje_cumplimiento=? WHERE No_reporte LIKE ?");
+            
+    //         $query->bindParam(1, $Estatus);
+    //         $query->bindParam(2, $Cant_rep);
+    //         $query->bindParam(3, $Placas_cort);
+    //         $query->bindParam(4, $HorasTrabajadas);
+    //         $query->bindParam(5, $Observaciones);
+    //         $query->bindParam(6, $PorcentajeCum);
+    //         $query->bindParam(7, $NoReporte);
+
+    //         $query->execute();
+    //         return $query->fetchAll();
+    //         $this->dbh = null;
+            
+    //     } catch (PDOException $e) {
+    //         $e->getMessage();
+    //         echo $e;
+    //     }
+    // }
 
     public function CargaCorte($fecha, $fechalimite, $turno, $operador,$maquina, $no_orden, $espesor, $foliomp, $nestSolic, $placasnest){
         try {
@@ -821,6 +844,7 @@ class MiloraClass
             echo $e;
         }
     }
+
     public function CargaCorteResago($fecha, $estatus, $fechalimite, $turno, $operador,$maquina, $no_orden, $espesor, $foliomp, $nestSolic, $placasnest){
         try {
             $query = $this->dbh->prepare("INSERT INTO reporte_corte (Estatus, Fecha, FechaLimite, Turno, Operador, Maquina, No_orden, Espesor, Vale_MP, NEST_Solicitado, Placas_NEST) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
@@ -876,6 +900,16 @@ class MiloraClass
         } catch (PDOException $e) {
             $e->getMessage();
             echo $e;
+        }
+    }
+    public function Get_Cargas_Detallado(){
+        try {
+            $query = $this->dbh->prepare("SELECT reporte_detallado.No_reporte , reporte_detallado.Estatus, reporte_detallado.Fecha, reporte_detallado.FechaLimite, reporte_detallado.Turno, reporte_detallado.Operador, reporte_detallado.TipoDetallado, reporte_detallado.No_orden, ordenes_compras.Orden_compra, ordenes_compras.No_diseno, reporte_detallado.CantidadSolicitada, reporte_detallado.CantidadEntregada, reporte_detallado.Horas_trabajadas, reporte_detallado.Observaciones, reporte_detallado.Porcentaje_cumplimiento FROM reporte_detallado INNER JOIN ordenes_compras ON reporte_detallado.No_orden = ordenes_compras.Numero_orden;");
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
+        } catch (PDOException $e) {
+            $e->getMessage();
         }
     }
 
