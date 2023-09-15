@@ -845,9 +845,9 @@ class MiloraClass
         }
     }
 
-    public function CargaCorte($fecha, $fechalimite, $turno, $operador,$maquina, $no_orden, $espesor, $foliomp, $nestSolic, $placasnest){
+    public function CargaCorte($fecha, $fechalimite, $turno, $operador,$maquina, $no_orden, $espesor, $foliomp, $nestSolic, $placasnest, $horasProyectadas){
         try {
-            $query = $this->dbh->prepare("INSERT INTO reporte_corte (Fecha, FechaLimite, Turno, Operador, Maquina, No_orden, Espesor, Vale_MP, NEST_Solicitado, Placas_NEST) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $query = $this->dbh->prepare("INSERT INTO reporte_corte (Fecha, FechaLimite, Turno, Operador, Maquina, No_orden, Espesor, Vale_MP, NEST_Solicitado, Placas_NEST, HorasProyectadas) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             $query->bindParam(1, $fecha);
             $query->bindParam(2, $fechalimite);
             $query->bindParam(3, $turno);
@@ -858,6 +858,8 @@ class MiloraClass
             $query->bindParam(8, $foliomp);
             $query->bindParam(9, $nestSolic);
             $query->bindParam(10, $placasnest);
+            $query->bindParam(11, $horasProyectadas);
+
 
             $query->execute();
             return $query->fetchAll();
@@ -869,9 +871,9 @@ class MiloraClass
         }
     }
 
-    public function CargaCorteResago($fecha, $estatus, $fechalimite, $turno, $operador,$maquina, $no_orden, $espesor, $foliomp, $nestSolic, $placasnest){
+    public function CargaCorteResago($fecha, $estatus, $fechalimite, $turno, $operador,$maquina, $no_orden, $espesor, $foliomp, $nestSolic, $placasnest, $HorasProy){
         try {
-            $query = $this->dbh->prepare("INSERT INTO reporte_corte (Estatus, Fecha, FechaLimite, Turno, Operador, Maquina, No_orden, Espesor, Vale_MP, NEST_Solicitado, Placas_NEST) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $query = $this->dbh->prepare("INSERT INTO reporte_corte (Estatus, Fecha, FechaLimite, Turno, Operador, Maquina, No_orden, Espesor, Vale_MP, NEST_Solicitado, Placas_NEST, HorasProyectadas) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             $query->bindParam(1, $estatus);
             $query->bindParam(2, $fecha);
             $query->bindParam(3, $fechalimite);
@@ -883,6 +885,7 @@ class MiloraClass
             $query->bindParam(9, $foliomp);
             $query->bindParam(10, $nestSolic);
             $query->bindParam(11, $placasnest);
+            $query->bindParam(12, $HorasProy);
 
             $query->execute();
             return $query->fetchAll();
@@ -896,7 +899,7 @@ class MiloraClass
 
     public function Get_Cargas_Corte(){
         try {
-            $query = $this->dbh->prepare("SELECT reporte_corte.No_reporte, reporte_corte.Fecha, reporte_corte.Estatus, reporte_corte.FechaLimite, reporte_corte.Turno, reporte_corte.Operador, ordenes_compras.No_diseno, piezas.Codigo_MP, reporte_corte.Espesor, reporte_corte.Vale_MP, reporte_corte.NEST_Solicitado, reporte_corte.Cantidad_reportada, reporte_corte.Placas_NEST, reporte_corte.PlacasCortadas, ordenes_compras.Orden_compra, reporte_corte.Horas_trabajadas, reporte_corte.Observaciones, reporte_corte.Porcentaje_cumplimiento FROM reporte_corte INNER JOIN ordenes_compras ON reporte_corte.No_orden = ordenes_compras.Numero_orden INNER JOIN piezas ON ordenes_compras.No_diseno = piezas.No_diseno ORDER BY ordenes_compras.No_diseno;");
+            $query = $this->dbh->prepare("SELECT reporte_corte.No_reporte, reporte_corte.Fecha, reporte_corte.Estatus, reporte_corte.FechaLimite, reporte_corte.Turno, reporte_corte.Operador, ordenes_compras.No_diseno, piezas.Codigo_MP, reporte_corte.Espesor, reporte_corte.Vale_MP, reporte_corte.NEST_Solicitado, reporte_corte.Cantidad_reportada, reporte_corte.Placas_NEST, reporte_corte.PlacasCortadas, reporte_corte.HorasProyectadas, ordenes_compras.Orden_compra, reporte_corte.Horas_trabajadas, reporte_corte.Observaciones, reporte_corte.Porcentaje_cumplimiento FROM reporte_corte INNER JOIN ordenes_compras ON reporte_corte.No_orden = ordenes_compras.Numero_orden INNER JOIN piezas ON ordenes_compras.No_diseno = piezas.No_diseno ORDER BY ordenes_compras.No_diseno;");
             $query->execute();
             return $query->fetchAll();
             $this->dbh = null;

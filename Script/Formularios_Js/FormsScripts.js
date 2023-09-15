@@ -908,10 +908,7 @@ function InsertReporte_Corte() {
     let Cantidad_NEST = $("#Cantidad_NEST")[0].value;
     // let Cantidad_reportadaT = $("#CantidadRep")[0].value;
     let PlacasNEST = $("#PlacasNEST")[0].value;
-    // let Placa_cortadaT = $("#Placa_cortadaT")[0].value;
-    // let HorasT = $("#HorasT")[0].value;
-    // let observaciones = $("#Observaciones")[0].value;
-
+    
     if (FechaT == null || FechaT == "") {
         alertify.alert("Aviso", "No se ha especificado la fecha límite");
     } else {
@@ -974,6 +971,9 @@ function InsertReporte_Corte() {
                                                         // alert(today);
                                                         var date = today.toISOString().slice(0, 10);
 
+                                                        let horasProyectadas = ((50 * PlacasNEST)/1)/60;
+                                                        horasProyectadas = horasProyectadas.toFixed(2);
+
                                                         let parametrosCarga = {
                                                             "Fecha": date,
                                                             "FechaLimite": FechaT,
@@ -984,7 +984,8 @@ function InsertReporte_Corte() {
                                                             "Espesor": espesorT,
                                                             "FolioMP": Folio_mpT,
                                                             "NEST_solic": Cantidad_NEST,
-                                                            "Placa_NEST": PlacasNEST
+                                                            "Placa_NEST": PlacasNEST,
+                                                            "HorasProyectadas": horasProyectadas
                                                         }
 
                                                         $.ajax({
@@ -993,6 +994,7 @@ function InsertReporte_Corte() {
                                                             data: parametrosCarga,
                                                             async: false,
                                                             success: function (returnInsert) {
+                                                                
                                                                 if (returnInsert == "si") {
                                                                     alertify.alert("¡Exito!", "Se ha agregado una nueva carga de trabajo");
 
@@ -1400,7 +1402,7 @@ function AgregarProcesoDetallado() {
 // En caso de que se tenga faltante---------------------
 let NEST_solicGlobal, placasNEST;
 let noCarga;
-let FechaCargaGlobal, FechaLimiteCGlobal, TurnoGlobal, No_ordenCC, CodigoMPGlobal, EspesorGlobal, ValeMPGlobal;
+let FechaCargaGlobal, FechaLimiteCGlobal, TurnoGlobal, No_ordenCC, CodigoMPGlobal, HorasPGlobal, EspesorGlobal, ValeMPGlobal;
 
 // -----------------------------------------
 
@@ -1417,6 +1419,7 @@ function mostrarModalCorte(btn) {
 
     NEST_solicGlobal = btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
     placasNEST = btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
+    HorasPGlobal = btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
 
     FechaCargaGlobal = btn.parentNode.nextElementSibling.textContent;
     FechaLimiteCGlobal = btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
@@ -1424,8 +1427,9 @@ function mostrarModalCorte(btn) {
     EspesorGlobal = btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
     ValeMPGlobal = btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent
     TurnoGlobal = btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
+    
+    // Event listener para la cantida de piezas --------------------------
     const input = document.querySelector("#CantidadRep");
-
     input.addEventListener("input", function (e) {
         let porcentaje = (e.target.value * 100) / NEST_solicGlobal;
         porcentaje = porcentaje.toFixed(2);
@@ -1441,6 +1445,17 @@ function mostrarModalCorte(btn) {
 
         $("#porcentaje")[0].textContent = porcentaje + "%";
     });
+    // Fin del event listener --------------------------------
+
+    // Event listener para la cantidad de horas trabajadas -------------------------------------
+    const input2 = document.querySelector("#Placa_cortadaT");
+    input2.addEventListener("input", function(e){
+        let horasTrab = (50 * (Number(e.target.value))/1)/60;
+        horasTrab = horasTrab.toFixed(2);
+        $("#HorasT")[0].value = horasTrab;
+    });
+
+    // Fin del otro event listener --------------------------
 
     noCarga = btn.parentNode.previousElementSibling.textContent;
 
@@ -1500,7 +1515,10 @@ function ReportarCarga_Corte() {
                     let NCantNEST = NEST_solicGlobal - cantidadReportada;
                     let NCantPlacas = Number(placasNEST) - Number(placasCortadas);
                     let placas;
-                    NCantPlacas == 0 ? placas = "Por destinar" : placas = NCantPlacas.toString();
+                    NCantPlacas <= 0 ? placas = "Por destinar" : placas = NCantPlacas.toString();
+                    let NHorasProy = Number(HorasPGlobal) - Number(horas);
+                    let HP;
+                    NHorasProy <= 0 ? HP = "Por destinar" : HP = NHorasProy.toString();
                     
                     let parametrosCargaRes = {
                         "Fecha": FechaCargaGlobal,
@@ -1513,7 +1531,8 @@ function ReportarCarga_Corte() {
                         "Espesor": EspesorGlobal,
                         "FolioMP": ValeMPGlobal,
                         "NEST_solic": NCantNEST,
-                        "Placa_NEST": placas
+                        "Placa_NEST": placas,
+                        "HorasP": HP
                     };
 
                     $.ajax({

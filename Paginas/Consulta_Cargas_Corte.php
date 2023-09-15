@@ -77,7 +77,7 @@
 
         <div class="col-md-4">
             <label for="HorasT" class="form-label">Horas trabajadas</label>
-            <input type="text" class="form-control" id="HorasT" placeholder="Horas de trabajadas para este proceso" required>
+            <input type="text" class="form-control" id="HorasT" placeholder="Horas de trabajadas para este proceso" style="pointer-events:none;">
         </div>
         
         <div class="col-md-12">
@@ -150,6 +150,7 @@
                         <th scope="col">Placas solicitadas</th>
                         <th scope="col">Placas Cortadas</th>
                         <th scope="col">Proyecto o lote</th>
+                        <th scope="col">Horas proyectadas</th>
                         <th scope="col">Horas trabajadas</th>
                         <th scope="col">Observaciones</th>
                         <th scope="col">% cumplimiento</th>
@@ -182,6 +183,7 @@
                                 <td style="background-color:#7EA8ED !important;"><?php echo $fila["Placas_NEST"];?></td>
                                 <td style="background-color:#7EA8ED !important;"><?php if($fila["PlacasCortadas"]==""){echo "- - -";}?></td>
                                 <td style="background-color:#7EA8ED !important;"><?php echo $fila["Orden_compra"];?></td>
+                                <td style="background-color:#7EA8ED !important;"><?php echo $fila["HorasProyectadas"];?></td>
                                 <td style="background-color:#7EA8ED !important;"><?php if($fila["Horas_trabajadas"]==""){echo "- - -";}?></td>
                                 <td style="background-color:#7EA8ED !important;"><?php if($fila["Observaciones"]=="Ninguna"){echo "- - -";}?></td>
                                 <td style="background-color:#7EA8ED !important;"><?php if($fila["Porcentaje_cumplimiento"] == 0){echo "- - -";}?></td>
@@ -205,6 +207,7 @@
                                 <td style="background-color:#55C736 !important;"><?php echo $fila["Placas_NEST"];?></td>
                                 <td style="background-color:#55C736 !important;"><?php echo $fila["PlacasCortadas"];?></td>
                                 <td style="background-color:#55C736 !important;"><?php echo $fila["Orden_compra"];?></td>
+                                <td style="background-color:#55C736 !important;"><?php echo $fila["HorasProyectadas"];?></td>
                                 <td style="background-color:#55C736 !important;"><?php echo $fila["Horas_trabajadas"];?></td>
                                 <td style="background-color:#55C736 !important;"><?php echo $fila["Observaciones"];?></td>
                                 <td style="background-color:#55C736 !important;"><?php echo $fila["Porcentaje_cumplimiento"];?></td>
@@ -228,6 +231,7 @@
                                 <td style="background-color:#F79C59 !important;"><?php echo $fila["Placas_NEST"];?></td>
                                 <td style="background-color:#F79C59 !important;"><?php if($fila["PlacasCortadas"]==""){echo "- - -";}?></td>
                                 <td style="background-color:#F79C59 !important;"><?php echo $fila["Orden_compra"];?></td>
+                                <td style="background-color:#F79C59 !important;"><?php echo $fila["HorasProyectadas"];?></td>
                                 <td style="background-color:#F79C59 !important;"><?php if($fila["Horas_trabajadas"]==""){echo "- - -";}?></td>
                                 <td style="background-color:#F79C59 !important;"><?php if($fila["Observaciones"]=="Ninguna"){echo "- - -";}?></td>
                                 <td style="background-color:#F79C59 !important;"><?php echo $fila["Porcentaje_cumplimiento"];?></td>

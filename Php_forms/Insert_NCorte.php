@@ -13,11 +13,12 @@
         $foliomp = $_POST["FolioMP"];
         $nestSolic = $_POST["NEST_solic"];
         $placasnest = $_POST["Placa_NEST"];
+        $HorasProy = $_POST["HorasP"];
 
         try {
             require_once("../conexionBD/Consultas.php");
             $miloraObj = MiloraClass::singleton();
-            $data = $miloraObj->CargaCorteResago($fecha, $estatus, $fechalimite, $turno, $operador,$maquina, $no_orden, $espesor, $foliomp, $nestSolic, $placasnest);
+            $data = $miloraObj->CargaCorteResago($fecha, $estatus, $fechalimite, $turno, $operador,$maquina, $no_orden, $espesor, $foliomp, $nestSolic, $placasnest, $HorasProy);
 
             echo "si";
         } catch (\Throwable $th) {
