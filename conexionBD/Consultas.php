@@ -779,6 +779,7 @@ class MiloraClass
             echo $e;
         }
     }
+
     public function Insertar_Proceso_Detallado($Fecha, $FechaLim, $Operador, $TipoDetallado, $No_orden, $CantidadyCalidad){
         try {
             $query = $this->dbh->prepare("INSERT INTO reporte_detallado (Fecha, FechaLimite, Operador, TipoDetallado, No_orden, CantidadSolicitada) VALUES (?, ?, ?, ?, ?, ?)");
@@ -797,6 +798,28 @@ class MiloraClass
             echo $e;
         }
     }
+
+    // public function Actualiza_ReporteD($NoReporte, $Estatus, $Cant_rep, $Placas_cort, $HorasTrabajadas, $Observaciones, $PorcentajeCum){
+    //     try {
+    //         $query = $this->dbh->prepare("UPDATE reporte_corte SET Estatus=?, Cantidad_reportada=?, PlacasCortadas=?, Horas_trabajadas=?, Observaciones=?, Porcentaje_cumplimiento=? WHERE No_reporte LIKE ?");
+            
+    //         $query->bindParam(1, $Estatus);
+    //         $query->bindParam(2, $Cant_rep);
+    //         $query->bindParam(3, $Placas_cort);
+    //         $query->bindParam(4, $HorasTrabajadas);
+    //         $query->bindParam(5, $Observaciones);
+    //         $query->bindParam(6, $PorcentajeCum);
+    //         $query->bindParam(7, $NoReporte);
+
+    //         $query->execute();
+    //         return $query->fetchAll();
+    //         $this->dbh = null;
+            
+    //     } catch (PDOException $e) {
+    //         $e->getMessage();
+    //         echo $e;
+    //     }
+    // }
 
     public function CargaCorte($fecha, $fechalimite, $turno, $operador,$maquina, $no_orden, $espesor, $foliomp, $nestSolic, $placasnest){
         try {

@@ -1589,7 +1589,7 @@ function ReportarCarga_Corte() {
     }
 }
 
-// ---------------------------------Modal detallado
+// --------------------------------- Modal detallado
 // function mostrarModalDetallado(btn) {
 //     $("#modalCorte").show(800);
 
@@ -1654,4 +1654,128 @@ function ReportarCarga_Corte() {
 //     document.getElementById("modalCorte").style.filter = "blur(0)";
 // }
 
+// function ReportarCarga_Detallado() {
+
+//     let cantidadReportada = $("#CantidadRep")[0].value;
+//     let placasCortadas = $("#Placa_cortadaT")[0].value;
+//     let horas = $("#HorasT")[0].value;
+//     let Observaciones = $("#Observaciones")[0].value;
+
+//     let PorcentajeCum = $("#porcentaje")[0].textContent;
+
+//     if (cantidadReportada == null || cantidadReportada == "") {
+//         alertify.alert("Aviso", "No se ha ingresado la cantidad reportada");
+//     } else {
+//         if (placasCortadas == null || placasCortadas == "") {
+//             alertify.alert("Aviso", "No se ha ingresado la cantidad de placas cortadas");
+//         } else {
+//             if (horas == null || horas == "") {
+//                 alertify.alert("Aviso", "No se ha ingresado la cantidad de horas trabajadas");
+//             } else {
+
+
+//                 if (Observaciones == null || Observaciones == "") {
+//                     Observaciones = "Ninguna";
+//                 }
+
+//                 if (Number(cantidadReportada) < NEST_solicGlobal) {
+//                     // Agregar una nueva carga de trabajo
+//                     let Nturno;
+//                     TurnoGlobal == "Turno 1" ? Nturno = "Turno 2" : Nturno = "Turno 1";
+
+//                     let NCantNEST = NEST_solicGlobal - cantidadReportada;
+//                     let NCantPlacas = Number(placasNEST) - Number(placasCortadas);
+//                     let placas;
+//                     NCantPlacas == 0 ? placas = "Por destinar" : placas = NCantPlacas.toString();
+                    
+//                     let parametrosCargaRes = {
+//                         "Fecha": FechaCargaGlobal,
+//                         "Estatus": "Restante",
+//                         "FechaLimite": FechaLimiteCGlobal,
+//                         "Turno": Nturno,
+//                         "Operador": "Por destinar",
+//                         "Maquina": "Por destinar",
+//                         "No_orden": No_ordenCC,
+//                         "Espesor": EspesorGlobal,
+//                         "FolioMP": ValeMPGlobal,
+//                         "NEST_solic": NCantNEST,
+//                         "Placa_NEST": placas
+//                     };
+
+//                     $.ajax({
+//                         type: 'POST',
+//                         url: '../Php_forms/Insert_NCorte.php',
+//                         data: parametrosCargaRes,
+//                         async: false,
+//                         success: function (returnNCargaRes) {
+//                             if (returnNCargaRes != "si") {
+//                                 alertify.alert("Error", "Se ha producido un error al realizar esta carga de trabajo, revise sus datos. Si el problema persiste, vuelva a iniciar sesión");
+//                             } else {
+//                                 alertify.alert("¡Exito!", "Se ha agregado una nueva carga de trabajo restante");
+
+//                                 //Actualizar datos
+//                                 let parametrosReporte = {
+//                                     "NoReporte": noCarga,
+//                                     "Estatus": "Terminado",
+//                                     "Cantidad_reportada": cantidadReportada,
+//                                     "Placas_cortadas": placasCortadas,
+//                                     "Horas_trabajadas": horas,
+//                                     "Observaciones": Observaciones,
+//                                     "Porcentaje_cum": PorcentajeCum
+//                                 }
+
+//                                 $.ajax({
+//                                     type: 'POST',
+//                                     url: '../Php_forms/Actualizar_Carga.php',
+//                                     data: parametrosReporte,
+//                                     async: false,
+//                                     success: function (returnCarga) {
+//                                         // alert(returnCarga);
+//                                         if (returnCarga != "Si") {
+//                                             alertify.error("Se ha producido un error al agregar el seguimiento del proceso");
+//                                         } else {
+//                                             alertify.success("Carga actualizada");
+//                                             RefreshCC();
+//                                             $("#modalCorte").hide(800);
+//                                         }
+//                                     }
+//                                 });
+//                             }
+//                         }
+//                     });
+
+//                 }else{
+//                     //Actualizar datos
+//                 let parametrosReporte = {
+//                     "NoReporte": noCarga,
+//                     "Estatus": "Terminado",
+//                     "Cantidad_reportada": cantidadReportada,
+//                     "Placas_cortadas": placasCortadas,
+//                     "Horas_trabajadas": horas,
+//                     "Observaciones": Observaciones,
+//                     "Porcentaje_cum": PorcentajeCum
+//                 }
+
+//                 $.ajax({
+//                     type: 'POST',
+//                     url: '../Php_forms/Actualizar_Carga.php',
+//                     data: parametrosReporte,
+//                     async: false,
+//                     success: function (returnCarga) {
+//                         // alert(returnCarga);
+//                         if (returnCarga != "Si") {
+//                             alertify.error("Se ha producido un error al agregar el seguimiento del proceso");
+//                         } else {
+//                             alertify.success("Carga actualizada");
+//                             RefreshCC();
+//                             $("#modalCorte").hide(800);
+//                         }
+//                     }
+//                 });
+//                 }
+
+//             }
+//         }
+//     }
+// }
 // --------------------------------- FIN TURNOS/CORTE TURNO ---------------------------------
