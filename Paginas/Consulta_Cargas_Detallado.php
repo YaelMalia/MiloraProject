@@ -41,27 +41,25 @@
     <!-- Modal para registro de producción -->
     <div class="modalCorte" id="modalCorte">
             <h2 style="text-align: center;">Reportar carga final</h2>
-            <div style="text-align: center;"><p style="font-size:18px;">Porcentaje de productividad: </p><p id="porcentaje" style="text-decoration: underline; font-size:20px;">0%</p></div>
+            <div style="text-align: center;"><p style="font-size:18px;">Porcentaje de productividad: </p><p id="PorcentajeD" style="text-decoration: underline; font-size:20px;">0%</p></div>
             <div class="row g-3" style="margin-top:30px;">
 
         <div class="col-md-4">
-            <label for="CantidadRep" class="form-label">Cantidad reportada</label>
-            <input type="number" class="form-control" id="CantidadRep" placeholder="Cantidad reportada" required>
+            <label for="CantidadRepD" class="form-label">Cantidad reportada</label>
+            <input type="number" class="form-control" id="CantidadRepD" placeholder="Cantidad reportada" required>
         </div>
 <!--  -->
         <div class="col-md-4">
-            <label for="Placa_cortadaT" class="form-label">Placas cortadas</label>
-            <input type="text" class="form-control" id="Placa_cortadaT" placeholder="Placas cortadas" required>
         </div>
 
         <div class="col-md-4">
-            <label for="HorasT" class="form-label">Horas trabajadas</label>
-            <input type="text" class="form-control" id="HorasT" placeholder="Horas de trabajadas para este proceso" required>
+            <label for="HorasD" class="form-label">Horas trabajadas</label>
+            <input type="text" class="form-control" id="HorasD" placeholder="Horas de trabajadas para este proceso" required>
         </div>
         
         <div class="col-md-12">
-            <label for="Observaciones" class="form-label">Observaciones</label>
-            <textarea name="Observaciones" class="form-control" id="Observaciones" cols="auto" rows="1" placeholder="(En caso de no haber observaciones, dejarlo vacío)"></textarea>
+            <label for="ObservacionesD" class="form-label">Observaciones</label>
+            <textarea name="ObservacionesD" class="form-control" id="ObservacionesD" cols="auto" rows="1" placeholder="(En caso de no haber observaciones, dejarlo vacío)"></textarea>
         </div>
         
         <input id="btn-Cancel" onclick="" type="button" class="btn btn-danger col-md-4" value="Cancelar">
