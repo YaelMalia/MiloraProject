@@ -1324,6 +1324,7 @@ function BuscarProceso() {
 
 function AgregarProcesoDetallado() {
     let fechaDetallada = $("#FechaFD")[0].value;
+    // let Turnodetallado= $("#TurnoFD")[0].value;
     let SupervisorFD = $("#SupervisorFD")[0].value;
     let TipoFD = $("#TipoFD")[0].value;
     let OrdenCompraFD = $("#OrdenCompraFD")[0].value;
@@ -1399,7 +1400,6 @@ let FechaCargaGlobal, FechaLimiteCGlobal, TurnoGlobal, No_ordenCC, CodigoMPGloba
 
 // -----------------------------------------
 
-
 function mostrarModalCorte(btn) {
     $("#modalCorte").show(800);
 
@@ -1463,7 +1463,6 @@ function mostrarModalCorte(btn) {
     document.getElementById("DetrasP").style.pointerEvents = "none";
     document.getElementById("modalCorte").style.filter = "blur(0)";
 }
-
 
 function ReportarCarga_Corte() {
 
@@ -1589,5 +1588,70 @@ function ReportarCarga_Corte() {
         }
     }
 }
+
+// ---------------------------------Modal detallado
+// function mostrarModalDetallado(btn) {
+//     $("#modalCorte").show(800);
+
+//     $("#CantidadRep")[0].value = "";
+//     $("#Placa_cortadaT")[0].value = "";
+//     $("#HorasT")[0].value = "";
+//     $("#Observaciones")[0].value = "";
+//     $("#porcentaje")[0].textContent = "0%";
+//     document.getElementById("porcentaje").style.color = "black";
+
+
+//     NEST_solicGlobal = btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
+//     placasNEST = btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
+
+//     FechaCargaGlobal = btn.parentNode.nextElementSibling.textContent;
+//     FechaLimiteCGlobal = btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
+//     CodigoMPGlobal = btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
+//     EspesorGlobal = btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
+//     ValeMPGlobal = btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent
+//     TurnoGlobal = btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
+//     const input = document.querySelector("#CantidadRep");
+
+//     input.addEventListener("input", function (e) {
+//         let porcentaje = (e.target.value * 100) / NEST_solicGlobal;
+//         porcentaje = porcentaje.toFixed(2);
+//         if (porcentaje > 100) {
+//             alertify.alert("Aviso", "Usted está sobrepasando la cantidad solicitada en NEST");
+//         } else if (porcentaje >= 90 && porcentaje <= 100) {
+//             document.getElementById("porcentaje").style.color = "green";
+//         } else if (porcentaje >= 70 && porcentaje < 90) {
+//             document.getElementById("porcentaje").style.color = "orange";
+//         } else {
+//             document.getElementById("porcentaje").style.color = "red";
+//         }
+
+//         $("#porcentaje")[0].textContent = porcentaje + "%";
+//     });
+
+//     noCarga = btn.parentNode.previousElementSibling.textContent;
+
+//     let datosProc = {
+//         "NoProc": noCarga
+//     };
+
+//     $.ajax({
+//         type: 'POST',
+//         url: '../Php_forms/get_orden_carga.php',
+//         data: datosProc,
+//         async: false,
+//         success: function (returningInsert) {
+//             // alert(returningInsert);
+//             if (returningInsert.includes("Warning") || returningInsert == "Nada") {
+//                 alertify.alert("Error", "Se ha producido un error, revise su conexión a internet");
+//             } else {
+//                 No_ordenCC = returningInsert;
+//             }
+//         }
+//     });
+
+//     document.getElementById("DetrasP").style.filter = "blur(8px) grayscale(100%)";
+//     document.getElementById("DetrasP").style.pointerEvents = "none";
+//     document.getElementById("modalCorte").style.filter = "blur(0)";
+// }
 
 // --------------------------------- FIN TURNOS/CORTE TURNO ---------------------------------
