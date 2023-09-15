@@ -844,6 +844,7 @@ class MiloraClass
             echo $e;
         }
     }
+
     public function CargaCorteResago($fecha, $estatus, $fechalimite, $turno, $operador,$maquina, $no_orden, $espesor, $foliomp, $nestSolic, $placasnest){
         try {
             $query = $this->dbh->prepare("INSERT INTO reporte_corte (Estatus, Fecha, FechaLimite, Turno, Operador, Maquina, No_orden, Espesor, Vale_MP, NEST_Solicitado, Placas_NEST) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
@@ -899,6 +900,16 @@ class MiloraClass
         } catch (PDOException $e) {
             $e->getMessage();
             echo $e;
+        }
+    }
+    public function Get_Cargas_Detallado(){
+        try {
+            $query = $this->dbh->prepare("SELECT reporte_detallado.No_reporte , reporte_detallado.Estatus, reporte_detallado.Fecha, reporte_detallado.FechaLimite, reporte_detallado.Turno, reporte_detallado.Operador, reporte_detallado.TipoDetallado, reporte_detallado.No_orden, ordenes_compras.Orden_compra, ordenes_compras.No_diseno, reporte_detallado.CantidadSolicitada, reporte_detallado.CantidadEntregada, reporte_detallado.Horas_trabajadas, reporte_detallado.Observaciones, reporte_detallado.Porcentaje_cumplimiento FROM reporte_detallado INNER JOIN ordenes_compras ON reporte_detallado.No_orden = ordenes_compras.Numero_orden;");
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
+        } catch (PDOException $e) {
+            $e->getMessage();
         }
     }
 

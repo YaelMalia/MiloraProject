@@ -17,7 +17,7 @@
     <script src="../Script/jquery-3.5.1.min.js"></script>
 
     <style>
-      .modalCorte{
+      .modalDetallado{
         margin:0 auto;
         border-radius:10px;
         background-color:#E5E6E6;
@@ -39,7 +39,7 @@
 <body id="cuerpoP" style="padding-left: 20px; padding-top: 20px; padding-bottom: 20px; padding-right: 20px; ">
    
     <!-- Modal para registro de producción -->
-    <div class="modalCorte" id="modalCorte">
+    <div class="modalDetallado" id="modalDetallado">
             <h2 style="text-align: center;">Reportar carga final</h2>
             <div style="text-align: center;"><p style="font-size:18px;">Porcentaje de productividad: </p><p id="PorcentajeD" style="text-decoration: underline; font-size:20px;">0%</p></div>
             <div class="row g-3" style="margin-top:30px;">
@@ -64,7 +64,7 @@
         
         <input id="btn-Cancel" onclick="" type="button" class="btn btn-danger col-md-4" value="Cancelar">
                 <div class="col-md-4"></div>    
-        <input onclick="ReportarCarga_Corte();" type="button" class="btn btn-success col-md-4" value="Aceptar">
+        <input onclick="ReportarCarga_Detallado();" type="button" class="btn btn-success col-md-4" value="Aceptar">
 
         </div>
       </div>
@@ -79,7 +79,7 @@
             <!--  -->
             <div class="col-md-4">
                     <div class="col-4" style="align-text:center">
-                        <input onclick="RefreshCC();" type="button" class="btn btn-primary" style="margin:0 auto; display:flex; min-width:140px; justify-content:center;" value="Recargar">
+                        <input onclick="RefreshCD();" type="button" class="btn btn-primary" style="margin:0 auto; display:flex; min-width:140px; justify-content:center;" value="Recargar">
                     </div>
                 </div>
                 <!--  -->
@@ -95,14 +95,9 @@
                         <th scope="col">Turno</th>
                         <th scope="col">Operador</th>
                         <th scope="col">Diseño</th>
-                        <th scope="col">Código MP</th>
-                        <th scope="col">Espesor</th>
-                        <th scope="col">Vale MP</th>
-                        <th scope="col">Cant. Solic. NEST</th>
-                        <th scope="col">Cantidad reportada</th>
-                        <th scope="col">Placas solicitadas</th>
-                        <th scope="col">Placas Cortadas</th>
                         <th scope="col">Proyecto o lote</th>
+                        <th scope="col">Cantidad Solicitada</th>
+                        <th scope="col">Cantidad Entregada</th>
                         <th scope="col">Horas trabajadas</th>
                         <th scope="col">Observaciones</th>
                         <th scope="col">% cumplimiento</th>
@@ -114,25 +109,62 @@
 
                         require_once("../conexionBD/Consultas.php");
                         $miloraObj = MiloraClass::singleton();
-                        $data = $miloraObj->Get_Cargas_Corte();
+                        $data = $miloraObj->Get_Cargas_Detallado();
                         if(count($data)>0){
                           foreach($data as $fila){
                             if($fila["Estatus"] == "En proceso"){
                               ?>
                              <th style="background-color:#7EA8ED !important;"><?php echo $fila["No_reporte"]; ?></th>
-                                <td style="background-color:#7EA8ED !important;"><input onclick="mostrarModalCorte(this);" id="btn-check" type="button" class="btn btn-success" value="✅"></td>
-                            </tr>
+                                <td style="background-color:#7EA8ED !important;"><input onclick="mostrarModalDetallado(this);" id="btn-check" type="button" class="btn btn-success" value="✅"></td>
+                                <td style="background-color:#7EA8ED !important;"><?php echo $fila["Fecha"]; ?></td>
+                                <td style="background-color:#7EA8ED !important;"><?php echo $fila["Estatus"]; ?></td>
+                                <td style="background-color:#7EA8ED !important;"><?php echo $fila["FechaLimite"]; ?></td>
+                                <td style="background-color:#7EA8ED !important;"><?php echo $fila["Turno"]; ?></td>
+                                <td style="background-color:#7EA8ED !important;"><?php echo $fila["Operador"]; ?></td>
+                                <td style="background-color:#7EA8ED !important;"><?php echo $fila["No_diseno"]; ?></td>
+                                <td style="background-color:#7EA8ED !important;"><?php echo $fila["Orden_compra"]; ?></td>
+                                <td style="background-color:#7EA8ED !important;"><?php echo $fila["CantidadSolicitada"]; ?></td>
+                                <td style="background-color:#7EA8ED !important;"><?php echo $fila["CantidadEntregada"]; ?></td>
+                                <td style="background-color:#7EA8ED !important;"><?php echo $fila["Horas_trabajadas"]; ?></td>
+                                <td style="background-color:#7EA8ED !important;"><?php echo $fila["Observaciones"]; ?></td>
+                                <td style="background-color:#7EA8ED !important;"><?php echo $fila["Porcentaje_cumplimiento"]; ?></td>
+                              </tr>
                               <?php
                             }else if($fila["Estatus"] == "Terminado"){
                               ?>
-                              <th style="background-color:#55C736 !important;"><?php echo $fila["No_reporte"]; ?></th>
-                                <td style="background-color:#55C736 !important;">✅</td>
+                                <th style="background-color:#55C736 !important;"><?php echo $fila["No_reporte"]; ?></th>
+                                <td style="background-color:#55C736 !important;"><input onclick="mostrarModalDetallado(this);" id="btn-check" type="button" class="btn btn-success" value="✅"></td>
+                                <td style="background-color:#55C736 !important;"><?php echo $fila["Fecha"]; ?></td>
+                                <td style="background-color:#55C736 !important;"><?php echo $fila["Estatus"]; ?></td>
+                                <td style="background-color:#55C736 !important;"><?php echo $fila["FechaLimite"]; ?></td>
+                                <td style="background-color:#55C736 !important;"><?php echo $fila["Turno"]; ?></td>
+                                <td style="background-color:#55C736 !important;"><?php echo $fila["Operador"]; ?></td>
+                                <td style="background-color:#55C736 !important;"><?php echo $fila["No_diseno"]; ?></td>
+                                <td style="background-color:#55C736 !important;"><?php echo $fila["Orden_compra"]; ?></td>
+                                <td style="background-color:#55C736 !important;"><?php echo $fila["CantidadSolicitada"]; ?></td>
+                                <td style="background-color:#55C736 !important;"><?php echo $fila["CantidadEntregada"]; ?></td>
+                                <td style="background-color:#55C736 !important;"><?php echo $fila["Horas_trabajadas"]; ?></td>
+                                <td style="background-color:#55C736 !important;"><?php echo $fila["Observaciones"]; ?></td>
+                                <td style="background-color:#55C736 !important;"><?php echo $fila["Porcentaje_cumplimiento"]; ?></td>
+                              </tr>
                             </tr>
                               <?php
                             }else{
                                 ?>
                                 <th style="background-color:#F79C59 !important;"><?php echo $fila["No_reporte"]; ?></th>
-                                <td style="background-color:#F79C59 !important;"><input onclick="mostrarModalCorte(this);" id="btn-check" type="button" class="btn btn-success" value="✅"></td>
+                                <td style="background-color:#F79C59 !important;"><input onclick="mostrarModalDetallado(this);" id="btn-check" type="button" class="btn btn-success" value="✅"></td>
+                                <td style="background-color:#F79C59 !important;"><?php echo $fila["Fecha"]; ?></td>
+                                <td style="background-color:#F79C59 !important;"><?php echo $fila["Estatus"]; ?></td>
+                                <td style="background-color:#F79C59 !important;"><?php echo $fila["FechaLimite"]; ?></td>
+                                <td style="background-color:#F79C59 !important;"><?php echo $fila["Turno"]; ?></td>
+                                <td style="background-color:#F79C59 !important;"><?php echo $fila["Operador"]; ?></td>
+                                <td style="background-color:#F79C59 !important;"><?php echo $fila["No_diseno"]; ?></td>
+                                <td style="background-color:#F79C59 !important;"><?php echo $fila["Orden_compra"]; ?></td>
+                                <td style="background-color:#F79C59 !important;"><?php echo $fila["CantidadSolicitada"]; ?></td>
+                                <td style="background-color:#F79C59 !important;"><?php echo $fila["CantidadEntregada"]; ?></td>
+                                <td style="background-color:#F79C59 !important;"><?php echo $fila["Horas_trabajadas"]; ?></td>
+                                <td style="background-color:#F79C59 !important;"><?php echo $fila["Observaciones"]; ?></td>
+                                <td style="background-color:#F79C59 !important;"><?php echo $fila["Porcentaje_cumplimiento"]; ?></td>
                             </tr>
                                 <?php
                             }
@@ -155,7 +187,7 @@
     </section>
    <script>
     $("#btn-Cancel").click(function(){
-      $("#modalCorte").hide(800);
+      $("#modalDetallado").hide(800);
       document.getElementById("DetrasP").style.filter = "blur(0) grayscale(0%)";
       document.getElementById("DetrasP").style.pointerEvents = "auto";
     });
