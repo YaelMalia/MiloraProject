@@ -736,7 +736,7 @@ class MiloraClass
             return $query->fetchAll();
             $this->dbh = null;
 
-            } catch (\Throwable $th) {
+            } catch (\Throwable $e) {
                 $e->getMessage();
                 echo $e;
             }
@@ -940,6 +940,24 @@ class MiloraClass
         }
     }
 
+    public function FiltrarCarga($fechaBusqueda){
+        try {
+            if($fechaBusqueda == ""){
+                $query = $this->dbh->prepare("SELECT reporte_corte.No_reporte, reporte_corte.Fecha, reporte_corte.Estatus, reporte_corte.FechaLimite, reporte_corte.Turno, reporte_corte.Operador, ordenes_compras.No_diseno, piezas.Codigo_MP, reporte_corte.Espesor, reporte_corte.Vale_MP, reporte_corte.NEST_Solicitado, reporte_corte.Cantidad_reportada, reporte_corte.Placas_NEST, reporte_corte.PlacasCortadas, reporte_corte.HorasProyectadas, ordenes_compras.Orden_compra, reporte_corte.Horas_trabajadas, reporte_corte.Observaciones, reporte_corte.Porcentaje_cumplimiento FROM reporte_corte INNER JOIN ordenes_compras ON reporte_corte.No_orden = ordenes_compras.Numero_orden INNER JOIN piezas ON ordenes_compras.No_diseno = piezas.No_diseno ORDER BY ordenes_compras.No_diseno;");
+
+            }else{
+                $query = $this->dbh->prepare("SELECT reporte_corte.No_reporte, reporte_corte.Fecha, reporte_corte.Estatus, reporte_corte.FechaLimite, reporte_corte.Turno, reporte_corte.Operador, ordenes_compras.No_diseno, piezas.Codigo_MP, reporte_corte.Espesor, reporte_corte.Vale_MP, reporte_corte.NEST_Solicitado, reporte_corte.Cantidad_reportada, reporte_corte.Placas_NEST, reporte_corte.PlacasCortadas, reporte_corte.HorasProyectadas, ordenes_compras.Orden_compra, reporte_corte.Horas_trabajadas, reporte_corte.Observaciones, reporte_corte.Porcentaje_cumplimiento FROM reporte_corte INNER JOIN ordenes_compras ON reporte_corte.No_orden = ordenes_compras.Numero_orden INNER JOIN piezas ON ordenes_compras.No_diseno = piezas.No_diseno WHERE reporte_corte.Fecha LIKE ? ORDER BY ordenes_compras.No_diseno;");
+                $query->bindParam(1, $fechaBusqueda);
+            }
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
+        } catch (PDOException $e) {
+            $e->getMessage();
+        }
+    }
+
 /*-----------------------------------------------------------------------------------------------------*/
 
 }
+

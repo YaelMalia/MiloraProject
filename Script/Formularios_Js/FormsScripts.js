@@ -908,7 +908,7 @@ function InsertReporte_Corte() {
     let Cantidad_NEST = $("#Cantidad_NEST")[0].value;
     // let Cantidad_reportadaT = $("#CantidadRep")[0].value;
     let PlacasNEST = $("#PlacasNEST")[0].value;
-    
+
     if (FechaT == null || FechaT == "") {
         alertify.alert("Aviso", "No se ha especificado la fecha límite");
     } else {
@@ -971,7 +971,7 @@ function InsertReporte_Corte() {
                                                         // alert(today);
                                                         var date = today.toISOString().slice(0, 10);
 
-                                                        let horasProyectadas = ((50 * PlacasNEST)/1)/60;
+                                                        let horasProyectadas = ((50 * PlacasNEST) / 1) / 60;
                                                         horasProyectadas = horasProyectadas.toFixed(2);
 
                                                         let parametrosCarga = {
@@ -994,7 +994,7 @@ function InsertReporte_Corte() {
                                                             data: parametrosCarga,
                                                             async: false,
                                                             success: function (returnInsert) {
-                                                                
+
                                                                 if (returnInsert == "si") {
                                                                     alertify.alert("¡Exito!", "Se ha agregado una nueva carga de trabajo");
 
@@ -1427,7 +1427,7 @@ function mostrarModalCorte(btn) {
     EspesorGlobal = btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
     ValeMPGlobal = btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent
     TurnoGlobal = btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
-    
+
     // Event listener para la cantida de piezas --------------------------
     const input = document.querySelector("#CantidadRep");
     input.addEventListener("input", function (e) {
@@ -1449,8 +1449,8 @@ function mostrarModalCorte(btn) {
 
     // Event listener para la cantidad de horas trabajadas -------------------------------------
     const input2 = document.querySelector("#Placa_cortadaT");
-    input2.addEventListener("input", function(e){
-        let horasTrab = (50 * (Number(e.target.value))/1)/60;
+    input2.addEventListener("input", function (e) {
+        let horasTrab = (50 * (Number(e.target.value)) / 1) / 60;
         horasTrab = horasTrab.toFixed(2);
         $("#HorasT")[0].value = horasTrab;
     });
@@ -1519,7 +1519,7 @@ function ReportarCarga_Corte() {
                     let NHorasProy = Number(HorasPGlobal) - Number(horas);
                     let HP;
                     NHorasProy <= 0 ? HP = "Por destinar" : HP = NHorasProy.toString();
-                    
+
                     let parametrosCargaRes = {
                         "Fecha": FechaCargaGlobal,
                         "Estatus": "Restante",
@@ -1565,7 +1565,7 @@ function ReportarCarga_Corte() {
                                     success: function (returnCarga) {
                                         // alert(returnCarga);
                                         if (returnCarga != "Si") {
-                                            alertify.error("Se ha producido un error al agregar el seguimiento del proceso");
+                                            alertify.error("Se ha producido un error al actualizar carga");
                                         } else {
                                             alertify.success("Carga actualizada");
                                             RefreshCC();
@@ -1577,34 +1577,34 @@ function ReportarCarga_Corte() {
                         }
                     });
 
-                }else{
+                } else {
                     //Actualizar datos
-                let parametrosReporte = {
-                    "NoReporte": noCarga,
-                    "Estatus": "Terminado",
-                    "Cantidad_reportada": cantidadReportada,
-                    "Placas_cortadas": placasCortadas,
-                    "Horas_trabajadas": horas,
-                    "Observaciones": Observaciones,
-                    "Porcentaje_cum": PorcentajeCum
-                }
-
-                $.ajax({
-                    type: 'POST',
-                    url: '../Php_forms/Actualizar_Carga.php',
-                    data: parametrosReporte,
-                    async: false,
-                    success: function (returnCarga) {
-                        // alert(returnCarga);
-                        if (returnCarga != "Si") {
-                            alertify.error("Se ha producido un error al agregar el seguimiento del proceso");
-                        } else {
-                            alertify.success("Carga actualizada");
-                            RefreshCC();
-                            $("#modalCorte").hide(800);
-                        }
+                    let parametrosReporte = {
+                        "NoReporte": noCarga,
+                        "Estatus": "Terminado",
+                        "Cantidad_reportada": cantidadReportada,
+                        "Placas_cortadas": placasCortadas,
+                        "Horas_trabajadas": horas,
+                        "Observaciones": Observaciones,
+                        "Porcentaje_cum": PorcentajeCum
                     }
-                });
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '../Php_forms/Actualizar_Carga.php',
+                        data: parametrosReporte,
+                        async: false,
+                        success: function (returnCarga) {
+                            // alert(returnCarga);
+                            if (returnCarga != "Si") {
+                                alertify.error("Se ha producido un error al actualizar la carga");
+                            } else {
+                                alertify.success("Carga actualizada");
+                                RefreshCC();
+                                $("#modalCorte").hide(800);
+                            }
+                        }
+                    });
                 }
 
             }
@@ -1624,18 +1624,18 @@ function mostrarModalDetallado(btn) {
     $("#PorcentajeD")[0].textContent = "0%";
     document.getElementById("PorcentajeD").style.color = "black";
 
-    FechaMD= btn.parentNode.nextElementSibling.textContent;
-    FechaLiMD= btn.parentNode.nextElementSibling.nextElementSibling.textContent;
-    TurnoMD= btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
-    OperadorMD= btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
-    TipoMD= btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
-    DiseñoMD= btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
-    OrdenMD= btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
-    CantSoliMD= btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
-    CantEntreMD= btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
-    HorasMD= btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
-    ObservacionesMD= btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
-    
+    FechaMD = btn.parentNode.nextElementSibling.textContent;
+    FechaLiMD = btn.parentNode.nextElementSibling.nextElementSibling.textContent;
+    TurnoMD = btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
+    OperadorMD = btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
+    TipoMD = btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
+    DiseñoMD = btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
+    OrdenMD = btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
+    CantSoliMD = btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
+    CantEntreMD = btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
+    HorasMD = btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
+    ObservacionesMD = btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
+
     const input = document.querySelector("#CantidadEntregadaD");
 
     input.addEventListener("input", function (e) {
@@ -1682,10 +1682,10 @@ function mostrarModalDetallado(btn) {
 
 function ReportarCarga_Detallado() {
 
-    let CantidadEntregadaD =$("#CantidadEntregadaD")[0].value;
-    let HorasD= $("#HorasD")[0].value;
-    let ObservacionesD= $("#ObservacionesD")[0].value;
-    let PorcentajeCum= $("#PorcentajeD")[0].textContent;
+    let CantidadEntregadaD = $("#CantidadEntregadaD")[0].value;
+    let HorasD = $("#HorasD")[0].value;
+    let ObservacionesD = $("#ObservacionesD")[0].value;
+    let PorcentajeCum = $("#PorcentajeD")[0].textContent;
 
     if (cantidadReportada == null || cantidadReportada == "") {
         alertify.alert("Aviso", "No se ha ingresado la cantidad reportada");
@@ -1703,7 +1703,7 @@ function ReportarCarga_Detallado() {
                 TurnoMD == "Turno 1" ? Nturno = "Turno 2" : Nturno = "Turno 1";
 
                 let NCant = CantSoliMD - CantidadEntregadaD;
-                
+
                 let parametrosCargaRes = {
                     "Fecha": FechaMD,
                     "Estatus": "Restante",
@@ -1760,36 +1760,74 @@ function ReportarCarga_Detallado() {
                     }
                 });
 
-            }else{
+            } else {
                 //Actualizar datos
-            let parametrosReporte = {
-                "NoReporte": noCarga,
-                "Estatus": "Terminado",
-                "Cantidad_reportada": cantidadReportada,
-                "Placas_cortadas": placasCortadas,
-                "Horas_trabajadas": horas,
-                "Observaciones": Observaciones,
-                "Porcentaje_cum": PorcentajeCum
-            }
-
-            $.ajax({
-                type: 'POST',
-                url: '../Php_forms/Actualizar_Carga.php',
-                data: parametrosReporte,
-                async: false,
-                success: function (returnCarga) {
-                    // alert(returnCarga);
-                    if (returnCarga != "Si") {
-                        alertify.error("Se ha producido un error al agregar el seguimiento del proceso");
-                    } else {
-                        alertify.success("Carga actualizada");
-                        RefreshCC();
-                        $("#modalCorte").hide(800);
-                    }
+                let parametrosReporte = {
+                    "NoReporte": noCarga,
+                    "Estatus": "Terminado",
+                    "Cantidad_reportada": cantidadReportada,
+                    "Placas_cortadas": placasCortadas,
+                    "Horas_trabajadas": horas,
+                    "Observaciones": Observaciones,
+                    "Porcentaje_cum": PorcentajeCum
                 }
-            });
+
+                $.ajax({
+                    type: 'POST',
+                    url: '../Php_forms/Actualizar_Carga.php',
+                    data: parametrosReporte,
+                    async: false,
+                    success: function (returnCarga) {
+                        // alert(returnCarga);
+                        if (returnCarga != "Si") {
+                            alertify.error("Se ha producido un error al actualizar carga");
+                        } else {
+                            alertify.success("Carga actualizada");
+                            RefreshCC();
+                            $("#modalCorte").hide(800);
+                        }
+                    }
+                });
             }
         }
     }
 }
 // --------------------------------- FIN TURNOS/CORTE TURNO ---------------------------------
+
+// -------------------------------- CARGA --------------------------
+
+function buscarCargas() {
+
+    let fechaCarga = $("#FechaCarga")[0].value;
+
+    let parametros = {
+        "act": "yes",
+        "fechaCarga": fechaCarga
+    };
+
+    $.ajax({
+        type: 'POST',
+        url: '../Php_forms/Buscar_Carga.php',
+        data: parametros,
+        async: false,
+        success: function (returnBusqueda) {
+            // alert(returnCarga);
+            if (returnBusqueda == "Nada") {
+                alertify.alert("¡Oops!", "Parece que no hay cargas para esta fecha, intente de nuevo");
+            } else {
+                if (returnBusqueda.includes("FATAL ERROR")) {
+                    alertify.alert("Error", "Se ha producido un error, revise su conexión a internet");
+                } else {
+                    if (returnBusqueda == "") {
+                        alertify.alert("¡Oops!", "Parece que no hay cargas de trabajo");
+                    } else {
+                        $("#cuerpoTabla")[0].value = "";
+                        document.getElementById("cuerpoTabla").innerHTML = returnBusqueda;
+                    }
+                }
+            }
+        }
+    });
+}
+
+// -------------------------------------
