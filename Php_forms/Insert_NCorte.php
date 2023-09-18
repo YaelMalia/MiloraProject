@@ -24,7 +24,5 @@
         } catch (\Throwable $th) {
             echo "no";
         }
-
     }
-
 ?>
