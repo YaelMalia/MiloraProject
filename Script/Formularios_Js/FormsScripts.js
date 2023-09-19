@@ -1704,62 +1704,79 @@ function ReportarCarga_Detallado() {
 
                 let NCant = CantSoliMD - CantidadEntregadaD;
 
-                let parametrosCargaRes = {
-                    "Fecha": FechaMD,
-                    "Estatus": "Restante",
-                    "FechaLimite": FechaLiMD,
-                    "Turno": Nturno,
-                    "Operador": "Por destinar",
-                    "Maquina": "Por destinar",
-                    "No_orden": No_ordenCD,
-                    "Espesor": EspesorGlobal,
-                    "FolioMP": ValeMPGlobal,
-                    "CantidadSolicitada": NCant,
-                    "Observaciones": ObservacionesD
+                let parametrosConsultaN = {
+                    "ordenConsulta": OrdenMD,
+                    "disenoConsulta": DiseñoMD
                 };
-
                 $.ajax({
                     type: 'POST',
-                    url: '../Php_forms/Insert_NDetallado.php',
-                    data: parametrosCargaRes,
+                    url: '../Php_forms/Get_noOrdenDetallado.php',
+                    data: parametrosConsultaN,
                     async: false,
-                    success: function (returnNCargaRes) {
-                        if (returnNCargaRes != "si") {
-                            alertify.alert("Error", "Se ha producido un error al realizar esta carga de trabajo, revise sus datos. Si el problema persiste, vuelva a iniciar sesión");
+                    success: function (returningN) {
+                        if (returningN == "notFound") {
+                            alertify.alert("Error", "Parece que no hay ninguna orden de compra, revise sus datos");
+                            // alert("No orden existente");
+                        } else if (returningN.includes("Fatal Error")) {
+                            alertify.alert("Error", "Se ha producido un error, revise su conexión a internet");
+                            // alert("Error de conexión");
                         } else {
-                            alertify.alert("¡Exito!", "Se ha agregado una nueva carga de trabajo restante");
-
-                            //Actualizar datos
-                            let parametrosReporte = {
-                                "NoReporte": noCarga,
-                                "Estatus": "Terminado",
-                                "Cantidad_reportada": cantidadReportada,
-                                "Placas_cortadas": placasCortadas,
-                                "Horas_trabajadas": horas,
-                                "Observaciones": Observaciones,
-                                "Porcentaje_cum": PorcentajeCum
-                            }
+                            let parametrosCargaRes = {
+                                "Fecha": FechaMD,
+                                "Estatus": "Restante",
+                                "FechaLimite": FechaLiMD,
+                                "Turno": Nturno,
+                                "Operador": "Por destinar",
+                                "Maquina": "Por destinar",
+                                "No_orden": returningN,
+                                "CantidadS": NCant,
+                                "HorasD": HorasD
+                            };
 
                             $.ajax({
                                 type: 'POST',
-                                url: '../Php_forms/Actualizar_Carga.php',
-                                data: parametrosReporte,
+                                url: '../Php_forms/Insert_NDetallado.php',
+                                data: parametrosCargaRes,
                                 async: false,
-                                success: function (returnCarga) {
-                                    // alert(returnCarga);
-                                    if (returnCarga != "Si") {
-                                        alertify.error("Se ha producido un error al agregar el seguimiento del proceso");
+                                success: function (returnNCargaRest) {
+                                    if (returnNCargaRest != "si") {
+                                        alertify.alert("Error", "Se ha producido un error al realizar esta carga de trabajo, revise sus datos. Si el problema persiste, vuelva a iniciar sesión");
                                     } else {
-                                        alertify.success("Carga actualizada");
-                                        RefreshCC();
-                                        $("#modalCorte").hide(800);
+                                        alertify.alert("¡Exito!", "Se ha agregado una nueva carga de trabajo restante");
+
+                                        //Actualizar datos
+                                        let parametrosReporte = {
+                                            "NoReporte": noCarga,
+                                            "Estatus": "Terminado",
+                                            "Cantidad_reportada": cantidadReportada,
+                                            "Placas_cortadas": placasCortadas,
+                                            "Horas_trabajadas": HorasD,
+                                            "Observaciones": Observaciones,
+                                            "Porcentaje_cum": PorcentajeCum
+                                        }
+
+                                        $.ajax({
+                                            type: 'POST',
+                                            url: '../Php_forms/Actualizar_Carga_Detallado.php',
+                                            data: parametrosReporte,
+                                            async: false,
+                                            success: function (returnCarga) {
+                                                // alert(returnCarga);
+                                                if (returnCarga != "Si") {
+                                                    alertify.error("Se ha producido un error al agregar el seguimiento del proceso");
+                                                } else {
+                                                    alertify.success("Carga actualizada");
+                                                    RefreshCC();
+                                                    $("#modalCorte").hide(800);
+                                                }
+                                            }
+                                        });
                                     }
                                 }
                             });
                         }
                     }
                 });
-
             } else {
                 //Actualizar datos
                 let parametrosReporte = {
