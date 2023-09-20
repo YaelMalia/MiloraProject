@@ -1330,7 +1330,7 @@ function BuscarProceso() {
 
 function AgregarProcesoDetallado() {
     let fechaDetallada = $("#FechaFD")[0].value;
-    // let Turnodetallado= $("#TurnoFD")[0].value;
+    let Turnodetallado= $("#TurnoFD")[0].value;
     let SupervisorFD = $("#SupervisorFD")[0].value;
     let TipoFD = $("#TipoFD")[0].value;
     let OrdenCompraFD = $("#OrdenCompraFD")[0].value;
@@ -1367,6 +1367,7 @@ function AgregarProcesoDetallado() {
                     var date = today.toISOString().slice(0, 10);
                     let parametros = {
                         "Fecha": date,
+                        "Turno": Turnodetallado,
                         "FechaLim": fechaDetallada,
                         "Operador": SupervisorFD,
                         "TipoDetallado": TipoFD,
@@ -1617,7 +1618,7 @@ function ReportarCarga_Corte() {
 }
 
 // --------------------------------- Modal detallado
-let FechaMD, FechaLiMD, TurnoMD, OperadorMD, TipoMD, DiseñoMD, OrdenMD, CantSoliMD, CantEntreMD, HorasMD, ObservacionesMD;
+let FechaMD, EstatusMD, FechaLiMD, TurnoMD, OperadorMD, TipoMD, DiseñoMD, OrdenMD, CantSoliMD, CantEntreMD, HorasMD, ObservacionesMD;
 let noCargaD;
 
 function mostrarModalDetallado(btn) {
@@ -1625,37 +1626,38 @@ function mostrarModalDetallado(btn) {
     $("#CantidadEntregadaD")[0].value = "";
     $("#HorasD")[0].value = "";
     $("#ObservacionesD")[0].value = "";
-    $("#PorcentajeD")[0].textContent = "0%";
-    document.getElementById("PorcentajeD").style.color = "black";
+    $("#porcentajeD")[0].textContent = "0%";
+    document.getElementById("porcentajeD").style.color = "black";
 
     FechaMD = btn.parentNode.nextElementSibling.textContent;
-    FechaLiMD = btn.parentNode.nextElementSibling.nextElementSibling.textContent;
-    TurnoMD = btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
-    OperadorMD = btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
-    TipoMD = btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
-    DiseñoMD = btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
-    OrdenMD = btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
-    CantSoliMD = btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
-    CantEntreMD = btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
-    HorasMD = btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
-    ObservacionesMD = btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
+    EstatusMD= btn.parentNode.nextElementSibling.nextElementSibling.textContent;
+    FechaLiMD = btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
+    TurnoMD = btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
+    OperadorMD = btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
+    TipoMD = btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
+    DiseñoMD = btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
+    OrdenMD = btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
+    CantSoliMD = btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
+    CantEntreMD = btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
+    HorasMD = btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
+    ObservacionesMD = btn.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
 
     const input = document.querySelector("#CantidadEntregadaD");
 
     input.addEventListener("input", function (e) {
-        let porcentaje = (e.target.value * 100) / CantSoliMD;
+        let porcentaje = (e.target.value * 100) / Number(CantSoliMD);
         porcentaje = porcentaje.toFixed(2);
         if (porcentaje > 100) {
             alertify.alert("Aviso", "Usted está sobrepasando la cantidad solicitada en NEST");
         } else if (porcentaje >= 90 && porcentaje <= 100) {
-            document.getElementById("porcentaje").style.color = "green";
+            document.getElementById("porcentajeD").style.color = "green";
         } else if (porcentaje >= 70 && porcentaje < 90) {
-            document.getElementById("porcentaje").style.color = "orange";
+            document.getElementById("porcentajeD").style.color = "orange";
         } else {
-            document.getElementById("porcentaje").style.color = "red";
+            document.getElementById("porcentajeD").style.color = "red";
         }
 
-        $("#PorcentajeD")[0].textContent = porcentaje + "%";
+        $("#porcentajeD")[0].textContent = porcentaje + "%";
     });
 
     noCargaD = btn.parentNode.previousElementSibling.textContent;
@@ -1681,7 +1683,7 @@ function mostrarModalDetallado(btn) {
 
     document.getElementById("DetrasP").style.filter = "blur(8px) grayscale(100%)";
     document.getElementById("DetrasP").style.pointerEvents = "none";
-    document.getElementById("modalCorte").style.filter = "blur(0)";
+    document.getElementById("modalDetallado").style.filter = "blur(0)";
 }
 
 function ReportarCarga_Detallado() {
@@ -1689,9 +1691,9 @@ function ReportarCarga_Detallado() {
     let CantidadEntregadaD = $("#CantidadEntregadaD")[0].value;
     let HorasD = $("#HorasD")[0].value;
     let ObservacionesD = $("#ObservacionesD")[0].value;
-    let PorcentajeCum = $("#PorcentajeD")[0].textContent;
+    let PorcentajeCum = $("#porcentajeD")[0].textContent;
 
-    if (cantidadReportada == null || cantidadReportada == "") {
+    if (CantidadEntregadaD == null || CantidadEntregadaD == "") {
         alertify.alert("Aviso", "No se ha ingresado la cantidad reportada");
     } else {
         if (HorasD == null || HorasD == "") {
@@ -1708,87 +1710,101 @@ function ReportarCarga_Detallado() {
 
                 let NCant = CantSoliMD - CantidadEntregadaD;
 
-                let parametrosCargaRes = {
-                    "Fecha": FechaMD,
-                    "Estatus": "Restante",
-                    "FechaLimite": FechaLiMD,
-                    "Turno": Nturno,
-                    "Operador": "Por destinar",
-                    "Maquina": "Por destinar",
-                    "No_orden": No_ordenCD,
-                    "Espesor": EspesorGlobal,
-                    "FolioMP": ValeMPGlobal,
-                    "CantidadSolicitada": NCant,
-                    "Observaciones": ObservacionesD
+                let parametrosConsultaN = {
+                    "ordenConsulta": OrdenMD,
+                    "disenoConsulta": DiseñoMD
                 };
-
                 $.ajax({
                     type: 'POST',
-                    url: '../Php_forms/Insert_NDetallado.php',
-                    data: parametrosCargaRes,
+                    url: '../Php_forms/Get_noOrdenDetallado.php',
+                    data: parametrosConsultaN,
                     async: false,
-                    success: function (returnNCargaRes) {
-                        if (returnNCargaRes != "si") {
-                            alertify.alert("Error", "Se ha producido un error al realizar esta carga de trabajo, revise sus datos. Si el problema persiste, vuelva a iniciar sesión");
+                    success: function (returningN) {
+                        if (returningN == "notFound") {
+                            alertify.alert("Error", "Parece que no hay ninguna orden de compra, revise sus datos");
+                            // alert("No orden existente");
+                        } else if (returningN.includes("Fatal Error")) {
+                            alertify.alert("Error", "Se ha producido un error, revise su conexión a internet");
+                            // alert("Error de conexión");
                         } else {
-                            alertify.alert("¡Exito!", "Se ha agregado una nueva carga de trabajo restante");
-
-                            //Actualizar datos
-                            let parametrosReporte = {
-                                "NoReporte": noCarga,
-                                "Estatus": "Terminado",
-                                "Cantidad_reportada": cantidadReportada,
-                                "Placas_cortadas": placasCortadas,
-                                "Horas_trabajadas": horas,
-                                "Observaciones": Observaciones,
-                                "Porcentaje_cum": PorcentajeCum
-                            }
+                            let parametrosCargaResD = {
+                                "Estatus": "Restante",
+                                "Fecha": FechaMD,
+                                "FechaLimite": FechaLiMD,
+                                "Turno": Nturno,
+                                "Operador": "Por destinar",
+                                "TipoDetallado": "Por destinar",
+                                "No_orden": returningN,
+                                "CantidadS": NCant
+                            };
 
                             $.ajax({
                                 type: 'POST',
-                                url: '../Php_forms/Actualizar_Carga.php',
-                                data: parametrosReporte,
+                                url: '../Php_forms/Insert_NDetallado.php',
+                                data: parametrosCargaResD,
                                 async: false,
-                                success: function (returnCarga) {
-                                    // alert(returnCarga);
-                                    if (returnCarga != "Si") {
-                                        alertify.error("Se ha producido un error al agregar el seguimiento del proceso");
+                                success: function (returnNCargaRestD) {
+                                    if (returnNCargaRestD != "si") {
+                                        alertify.alert("Error", "Se ha producido un error al agregar el seguimiento del proceso");
                                     } else {
-                                        alertify.success("Carga actualizada");
-                                        RefreshCC();
-                                        $("#modalCorte").hide(800);
+                                        alertify.alert("¡Exito!", "Se ha agregado una nueva carga de trabajo restante");
+
+                                        //Actualizar datos
+                                        let parametrosReporte = {
+                                            "NoReporte": noCargaD,
+                                            "Estatus": "Terminado",
+                                            "Cantidad_reportada": CantidadEntregadaD,
+                                            "Horas_trabajadas": HorasD,
+                                            "Observaciones": ObservacionesD,
+                                            "Porcentaje_cum": PorcentajeCum
+                                        }
+                                        $.ajax({
+                                            type: 'POST',
+                                            url: '../Php_forms/Actualizar_Carga_Detallado.php',
+                                            data: parametrosReporte,
+                                            async: false,
+                                            success: function (returnCargaNRD) {
+                                                // alert(returnCarga);
+                                                if (returnCargaNRD != "Si") {
+                                                    alertify.error("Se ha producido un error al agregar el seguimiento del proceso");
+                                                } else {
+                                                    alertify.success("Carga actualizada");
+                                                    RefreshCD();
+                                                    $("#modalDetallado").hide(800);
+                                                }
+                                            }
+                                        });
                                     }
                                 }
                             });
                         }
                     }
                 });
-
+                //Ya quedo la actualizada tuuuuuuuuuu
             } else {
                 //Actualizar datos
                 let parametrosReporte = {
-                    "NoReporte": noCarga,
+                    "NoReporte": noCargaD,
                     "Estatus": "Terminado",
-                    "Cantidad_reportada": cantidadReportada,
-                    "Placas_cortadas": placasCortadas,
-                    "Horas_trabajadas": horas,
-                    "Observaciones": Observaciones,
+                    "Cantidad_reportada": CantidadEntregadaD,
+                    "Horas_trabajadas": HorasD,
+                    "Observaciones": ObservacionesD,
                     "Porcentaje_cum": PorcentajeCum
                 }
 
                 $.ajax({
                     type: 'POST',
-                    url: '../Php_forms/Actualizar_Carga.php',
+                    url: '../Php_forms/Actualizar_Carga_Detallado.php',
                     data: parametrosReporte,
                     async: false,
-                    success: function (returnCarga) {
+                    success: function (returnCargaND) {
                         // alert(returnCarga);
-                        if (returnCarga != "Si") {
-                            alertify.error("Se ha producido un error al actualizar carga");
+                        if (returnCargaND != "Si") {
+                            alertify.error("Se ha producido un error al actualizar carga 2 putito");
                         } else {
                             alertify.success("Carga actualizada");
-                            RefreshCC();
-                            $("#modalCorte").hide(800);
+                            RefreshCD();
+                            $("#modalDetallado").hide(800);
                         }
                     }
                 });

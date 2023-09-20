@@ -793,13 +793,35 @@ class MiloraClass
 
     public function Insertar_Proceso_Detallado($Fecha, $FechaLim, $Operador, $TipoDetallado, $No_orden, $CantidadyCalidad){
         try {
-            $query = $this->dbh->prepare("INSERT INTO reporte_detallado (Fecha, FechaLimite, Operador, TipoDetallado, No_orden, CantidadSolicitada) VALUES (?, ?, ?, ?, ?, ?)");
+            $query = $this->dbh->prepare("INSERT INTO reporte_detallado (Fecha, FechaLimite, Turno,  Operador, TipoDetallado, No_orden, CantidadSolicitada) VALUES (?, ?, ?, ?, ?, ?, ?)");
             $query->bindParam(1, $Fecha);
             $query->bindParam(2, $FechaLim);
-            $query->bindParam(3, $Operador);
-            $query->bindParam(4, $TipoDetallado);
-            $query->bindParam(5, $No_orden);
-            $query->bindParam(6, $CantidadyCalidad);
+            $query->bindParam(3, $Turno);
+            $query->bindParam(4, $Operador);
+            $query->bindParam(5, $TipoDetallado);
+            $query->bindParam(6, $No_orden);
+            $query->bindParam(7, $CantidadyCalidad);
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
+            
+        } catch (PDOException $e) {
+            $e->getMessage();
+            echo $e;
+        }
+    }
+    
+    public function Insertar_Detallado_Resago($Estatus, $fechaInicio, $fechaLimite, $Turno, $Operador, $TipoDetalle, $No_orden, $CantidadyCalidad){
+        try {
+            $query = $this->dbh->prepare("INSERT INTO reporte_detallado (Estatus, Fecha, FechaLimite, Turno, Operador, TipoDetallado, No_orden, CantidadSolicitada) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            $query->bindParam(1, $Estatus);
+            $query->bindParam(2, $fechaInicio);
+            $query->bindParam(3, $fechaLimite);
+            $query->bindParam(4, $Turno);
+            $query->bindParam(5, $Operador);
+            $query->bindParam(6, $TipoDetalle);
+            $query->bindParam(7, $No_orden);
+            $query->bindParam(8, $CantidadyCalidad);
             $query->execute();
             return $query->fetchAll();
             $this->dbh = null;
@@ -810,30 +832,16 @@ class MiloraClass
         }
     }
 
-    public function Insertar_Detallado_Resago($Fecha, $FechaLim, $Operador, $TipoDetallado, $No_orden, $CantidadyCalidad){
+    public function Actualiza_ReporteD($Estatus, $Cantreport, $HorasTD, $Observaciones, $PorcentajeCumD, $NoReporte){
         try {
-            $query = $this->dbh->prepare("INSERT INTO reporte_detallado (Fecha, FechaLimite, Operador, TipoDetallado, No_orden, CantidadSolicitada) VALUES (?, ?, ?, ?, ?, ?)");
-            $query->bindParam(1, $Fecha);
-            $query->bindParam(2, $FechaLim);
-            $query->bindParam(3, $Operador);
-            $query->bindParam(4, $TipoDetallado);
-            $query->bindParam(5, $No_orden);
-            $query->bindParam(6, $CantidadyCalidad);
-            $query->execute();
-            return $query->fetchAll();
-            $this->dbh = null;
-            
-        } catch (PDOException $e) {
-            $e->getMessage();
-            echo $e;
-        }
-    }
-
-    public function Actualiza_ReporteD($NoReporte){
-        try {
-            $query = $this->dbh->prepare("UPDATE reporte_corte SET Estatus=?WHERE No_reporte LIKE ?");
+            $query = $this->dbh->prepare("UPDATE reporte_detallado SET Estatus=?, CantidadEntregada=?, Horas_trabajadas=?, Observaciones=?, Porcentaje_cumplimiento=? WHERE No_reporte LIKE ?");
             
             $query->bindParam(1, $Estatus);
+            $query->bindParam(2, $Cantreport);
+            $query->bindParam(3, $HorasTD);
+            $query->bindParam(4, $Observaciones);
+            $query->bindParam(5, $PorcentajeCumD);
+            $query->bindParam(6, $NoReporte);
 
             $query->execute();
             return $query->fetchAll();
