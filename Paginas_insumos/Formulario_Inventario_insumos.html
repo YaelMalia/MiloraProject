@@ -17,22 +17,36 @@
         background-color: #d2dae6;  border-radius:10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);">
         <form id="form_nuevoD" class="row g-4">
             <h2 style="text-align: center;">Almacen chiquito</h2>
-            <div class="col-md-4">
-                <label for="IdentificadorIn" class="form-label">Identificador de insumo</label>
-                <input type="text" class="form-control" id="IdentificadorIn" required>
+            <div class="col-md-3">
+                <label for="NombreInsumo" class="form-label">Nombre de insumo</label>
+                <input type="text" class="form-control" id="NombreInsumo" required>
             </div>
-            <div class="col-md-4">
-                <label for="NombreIn" class="form-label">Nombre de insumo</label>
-                <input type="text" class="form-control" id="NombreIn" required>
+            <div class="col-md-3">
+                <label for="DescripcionInsumo" class="form-label">Descripcion de insumo</label>
+                <input type="text" class="form-control" id="DescripcionInsumo" required>
             </div>
-            <div class="col-md-4">
-                <label for="DescripcionIn" class="form-label">Descripcion de insumo</label>
-                <input type="text" class="form-control" id="DescripcionIn" required>
+            <div class="col-md-3">
+                <label for="EspecificacionesInsumo" class="form-label">Especificacion de insumo</label>
+                <input type="text" class="form-control" id="EspecificacionesInsumo" required>
+            </div>
+            <div class="col-md-3">
+                <label for="CategoriasInsumo" class="form-label">Categoria del insumo</label>
+                <select id="CategoriasInsumo" class="form-select">
+                    <option selected>Doblez</option>
+                    <option>Rolado</option>
+                    <option>Bisel</option>
+                    <option>Taladro</option>
+                    <option>Prensa</option>
+                </select>
             </div>
             <!-- ---------------------------------------------------------------------------------------- -->
             <div class="col-4"></div>
+            <div class="col-4"></div>
+            <div class="col-4"></div>
+            <!-- ---------------------------------------------------------------------------------------- -->
+            <div class="col-4"></div>
             <div class="col-4" >
-                <input  onclick=""  type="button" class="btn btn-primary col-12" style="height: 50px;
+                <input  onclick="nuevo_Insumo()"  type="button" class="btn btn-primary col-12" style="height: 50px;
                 min-height: auto; font-size: auto;" value="Agregar nuevo insumo">
             </div>
             <div class="col-4"></div>

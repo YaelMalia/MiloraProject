@@ -7,7 +7,7 @@ class InsumosClass
     private function __construct(){
         try {
             $servidor = "localhost";
-            $base = "bodegadb";
+            $base = "bodega";
             $usuario = "root";
             $contrasenia = "";
             $this->dbh = new PDO('mysql:host=' . $servidor . ';dbname=' . $base, $usuario, $contrasenia);
@@ -29,9 +29,9 @@ class InsumosClass
     }
 
 
-    public function AgregarInsumo($IdCate, $Identificador, $Nombre, $Descripcion){
+    public function InsertarInsumo(){
         try {
-            $query = $this->dbh->prepare("SELECT ");
+            $query = $this->dbh->prepare("INSERT INTO productos () VALUES (?, ?, ?, ?, ?, ?)");
             $query->bindParam(1, $IdCate);
             $query->execute();
             return $query->fetchAll();
