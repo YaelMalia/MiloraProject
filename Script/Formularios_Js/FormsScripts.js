@@ -1431,19 +1431,23 @@ function mostrarModalCorte(btn) {
     // Event listener para la cantida de piezas --------------------------
     const input = document.querySelector("#CantidadRep");
     input.addEventListener("input", function (e) {
-        let porcentaje = (e.target.value * 100) / NEST_solicGlobal;
-        porcentaje = porcentaje.toFixed(2);
-        if (porcentaje > 100) {
-            alertify.alert("Aviso", "Usted está sobrepasando la cantidad solicitada en NEST");
-        } else if (porcentaje >= 90 && porcentaje <= 100) {
-            document.getElementById("porcentaje").style.color = "green";
-        } else if (porcentaje >= 70 && porcentaje < 90) {
-            document.getElementById("porcentaje").style.color = "orange";
-        } else {
-            document.getElementById("porcentaje").style.color = "red";
-        }
+        if (e.target.value >= 0) {
+            let porcentaje = (e.target.value * 100) / NEST_solicGlobal;
+            porcentaje = porcentaje.toFixed(2);
+            if (porcentaje > 100) {
+                alertify.alert("Aviso", "Usted está sobrepasando la cantidad solicitada en NEST");
+            } else if (porcentaje >= 90 && porcentaje <= 100) {
+                document.getElementById("porcentaje").style.color = "green";
+            } else if (porcentaje >= 70 && porcentaje < 90) {
+                document.getElementById("porcentaje").style.color = "orange";
+            } else {
+                document.getElementById("porcentaje").style.color = "red";
+            }
 
-        $("#porcentaje")[0].textContent = porcentaje + "%";
+            $("#porcentaje")[0].textContent = porcentaje + "%";
+        } else {
+            alertify.alert("Error", "No se pueden aceptar números negativos");
+        }
     });
     // Fin del event listener --------------------------------
 
