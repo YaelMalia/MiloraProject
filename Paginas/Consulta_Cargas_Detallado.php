@@ -16,6 +16,9 @@
     <script src="../Script/jquery.js"></script>
     <script src="../Script/jquery-3.5.1.min.js"></script>
 
+    <script src="../Script/table2excel.js"></script>
+    <script src="../Script/xlsx.mini.flow.js"></script>
+
     <style>
       .modalDetallado{
         margin:0 auto;
@@ -41,7 +44,7 @@
     <!-- Modal para registro de producción -->
     <div class="modalDetallado" id="modalDetallado">
             <h2 style="text-align: center;">Reportar carga final</h2>
-            <div style="text-align: center;"><p style="font-size:18px;">Porcentaje de productividad: </p><p id="PorcentajeD" style="text-decoration: underline; font-size:20px;">0%</p></div>
+            <div style="text-align: center;"><p style="font-size:18px;">Porcentaje de productividad: </p><p id="porcentajeD" style="text-decoration: underline; font-size:20px;">0%</p></div>
             <div class="row g-3" style="margin-top:30px;">
 
         <div class="col-md-4">

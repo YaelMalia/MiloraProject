@@ -1,17 +1,17 @@
 <?php
     if(isset($_POST["Fecha"])){
+        $Estatus = $_POST["Estatus"];
         $fechaInicio = $_POST["Fecha"];
-        $estatus= $_POST["Estatus"];
         $fechaLimite = $_POST["FechaLimite"];
+        $Turno = $_POST["Turno"];
         $Operador = $_POST["Operador"];
         $TipoDetalle = $_POST["TipoDetallado"];
         $No_orden = $_POST["No_orden"];
-        $CantidadSoli = $_POST["CantidadSolicitada"];
-        $observaciones= $_POST["Observaciones"];
+        $NCantSol = $_POST["CantidadS"];
         try {
             require_once("../conexionBD/Consultas.php");
             $miloraObj = MiloraClass::singleton();
-            $data = $miloraObj->Insertar_Detallado_Resago($fechaInicio, $fechaLimite, $estatus, $Operador ,$TipoDetalle, $No_orden, $CantidadSoli);
+            $data = $miloraObj->Insertar_Detallado_Resago($Estatus, $fechaInicio, $fechaLimite, $Turno, $Operador, $TipoDetalle, $No_orden, $NCantSol);
             echo "si";
         } catch (\Throwable $th) {
             echo "no";
