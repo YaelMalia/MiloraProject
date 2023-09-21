@@ -3,7 +3,7 @@
         try {
             require_once("../conexionBD/Consultas_insumos.php");
             $miloraObj = MiloraClass::singleton();
-            $data = $miloraObj->InsertarInsumo($);
+            $data = $miloraObj->InsertarInsumo();
 
             echo "si";
         } catch (\Throwable $th) {

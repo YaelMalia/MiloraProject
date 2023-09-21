@@ -66,8 +66,8 @@
       <div class="dropdown-container">
         <a id="Nueva-orden" class="enlace">Nueva orden</a>
         <a id="Editar-orden" class="enlace">Editar orden</a>
-        <a href="#">Archivar orden</a>
         <a id="Consultar-orden" class="enlace">Consultar ordenes</a>
+        <a href="#">Archivar orden</a>
       </div>
       <!--  -->
       <button class="dropdown-btn" id="almacen">Almacén

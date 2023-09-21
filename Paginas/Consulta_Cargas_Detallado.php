@@ -36,6 +36,24 @@
         display:none;
       }
 
+      .float{
+	      position:fixed;
+	      width:60px;
+	      height:60px;
+	      bottom:40px;
+	      right:40px;
+	      background-color:#2e6930;
+	      color:#FFF;
+	      border-radius:50px;
+	      text-align:center;
+	      box-shadow: 2px 2px 3px #999;
+        transition: 0.5s;
+      }
+
+    .float:hover{
+        background-color:#1e4620;
+        transform: scale(1.04);
+      }
       
     </style>
 </head>
@@ -80,12 +98,38 @@
         <!-- <center><p id="p-dia" style="font-size:20px;">Procesos activos para el día de hoy</p></center> -->
             <!--  tabla resultante -->
             <!--  -->
+
+            <p style="text-align: center; font-size:16px;">Filtrar cargas de trabajo por día</p>
+            <div class="col-md-3"></div>
+            <div class="col-md-3">
+                <!-- <label for="FechaCarga" class="form-label">Fecha Limite</label> -->
+                <input type="date" class="form-control" id="FechaCarga" required>
+            </div>
+            <div class="col-md-3">
+            <div class="col-md-12" style="align-text:center">
+                        <input onclick="buscarCargasDetallado();" type="button" class="btn btn-primary" style="margin:0 auto; display:flex; min-width:140px; justify-content:center;" value="Buscar">
+                    </div>
+            </div>
+            <div class="col-md-3"></div>
+
             <div class="col-md-4">
                     <div class="col-4" style="align-text:center">
                         <input onclick="RefreshCD();" type="button" class="btn btn-primary" style="margin:0 auto; display:flex; min-width:140px; justify-content:center;" value="Recargar">
                     </div>
                 </div>
                 <!--  -->
+
+                 <!-- Botón flotante excel -->
+
+            <a class="float" id="botonExcel">
+              <i class="fa my-float">
+                <img src="../Images/excel-logo.png" alt="Excel logo" style="width: 40px; height:40px; margin-top:10px; margin-left:-3px; " srcset="">
+              </i>
+            </a>
+
+            <!-- Fin botón flotante -->
+
+
             <div class="table-responsive" id="tableResult">
                 <table class="table" id="TablaInfo" style="text-align: center; box-shadow: 0px 0px 24px 0px rgba(0,0,0,0.18); background-color: #d2dae6; ">
                     <thead id="headTable" style="background-color: #adbdd3; ">
@@ -129,10 +173,10 @@
                                 <td style="background-color:#7EA8ED !important;"><?php echo $fila["No_diseno"]; ?></td>
                                 <td style="background-color:#7EA8ED !important;"><?php echo $fila["Orden_compra"]; ?></td>
                                 <td style="background-color:#7EA8ED !important;"><?php echo $fila["CantidadSolicitada"]; ?></td>
-                                <td style="background-color:#7EA8ED !important;"><?php echo $fila["CantidadEntregada"]; ?></td>
-                                <td style="background-color:#7EA8ED !important;"><?php echo $fila["Horas_trabajadas"]; ?></td>
-                                <td style="background-color:#7EA8ED !important;"><?php echo $fila["Observaciones"]; ?></td>
-                                <td style="background-color:#7EA8ED !important;"><?php echo $fila["Porcentaje_cumplimiento"]; ?></td>
+                                <td style="background-color:#7EA8ED !important;"><?php if($fila["CantidadEntregada"] == 0){echo "- - -";} ?></td>
+                                <td style="background-color:#7EA8ED !important;"><?php if($fila["Horas_trabajadas"] == ""){echo "- - -";} ?></td>
+                                <td style="background-color:#7EA8ED !important;"><?php if($fila["Observaciones"] == "Ninguna"){echo "- - -";} ?></td>
+                                <td style="background-color:#7EA8ED !important;"><?php if($fila["Porcentaje_cumplimiento"] == 0){echo "- - -";} ?></td>
                               </tr>
                               <?php
                             }else if($fila["Estatus"] == "Terminado"){
@@ -168,10 +212,11 @@
                                 <td style="background-color:#F79C59 !important;"><?php echo $fila["No_diseno"]; ?></td>
                                 <td style="background-color:#F79C59 !important;"><?php echo $fila["Orden_compra"]; ?></td>
                                 <td style="background-color:#F79C59 !important;"><?php echo $fila["CantidadSolicitada"]; ?></td>
-                                <td style="background-color:#F79C59 !important;"><?php echo $fila["CantidadEntregada"]; ?></td>
-                                <td style="background-color:#F79C59 !important;"><?php echo $fila["Horas_trabajadas"]; ?></td>
+                                <td style="background-color:#F79C59 !important;"><?php if($fila["CantidadEntregada"] == 0){echo "- - -";} ?></td>
+                                <td style="background-color:#F79C59 !important;"><?php if($fila["Horas_trabajadas"] == ""){echo "- - -";} ?></td>
                                 <td style="background-color:#F79C59 !important;"><?php echo $fila["Observaciones"]; ?></td>
-                                <td style="background-color:#F79C59 !important;"><?php echo $fila["Porcentaje_cumplimiento"]; ?></td>
+                                <td style="background-color:#F79C59 !important;"><?php if($fila["Porcentaje_cumplimiento"] == ""){echo "- - -";} ?></td>
+
                             </tr>
                                 <?php
                             }
@@ -199,5 +244,56 @@
       document.getElementById("DetrasP").style.pointerEvents = "auto";
     });
    </script>
+
+<script>
+      $("#botonExcel").click(function() {
+        // var table = document.getElementById("TablaInfo");
+
+        //     // Crear un nuevo libro de Excel
+        //     var wb = XLSX.utils.book_new();
+        //     // Crear una hoja en el libro
+        //     var ws = XLSX.utils.table_to_sheet(table);
+
+        //     // Aplicar estilo personalizado a la primera fila (encabezado)
+        //     for (var i = 0; i < table.rows[0].cells.length; i++) {
+        //         var cell = ws[XLSX.utils.encode_cell({ r: 0, c: i })];
+        //         if (cell && cell.s) {
+        //             cell.s.font = { bold: true };
+        //             cell.s.fill = { fgColor: { rgb: "0000FF" } }; // Color azul
+        //         }
+        //     }
+
+        //     // Agregar la hoja al libro
+        //     XLSX.utils.book_append_sheet(wb, ws, "Hoja1");
+
+        //     // Exportar el libro como un archivo Excel
+        //     XLSX.writeFile(wb, "Excel-existencias.xlsx");
+
+        var table = document.getElementById("TablaInfo");
+
+        // Obtener el número de filas y columnas en la tabla
+            var numRows = table.rows.length;
+            var numColumns = table.rows[0].cells.length;
+
+
+            // Excluir la segunda columna (índice 1) de la hoja de Excel
+            for (var i = 0; i < numRows; i++) {
+                table.rows[i].deleteCell(1); // Eliminar la segunda celda (índice 1)
+            }
+
+            // Crear un nuevo libro de Excel
+            var wb = XLSX.utils.book_new();
+            // Crear una hoja en el libro
+            var ws = XLSX.utils.table_to_sheet(table);
+
+            // Agregar la hoja al libro
+            XLSX.utils.book_append_sheet(wb, ws, "Hoja1");
+
+            // Exportar el libro como un archivo Excel
+            XLSX.writeFile(wb, "Reporte-Cargas-Detallado.xlsx");
+
+            RefreshCD();
+    });
+    </script>
 </body>
 </html>

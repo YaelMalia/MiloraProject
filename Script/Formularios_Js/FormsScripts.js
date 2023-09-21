@@ -1330,7 +1330,7 @@ function BuscarProceso() {
 
 function AgregarProcesoDetallado() {
     let fechaDetallada = $("#FechaFD")[0].value;
-    let Turnodetallado= $("#TurnoFD")[0].value;
+    let Turnodetallado = $("#TurnoFD")[0].value;
     let SupervisorFD = $("#SupervisorFD")[0].value;
     let TipoFD = $("#TipoFD")[0].value;
     let OrdenCompraFD = $("#OrdenCompraFD")[0].value;
@@ -1380,6 +1380,7 @@ function AgregarProcesoDetallado() {
                         data: parametros,
                         async: false,
                         success: function (returnings) {
+                            // alert(returnings);
                             if (returnings == "si") {
                                 alertify.alert("¡Exito!", "Se ha agregado una nueva carga de trabajo");
                                 $("#FechaFD")[0].value = "";
@@ -1828,6 +1829,40 @@ function buscarCargas() {
     $.ajax({
         type: 'POST',
         url: '../Php_forms/Buscar_Carga.php',
+        data: parametros,
+        async: false,
+        success: function (returnBusqueda) {
+            // alert(returnCarga);
+            if (returnBusqueda == "Nada") {
+                alertify.alert("¡Oops!", "Parece que no hay cargas para esta fecha, intente de nuevo");
+            } else {
+                if (returnBusqueda.includes("FATAL ERROR")) {
+                    alertify.alert("Error", "Se ha producido un error, revise su conexión a internet");
+                } else {
+                    if (returnBusqueda == "") {
+                        alertify.alert("¡Oops!", "Parece que no hay cargas de trabajo");
+                    } else {
+                        $("#cuerpoTabla")[0].value = "";
+                        document.getElementById("cuerpoTabla").innerHTML = returnBusqueda;
+                    }
+                }
+            }
+        }
+    });
+}
+
+function buscarCargasDetallado() {
+
+    let fechaCarga = $("#FechaCarga")[0].value;
+
+    let parametros = {
+        "act": "yes",
+        "fechaCarga": fechaCarga
+    };
+
+    $.ajax({
+        type: 'POST',
+        url: '../Php_forms/Buscar_CargaDetallado.php',
         data: parametros,
         async: false,
         success: function (returnBusqueda) {
