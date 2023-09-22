@@ -40,6 +40,19 @@ class InsumosClass
             $e->getMessage();
         }
     }
+
+    //-------------- INSUMOS
+    public function GetAllInsumos()
+    {
+        try {
+            $query = $this->dbh->prepare("SELECT * FROM productos");
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
+        } catch (PDOException $e) {
+            $e->getMessage();
+        }
+    }
     //--------------
     // public function AgregarEntradaInsumo($){
     //     try {

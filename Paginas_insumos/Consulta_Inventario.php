@@ -83,21 +83,25 @@
             <!--  -->
             <tbody id="Cuerpo_tabla">
                 <?php
-                require_once("../conexionBD/Consultas.php");
-                $miloraObj = MiloraClass::singleton();
-                $data = $miloraObj->GetAllOrdenes();
+                require_once("../conexionBD/Consultas_insumos.php");
+                $miloraObj = InsumosClass::singleton();
+                $data = $miloraObj->GetAllInsumos();
                     if(count($data)>0){
                         foreach($data as $fila){
                             ?>
                             <tr>
-                                <td style="background-color:#F76D6D !important;"><?php echo $fila["Fecha_realizacion"]; ?></td>
+                                <td><?php echo $fila["Nombre_insumo"]; ?></td>
+                                <td><?php echo $fila["Descripcion"]; ?></td>
+                                <td><?php echo $fila["Cantidad"]; ?></td>
+                                <td><?php echo $fila["Especificaciones"]; ?></td>
+                                <td><?php echo $fila["Nombre_insumo"]; ?></td>
                             </tr>
                             <?php
                         }
                     }else{
                         ?>
                         <script>
-                            alertify.alert("¡Oops!", "Vaya, parece que no hay ordenes de compra");
+                            alertify.alert("¡Oops!", "Vaya, parece que no hay insumos");
                         </script>
                         <?php
                     }
@@ -110,17 +114,4 @@
     </section>
    
 </body>
-<script>
-        var btnSelected = "Resumida";
-        function ResOrFull(btn){
-            btnSelected = btn.name;
-            // alert(btnSelected);
-            if(btnSelected == "Resumida"){
-                document.getElementById("rbt-Com").checked = false;
-                
-            }else if(btnSelected == "Completa"){
-                document.getElementById("rbt-Res").checked = false;
-            }
-            
-        }</script>
 </html>
