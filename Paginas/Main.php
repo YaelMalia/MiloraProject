@@ -85,6 +85,8 @@
       </button>
       <div class="dropdown-container">
         <a id="Inventario-Insumo" class="enlace">Inventario</a>
+        <a id="Consulta-Insumo" class="enlace">Consultar inventario</a>
+
         <a id="Entrada-Insumo" class="enlace">Entradas de insumo</a>
         <a id="Salida-Insumo" class="enlace">Salidas de insumo</a>
       </div>
@@ -400,6 +402,14 @@ $("#Consulta-Carga-Detallado").click(function(){
 $("#Consulta-procesos").click(function(){  
   document.getElementById("ControlCentral").innerHTML="";
   $("#ControlCentral").load("Historial_Procesos.php");
+  closeNav();
+  const enlaces = document.getElementsByClassName("enlace");
+  enlaces.setAttribute('color', 'rgb(129, 129, 129)');
+});
+
+$("#Consulta-Insumo").click(function(){  
+  document.getElementById("ControlCentral").innerHTML="";
+  $("#ControlCentral").load("../Paginas_insumos/Consulta_Inventario.php");
   closeNav();
   const enlaces = document.getElementsByClassName("enlace");
   enlaces.setAttribute('color', 'rgb(129, 129, 129)');

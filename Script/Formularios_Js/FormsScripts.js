@@ -253,7 +253,7 @@ function AgregarOrden() {
                     alertify.alert("Error", "No se ha seleccionado un cliente de compra válido");
                 } else {
                     if (noDiseno == null || noDiseno == "") {
-                        alertify.alert("Eror", "No se ha ingresado un número de diseño");
+                        alertify.alert("Error", "No se ha ingresado un número de diseño");
                     } else {
                         if (noPiezas == null || noPiezas == "") {
                             alertify.alert("Error", "No se ha ingresado la cantidad de piezas para la orden de compra");
