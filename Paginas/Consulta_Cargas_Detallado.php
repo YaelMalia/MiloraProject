@@ -75,7 +75,7 @@
 
         <div class="col-md-4">
             <label for="HorasD" class="form-label">Horas trabajadas</label>
-            <input type="text" class="form-control" id="HorasD" placeholder="Horas de trabajadas para este proceso" disable>
+            <input type="text" class="form-control" id="HorasD" placeholder="Horas de trabajadas para este proceso" style="pointer-events:none;">
         </div>
         
         <div class="col-md-12">
