@@ -17,28 +17,46 @@ function nuevo_Insumo() {
                     alertify.alert("Aviso", "No se ha ingresado la categoria del insumo");
                 } else {
                     let parametros = {
-                        "Nombre": NombreIn,
-                        "Descripcion": DescripcionIn,
-                        "Especificaiones": EspecificaionesIn,
-                        "Categoria": CategoriaIn
+                        "TipoCate": CategoriaIn
                     };
                     // Enviar por Ajax
                     $.ajax({
                         type: 'POST',
-                        url: '../Php_forms_insumos/Insert_Insumo.php',
+                        url: '../Php_forms_insumos/GetNoCategoria.php',
                         data: parametros,
                         async: false,
                         success: function (returning) {
-                            if (returning == "si") {
-                                // alertify.success('Pieza agregada');
-                                alertify.alert("¡Exito!", "El modelo o pieza se ha agregado con éxito");
-                                let formulario = $("#form_nuevoD");
-                                $("#NombreInsumo")[0].value="";
-                                $("#DescripcionInsumo")[0].value="";
-                                $("#EspecificacionesInsumo")[0].value="";
-                                $("#CategoriasInsumo")[0].value="";
+                            alert(returning);
+                            if (returning == "notFound") {
+                                alertify.alert("Error", "Aguas con la categoria");
                             } else {
-                                alertify.alert("Error", "Se ha producido un error al ingresar el insumo revise que no exista ya un insumo con estos datos");
+                                let parametrosIn = {
+                                    "Nombre": NombreIn,
+                                    "Descripcion": DescripcionIn,
+                                    "Especificaciones": EspecificaionesIn,
+                                    "Categoria": returning
+                                };
+                                // Enviar por Ajax
+                                $.ajax({
+                                    type: 'POST',
+                                    url: '../Php_forms_insumos/Insert_Insumo.php',
+                                    data: parametrosIn,
+                                    async: false,
+                                    success: function (returnings) {
+                                        alert(returnings);
+                                        if (returnings == "si") {
+                                            // alertify.success('Pieza agregada');
+                                            alertify.alert("¡Exito!", "El modelo o pieza se ha agregado con éxito");
+                                            let formulario = $("#form_nuevoD");
+                                            $("#NombreInsumo")[0].value="";
+                                            $("#DescripcionInsumo")[0].value="";
+                                            $("#EspecificacionesInsumo")[0].value="";
+                                            $("#CategoriasInsumo")[0].value="";
+                                        } else {
+                                            alertify.alert("Error", "Se ha producido un error al ingresar el insumo revise que no exista ya un insumo con estos datos");
+                                        }
+                                    }
+                                });
                             }
                         }
                     });
