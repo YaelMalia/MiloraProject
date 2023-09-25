@@ -80,7 +80,7 @@
         <a id="Consulta-salida" class="enlace">Consultar salidas</a>
         <a id="Consulta-existencias" class="enlace">Consultar existencias</a>
       </div>
-      <button class="dropdown-btn" id="bodega">Bodega
+      <button class="dropdown-btn" id="bodega">Almacen de herramientas
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-container">

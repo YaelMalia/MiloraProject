@@ -38,7 +38,7 @@
 <section class="d-flex justify-content-center" style="padding-left: 20px; padding-top: 20px; padding-bottom: 20px; padding-right: 20px;
         background-color: #d2dae6;  border-radius:10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);">
         <form action="" class="row g-4" name="foemulario" method="POST" style="overflow:scroll; padding:5px;">
-        <h2 style="text-align: center;">Consultar ordenes</h2>
+        <h2 style="text-align: center;">Consultar insummos</h2>
             <div class="row g-2 col-md-6" style="display: flex; align-items: center; justify-content: center;">
             </div>
             <div class="row g-2 col-md-6" style="display: flex; align-items: center; justify-content: center;">
