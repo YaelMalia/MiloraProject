@@ -1661,6 +1661,12 @@ function mostrarModalDetallado(btn) {
         $("#porcentajeD")[0].textContent = porcentaje + "%";
     });
 
+    const input2 = document.querySelector("#CantidadEntregadaD");
+    input2.addEventListener("input", function (e) {
+        let horasTrab = (50 * (Number(e.target.value)) / 1) / 60;
+        horasTrab = horasTrab.toFixed(2);
+        $("#HorasD")[0].value = horasTrab;
+    });
     noCargaD = btn.parentNode.previousElementSibling.textContent;
 
     let datosProc = {

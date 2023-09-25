@@ -31,7 +31,7 @@ class InsumosClass
 
     public function InsertarInsumo(){
         try {
-            $query = $this->dbh->prepare("INSERT INTO productos () VALUES (?, ?, ?, ?, ?, ?)");
+            $query = $this->dbh->prepare("INSERT INTO productos (Nombre_insumo, Descripcion, Especificaciones, Id_categoria) VALUES (?, ?, ?, ?)");
             $query->bindParam(1, $IdCate);
             $query->execute();
             return $query->fetchAll();
@@ -45,7 +45,7 @@ class InsumosClass
     public function GetAllInsumos()
     {
         try {
-            $query = $this->dbh->prepare("SELECT * FROM productos");
+            $query = $this->dbh->prepare("SELECT productos.Nombre_insumo, productos.Descripcion, productos.Cantidad, productos.Especificaciones, categorias.TipoCategoria FROM productos INNER JOIN categorias ON productos.Id_categoria = categorias.Id_categoria;");
             $query->execute();
             return $query->fetchAll();
             $this->dbh = null;
@@ -53,6 +53,18 @@ class InsumosClass
             $e->getMessage();
         }
     }
+
+    public function GetCategoria($IdCat){
+        try {
+            $query = $this->dbh->prepare("SELECT ");
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
+        } catch (PDOException $e) {
+            $e->getMessage();
+        }
+    }
+
     //--------------
     // public function AgregarEntradaInsumo($){
     //     try {
