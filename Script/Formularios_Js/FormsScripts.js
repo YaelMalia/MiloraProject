@@ -1881,9 +1881,29 @@ function buscarCargas() {
 function buscarCargasDetallado() {
 
     let fechaCarga = $("#FechaCarga")[0].value;
-
+    let filtroD;
+    if( (!document.getElementById('Rbt-Terminado').checked) && (!document.getElementById('Rbt-Restante').checked) && (!document.getElementById('Rbt-Proceso').checked) ){
+        filtroD = "0";
+    }else{
+        if( (document.getElementById('Rbt-Terminado').checked) && (!document.getElementById('Rbt-Restante').checked) && (!document.getElementById('Rbt-Proceso').checked) ){
+            filtroD = "1";
+        }else if( (document.getElementById('Rbt-Terminado').checked) && (document.getElementById('Rbt-Restante').checked) && (!document.getElementById('Rbt-Proceso').checked) ){
+            filtroD = "12";
+        }else if( (document.getElementById('Rbt-Terminado').checked) && (document.getElementById('Rbt-Restante').checked) && (document.getElementById('Rbt-Proceso').checked) ){
+            filtroD = "123";
+        }else if( (!document.getElementById('Rbt-Terminado').checked) && (document.getElementById('Rbt-Restante').checked) && (!document.getElementById('Rbt-Proceso').checked) ){
+            filtroD = "2";
+        }else if( (!document.getElementById('Rbt-Terminado').checked) && (document.getElementById('Rbt-Restante').checked) && (document.getElementById('Rbt-Proceso').checked) ){
+            filtroD = "23";
+        }else if((!document.getElementById('Rbt-Terminado').checked) && (!document.getElementById('Rbt-Restante').checked) && (document.getElementById('Rbt-Proceso').checked)){
+            filtroD = "3";
+        }else{
+            filtroD = "13";
+        }
+    }
     let parametros = {
         "act": "yes",
+        "filtro": filtroD,
         "fechaCarga": fechaCarga
     };
 
@@ -1892,19 +1912,19 @@ function buscarCargasDetallado() {
         url: '../Php_forms/Buscar_CargaDetallado.php',
         data: parametros,
         async: false,
-        success: function (returnBusqueda) {
+        success: function (returnBusqueda1) {
             // alert(returnCarga);
-            if (returnBusqueda == "Nada") {
+            if (returnBusqueda1 == "Nada") {
                 alertify.alert("¡Oops!", "Parece que no hay cargas para esta fecha, intente de nuevo");
             } else {
-                if (returnBusqueda.includes("FATAL ERROR")) {
+                if (returnBusqueda1.includes("FATAL ERROR")) {
                     alertify.alert("Error", "Se ha producido un error, revise su conexión a internet");
                 } else {
-                    if (returnBusqueda == "") {
+                    if (returnBusqueda1 == "") {
                         alertify.alert("¡Oops!", "Parece que no hay cargas de trabajo");
                     } else {
                         $("#cuerpoTabla")[0].value = "";
-                        document.getElementById("cuerpoTabla").innerHTML = returnBusqueda;
+                        document.getElementById("cuerpoTabla").innerHTML = returnBusqueda1;
                     }
                 }
             }
