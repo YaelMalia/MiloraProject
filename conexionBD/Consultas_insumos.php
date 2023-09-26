@@ -48,7 +48,7 @@ class InsumosClass
     public function GetAllInsumos()
     {
         try {
-            $query = $this->dbh->prepare("SELECT productos.Nombre_insumo, productos.Descripcion, productos.Cantidad, productos.Especificaciones, categorias.TipoCategoria FROM productos JOIN categorias ON productos.Id_categoria = categorias.Id_categoria;");
+            $query = $this->dbh->prepare("SELECT productos.Nombre_insumo, productos.Descripcion, productos.Cantidad, productos.Especificaciones, categorias.TipoCategoria FROM productos INNER JOIN categorias ON productos.Id_categoria = categorias.Id_categoria;");
             $query->execute();
             return $query->fetchAll();
             $this->dbh = null;
