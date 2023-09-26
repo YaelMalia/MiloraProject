@@ -1824,11 +1824,32 @@ function ReportarCarga_Detallado() {
 // -------------------------------- CARGA --------------------------
 
 function buscarCargas() {
-
+    // Cargas de corte
     let fechaCarga = $("#FechaCarga")[0].value;
+    let filtro;
+    if( (!document.getElementById('Rbt-Terminado').checked) && (!document.getElementById('Rbt-Restante').checked) && (!document.getElementById('Rbt-Proceso').checked) ){
+        filtro = "0";
+    }else{
+        if( (document.getElementById('Rbt-Terminado').checked) && (!document.getElementById('Rbt-Restante').checked) && (!document.getElementById('Rbt-Proceso').checked) ){
+            filtro = "1";
+        }else if( (document.getElementById('Rbt-Terminado').checked) && (document.getElementById('Rbt-Restante').checked) && (!document.getElementById('Rbt-Proceso').checked) ){
+            filtro = "12";
+        }else if( (document.getElementById('Rbt-Terminado').checked) && (document.getElementById('Rbt-Restante').checked) && (document.getElementById('Rbt-Proceso').checked) ){
+            filtro = "123";
+        }else if( (!document.getElementById('Rbt-Terminado').checked) && (document.getElementById('Rbt-Restante').checked) && (!document.getElementById('Rbt-Proceso').checked) ){
+            filtro = "2";
+        }else if( (!document.getElementById('Rbt-Terminado').checked) && (document.getElementById('Rbt-Restante').checked) && (document.getElementById('Rbt-Proceso').checked) ){
+            filtro = "23";
+        }else if((!document.getElementById('Rbt-Terminado').checked) && (!document.getElementById('Rbt-Restante').checked) && (document.getElementById('Rbt-Proceso').checked)){
+            filtro = "3";
+        }else{
+            filtro = "13";
+        }
+    }
 
     let parametros = {
         "act": "yes",
+        "filtro": filtro,
         "fechaCarga": fechaCarga
     };
 
@@ -1840,7 +1861,7 @@ function buscarCargas() {
         success: function (returnBusqueda) {
             // alert(returnCarga);
             if (returnBusqueda == "Nada") {
-                alertify.alert("¡Oops!", "Parece que no hay cargas para esta fecha, intente de nuevo");
+                alertify.alert("¡Oops!", "Parece que no hay cargas con la información ingresada, intente de nuevo");
             } else {
                 if (returnBusqueda.includes("FATAL ERROR")) {
                     alertify.alert("Error", "Se ha producido un error, revise su conexión a internet");

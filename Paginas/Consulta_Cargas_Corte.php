@@ -100,18 +100,39 @@
         <!-- <center><p id="p-dia" style="font-size:20px;">Procesos activos para el día de hoy</p></center> -->
             <!--  tabla resultante -->
             <!--  -->
-            <p style="text-align: center; font-size:16px;">Filtrar cargas de trabajo por día</p>
-            <div class="col-md-3"></div>
-            <div class="col-md-3">
+            <p style="text-align: center; font-size:16px;">Filtrar cargas de trabajo:</p>
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
                 <!-- <label for="FechaCarga" class="form-label">Fecha Limite</label> -->
                 <input type="date" class="form-control" id="FechaCarga" required>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2"></div>
+            <!-- abajo -->
+            <div class="col-md-3"></div>
+            <div class="col-md-2 col-sm-12">
+            <label for="Rbt-Terminado" class="form-label">Terminado</label>
+            <input class="form-check-input" type="checkbox" value="" id="Rbt-Terminado">
+            </div>
+            <div class="col-md-2 col-sm-12">
+            <label for="Rbt-Restante" class="form-label">Restante</label>
+            <input class="form-check-input" type="checkbox" value="" id="Rbt-Restante">
+            </div>
+            <div class="col-md-2 col-sm-12">
+            <label for="Rbt-Proceso" class="form-label">En proceso</label>
+            <input class="form-check-input" type="checkbox" value="" id="Rbt-Proceso">
+            </div>
+            <div class="col-md-3"></div>
+            <!-- fin abajo -->
+
+            <!-- Botón buscar -->
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
             <div class="col-md-12" style="align-text:center">
                         <input onclick="buscarCargas();" type="button" class="btn btn-primary" style="margin:0 auto; display:flex; min-width:140px; justify-content:center;" value="Buscar">
                     </div>
             </div>
-            <div class="col-md-3"></div>
+            <div class="col-md-4"></div>
+            <!-- Fin Botón buscar -->
 
             <div class="col-md-4">
                     <div class="col-4" style="align-text:center">

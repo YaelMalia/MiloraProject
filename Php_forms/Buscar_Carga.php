@@ -1,10 +1,11 @@
 <?php
     if(isset($_POST["act"])){
+      $filtroBusqueda = $_POST["filtro"];
         $fechaBusqueda = $_POST["fechaCarga"];
 
         require_once("../conexionBD/Consultas.php");
                         $miloraObj = MiloraClass::singleton();
-                        $data = $miloraObj->FiltrarCarga($fechaBusqueda);
+                        $data = $miloraObj->FiltrarCarga($fechaBusqueda, $filtroBusqueda);
                         if(count($data)>0){
                           foreach($data as $fila){
                             if($fila["Estatus"] == "En proceso"){
