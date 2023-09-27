@@ -11,17 +11,17 @@
     <script src="../Script/jquery-3.5.1.min.js"></script>
 </head>
 <body>
-<section class="d-flex justify-content-center" style="padding-left: 20px; padding-top: 20px; padding-bottom: 20px; padding-right: 20px;
+<section class="justify-content-center" style="padding-left: 20px; padding-top: 20px; padding-bottom: 20px; padding-right: 20px;
         background-color: #d2dae6;  border-radius:10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);">
-        <form action="" class="row g-4" name="foemulario" method="POST" style="overflow:scroll; padding:5px;">
+        <form action="" class="row g-1" name="foemulario" method="POST" style=" padding:5px;">
         <h2 style="text-align: center;">Consultar insumos</h2>
-        <section class="d-flex justify-content-center;" style="padding-left: 20px; padding-top: 20px; padding-bottom: 20px; padding-right: 20px;">
-        <div class="table-responsive">
-        <table class="table" id="TablaInfo" style="text-align: center; box-shadow: 0px 0px 24px 0px rgba(0,0,0,0.18); background-color: #d2dae6; ">
+        <section class="d-flex" style="padding-top: 20px; overflow:scroll; padding-bottom: 20px; padding-right: 20px;">
+        <div class="col-md-12 table-responsive">
+        <table class="table" id="TablaInfo" style="text-align:center; box-shadow: 0px 0px 24px 0px rgba(0,0,0,0.18); background-color: #d2dae6; ">
             <thead id="Head_resumida" style="background-color: #adbdd3;">
                 <tr>
-                    <th scope="col" style="min-width:100px;">Nombre de insumo</th>
-                    <th scope="col" style="min-width:100px;">Descripcion</th>
+                    <th scope="col">Nombre de insumo</th>
+                    <th scope="col">Descripcion</th>
                     <th scope="col">Cantidad</th>
                     <th scope="col">Especificaciones</th>
                     <th scope="col">Categoria</th>

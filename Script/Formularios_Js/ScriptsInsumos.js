@@ -73,65 +73,83 @@ function nuevo_Insumo() {
 
 function nueva_Entrada(){
     let FechaEn = $("#FechaEn")[0].value;
-    let NombreEn = $("#NombreEn")[0].value;
     let IdentificadorEn = $("#IdentificadorEn")[0].value;
     let CantidadEn = $("#CantidadEn")[0].value;
     if (FechaEn == null || FechaEn == ""){
         alertify.alert("Aviso", "No se ha ingresado una fecha");
     } else{
-        if (NombreEn == null || NombreEn == ""){
-            alertify.alert("Aviso", "No se ha ingresado el nombre del insumo");
+        if(IdentificadorEn == null || IdentificadorEn == ""){
+            alertify.alert("Aviso", "No se ha ingresado el identificador del insumo");
         }else{
-            if(IdentificadorEn == null || IdentificadorEn == ""){
-                alertify.alert("Aviso", "No se ha ingresado el identificador del insumo");
-            }else{
-                if (CantidadEn == null || CantidadEn == ""){
-                    alertify.alert("Aviso", "No se ha ingresado cantidad de entrada");
-                }
-                else{
-                    let parametrosEn = {
-                        "Identificador": IdentificadorEn,
-                        "Nombre": NombreEn
-                    };
-                    // Enviar por Ajax
-                    $.ajax({
-                        type: 'POST',
-                        url: '../Php_forms_insumos/GetNoInsumo.php',
-                        data: parametrosEn,
-                        async: false,
-                        success: function (returningEn) {
-                            if (returningEn == "notFound") {
-                                alertify.alert("Error", "Revise los datos de nombre e identificador");
-                            } else {
-                                alert(returningEn);
-                                let parametrosEn2 = {
-                                    "Fecha": FechaEn,
-                                    "IdProd": returningEn,
-                                    "Cantidad": CantidadEn
-                                };
-                                // Enviar por Ajax
-                                $.ajax({
-                                    type: 'POST',
-                                    url: '../Php_forms_insumos/InsertEntrada.php',
-                                    data: parametrosEn2,
-                                    async: false,
-                                    success: function (returningEn2) {
-                                        if (returningEn2 != "si") {
-                                            alertify.alert("Error", "Revise los datos de la entrada");
-                                        } else {
-                                            alertify.alert("¡Exito!", "Nueva entrada registrada con éxito");
-                                            let formulario = $("#form_nuevoD");
-                                            $("#FechaEn")[0].value="";
-                                            $("#NombreEn")[0].value="";
-                                            $("#IdentificadorEn")[0].value="";
-                                            $("#CantidadEn")[0].value="";
-                                        }
-                                    }
-                                });
-                            }
+            if (CantidadEn == null || CantidadEn == ""){
+                alertify.alert("Aviso", "No se ha ingresado cantidad de entrada");
+            }
+            else{
+                let parametrosEn2 = {
+                    "Fecha": FechaEn,
+                    "IdProd": IdentificadorEn,
+                    "Cantidad": CantidadEn
+                };
+                // Enviar por Ajax
+                $.ajax({
+                    type: 'POST',
+                    url: '../Php_forms_insumos/InsertEntrada.php',
+                    data: parametrosEn2,
+                    async: false,
+                    success: function (returningEn2) {
+                        if (returningEn2 != "si") {
+                            alertify.alert("Error", "Revise los datos de la entrada");
+                        } else {
+                            alertify.alert("¡Exito!", "Nueva entrada registrada con éxito");
+                            let formulario = $("#form_nuevoD");
+                            $("#FechaEn")[0].value="";
+                            $("#IdentificadorEn")[0].value="";
+                            $("#CantidadEn")[0].value="";
                         }
-                    });
-                }
+                    }
+                });
+            }
+        }
+    }
+}
+
+function nueva_Salida(){
+    let FechaSa = $("#FechaSa")[0].value;
+    let IdentificadorSa = $("#IdentificadorSa")[0].value;
+    let CantidadSa = $("#CantidadSa")[0].value;
+    if (FechaSa == null || FechaSa == ""){
+        alertify.alert("Aviso", "No se ha ingresado una fecha");
+    } else{
+        if(IdentificadorSa == null || IdentificadorSa == ""){
+            alertify.alert("Aviso", "No se ha ingresado el identificador del insumo");
+        }else{
+            if (CantidadSa == null || CantidadSa == ""){
+                alertify.alert("Aviso", "No se ha ingresado cantidad de entrada");
+            }
+            else{
+                let parametrosSa = {
+                    "Fecha": FechaSa,
+                    "IdProd": IdentificadorSa,
+                    "Cantidad": CantidadSa
+                };
+                // Enviar por Ajax
+                $.ajax({
+                    type: 'POST',
+                    url: '../Php_forms_insumos/InsertSalida.php',
+                    data: parametrosSa,
+                    async: false,
+                    success: function (returningSa) {
+                        if (returningSa != "si") {
+                            alertify.alert("Error", "Revise los datos de la entrada");
+                        } else {
+                            alertify.alert("¡Exito!", "Nueva salida registrada con éxito");
+                            let formulario = $("#form_nuevoD");
+                            $("#FechaSa")[0].value="";
+                            $("#IdentificadorSa")[0].value="";
+                            $("#CantidadSa")[0].value="";
+                        }
+                    }
+                });
             }
         }
     }

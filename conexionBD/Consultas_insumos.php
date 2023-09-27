@@ -96,6 +96,20 @@ class InsumosClass
             $e->getMessage();
         }
     }
+    public function InsertSalidaInsumo($Fecha, $IdProd, $Cantidad){
+        try {
+            $query = $this->dbh->prepare("INSERT INTO salidas (Fecha_salida, Id_producto, Cantidad) VALUES (?, ?, ?)");
+            $query->bindParam(1, $Fecha);
+            $query->bindParam(2, $IdProd); 
+            $query->bindParam(3, $Cantidad); 
+
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
+        } catch (PDOException $e) {
+            $e->getMessage();
+        }
+    }
     //--------------
     // public function AgregarSalidaInsumo($){
     //     try {
