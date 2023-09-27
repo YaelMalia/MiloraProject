@@ -29,13 +29,14 @@ class InsumosClass
     }
 
 
-    public function InsertarInsumo($NombreIns, $DescripcionIns, $EspecificacionesIns, $IdCatIns){
+    public function InsertarInsumo($Identificador, $NombreIns, $DescripcionIns, $EspecificacionesIns, $IdCatIns){
         try {
-            $query = $this->dbh->prepare("INSERT INTO productos (Nombre_insumo, Descripcion, Especificaciones, Id_categoria) VALUES (?, ?, ?, ?)");
-            $query->bindParam(1, $NombreIns);
-            $query->bindParam(2, $DescripcionIns);
-            $query->bindParam(3, $EspecificacionesIns);
-            $query->bindParam(4, $IdCatIns);
+            $query = $this->dbh->prepare("INSERT INTO productos (IdentificadorInsumo, Nombre_insumo, Descripcion, Especificaciones, Id_categoria) VALUES (?, ?, ?, ?, ?)");
+            $query->bindParam(1, $Identificador);
+            $query->bindParam(2, $NombreIns);
+            $query->bindParam(3, $DescripcionIns);
+            $query->bindParam(4, $EspecificacionesIns);
+            $query->bindParam(5, $IdCatIns);
             $query->execute();
             return $query->fetchAll();
             $this->dbh = null;
@@ -68,19 +69,33 @@ class InsumosClass
             $e->getMessage();
         }
     }
+    public function GetNoInsumo($Identificador, $Nombre){
+        try {
+            $query = $this->dbh->prepare("SELECT Id_producto FROM productos WHERE IdentificadorInsumo  LIKE ? AND Nombre_insumo LIKE ?");
+            $query->bindParam(1, $Identificador);
+            $query->bindParam(2, $Nombre);
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
+        } catch (PDOException $e) {
+            $e->getMessage();
+        }
+    }
+    // --------------
+    public function InsertEntradaInsumo($Fecha, $IdProd, $Cantidad){
+        try {
+            $query = $this->dbh->prepare("INSERT INTO entradas (Fecha_entrada, Id_producto, Cantidad) VALUES (?, ?, ?)");
+            $query->bindParam(1, $Fecha);
+            $query->bindParam(2, $IdProd); 
+            $query->bindParam(3, $Cantidad); 
 
-    //--------------
-    // public function AgregarEntradaInsumo($){
-    //     try {
-    //         $query = $this->dbh->prepare("SELECT ");
-    //         $query->bindParam(1, $); 
-    //         $query->execute();
-    //         return $query->fetchAll();
-    //         $this->dbh = null;
-    //     } catch (PDOException $e) {
-    //         $e->getMessage();
-    //     }
-    // }
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
+        } catch (PDOException $e) {
+            $e->getMessage();
+        }
+    }
     //--------------
     // public function AgregarSalidaInsumo($){
     //     try {
