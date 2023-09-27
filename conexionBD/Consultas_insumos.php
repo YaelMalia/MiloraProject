@@ -7,7 +7,7 @@ class InsumosClass
     private function __construct(){
         try {
             $servidor = "localhost";
-            $base = "bodega";
+            $base = "almaceninsumos";
             $usuario = "root";
             $contrasenia = "";
             $this->dbh = new PDO('mysql:host=' . $servidor . ';dbname=' . $base, $usuario, $contrasenia);
