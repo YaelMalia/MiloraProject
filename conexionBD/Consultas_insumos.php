@@ -29,14 +29,13 @@ class InsumosClass
     }
 
 
-    public function InsertarInsumo($Identificador, $NombreIns, $DescripcionIns, $EspecificacionesIns, $IdCatIns){
+    public function InsertarInsumo($NombreIns, $DescripcionIns, $EspecificacionesIns, $IdCatIns){
         try {
-            $query = $this->dbh->prepare("INSERT INTO productos (IdentificadorInsumo, Nombre_insumo, Descripcion, Especificaciones, Id_categoria) VALUES (?, ?, ?, ?, ?)");
-            $query->bindParam(1, $Identificador);
-            $query->bindParam(2, $NombreIns);
-            $query->bindParam(3, $DescripcionIns);
-            $query->bindParam(4, $EspecificacionesIns);
-            $query->bindParam(5, $IdCatIns);
+            $query = $this->dbh->prepare("INSERT INTO productos (Nombre_insumo, Descripcion, Especificaciones, Id_categoria) VALUES (?, ?, ?, ?)");
+            $query->bindParam(1, $NombreIns);
+            $query->bindParam(2, $DescripcionIns);
+            $query->bindParam(3, $EspecificacionesIns);
+            $query->bindParam(4, $IdCatIns);
             $query->execute();
             return $query->fetchAll();
             $this->dbh = null;
@@ -49,7 +48,7 @@ class InsumosClass
     public function GetAllInsumos()
     {
         try {
-            $query = $this->dbh->prepare("SELECT productos.Nombre_insumo, productos.Descripcion, productos.Cantidad, productos.Especificaciones, categorias.TipoCategoria FROM productos INNER JOIN categorias ON productos.Id_categoria = categorias.Id_categoria;");
+            $query = $this->dbh->prepare("SELECT productos.Id_producto, productos.Nombre_insumo, productos.Descripcion, productos.Cantidad, productos.Especificaciones, categorias.TipoCategoria FROM productos INNER JOIN categorias ON productos.Id_categoria = categorias.Id_categoria;");
             $query->execute();
             return $query->fetchAll();
             $this->dbh = null;
