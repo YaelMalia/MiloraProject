@@ -17,22 +17,26 @@
         background-color: #d2dae6;  border-radius:10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);">
         <form id="form_nuevoD" class="row g-4">
             <h2 style="text-align: center;">Almacen de herramientas</h2>
-            <div class="col-md-6">
+            <div class="col-md-4">
+                <label for="IdentificadorInsumo" class="form-label">Identificador de insumo</label>
+                <input type="text" class="form-control" id="IdentificadorInsumo" required>
+            </div>
+            <div class="col-md-4">
                 <label for="NombreInsumo" class="form-label">Nombre de insumo</label>
                 <input type="text" class="form-control" id="NombreInsumo" required>
+            </div>
+            <div class="col-md-4">
+                <label for="CategoriasInsumo" class="form-label">Categoria del insumo</label>
+                <input type="text" class="form-control" id="CategoriasInsumo" required>
+            </div>
+            <!-- ---------------------------------------------------------------------------------------- -->
+            <div class="col-md-6">
+                <label for="EspecificacionesInsumo" class="form-label">Especificaciones del insumo</label>
+                <input type="text" class="form-control" id="EspecificacionesInsumo" required>
             </div>
             <div class="col-md-6">
                 <label for="DescripcionInsumo" class="form-label">Descripción de insumo</label>
                 <input type="text" class="form-control" id="DescripcionInsumo" required>
-            </div>
-            <div class="col-md-6">
-                <label for="EspecificacionesInsumo" class="form-label">Especificación de insumo</label>
-                <input type="text" class="form-control" id="EspecificacionesInsumo" required>
-            </div>
-            <!-- ---------------------------------------------------------------------------------------- -->
-            <div class="col-6">
-                <label for="CategoriasInsumo" class="form-label">Categoria del insumo</label>
-                <input type="text" class="form-control" id="CategoriasInsumo" required>
             </div>
             <!-- ---------------------------------------------------------------------------------------- -->
             <div class="col-4"></div>

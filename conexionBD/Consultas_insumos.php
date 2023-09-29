@@ -29,13 +29,14 @@ class InsumosClass
     }
 
 
-    public function InsertarInsumo($NombreIns, $DescripcionIns, $EspecificacionesIns, $IdCatIns){
+    public function InsertarInsumo($IdentificadorIns, $NombreIns, $DescripcionIns, $EspecificacionesIns, $IdCatIns){
         try {
-            $query = $this->dbh->prepare("INSERT INTO productos (Nombre_insumo, Descripcion, Especificaciones, Id_categoria) VALUES (?, ?, ?, ?)");
-            $query->bindParam(1, $NombreIns);
-            $query->bindParam(2, $DescripcionIns);
-            $query->bindParam(3, $EspecificacionesIns);
-            $query->bindParam(4, $IdCatIns);
+            $query = $this->dbh->prepare("INSERT INTO productos (Id_producto, Nombre_insumo, Descripcion, Especificaciones, Id_categoria) VALUES (?, ?, ?, ?, ?)");
+            $query->bindParam(1, $IdentificadorIns);
+            $query->bindParam(2, $NombreIns);
+            $query->bindParam(3, $DescripcionIns);
+            $query->bindParam(4, $EspecificacionesIns);
+            $query->bindParam(5, $IdCatIns);
             $query->execute();
             return $query->fetchAll();
             $this->dbh = null;
