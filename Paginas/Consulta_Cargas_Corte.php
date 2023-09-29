@@ -138,9 +138,9 @@
                     <div class="col-4" style="align-text:center">
                         <input onclick="RefreshCC();" type="button" class="btn btn-primary" style="margin:0 auto; display:flex; min-width:140px; justify-content:center;" value="Recargar">
                     </div>
-                </div>
+            </div>
 
-               <!-- Botón flotante excel -->
+            <!-- Botón flotante excel -->
 
             <a class="float" id="botonExcel">
               <i class="fa my-float">

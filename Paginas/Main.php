@@ -80,7 +80,7 @@
         <a id="Consulta-salida" class="enlace">Consultar salidas</a>
         <a id="Consulta-existencias" class="enlace">Consultar existencias</a>
       </div>
-      <button class="dropdown-btn" id="bodega">Almacen de herramientas
+      <button class="dropdown-btn" id="AlmacenHerramientas">Almacen de herramientas
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-container">
@@ -91,15 +91,15 @@
         <a id="Salida-Insumo" class="enlace">Salidas de insumo</a>
       </div>
       <!--  -->
-      <button class="dropdown-btn" id="Almacen">Almacen--
+      <button class="dropdown-btn" id="Almacen--">Almacen--
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-container">
       <a id="Inventario-" class="enlace">Inventario</a>
         <a id="Consulta-" class="enlace">Consultar inventario</a>
 
         <a id="Entrada-" class="enlace">Entradas de insumo</a>
         <a id="Salida-" class="enlace">Salidas de insumo</a>
-      </button>
-      <div class="dropdown-container">
-        <a href="#">Cosa</a>
       </div>
       <!--  -->
       <!-- <button class="dropdown-btn" id="cInterna">Calidad interna

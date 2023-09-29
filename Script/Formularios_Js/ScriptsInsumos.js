@@ -48,10 +48,9 @@ function nuevo_Insumo() {
                                         async: false,
                                         success: function (returnings) {
                                             if (returnings == "si") {
-                                                // alertify.success('Pieza agregada');
                                                 alertify.alert("¡Exito!", "Nuevo insumo agregado con éxito");
-                                                let formulario = $("#form_nuevoD");
-                                                $("#IentificadorInsumo")[0].value="";
+                                                let formulario = $("#form_nuevoInsumo");
+                                                $("#IdentificadorInsumo")[0].value="";
                                                 $("#NombreInsumo")[0].value="";
                                                 $("#DescripcionInsumo")[0].value="";
                                                 $("#EspecificacionesInsumo")[0].value="";
@@ -153,4 +152,9 @@ function nueva_Salida(){
             }
         }
     }
+}
+
+function RefreshInventario(){
+    document.getElementById("ControlCentral").innerHTML="";
+  $("#ControlCentral").load("../Paginas_insumos/Consulta_Inventario.php");
 }
