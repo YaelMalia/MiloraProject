@@ -70,7 +70,7 @@
         <a href="#">Archivar orden</a>
       </div>
       <!--  -->
-      <button class="dropdown-btn" id="almacen">Almacén
+      <button class="dropdown-btn" id="almacen">Almacén de existencias
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-container">
@@ -91,12 +91,16 @@
         <a id="Salida-Insumo" class="enlace">Salidas de insumo</a>
       </div>
       <!--  -->
-      <!-- <button class="dropdown-btn" id="ingenieria">Ingeniería
-        <i class="fa fa-caret-down"></i>
+      <button class="dropdown-btn" id="Almacen">Almacen--
+      <a id="Inventario-" class="enlace">Inventario</a>
+        <a id="Consulta-" class="enlace">Consultar inventario</a>
+
+        <a id="Entrada-" class="enlace">Entradas de insumo</a>
+        <a id="Salida-" class="enlace">Salidas de insumo</a>
       </button>
       <div class="dropdown-container">
-        <a href="#">Cosas de ingeniería</a>
-      </div> -->
+        <a href="#">Cosa</a>
+      </div>
       <!--  -->
       <!-- <button class="dropdown-btn" id="cInterna">Calidad interna
         <i class="fa fa-caret-down"></i>
