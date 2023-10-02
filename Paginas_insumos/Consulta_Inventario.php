@@ -34,11 +34,11 @@
             <!-- Completa -->
             <tbody id="Cuerpo_tabla">
                 <?php
-                require_once("../conexionBD/Consultas_insumos.php");
-                $miloraObj = InsumosClass::singleton();
-                $data = $miloraObj->GetAllInsumos();
+                require_once("../conexionBD/Consultas_insumos.php"); //Archivo para la conexion a la base de datos y la ocnsulta
+                $miloraObj = InsumosClass::singleton();//
+                $data = $miloraObj->GetAllInsumos(); //Aqui se ejecuta una query para obtener todo
                     if(count($data)>0){
-                        foreach($data as $fila){
+                        foreach($data as $fila){ //Aqui es para llenar los datos
                             if($fila["Cantidad"]<=5){
                             ?>
                             <tr>
