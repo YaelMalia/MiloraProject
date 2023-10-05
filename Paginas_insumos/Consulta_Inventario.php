@@ -15,9 +15,26 @@
         background-color: #d2dae6;  border-radius:10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);">
         <form action="" class="row g-1" name="foemulario" method="POST" style=" padding:5px;">
         <h2 style="text-align: center;">Consultar insumos</h2>
-        <div class="col-12" style="align-text:center">
+        <div class="row g-2 col-md-12" style="display: flex; text-align:center; justify-content: center;">
+            <center><h4 style="margin: 0 auto;">Selección de vista:</h4></center>
+                <div class="col-6">
+                    <input checked onclick="Tipo(this);" type="radio" id="rbt-insumo" name="insumos" value="insumos">
+                    <label for="insumos" class="form-label">Insumos</label>
+                </div>
+                <div class="col-6">
+                    <input onclick="Tipo(this);" type="radio" id="rbt-consumible" name="consumibles" value="consumibles">
+                    <label for="consumibles" class="form-label">Consumibles</label>
+                </div>
+                <div class="col-12" style="align-text:center">
             <input onclick="RefreshInventario();" type="button" class="btn btn-primary" style="margin:0 auto; display:flex; min-width:140px; justify-content:center;" value="Recargar">
         </div>
+                <div class="col-md-12">
+                    <div class="col-12" style="align-text:center">
+                        <input onclick="return ObtenerInsumosfiltro(btnSelected);" type="button" class="btn btn-primary" style="margin:0 auto; display:flex; min-width:140px; justify-content:center;" value="Mostrar">
+                    </div>
+                </div>
+
+            </div>
         <section class="d-flex" style="padding-top: 20px; overflow:scroll; padding-bottom: 20px; padding-right: 20px;">
         <div class="col-md-12 table-responsive">
         <table class="table" id="TablaInfo" style="text-align:center; box-shadow: 0px 0px 24px 0px rgba(0,0,0,0.18); background-color: #d2dae6; ">
@@ -89,6 +106,18 @@
 </section>
         </form>
     </section>
-   
 </body>
+<script>
+        var btnSelected = "insumos";
+        function Tipo(btn){
+            btnSelected = btn.name;
+            // alert(btnSelected);
+            if(btnSelected == "insumos"){
+                document.getElementById("rbt-consumible").checked = false;
+                
+            }else if(btnSelected == "consumibles"){
+                document.getElementById("rbt-insumo").checked = false;
+            }
+            
+        }</script>
 </html>

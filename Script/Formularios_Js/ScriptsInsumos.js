@@ -158,3 +158,7 @@ function RefreshInventario(){
     document.getElementById("ControlCentral").innerHTML="";
   $("#ControlCentral").load("../Paginas_insumos/Consulta_Inventario.php");
 }
+
+function ObtenerInsumosfiltro(){
+
+}
