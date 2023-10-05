@@ -159,6 +159,21 @@ function RefreshInventario(){
   $("#ControlCentral").load("../Paginas_insumos/Consulta_Inventario.php");
 }
 
-function ObtenerInsumosfiltro(){
-
+function ObtenerInsumosfiltro(Seleccion){
+    let parametros = {
+        "tipoVista": Seleccion
+    };
+    $.ajax({
+        type: 'POST',
+        url: '../Php_forms_insumos/GetInsumosConsumibles.php',
+        data: parametros,
+        async: false,
+        success: function (returningIF) {
+            if (returningIF != "Nada") {
+                document.getElementById("Cuerpo_tabla").innerHTML = returningIF;
+            } else {
+                alertify.alert("¡Oops!", "No se han podido recopilar los datos, intente más tarde");
+            }
+        }
+    });
 }
