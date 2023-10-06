@@ -286,7 +286,7 @@ $("#Detallado").click(function(){
 
 $("#Inventario-Insumo").click(function(){  
   document.getElementById("ControlCentral").innerHTML="";
-  $("#ControlCentral").load("../Paginas_insumos/Formulario_Inventario_insumos.html");
+  $("#ControlCentral").load("../Paginas_insumos/Formulario_Inventario_insumos.php");
   closeNav();
   const enlaces = document.getElementsByClassName("enlace");
   enlaces.setAttribute('color', 'rgb(129, 129, 129)');

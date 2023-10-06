@@ -27,7 +27,24 @@
             </div>
             <div class="col-md-4">
                 <label for="CategoriasInsumo" class="form-label">Categoria del insumo</label>
-                <input type="text" class="form-control" id="CategoriasInsumo" required>
+                <select id="CategoriasInsumo" class="form-select" required>
+                    <?php
+                        require_once("../conexionBD/Consultas_insumos.php");
+                        $miloraObj = InsumosClass::singleton();
+                        $data = $miloraObj->GetCategoria2();
+                    
+                        if (count($data) > 0) {
+                            foreach ($data as $fila) {
+                                $Categoria = $fila["TipoCategoria"];
+                    
+                                // Agregar una opción al select para cada producto
+                                echo "<option>$Categoria</option>";
+                            }
+                        } else {
+                            echo "<option value=''>Error</option>";
+                        }
+                        ?>
+                </select>
             </div>
             <!-- ---------------------------------------------------------------------------------------- -->
             <div class="col-md-6">
@@ -40,8 +57,8 @@
             </div>
             <!-- ---------------------------------------------------------------------------------------- -->
             <div class="col-4"></div>
-            <div class="col-4" >
-                <input  onclick="nuevo_Insumo()"  type="button" class="btn btn-primary col-12" style="height: 50px;
+            <div class="col-4">
+                <input onclick="nuevo_Insumo()" type="button" class="btn btn-primary col-12" style="height: 50px;
                 min-height: auto; font-size: auto;" value="Agregar nuevo insumo">
             </div>
             <div class="col-4"></div>
