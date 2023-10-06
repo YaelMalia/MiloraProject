@@ -67,7 +67,7 @@
         <a id="Nueva-orden" class="enlace">Nueva orden</a>
         <a id="Editar-orden" class="enlace">Editar orden</a>
         <a id="Consultar-orden" class="enlace">Consultar ordenes</a>
-        <a href="#">Archivar orden</a>
+        <!-- <a href="#">Archivar orden</a> -->
       </div>
       <!--  -->
       <button class="dropdown-btn" id="almacen">Almacén de existencias
@@ -91,16 +91,7 @@
         <a id="Salida-Insumo" class="enlace">Salidas de insumo</a>
       </div>
       <!--  -->
-      <button class="dropdown-btn" id="Almacen--">Almacen--
-        <i class="fa fa-caret-down"></i>
-      </button>
-      <div class="dropdown-container">
-      <a id="Inventario-" class="enlace">Inventario</a>
-        <a id="Consulta-" class="enlace">Consultar inventario</a>
-
-        <a id="Entrada-" class="enlace">Entradas de insumo</a>
-        <a id="Salida-" class="enlace">Salidas de insumo</a>
-      </div>
+     
       <!--  -->
       <!-- <button class="dropdown-btn" id="cInterna">Calidad interna
         <i class="fa fa-caret-down"></i>

@@ -270,34 +270,51 @@ function AgregarOrden() {
                                 } else {
                                     // Todo correcto
 
-                                    let parametros = {
-                                        "fechaInicio": fecha_inicio,
-                                        "fechaLimite": fecha_limite,
-                                        "ID_Orden": orden_compra,
-                                        "Cliente": cliente,
-                                        "No_diseno": noDiseno,
-                                        "CantidadPzs": noPiezas
+                                    let pCount = {
+                                        "disenoCount": noDiseno,
+                                        "ordenCount": orden_compra
                                     };
 
                                     $.ajax({
                                         type: 'POST',
-                                        url: '../Php_forms/Insert_Ordenes.php',
-                                        data: parametros,
+                                        url: '../Php_forms/Get_countOrdenes.php',
+                                        data: pCount,
                                         async: false,
-                                        success: function (returning) {
-                                            if (returning == "si") {
-                                                alertify.alert("¡Exito!", "Se ha registrado la nueva orden de compra correctamente");
-                                                $("#Fecha_inicio")[0].value = "";
-                                                $("#Fecha_final")[0].value = "";
-                                                $("#Orden_de_compra")[0].value = "";
-                                                $("#lst_Clientes")[0].value = "";
-                                                $("#No_diseno")[0].value = "";
-                                                $("#Numero_de_piezas")[0].value = "";
-                                            } else {
-                                                alertify.alert("Error", "No se ha podido agregar la orden de compra, revisa los datos ingresados e intenta de nuevo");
+                                        success: function (cantidadOrdenes) {
+                                            alert(cantidadOrdenes);
+                                            if(cantidadOrdenes>0){
+                                                alertify.alert("¡Atención!", "Parece que ya existe una orden de compra con estos datos y no se pueden repetir");
+                                            }else{
+                                                let parametros = {
+                                                    "fechaInicio": fecha_inicio,
+                                                    "fechaLimite": fecha_limite,
+                                                    "ID_Orden": orden_compra,
+                                                    "Cliente": cliente,
+                                                    "No_diseno": noDiseno,
+                                                    "CantidadPzs": noPiezas
+                                                };
+            
+                                                $.ajax({
+                                                    type: 'POST',
+                                                    url: '../Php_forms/Insert_Ordenes.php',
+                                                    data: parametros,
+                                                    async: false,
+                                                    success: function (returning) {
+                                                        if (returning == "si") {
+                                                            alertify.alert("¡Exito!", "Se ha registrado la nueva orden de compra correctamente");
+                                                            $("#Fecha_inicio")[0].value = "";
+                                                            $("#Fecha_final")[0].value = "";
+                                                            $("#Orden_de_compra")[0].value = "";
+                                                            $("#lst_Clientes")[0].value = "";
+                                                            $("#No_diseno")[0].value = "";
+                                                            $("#Numero_de_piezas")[0].value = "";
+                                                        } else {
+                                                            alertify.alert("Error", "No se ha podido agregar la orden de compra, revisa los datos ingresados e intenta de nuevo");
+                                                        }
+                                                    }
+                                                });
                                             }
-                                        }
-                                    });
+                                        }});
 
                                 }
 

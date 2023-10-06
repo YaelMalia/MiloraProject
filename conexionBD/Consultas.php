@@ -354,6 +354,21 @@ class MiloraClass
         }
     }
 
+    public function CountOrden($disenoR, $ordenR)
+    {
+        try {
+            $query = $this->dbh->prepare("SELECT COUNT(Numero_orden) AS Cantidad FROM ordenes_compras WHERE No_diseno LIKE ? AND Orden_compra LIKE ?");
+            $query->bindParam(1, $disenoR);
+            $query->bindParam(2, $ordenR);
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
+        } catch (PDOException $e) {
+            $e->getMessage();
+            echo $e;
+        }
+    }
+
     public function Insertar_Entrada($disenoI, $NordenI, $ordenCI, $fechaEI, $cantidadEI)
     {
         try {
