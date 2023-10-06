@@ -81,6 +81,19 @@ class InsumosClass
             $e->getMessage();
         }
     }
+
+    public function GetCategoria2()
+    {
+        try {
+            $query = $this->dbh->prepare("SELECT TipoCategoria FROM categorias");
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
+        } catch (PDOException $e) {
+            $e->getMessage();
+        }
+    }
+
     public function GetNoInsumo($Identificador, $Nombre){
         try {
             $query = $this->dbh->prepare("SELECT Id_producto FROM productos WHERE IdentificadorInsumo  LIKE ? AND Nombre_insumo LIKE ?");

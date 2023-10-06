@@ -11,6 +11,18 @@
     <script src="../Script/jquery-3.5.1.min.js"></script>
 </head>
 <body>
+    <style>
+    .sticky-header {
+        position: sticky;
+        top: 0; /* Fija el encabezado en la parte superior de la tabla */
+        z-index: 2; /* Para que esté encima del contenido */
+    }
+
+    /* Ajusta el estilo del encabezado para que se vea bien */
+    .sticky-header th {
+        background-color: #adbdd3;
+    }
+</style>
 <section class="justify-content-center" style="padding-left: 20px; padding-top: 20px; padding-bottom: 20px; padding-right: 20px;
         background-color: #d2dae6;  border-radius:10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);">
         <form action="" class="row g-1" name="foemulario" method="POST" style=" padding:5px;">
@@ -38,7 +50,7 @@
         <section class="d-flex" style="padding-top: 20px; overflow:scroll; padding-bottom: 20px; padding-right: 20px;">
         <div class="col-md-12 table-responsive">
         <table class="table" id="TablaInfo" style="text-align:center; box-shadow: 0px 0px 24px 0px rgba(0,0,0,0.18); background-color: #d2dae6; ">
-            <thead id="Head_resumida" style="background-color: #adbdd3;">
+            <thead id="Head_resumida" class="sticky-header" style="background-color: #adbdd3;">
                 <tr>
                     <th scope="col">Identificador</th>
                     <th scope="col">Nombre de insumo</th>
