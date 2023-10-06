@@ -281,7 +281,7 @@ function AgregarOrden() {
                                         data: pCount,
                                         async: false,
                                         success: function (cantidadOrdenes) {
-                                            alert(cantidadOrdenes);
+                                            
                                             if(cantidadOrdenes>0){
                                                 alertify.alert("¡Atención!", "Parece que ya existe una orden de compra con estos datos y no se pueden repetir");
                                             }else{
