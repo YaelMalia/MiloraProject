@@ -1368,6 +1368,7 @@ function AgregarProcesoDetallado() {
             data: parametrosConsulta,
             async: false,
             success: function (returning) {
+                // alert(returning);
                 if (returning == "notFound") {
                     alertify.alert("Error", "Parece que no hay ninguna orden de compra, revise sus datos");
                     // alert("No orden existente");
@@ -1389,7 +1390,7 @@ function AgregarProcesoDetallado() {
                         "Operador": SupervisorFD,
                         "TipoDetallado": TipoFD,
                         "No_orden": returning,
-                        "CantidadSolicitada": CantidadSoliFD,
+                        "CantidadSolicitada": CantidadSoliFD
                     }
                     $.ajax({
                         type: 'POST',

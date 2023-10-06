@@ -855,7 +855,7 @@ class MiloraClass
     public function Insertar_Proceso_Detallado($Fecha, $FechaLim, $Turno, $Operador, $TipoDetallado, $No_orden, $CantidadyCalidad)
     {
         try {
-            $query = $this->dbh->prepare("INSERT INTO reporte_detallado (Fecha, FechaLimite, Turno,  Operador, TipoDetallado, No_orden, CantidadSolicitada) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            $query = $this->dbh->prepare("INSERT INTO reporte_detallado (Fecha, FechaLimite, Turno, Operador, TipoDetallado, No_orden, CantidadSolicitada) VALUES (?, ?, ?, ?, ?, ?, ?)");
             $query->bindParam(1, $Fecha);
             $query->bindParam(2, $FechaLim);
             $query->bindParam(3, $Turno);
