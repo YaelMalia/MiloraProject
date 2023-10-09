@@ -180,7 +180,6 @@
                     </thead>
                     <tbody id="cuerpoTabla">
                       <?php
-
                         require_once("../conexionBD/Consultas.php");
                         $miloraObj = MiloraClass::singleton();
                         $data = $miloraObj->Get_Cargas_Corte();
