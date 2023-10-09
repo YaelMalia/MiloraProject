@@ -58,6 +58,19 @@ class InsumosClass
         }
     }
 
+    public function GetInsumosPorCategoria($Cat)
+    {
+        try {
+            $query = $this->dbh->prepare("SELECT productos.Id_producto FROM productos INNER JOIN categorias ON productos.Id_categoria = categorias.Id_categoria WHERE categorias.TipoCategoria LIKE ?;");
+            $query->bindParam(1, $Cat);
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
+        } catch (PDOException $e) {
+            $e->getMessage();
+        }
+    }
+
     public function GetConsumibles()
     {
         try {
