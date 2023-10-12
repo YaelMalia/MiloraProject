@@ -146,6 +146,7 @@ class InsumosClass
             $this->dbh = null;
         } catch (PDOException $e) {
             $e->getMessage();
+            echo $e;
         }
     }
     //--------------

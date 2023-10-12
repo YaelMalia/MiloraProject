@@ -138,14 +138,18 @@ function nueva_Salida(){
                     data: parametrosSa,
                     async: false,
                     success: function (returningSa) {
-                        if (returningSa != "si") {
-                            alertify.alert("Error", "Revise los datos de la entrada");
+                        if (returningSa.includes("SQLSTATE[45000]")) {
+                            alertify.alert("Error", "La cantidad de stock para esta orden de compra supera a la cantidad de salida");
                         } else {
-                            alertify.alert("¡Exito!", "Nueva salida registrada con éxito");
-                            let formulario = $("#form_nuevoD");
-                            $("#FechaSa")[0].value="";
-                            $("#IdentificadorSa")[0].value="";
-                            $("#CantidadSa")[0].value="";
+                            if (returningSa != "si") {
+                                alertify.alert("Error", "Revise los datos de la entrada");
+                            } else {
+                                alertify.alert("¡Exito!", "Nueva salida registrada con éxito");
+                                let formulario = $("#form_nuevoD");
+                                $("#FechaSa")[0].value = "";
+                                $("#IdentificadorSa")[0].value = "";
+                                $("#CantidadSa")[0].value = "";
+                            }
                         }
                     }
                 });
