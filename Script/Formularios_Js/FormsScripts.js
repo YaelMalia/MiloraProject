@@ -1758,7 +1758,7 @@ function ReportarCarga_Detallado() {
                                 "FechaLimite": FechaLiMD,
                                 "Turno": Nturno,
                                 "Operador": "Por destinar",
-                                "TipoDetallado": "Por destinar",
+                                "TipoDetallado": TipoMD,
                                 "No_orden": returningN,
                                 "CantidadS": NCant
                             };
