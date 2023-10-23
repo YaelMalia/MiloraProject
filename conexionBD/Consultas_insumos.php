@@ -83,6 +83,18 @@ class InsumosClass
         }
     }
 
+    public function GetInsumos()
+    {
+        try {
+            $query = $this->dbh->prepare("SELECT productos.Id_producto, productos.Nombre_insumo, productos.Descripcion, productos.Cantidad, productos.Especificaciones, categorias.TipoCategoria FROM productos INNER JOIN categorias ON productos.Id_categoria = categorias.Id_categoria WHERE categorias.TipoCategoria NOT LIKE 'Plasma' AND categorias.Tipocategoria NOT LIKE 'Laser'");
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
+        } catch (PDOException $e) {
+            $e->getMessage();
+        }
+    }
+
     public function GetCategoria($TipoCat){
         try {
             $query = $this->dbh->prepare("SELECT Id_categoria FROM categorias WHERE TipoCategoria LIKE ?");

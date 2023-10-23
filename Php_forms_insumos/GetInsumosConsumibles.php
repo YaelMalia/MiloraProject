@@ -4,7 +4,7 @@ if (isset($_POST["tipoVista"])) {
     require_once("../conexionBD/Consultas_insumos.php");
     $miloraObj = InsumosClass::singleton();
     if ($vista == "insumos") {
-        $data = $miloraObj->GetAllInsumos();
+        $data = $miloraObj->GetInsumos();
         if (count($data) > 0) {
             foreach ($data as $fila) { //Aqui es para llenar los datos
                 if ($fila["Cantidad"] <= 5) {
