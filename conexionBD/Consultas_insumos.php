@@ -58,35 +58,10 @@ class InsumosClass
         }
     }
 
-    public function GetInsumosPorCategoria($Cat)
-    {
-        try {
-            $query = $this->dbh->prepare("SELECT productos.Id_producto FROM productos INNER JOIN categorias ON productos.Id_categoria = categorias.Id_categoria WHERE categorias.TipoCategoria LIKE ?;");
-            $query->bindParam(1, $Cat);
-            $query->execute();
-            return $query->fetchAll();
-            $this->dbh = null;
-        } catch (PDOException $e) {
-            $e->getMessage();
-        }
-    }
-
     public function GetConsumibles()
     {
         try {
             $query = $this->dbh->prepare("SELECT productos.Id_producto, productos.Nombre_insumo, productos.Descripcion, productos.Cantidad, productos.Especificaciones, categorias.TipoCategoria FROM productos INNER JOIN categorias ON productos.Id_categoria = categorias.Id_categoria WHERE categorias.TipoCategoria LIKE 'Plasma' OR categorias.Tipocategoria LIKE 'Laser'");
-            $query->execute();
-            return $query->fetchAll();
-            $this->dbh = null;
-        } catch (PDOException $e) {
-            $e->getMessage();
-        }
-    }
-
-    public function GetInsumos()
-    {
-        try {
-            $query = $this->dbh->prepare("SELECT productos.Id_producto, productos.Nombre_insumo, productos.Descripcion, productos.Cantidad, productos.Especificaciones, categorias.TipoCategoria FROM productos INNER JOIN categorias ON productos.Id_categoria = categorias.Id_categoria WHERE categorias.TipoCategoria NOT LIKE 'Plasma' AND categorias.Tipocategoria NOT LIKE 'Laser'");
             $query->execute();
             return $query->fetchAll();
             $this->dbh = null;
@@ -158,7 +133,6 @@ class InsumosClass
             $this->dbh = null;
         } catch (PDOException $e) {
             $e->getMessage();
-            echo $e;
         }
     }
     //--------------
