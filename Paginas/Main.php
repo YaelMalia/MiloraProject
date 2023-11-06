@@ -36,19 +36,19 @@
       </button>
       <div class="dropdown-container">
         <a id="Nuevo-Carga-Corte" class="enlace">Carga para corte</a>
-        <a id="Consulta-Carga-Corte" class="enlace">Consulta carga corte</a>
+        <a id="Consulta-Carga-Corte" class="enlace OnlyRead">Consulta carga corte</a>
         <a id="Detallado" class="enlace">Otras cargas</a>
-        <a id="Consulta-Carga-Detallado" class="enlace">Consulta carga detallado</a>
+        <a id="Consulta-Carga-Detallado" class="enlace OnlyRead">Consulta carga detallado</a>
       </div>
       <!--  -->
-      <button class="dropdown-btn Prod-Nav">Procesos
+      <!-- <button class="dropdown-btn Prod-Nav">Procesos
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-container">
         <a id="Nuevo-proceso" class="enlace">Inicio de procesos</a>
         <a id="Seguimiento-Procesos" class="enlace">Procesos activos</a>
         <a id="Consulta-procesos" class="enlace">Historial de procesos</a>
-      </div>
+      </div> -->
       <!--  -->
       <button class="dropdown-btn Prod-Nav">Diseños/piezas
         <i class="fa fa-caret-down"></i>
@@ -57,7 +57,7 @@
         <a id="Nuevo-diseno" class="enlace">Nuevo diseño de pieza</a>
         <a id="Editar-diseno" class="enlace">Editar diseño de pieza</a>
         <!-- <a href="#">Eliminar diseño de pieza</a> -->
-        <a id="Consultar-diseno" class="enlace">Consultar diseños</a>
+        <a id="Consultar-diseno" class="enlace OnlyRead">Consultar diseños</a>
       </div>
       <!--  -->
       <button class="dropdown-btn Prod-Nav">Ordenes de compra
@@ -66,29 +66,29 @@
       <div class="dropdown-container">
         <a id="Nueva-orden" class="enlace">Nueva orden</a>
         <a id="Editar-orden" class="enlace">Editar orden</a>
-        <a id="Consultar-orden" class="enlace">Consultar ordenes</a>
+        <a id="Consultar-orden" class="enlace OnlyRead">Consultar ordenes</a>
         <!-- <a href="#">Archivar orden</a> -->
       </div>
       <!--  -->
-      <button class="dropdown-btn" id="almacen">Almacén de existencias
+      <button class="dropdown-btn" id="almacen">Almacén existencias
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-container">
         <a id="Nueva-entrada" class="enlace">Registrar entrada</a>
-        <a id="Consulta-entrada" class="enlace">Consultar entradas</a>
+        <a id="Consulta-entrada" class="enlace OnlyRead">Consultar entradas</a>
         <a id="Nueva-salida" class="enlace">Registrar salida</a>
-        <a id="Consulta-salida" class="enlace">Consultar salidas</a>
-        <a id="Consulta-existencias" class="enlace">Consultar existencias</a>
+        <a id="Consulta-salida" class="enlace OnlyRead" OnlyRead>Consultar salidas</a>
+        <a id="Consulta-existencias" class="enlace OnlyRead">Consultar existencias</a>
       </div>
-      <button class="dropdown-btn" id="AlmacenHerramientas">Almacen de herramientas
+      <button class="dropdown-btn" id="AlmacenHerramientas">Almacen herramientas
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-container">
-        <a id="Inventario-Insumo" class="enlace">Inventario</a>
-        <a id="Consulta-Insumo" class="enlace">Consultar inventario</a>
+        <a id="Inventario-Insumo" class="enlace BodYComp">Inventario</a>
+        <a id="Consulta-Insumo" class="enlace BodYComp">Consultar inventario</a>
 
-        <a id="Entrada-Insumo" class="enlace">Entradas de insumo</a>
-        <a id="Salida-Insumo" class="enlace">Salidas de insumo</a>
+        <a id="Entrada-Insumo" class="enlace BodYComp">Entradas de insumo</a>
+        <a id="Salida-Insumo" class="enlace BodYComp">Salidas de insumo</a>
       </div>
       <!--  -->
      
@@ -147,46 +147,48 @@
     <script>
       
       window.onload = function(){
+        
         <?php
-          if($_SESSION["TipoUser"] != "Admin"){
+          if($_SESSION["TipoUser"]!="Admin"){
             ?>
-            var ArrP = document.getElementsByClassName("Prod-Nav");
+            var ArrP = document.getElementsByClassName("enlace");
             Array.from(ArrP).forEach((elmnt) =>{
                 elmnt.style.display = "None";
             });
-            document.getElementById("almacen").style.display = "None";
-            document.getElementById("bodega").style.display = "None";
-            document.getElementById("ingenieria").style.display = "None";
-            document.getElementById("cInterna").style.display = "None";
-            document.getElementById("cExterna").style.display = "None";
-            document.getElementById("facturacion").style.display = "None";
-            <?php
-            if($_SESSION["TipoUser"] == "Producción"){
-              ?>
-            Array.from(ArrP).forEach((elmnt) =>{
-                elmnt.style.display = "Block";
+
+            var ArrProd2 = document.getElementsByClassName("OnlyRead");
+            Array.from(ArrProd2).forEach((elmnt) =>{
+                elmnt.style.display = "block";
             });
+            
+            <?php
+            // Limitar accesos
+            if($_SESSION["TipoUser"] == "Producción2"){
+              ?>
+              document.getElementById("Nuevo-Carga-Corte").style.display = "block";
+              document.getElementById("Detallado").style.display = "block";
               <?php
             }else if($_SESSION["TipoUser"] == "Almacén"){
-            ?>
-            document.getElementById("almacen").style.display = "Block";
-            <?php
-            }else if($_SESSION["TipoUser"] == "Bodega"){
               ?>
-            document.getElementById("bodega").style.display = "Block";
-              <?php
-            }else if($_SESSION["TipoUser"] == "Ingeniería"){
-              ?>
-            document.getElementById("ingenieria").style.display = "Block";
-              <?php
-            }else if($_SESSION["TipoUser"] == "Calidad"){
-              ?>
-            document.getElementById("cInterna").style.display = "Block";
-            document.getElementById("cExterna").style.display = "Block";
+              document.getElementById("Nueva-entrada").style.display = "block";
+              document.getElementById("Nueva-salida").style.display = "block";
               <?php
             }else if($_SESSION["TipoUser"] == "Facturación"){
               ?>
-              document.getElementById("facturacion").style.display = "Block";
+              document.getElementById("Nueva-orden").style.display = "block";
+              document.getElementById("Editar-orden").style.display = "block";
+              <?php
+            }else if($_SESSION["TipoUser"] == "Ingeniería"){
+              ?>
+              document.getElementById("Nuevo-diseno").style.display = "block";
+              document.getElementById("Editar-diseno").style.display = "block";
+              <?php
+            }else if($_SESSION["TipoUser"] == "Compras" || $_SESSION["TipoUser"] == "Bodega"){
+              ?>
+              var BodYComp = document.getElementsByClassName("BodYComp");
+                Array.from(BodYComp).forEach((elmnt) =>{
+                elmnt.style.display = "block";
+            });
               <?php
             }
           }
