@@ -296,7 +296,7 @@ $("#Inventario-Insumo").click(function(){
 
 $("#Entrada-Insumo").click(function(){  
   document.getElementById("ControlCentral").innerHTML="";
-  $("#ControlCentral").load("../Paginas_insumos/Formulario_Entrada_insumo.html");
+  $("#ControlCentral").load("../Paginas_insumos/Formulario_Entrada_insumo.php");
   closeNav();
   const enlaces = document.getElementsByClassName("enlace");
   enlaces.setAttribute('color', 'rgb(129, 129, 129)');
@@ -304,7 +304,7 @@ $("#Entrada-Insumo").click(function(){
 
 $("#Salida-Insumo").click(function(){  
   document.getElementById("ControlCentral").innerHTML="";
-  $("#ControlCentral").load("../Paginas_insumos/Formulario_Salida_insumo.html");
+  $("#ControlCentral").load("../Paginas_insumos/Formulario_Salida_insumo.php");
   closeNav();
   const enlaces = document.getElementsByClassName("enlace");
   enlaces.setAttribute('color', 'rgb(129, 129, 129)');
